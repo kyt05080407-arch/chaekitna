@@ -1,0 +1,54 @@
+name: Deploy site
+
+# 코드가 바뀌거나, 데이터 갱신 작업이 끝나면 GitHub Pages에 다시 배포한다.
+on:
+  push:
+    branches: [main]
+  workflow_run:
+    workflows: ["Weekly popular books", "Monthly library list"]
+    types: [completed]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    # 데이터 작업은 성공했고 실제로 새 커밋을 만들었을 때만 다시 배포한다(인증키가 없어 건너뛴 경우 제외).
+    if: >-
+      github.event_name != 'workflow_run' ||
+      (github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_sha != github.sha)
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - id: pages
+        uses: actions/configure-pages@v5
+      - name: Build site folder
+        env:
+          BASE_URL: ${{ steps.pages.outputs.base_url }}
+        run: |
+          mkdir -p _site
+          cp -r index.html manifest.webmanifest sw.js css js data assets vendor _site/
+          touch _site/.nojekyll
+          # 링크 미리보기(카카오톡 등)는 절대 주소가 필요해서 배포 주소로 바꿔 넣는다.
+          sed -i \
+            -e "s#<meta property=\"og:url\" content=\"./\">#<meta property=\"og:url\" content=\"${BASE_URL}/\">#" \
+            -e "s#<meta property=\"og:image\" content=\"assets/og.png\">#<meta property=\"og:image\" content=\"${BASE_URL}/assets/og.png\">#" \
+            _site/index.html
+          grep -q "og:image\" content=\"https://" _site/index.html
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+      - id: deployment
+        uses: actions/deploy-pages@v4

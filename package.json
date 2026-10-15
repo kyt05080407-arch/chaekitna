@@ -1,0 +1,23 @@
+{
+  "name": "chaekitna",
+  "version": "0.1.0",
+  "private": true,
+  "description": "책 한 권을 검색하면 내 도서관 여러 곳의 소장·대출 가능 여부를 한 화면에 보여주는 웹앱",
+  "type": "module",
+  "license": "MIT",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "test": "node --test \"tests/*.test.mjs\"",
+    "serve": "python3 -m http.server 8080",
+    "icons": "node scripts/make-icons.mjs",
+    "data:popular": "node scripts/fetch-popular.mjs",
+    "data:libraries": "node scripts/fetch-libraries.mjs",
+    "health": "node scripts/healthcheck.mjs"
+  },
+  "devDependencies": {
+    "@resvg/resvg-js": "^2.6.2",
+    "pretendard": "^1.3.9"
+  }
+}

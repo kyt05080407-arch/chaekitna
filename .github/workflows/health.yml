@@ -1,0 +1,34 @@
+name: Daily health check
+
+# 매일 07:00(한국 시간) 프록시 상태와 전날 호출 수를 확인한다. 실패하면 이슈를 연다.
+on:
+  schedule:
+    - cron: '0 22 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Check proxy
+        run: node scripts/healthcheck.mjs
+      - name: Open an issue when it fails
+        if: failure()
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          gh label create health --color D93F0B --description "자동 점검" --force
+          open=$(gh issue list --label health --state open --json number --jq 'length')
+          if [ "$open" = "0" ]; then
+            gh issue create --label health --title "프록시 점검 실패 $(date -u +%F)" \
+              --body "매일 점검에서 프록시가 정상 응답하지 않았어요. 로그: $RUN_URL"
+          fi

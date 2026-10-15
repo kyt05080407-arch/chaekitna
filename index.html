@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="ko" data-size="l">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>책있나 — 내 도서관에 그 책 있나?</title>
+<meta name="description" content="책 한 권을 검색하면 내가 고른 도서관 여러 곳의 소장·대출 가능 여부를 한 화면에 보여주는 무료 웹앱. 로그인 없이 써요.">
+<meta name="theme-color" content="#ffffff">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="책있나">
+<meta property="og:site_name" content="책있나">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:title" content="책있나 — 내 도서관에 그 책 있나?">
+<meta property="og:description" content="책 한 권, 도서관 여러 곳의 대출 가능 여부를 한 번에.">
+<meta property="og:type" content="website">
+<!-- 배포할 때 pages.yml이 아래 두 주소를 사이트 절대 주소로 바꾼다 (카카오톡 미리보기용) -->
+<meta property="og:url" content="./">
+<meta property="og:image" content="assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="책있나 — 책 한 권, 도서관 여러 곳의 대출 가능 여부를 한 번에">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="assets/icons/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+<link rel="stylesheet" href="assets/fonts/pretendard/pretendard.css">
+<link rel="stylesheet" href="css/app.css">
+<script type="module" src="js/app.js"></script>
+</head>
+<body>
+<a class="skip" href="#main">본문 바로가기</a>
+<div class="app">
+  <header class="topbar" id="topbar"></header>
+  <main id="main" class="view" tabindex="-1"></main>
+</div>
+<nav class="tabbar" aria-label="하단 메뉴">
+  <a class="tab" data-tab="home" href="#/">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5L12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/></svg>홈</a>
+  <a class="tab" data-tab="watchlist" href="#/watchlist">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l2.8 5.7 6.2.9-4.5 4.4 1.1 6.2L12 17.3 6.4 20.2l1.1-6.2L3 9.6l6.2-.9z"/></svg>관심 도서</a>
+  <a class="tab" data-tab="libraries" href="#/libraries">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18"/><path d="M5 21V10M9.5 21V10M14.5 21V10M19 21V10"/><path d="M2 10l10-6 10 6"/></svg>내 도서관</a>
+  <a class="tab" data-tab="settings" href="#/settings">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>설정</a>
+</nav>
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+<noscript><p style="padding:1rem">책있나는 자바스크립트가 켜져 있어야 동작해요.</p></noscript>
+</body>
+</html>
