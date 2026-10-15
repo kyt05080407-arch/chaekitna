@@ -17,7 +17,8 @@
     "data:libraries": "node scripts/fetch-libraries.mjs",
     "health": "node scripts/healthcheck.mjs",
     "alerts": "node scripts/send-alerts.mjs",
-    "cards": "node scripts/make-cards.mjs"
+    "cards": "node scripts/make-cards.mjs",
+    "check:api": "node scripts/check-api.mjs"
   },
   "devDependencies": {
     "@playwright/test": "1.56.0",

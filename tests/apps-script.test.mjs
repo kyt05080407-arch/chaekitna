@@ -232,3 +232,19 @@ test('cleanupOldCounters는 31일 지난 기록과 90일 지난 구독만 지운
   assert.equal(props.has('sub:new'), true);
   assert.equal(props.get('D4L_AUTH_KEY'), 'TEST_KEY', '설정값은 건드리지 않는다');
 });
+
+test('stats: 최근 며칠의 호출 수와 기능별 횟수(개인 정보 없음)', () => {
+  const { get, props } = createEnv({ upstream: () => ({ response: { docs: [] } }) });
+  get({ op: 'search', q: 'a' });
+  get({ op: 'search', q: 'a' });
+  props.set('sub:x', '{}');
+  const r = get({ op: 'stats', days: '3' });
+  assert.equal(r.days.length, 3);
+  assert.equal(r.limit, 450);
+  assert.equal(r.subscriptions, 1);
+  const today = r.days[2];
+  assert.equal(today.used, 1, '두 번째 검색은 캐시');
+  assert.equal(today.stats.srchBooks, 2);
+  assert.equal(get({ op: 'stats', days: '999' }).days.length, 31);
+  assert.ok(!JSON.stringify(r).includes('endpoint'));
+});

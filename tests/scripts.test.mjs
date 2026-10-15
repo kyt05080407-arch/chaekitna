@@ -86,7 +86,18 @@ test('프록시 점검: 정상이면 어제 사용량까지 보여준다', async
   assert.equal(result.code ?? 0, 0, String(result.stderr));
   assert.match(result.stdout, /프록시 정상/);
   assert.match(result.stdout, /어제\(2026-10-14\) 호출 120\/450/);
+  assert.match(result.stdout, /정보나루 연결 정상/);
+  assert.match(result.stdout, /지난 7일: 정보나루 호출 120번 · 검색 35 · 대출 확인 70 · 넓게 찾기 0 · 책 소개 1 · 알림 구독 2/);
   assert.doesNotMatch(result.stdout, /::warning::/);
+});
+
+test('프록시 점검: 정보나루까지 닿지 않으면 실패(이슈 생성 단계로)', async () => {
+  const upstream = await runScript('healthcheck.mjs', { PROXY_URL: 'https://proxy.example/exec', MOCK_SCENARIO: 'health-upstream' });
+  assert.equal(upstream.result.code, 1);
+  assert.match(upstream.result.stderr, /정보나루 조회 실패: upstream/);
+  const empty = await runScript('healthcheck.mjs', { PROXY_URL: 'https://proxy.example/exec', MOCK_SCENARIO: 'health-empty' });
+  assert.equal(empty.result.code, 1);
+  assert.match(empty.result.stderr, /검색 결과가 비어/);
 });
 
 test('프록시 점검: 어제 한도의 90%를 넘으면 경고', async () => {
@@ -120,4 +131,20 @@ test('인기 도서: 연령이 이미 청소년이면 같은 조회를 두 번 �
   assert.equal(result.code ?? 0, 0, String(result.stderr));
   const calls = JSON.parse(result.stdout.match(/MOCK_CALLS (.*)/)[1]);
   assert.equal(calls.length, new Set(calls).size);
+});
+
+test('API 점검: 여섯 가지 응답을 앱 파서로 읽어 본다', async () => {
+  const { result } = await runScript('check-api.mjs', {});
+  assert.equal(result.code ?? 0, 0, String(result.stderr) + result.stdout);
+  assert.equal((result.stdout.match(/^통과/gm) || []).length, 6);
+  assert.match(result.stdout, /모두 통과했어요/);
+  assert.ok(!result.stdout.includes('fake-key'));
+  const calls = JSON.parse(result.stdout.match(/MOCK_CALLS (.*)/)[1]);
+  assert.equal(calls.length, 6, '호출은 6번');
+});
+
+test('API 점검: 응답 모양이 다르면 실패로 끝난다', async () => {
+  const { result } = await runScript('check-api.mjs', { MOCK_SCENARIO: 'exist-broken' });
+  assert.equal(result.code, 1);
+  assert.match(result.stdout, /실패 · 대출 가능 bookExist/);
 });

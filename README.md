@@ -65,6 +65,7 @@ GitHub Actions: 매주 인기 도서 · 매월 도서관 목록 · 매일 프록
 3. 프록시를 배포해요: [apps-script/README.md](apps-script/README.md)
 4. 프록시 주소(`…/exec`)를 `js/config.js`의 `proxyUrl`에 넣고 커밋해요.
 5. 저장소 **Settings → Secrets and variables → Actions**에서 Secret `D4L_AUTH_KEY`를 추가해요. 인기 도서·도서관 목록 자동 갱신에 써요. ([GitHub 문서](https://docs.github.com/en/actions/how-tos/write-workflows/choose-what-workflows-do/use-secrets))
+   - 넣은 뒤 **Actions → API check → Run workflow**를 한 번 실행하면, 정보나루 실제 응답 여섯 가지를 앱이 제대로 읽는지 확인해요(호출 6번).
 6. (선택) 같은 화면의 Variables에서 인기 도서 기준을 바꿀 수 있어요.
 
 | Variable | 기본값 | 예 |
@@ -98,7 +99,8 @@ GitHub Actions: 매주 인기 도서 · 매월 도서관 목록 · 매일 프록
 | Deploy site | 코드를 올릴 때, 데이터 갱신이 끝났을 때 | GitHub Pages 배포, 링크 미리보기 주소를 절대 주소로 바꿈, 인스타그램 카드 생성 |
 | Weekly popular books | 매주 월요일 06:00 | 지난 7일 인기 대출 도서 TOP 10 저장 |
 | Monthly library list | 매월 2일 03:00 | 전국 도서관 목록 갱신 (개수가 갑자기 줄면 덮어쓰지 않음) |
-| Daily health check | 매일 07:00 | 프록시 상태와 어제 호출 수 확인, 실패하면 이슈 생성 |
+| Daily health check | 매일 07:00 | 프록시 상태, 정보나루 연결(시험 검색), 어제·지난 7일 사용량 확인, 실패하면 이슈 생성 |
+| API check | 직접 실행할 때 | 정보나루 응답 여섯 가지를 앱 파서로 읽어 보기 |
 | Morning alerts | 매일 09:07 | 관심 도서가 새로 대출 가능해진 사람에게 푸시 알림 (설정 전에는 건너뜀) |
 
 ## 인스타그램 카드
@@ -128,6 +130,7 @@ npm run test:e2e   # 휴대폰 크기 화면 자동 점검 (처음 한 번: npx 
 
 - 아이콘·미리보기 이미지 다시 만들기: `npm run icons`
 - 데이터 직접 받기: `D4L_AUTH_KEY=인증키 npm run data:popular` / `npm run data:libraries`
+- 정보나루 응답 점검: `D4L_AUTH_KEY=인증키 npm run check:api`
 - 프록시 점검: `PROXY_URL=https://script.google.com/macros/s/…/exec npm run health`
 - 알림 시험 실행: `ADMIN_TOKEN=… ALERTS_DRY_RUN=1 npm run alerts`
 

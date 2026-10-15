@@ -79,7 +79,10 @@ function summaryText(statuses, total) {
 
 export async function render({ main, params, signal }) {
   const isbn = params.isbn;
-  let book = demo.isDemoIsbn(isbn) ? demo.bookByIsbn(isbn) : store.cacheGet(`b:${isbn}`);
+  // 이미 아는 책 정보(검색·인기 도서·상세 조회·관심 도서)가 있으면 다시 조회하지 않는다.
+  let book = demo.isDemoIsbn(isbn)
+    ? demo.bookByIsbn(isbn)
+    : store.cacheGet(`b:${isbn}`) || store.cacheGet(`d:${isbn}`) || store.watchlist.list().find((b) => b.isbn13 === isbn) || null;
   const watched = () => store.watchlist.has(isbn);
 
   const renderTopbar = () =>

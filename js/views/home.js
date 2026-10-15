@@ -101,6 +101,13 @@ export async function render({ main, navigate, signal }) {
   if (signal.aborted) return;
   main.querySelector('#pop-sub').textContent = popularSubtitle(data);
   const items = data.items.slice(0, 10);
+  // 인기 도서의 제목·저자는 이미 있으니, 눌러서 상세로 갈 때 책 정보를 다시 조회하지 않게 저장해 둔다.
+  if (!data.demo) {
+    const until = Date.now() + 7 * 24 * 3600 * 1000;
+    for (const book of items) {
+      if (/^\d{13}$/.test(book.isbn13 || '') && !store.cacheGet(`b:${book.isbn13}`)) store.cacheSet(`b:${book.isbn13}`, book, until);
+    }
+  }
   main.querySelector('#pop-list').innerHTML = toMarkup(
     items.map(
       (book, i) => html`<li><a class="row" href="#/book/${book.isbn13}">

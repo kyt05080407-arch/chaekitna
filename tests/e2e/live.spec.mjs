@@ -103,3 +103,29 @@ test('하루 조회 한도를 넘으면 안내하고 확인 못 함으로 표시
   await expect(page.locator('#mine [data-status] .badge--unknown')).toHaveCount(3);
   await expect(page.locator('#mine [data-status]').first()).toHaveText('확인 못 함');
 });
+
+test('인기 도서나 관심 도서에서 들어가면 책 정보를 다시 조회하지 않는다', async ({ page }) => {
+  await page.route('**/data/popular.json', (route) =>
+    route.fulfill({
+      json: {
+        demo: false,
+        period: '10월 5일~11일',
+        regionName: '경북',
+        ageName: '고등학생',
+        items: [{ rank: 1, isbn13: '9788937460449', title: '데미안', authors: '헤르만 헤세', publisher: '민음사', year: '2000', cover: '' }],
+      },
+    }),
+  );
+  await pickLibraries(page);
+  await page.goto('#/');
+  await page.locator('#pop-list .row').first().click();
+  await expect(page.locator('.book-head__title')).toHaveText('데미안');
+  await expect(page.locator('#mine .card [data-status]')).toHaveText(['소장 안 함', '대출 중', '대출 가능']);
+  await page.locator('#watch').click();
+  // 폰에 저장한 책 정보 캐시를 지워도 관심 도서 정보로 연다
+  await page.evaluate(() => Object.keys(localStorage).filter((k) => k.startsWith('chaekitna:c:b:')).forEach((k) => localStorage.removeItem(k)));
+  await page.goto('#/watchlist');
+  await page.locator('#books .card a.row').first().click();
+  await expect(page.locator('.book-head__title')).toHaveText('데미안');
+  expect(proxy.calls).not.toContain('detail');
+});

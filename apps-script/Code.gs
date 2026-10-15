@@ -32,6 +32,8 @@ function doGet(e) {
     switch (p.op) {
       case 'health':
         return json_(health_());
+      case 'stats':
+        return json_(statsOverview_(p));
       case 'search':
         return json_(search_(p));
       case 'detail':
@@ -155,6 +157,19 @@ function health_() {
     },
     subscriptions: listSubscriptionKeys_().length,
   };
+}
+
+// 최근 며칠(기본 14일, 최대 31일)의 날짜별 호출 수와 기능별 사용 횟수. 개인을 알 수 있는 정보는 없다.
+function statsOverview_(p) {
+  var days = clampInt_(p.days, 1, 31, 14);
+  var all = PropertiesService.getScriptProperties().getProperties();
+  var out = [];
+  for (var i = days - 1; i >= 0; i--) {
+    var date = Utilities.formatDate(new Date(Date.now() - i * 24 * 3600 * 1000), 'Asia/Seoul', 'yyyy-MM-dd');
+    out.push({ date: date, used: Number(all['usage:' + date] || 0), stats: JSON.parse(all['stats:' + date] || '{}') });
+  }
+  var subscriptions = Object.keys(all).filter(function (k) { return k.indexOf('sub:') === 0; }).length;
+  return { limit: limit_(), days: out, subscriptions: subscriptions };
 }
 
 // ---------- 정보나루 호출과 캐시 ----------

@@ -49,6 +49,21 @@ function proxyResponse(url, init) {
     if (url.searchParams.get('token') !== 'admin-secret') return { error: 'forbidden', message: '권한이 없어요.' };
     return { subscriptions: JSON.parse(process.env.MOCK_SUBS || '[]') };
   }
+  if (op === 'search') {
+    if (scenario === 'health-upstream') return { error: 'upstream', message: '도서관 정보나루가 응답하지 않아요.' };
+    if (scenario === 'health-empty') return { response: { numFound: 0, docs: [] } };
+    return { response: { numFound: 1, docs: [{ doc: { bookname: '어린 왕자', isbn13: '9788932917245' } }] } };
+  }
+  if (op === 'stats') {
+    return {
+      limit: 450,
+      subscriptions: 2,
+      days: [
+        { date: '2026-10-14', used: 100, stats: { srchBooks: 30, exist: 60 } },
+        { date: '2026-10-15', used: 20, stats: { srchBooks: 5, exist: 10, srchDtlList: 1 } },
+      ],
+    };
+  }
   if (op === 'exist') {
     if (scenario === 'budget') return { error: 'budget', message: '오늘 조회 한도를 다 썼어요.' };
     const avail = JSON.parse(process.env.MOCK_AVAIL || '{}');
@@ -85,6 +100,14 @@ globalThis.fetch = async (input, init = {}) => {
       yesterday: { date: '2026-10-14', used: scenario === 'health-busy' ? 430 : 120, stats: { search: 40, exist: 70 } },
       subscriptions: 0,
     };
+  } else if (ep === 'srchBooks') {
+    body = { response: { numFound: 120, docs: popularDocs(3) } };
+  } else if (ep === 'srchDtlList') {
+    body = { response: { detail: [{ book: { ...popularDocs(1)[0].doc, description: '소개 글' } }] } };
+  } else if (ep === 'libSrchByBook') {
+    body = { response: { numFound: 2, libs: libs(1, 2, 2) } };
+  } else if (ep === 'bookExist') {
+    body = scenario === 'exist-broken' ? { response: { result: {} } } : { response: { result: { hasBook: 'Y', loanAvailable: 'N' } } };
   } else if (ep === 'loanItemSrch') {
     const age = url.searchParams.get('age');
     const region = url.searchParams.get('region');
