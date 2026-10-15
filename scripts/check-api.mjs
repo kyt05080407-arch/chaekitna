@@ -40,6 +40,15 @@ const search = await step('책 검색 srchBooks', async () => {
   return good[0] || null;
 });
 
+// 인증키가 아직 승인 전이면 나머지도 같은 답이니 호출을 아끼고 멈춘다.
+const first = results[0];
+if (!search && first && /활성화|승인|인증키/.test(first.detail || '')) {
+  const msg = '인증키가 아직 쓸 수 있는 상태가 아니에요(정보나루 승인 대기). 마이페이지 → 인증키에서 승인됐는지 확인한 뒤 다시 실행해 주세요.';
+  console.log(`\n${msg}`);
+  annotate('error', msg);
+  process.exit(1);
+}
+
 const isbn = search ? search.isbn13 : '9788937460449';
 
 // 2) 책 상세

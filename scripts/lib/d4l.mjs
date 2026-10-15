@@ -24,10 +24,16 @@ export async function callApi(endpoint, params, { key = authKey(), retries = 2 }
       const res = await fetch(url, { signal: AbortSignal.timeout(30000) });
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       const data = await res.json();
-      if (data && data.response && data.response.error) throw new Error(`정보나루 오류: ${data.response.error}`);
+      if (data && data.response && data.response.error) {
+        // 인증키 상태 같은 정보나루 쪽 오류는 다시 불러도 같은 답이라 바로 멈춘다.
+        const apiError = new Error(`정보나루 오류: ${data.response.error}`);
+        apiError.final = true;
+        throw apiError;
+      }
       return data;
     } catch (error) {
       lastError = error;
+      if (error.final) break;
       await new Promise((r) => setTimeout(r, 2000 * (attempt + 1)));
     }
   }
