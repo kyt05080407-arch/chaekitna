@@ -1,13 +1,15 @@
-// 지난 7일 동안 많이 빌린 책(인기 대출 도서)을 받아 data/popular.json에 저장한다.
-// 기본: 경북(37) · 고등학생(a17). 환경변수 POPULAR_REGION, POPULAR_AGE로 바꿀 수 있다.
-// 매주 받은 결과는 data/history/에도 쌓아 두어 나중에 추이를 분석할 수 있게 한다.
+// 지난 7일 동안 많이 빌린 책(인기 대출 도서)을 받아 저장한다.
+// - data/popular.json: 기본 지역(경북 37) · 고등학생(a17). POPULAR_REGION, POPULAR_AGE로 바꿀 수 있다.
+//   매주 결과를 data/history/에도 쌓아 두어 나중에 추이를 보고, 인스타그램 카드도 이걸로 만든다.
+// - data/popular/<지역코드>.json: 17개 시·도별 목록(앱 홈에서 내 지역 목록을 보여 줌).
+//   POPULAR_ALL_REGIONS=0이면 건너뛴다. 지역마다 1~2번, 모두 합쳐 최대 34번 호출.
 
 import { mkdir, writeFile } from 'node:fs/promises';
 import { pathToFileURL } from 'node:url';
 import { resolve } from 'node:path';
 import { callApi, kstDate, koreanRange } from './lib/d4l.mjs';
 import { parseBooks } from '../js/parse.js';
-import { isRegionCode, regionByCode } from '../js/regions.js';
+import { REGIONS, isRegionCode, regionByCode } from '../js/regions.js';
 
 // 정보나루 연령 코드 (a8·a10·a12는 초등 학년군)
 const AGE_NAMES = {
@@ -32,47 +34,74 @@ async function fetchList(params) {
   return parseBooks(data).books.filter((b) => /^\d{13}$/.test(b.isbn13));
 }
 
-// 데이터가 적으면 범위를 넓힌다: 지역+연령 → 지역+청소년 → 전국+연령 (같은 조건은 한 번만)
-const attempts = [{ region, age }, { region, age: '14' }, { age }].filter(
-  (a, i, all) => all.findIndex((b) => b.region === a.region && b.age === a.age) === i,
-);
-
-let items = [];
-let used = attempts[0];
-for (const attempt of attempts) {
-  items = await fetchList(attempt);
-  used = attempt;
-  if (items.length >= 5) break;
+// 조건을 차례로 넓혀 5권 이상 나오면 멈춘다(같은 조건은 한 번만)
+async function firstEnough(attempts) {
+  const unique = attempts.filter((a, i, all) => all.findIndex((b) => b.region === a.region && b.age === a.age) === i);
+  let items = [];
+  let used = unique[0];
+  for (const attempt of unique) {
+    items = await fetchList(attempt);
+    used = attempt;
+    if (items.length >= 5) break;
+  }
+  return { items, used };
 }
-if (!items.length) {
+
+function toFile({ items, used }) {
+  return {
+    demo: false,
+    generatedAt: new Date().toISOString(),
+    startDt,
+    endDt,
+    period: koreanRange(startDt, endDt),
+    region: used.region || '',
+    regionName: used.region ? regionByCode(used.region)?.short || '' : '전국',
+    age: used.age,
+    ageName: AGE_NAMES[used.age] || '',
+    source: '도서관 정보나루 인기대출도서 (loanItemSrch)',
+    items: items.map((b, i) => ({
+      rank: b.rank || i + 1,
+      isbn13: b.isbn13,
+      title: b.title,
+      authors: b.authors,
+      publisher: b.publisher,
+      year: b.year,
+      cover: b.cover,
+      loanCount: b.loanCount,
+    })),
+  };
+}
+
+const json = (value) => `${JSON.stringify(value, null, 2)}\n`;
+
+// 1) 기본 지역: 지역+연령 → 지역+청소년 → 전국+연령
+const main = await firstEnough([{ region, age }, { region, age: '14' }, { age }]);
+if (!main.items.length) {
   console.error('인기 도서를 받지 못했어요. 기존 파일을 그대로 둡니다.');
   process.exit(1);
 }
-
-const file = {
-  demo: false,
-  generatedAt: new Date().toISOString(),
-  startDt,
-  endDt,
-  period: koreanRange(startDt, endDt),
-  region: used.region || '',
-  regionName: used.region ? regionByCode(used.region)?.short || '' : '전국',
-  age: used.age,
-  ageName: AGE_NAMES[used.age] || '',
-  source: '도서관 정보나루 인기대출도서 (loanItemSrch)',
-  items: items.map((b, i) => ({
-    rank: b.rank || i + 1,
-    isbn13: b.isbn13,
-    title: b.title,
-    authors: b.authors,
-    publisher: b.publisher,
-    year: b.year,
-    cover: b.cover,
-    loanCount: b.loanCount,
-  })),
-};
-
-await writeFile(new URL('popular.json', outDir), `${JSON.stringify(file, null, 2)}\n`);
+const file = toFile(main);
 await mkdir(new URL('history/', outDir), { recursive: true });
-await writeFile(new URL(`history/popular-${endDt}.json`, outDir), `${JSON.stringify(file, null, 2)}\n`);
+await writeFile(new URL(`history/popular-${endDt}.json`, outDir), json(file));
+
+// 2) 시·도별 목록 (전국으로 넓히지는 않는다: 그 지역 목록이 아니게 되므로)
+const saved = [];
+if (process.env.POPULAR_ALL_REGIONS !== '0') {
+  await mkdir(new URL('popular/', outDir), { recursive: true });
+  for (const r of REGIONS) {
+    try {
+      const result =
+        r.code === region && main.used.region === region ? main : await firstEnough([{ region: r.code, age }, { region: r.code, age: '14' }]);
+      if (!result.items.length) continue;
+      await writeFile(new URL(`popular/${r.code}.json`, outDir), json(toFile(result)));
+      saved.push(r.code);
+    } catch (error) {
+      console.log(`::warning::${r.short} 인기 도서를 받지 못했어요: ${error.message}`);
+    }
+  }
+  console.log(`시·도별 인기 도서 ${saved.length}/${REGIONS.length}곳 저장`);
+}
+
+// 기본 목록에는 어떤 지역 목록이 있는지 함께 적어 둔다(앱이 없는 파일을 찾지 않게)
+await writeFile(new URL('popular.json', outDir), json({ ...file, regions: saved }));
 console.log(`${file.regionName} ${file.ageName} 인기 도서 ${file.items.length}권 (${file.period}) 저장`);

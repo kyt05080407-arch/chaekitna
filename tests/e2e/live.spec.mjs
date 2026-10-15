@@ -129,3 +129,34 @@ test('인기 도서나 관심 도서에서 들어가면 책 정보를 다시 조
   await expect(page.locator('.book-head__title')).toHaveText('데미안');
   expect(proxy.calls).not.toContain('detail');
 });
+
+test('처음 화면의 인기 도서는 내 지역 목록을 보여 준다', async ({ page }) => {
+  const asked = [];
+  const list = (region, regionName, title) => ({
+    demo: false, period: '10월 5일~11일', region, regionName, ageName: '고등학생',
+    items: [{ rank: 1, isbn13: '9788932917245', title, authors: '작가' }],
+  });
+  await page.route('**/data/popular.json', (route) => route.fulfill({ json: { ...list('37', '경북', '경북 1위 책'), regions: ['11', '37'] } }));
+  await page.route('**/data/popular/*.json', (route) => {
+    const code = route.request().url().match(/popular\/(\d{2})\.json$/)[1];
+    asked.push(code);
+    return route.fulfill({ json: list(code, code === '11' ? '서울' : '?', `${code} 1위 책`) });
+  });
+  // 1) 내 도서관이 경북이면 기본 목록(경북)을 그대로 쓰고 따로 요청하지 않는다
+  await pickLibraries(page);
+  await page.goto('#/');
+  await expect(page.locator('#pop-sub')).toContainText('경북 고등학생');
+  expect(asked).toEqual([]);
+  // 2) 설정에서 기본 지역을 서울로 바꾸면 서울 목록
+  await page.goto('#/settings');
+  await page.locator('#region').selectOption('11');
+  await page.goto('#/');
+  await expect(page.locator('#pop-sub')).toContainText('서울 고등학생');
+  await expect(page.locator('#pop-list .row__title')).toHaveText(['11 1위 책']);
+  // 3) 목록에 없는 지역(부산)은 요청하지 않고 기본 목록
+  await page.goto('#/settings');
+  await page.locator('#region').selectOption('21');
+  await page.goto('#/');
+  await expect(page.locator('#pop-sub')).toContainText('경북 고등학생');
+  expect(asked).toEqual(['11']);
+});

@@ -167,14 +167,24 @@ export async function availability(isbn13, codes, { signal, force = false } = {}
 
 // ---------- 이번 주 인기 도서 (GitHub Actions가 만든 정적 파일) ----------
 
-export async function popularBooks() {
+// region: 시·도 코드. 그 지역 목록(data/popular/코드.json)이 있으면 그걸, 없으면 기본 목록(data/popular.json)을 쓴다.
+async function readPopular(path) {
   try {
-    const res = await fetch(new URL('../data/popular.json', import.meta.url));
-    if (!res.ok) throw new Error(String(res.status));
+    const res = await fetch(new URL(path, import.meta.url));
+    if (!res.ok) return null;
     const json = await res.json();
-    if (!json || !Array.isArray(json.items) || !json.items.length) return demo.popular();
-    return json;
+    return json && Array.isArray(json.items) && json.items.length ? json : null;
   } catch {
-    return demo.popular();
+    return null;
   }
+}
+
+export async function popularBooks(region = '') {
+  const base = await readPopular('../data/popular.json');
+  // 기본 목록에 적힌 지역만 따로 불러온다(없는 파일을 요청하지 않게)
+  if (base && region && region !== base.region && Array.isArray(base.regions) && base.regions.includes(region)) {
+    const regional = await readPopular(`../data/popular/${region}.json`);
+    if (regional) return regional;
+  }
+  return base || demo.popular();
 }

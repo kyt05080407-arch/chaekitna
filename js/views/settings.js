@@ -47,7 +47,7 @@ export async function render({ main }) {
       <h2 class="h2" id="region-h">기본 지역</h2>
       <label class="sr-only" for="region">기본 지역</label>
       <select class="input" id="region">${REGIONS.map((r) => html`<option value="${r.code}">${r.name}</option>`)}</select>
-      <p class="small muted">도서관 찾기와 '더 넓게 찾기'의 처음 지역이에요.</p>
+      <p class="small muted">도서관 찾기, '더 넓게 찾기', 처음 화면의 이번 주 인기 도서에 쓰는 지역이에요.</p>
     </section>
 
     ${!isStandalone()

@@ -3,6 +3,7 @@ import { brandMark, demoBadge, demoNotice, icon, setTopbar, skeletonRows } from 
 import * as store from '../store.js';
 import { isDemoMode, popularBooks } from '../api.js';
 import { getLibrary, loadLibraries } from '../libraries.js';
+import { CONFIG } from '../config.js';
 import { openScanner } from '../scan.js';
 
 function popularSubtitle(data) {
@@ -78,26 +79,33 @@ export async function render({ main, navigate, signal }) {
     if (isbn) navigate(`#/book/${isbn}`);
   });
 
-  // 내 도서관 이름 채우기
+  // 내 도서관 이름 채우기 (도서관 목록은 아래 '내 지역 인기 도서'를 고를 때도 쓴다)
+  const librariesReady = mine.length ? loadLibraries().then(() => true, () => false) : Promise.resolve(false);
   if (mine.length) {
-    loadLibraries()
-      .then(() => {
-        if (signal.aborted) return;
-        const box = main.querySelector('#mylibs');
-        box.innerHTML = toMarkup(
-          mine.map((code) => {
-            const lib = getLibrary(code);
-            return html`<span class="chip">${lib ? lib.name : `도서관 ${code}`}</span>`;
-          }),
-        );
-      })
-      .catch(() => {
-        if (!signal.aborted) main.querySelector('#mylibs').textContent = '도서관 목록을 불러오지 못했어요.';
-      });
+    librariesReady.then((ok) => {
+      if (signal.aborted) return;
+      const box = main.querySelector('#mylibs');
+      if (!ok) {
+        box.textContent = '도서관 목록을 불러오지 못했어요.';
+        return;
+      }
+      box.innerHTML = toMarkup(
+        mine.map((code) => {
+          const lib = getLibrary(code);
+          return html`<span class="chip">${lib ? lib.name : `도서관 ${code}`}</span>`;
+        }),
+      );
+    });
   }
 
-  // 이번 주 인기 도서
-  const data = await popularBooks();
+  // 이번 주 인기 도서: 설정한 기본 지역 → 첫 번째 내 도서관의 지역 → 앱 기본 지역(경북) 순서로 고른다
+  const settings = store.settings.get();
+  let region = settings.region || '';
+  if (!region && mine.length) {
+    await librariesReady;
+    region = (getLibrary(mine[0]) || {}).region || '';
+  }
+  const data = await popularBooks(region || CONFIG.defaultRegion);
   if (signal.aborted) return;
   main.querySelector('#pop-sub').textContent = popularSubtitle(data);
   const items = data.items.slice(0, 10);
