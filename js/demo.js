@@ -59,11 +59,16 @@ export function holdingsFor(isbn13, libraries) {
   return libraries.filter((lib) => existFor(isbn13, lib.code).hasBook).slice(0, 12).map((lib) => lib.code);
 }
 
+// 예시 대출 횟수(지어낸 값). 화면에는 항상 '예시' 표시와 함께 나온다.
+const DEMO_LOANS = [128, 117, 96, 91, 84, 77, 70, 66, 59, 52];
+
 export function popular() {
   return {
     demo: true,
     title: '예시 인기 도서',
     period: '',
-    items: BOOKS.slice(0, 10),
+    regionName: '',
+    ageName: '',
+    items: BOOKS.slice(0, 10).map((b, i) => ({ ...b, loanCount: DEMO_LOANS[i] })),
   };
 }

@@ -70,14 +70,14 @@ export async function render({ main, signal }) {
   }
 
   main.innerHTML = toMarkup(html`
-    <p class="small muted">내 도서관 ${mine.length}곳 기준 · ${basisLabel()}</p>
+    <p class="small muted" style="padding:0 0.35rem">내 도서관 ${mine.length}곳 기준 · ${basisLabel()}</p>
     <div id="news" aria-live="polite"></div>
     ${!mine.length ? html`<div class="notice">${icon('info')}<span>내 도서관을 고르면 담은 책의 대출 상태를 한눈에 볼 수 있어요. <a href="#/libraries?back=%23%2Fwatchlist">고르기</a></span></div>` : ''}
-    <div class="stack" id="books">
+    <section class="section" id="books" aria-label="담은 책">
       ${books.map((b, i) => {
         const s = summarize(b.last);
         return html`<div class="card" data-isbn="${b.isbn13}">
-          <a class="row" href="#/book/${b.isbn13}" style="border:0;padding:0">
+          <a class="row" href="#/book/${b.isbn13}">
             ${cover(b)}
             <span class="row__body">
               <span class="row__title">${b.title}</span>
@@ -95,7 +95,7 @@ export async function render({ main, signal }) {
           </div>
         </div>`;
       })}
-    </div>
+    </section>
     <section class="section" id="alerts" aria-live="polite">${alertsBox(pushStatus())}</section>`);
 
   // ---------- 아침 알림 ----------

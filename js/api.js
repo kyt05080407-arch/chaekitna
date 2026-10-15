@@ -7,7 +7,7 @@ import * as store from './store.js';
 import { apiError, parseBookDetail, parseBooks, parseExist, parseLibraries } from './parse.js';
 import { isLibCode, nextKstHour } from './util.js';
 import * as demo from './demo.js';
-import { librariesInRegion, loadLibraries } from './libraries.js';
+import { getLibrary, librariesInRegion, loadLibraries } from './libraries.js';
 
 const HOUR = 60 * 60 * 1000;
 const DAY = 24 * HOUR;
@@ -179,12 +179,46 @@ async function readPopular(path) {
   }
 }
 
+const popularMemo = new Map();
 export async function popularBooks(region = '') {
+  if (popularMemo.has(region)) return popularMemo.get(region);
   const base = await readPopular('../data/popular.json');
+  let result = base || demo.popular();
   // 기본 목록에 적힌 지역만 따로 불러온다(없는 파일을 요청하지 않게)
   if (base && region && region !== base.region && Array.isArray(base.regions) && base.regions.includes(region)) {
-    const regional = await readPopular(`../data/popular/${region}.json`);
-    if (regional) return regional;
+    result = (await readPopular(`../data/popular/${region}.json`)) || base;
   }
-  return base || demo.popular();
+  popularMemo.set(region, result);
+  return result;
+}
+
+// 내 지역: 설정한 기본 지역 → 첫 번째 내 도서관의 지역 → 앱 기본 지역
+export async function myRegion() {
+  const settings = store.settings.get();
+  if (settings.region) return settings.region;
+  const mine = store.myLibraries.list();
+  if (mine.length) {
+    try {
+      await loadLibraries();
+      const lib = getLibrary(mine[0]);
+      if (lib && lib.region) return lib.region;
+    } catch {
+      /* 기본 지역으로 */
+    }
+  }
+  return CONFIG.defaultRegion;
+}
+
+// 이 책이 이번 주 인기 목록에 있으면 순위와 대출 횟수
+export async function popularInfo(isbn13) {
+  const data = await popularBooks(await myRegion());
+  const index = data.items.findIndex((b) => b.isbn13 === isbn13);
+  if (index < 0) return null;
+  const book = data.items[index];
+  return {
+    rank: book.rank || index + 1,
+    loanCount: book.loanCount || null,
+    who: [data.regionName, data.ageName].filter(Boolean).join(' '),
+    demo: Boolean(data.demo),
+  };
 }

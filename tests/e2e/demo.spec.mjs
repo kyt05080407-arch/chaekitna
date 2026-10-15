@@ -57,7 +57,7 @@ test('설정: 글자 크기와 어두운 화면이 바로 바뀐다', async ({ p
   await expect(page.locator('html')).toHaveAttribute('data-size', 'xl');
   await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
   const bg = await page.evaluate(() => getComputedStyle(document.body).backgroundColor);
-  expect(bg).toBe('rgb(15, 20, 32)');
+  expect(bg).toBe('rgb(16, 18, 22)');
   await page.reload();
   await expect(page.locator('html')).toHaveAttribute('data-size', 'xl');
 });

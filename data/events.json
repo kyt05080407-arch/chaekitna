@@ -1,0 +1,45 @@
+{
+  "updatedAt": "2026-10-15",
+  "note": "작가 강연 소식. 공식 안내 페이지를 출처로 직접 모은 목록이에요. 날짜가 지난 행사는 앱에서 자동으로 숨겨요.",
+  "items": [
+    {
+      "id": "munhaknanum-2026-317",
+      "kind": "북토크",
+      "title": "괜찮다고 말해주는 문장들",
+      "people": "안보윤 소설가, 양다솔 작가",
+      "start": "2026-10-23T19:00:00+09:00",
+      "place": "구로문화누리도서관 4층 큰누리홀",
+      "region": "11",
+      "area": "서울 구로구",
+      "status": "온라인 신청",
+      "url": "https://munhaknanum.kr/2026/front/index.php?g_page=program&m_page=program02&act=View&D_IDX=317&ViewType=List",
+      "source": "2026 문학나눔(한국출판문화산업진흥원)"
+    },
+    {
+      "id": "munhaknanum-2026-318",
+      "kind": "북토크",
+      "title": "우리를 우리이게 한 시간들",
+      "people": "김혜진·김화진 소설가",
+      "start": "2026-10-29T19:00:00+09:00",
+      "place": "원주미리내도서관 1층 강당",
+      "region": "32",
+      "area": "강원 원주시",
+      "status": "온라인 신청",
+      "url": "https://munhaknanum.kr/2026/front/index.php?g_page=program&m_page=program02&act=View&D_IDX=318&ViewType=List",
+      "source": "2026 문학나눔(한국출판문화산업진흥원)"
+    },
+    {
+      "id": "munhaknanum-2026-319",
+      "kind": "작가 강연",
+      "title": "『첫 여름, 완주』 탄생기",
+      "people": "김금희 소설가",
+      "start": "2026-10-31T14:00:00+09:00",
+      "place": "목포문학관 문학체험관",
+      "region": "36",
+      "area": "전남 목포시",
+      "status": "모집 전",
+      "url": "https://munhaknanum.kr/2026/front/index.php?g_page=program&m_page=program02&act=View&D_IDX=319&ViewType=List",
+      "source": "2026 문학나눔(한국출판문화산업진흥원)"
+    }
+  ]
+}

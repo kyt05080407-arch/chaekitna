@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' https: data: blob:; font-src 'self'; connect-src 'self' https:; media-src 'self' blob:; worker-src 'self'; manifest-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none'">
 <title>책있나 — 내 도서관에 그 책 있나?</title>
 <meta name="description" content="책 한 권을 검색하면 내가 고른 도서관 여러 곳의 소장·대출 가능 여부를 한 화면에 보여주는 무료 웹앱. 로그인 없이 써요.">
-<meta name="theme-color" content="#ffffff">
+<meta name="theme-color" content="#f2f4f6">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="책있나">
 <meta property="og:site_name" content="책있나">
@@ -30,6 +30,14 @@
 <script type="module" src="js/app.js"></script>
 </head>
 <body>
+<!-- 처음 여는 화면: 앱이 준비되는 동안 책 명언을 보여 준다(app.js가 문장을 채우고 닫는다) -->
+<div class="splash" id="splash" aria-hidden="true">
+  <div class="splash__brand">
+    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 3h12v18l-6-4-6 4z" fill="#FFD43B" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>
+    <span class="splash__name">책있나</span>
+  </div>
+  <div class="splash__quote"><p class="splash__text" id="splash-text"></p><p class="splash__by" id="splash-by"></p></div>
+</div>
 <a class="skip" href="#main">본문 바로가기</a>
 <div class="app">
   <header class="topbar" id="topbar"></header>

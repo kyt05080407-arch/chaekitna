@@ -25,6 +25,8 @@ const SHELL = [
   './js/libraries.js',
   './js/parse.js',
   './js/push.js',
+  './js/reading.js',
+  './js/events.js',
   './js/regions.js',
   './js/scan.js',
   './js/store.js',

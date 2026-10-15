@@ -1,10 +1,12 @@
 import { html, toIsbn13, toMarkup } from '../util.js';
-import { brandMark, demoBadge, demoNotice, icon, setTopbar, skeletonRows } from '../ui.js';
+import { brandMark, demoBadge, demoNotice, icon, readingCard, setTopbar, skeletonRows } from '../ui.js';
 import * as store from '../store.js';
-import { isDemoMode, popularBooks } from '../api.js';
+import { isDemoMode, myRegion, popularBooks } from '../api.js';
 import { getLibrary, loadLibraries } from '../libraries.js';
-import { CONFIG } from '../config.js';
 import { openScanner } from '../scan.js';
+import { closedToday } from '../hours.js';
+import { eventWhen, loadEvents, upcomingEvents } from '../events.js';
+import { nextReading } from '../reading.js';
 
 function popularSubtitle(data) {
   if (data.demo) return '예시 목록이에요. 매주 월요일 도서관 정보나루 데이터로 바뀌어요.';
@@ -12,30 +14,57 @@ function popularSubtitle(data) {
   return `${parts ? `${parts} · ` : ''}${data.period || ''} · 출처 도서관 정보나루`;
 }
 
+const DAYS = ['일', '월', '화', '수', '목', '금', '토'];
+
+// 작가 강연 배너 한 장
+function promoItem(event) {
+  const d = new Date(event.start);
+  const parts = Object.fromEntries(
+    new Intl.DateTimeFormat('en-US', { timeZone: 'Asia/Seoul', month: 'numeric', day: 'numeric', weekday: 'short' })
+      .formatToParts(d)
+      .map((p) => [p.type, p.value]),
+  );
+  const dow = DAYS[['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].indexOf(parts.weekday)];
+  return html`<a class="promo__item" href="${event.url}" target="_blank" rel="noopener noreferrer" aria-label="${event.kind} ${event.title}, ${eventWhen(event.start)}, ${event.area} (새 창)">
+    <span class="promo__date" aria-hidden="true"><span class="promo__month">${parts.month}월</span><span class="promo__day">${parts.day}</span><span class="promo__dow">${dow}요일</span></span>
+    <span class="promo__body">
+      <span class="promo__kind">${event.kind} · ${event.area}</span>
+      <span class="promo__title">${event.title}</span>
+      <span class="promo__meta">${event.people}</span>
+      <span class="promo__meta">${eventWhen(event.start)} · ${event.status}</span>
+    </span>
+  </a>`;
+}
+
 export async function render({ main, navigate, signal }) {
   document.title = '책있나 — 내 도서관에 그 책 있나?';
   setTopbar(html`
-    <a class="brand" href="#/" aria-label="책있나 처음 화면">${brandMark(30)}<span class="brand__name">책있나</span></a>
+    <a class="brand" href="#/" aria-label="책있나 처음 화면">${brandMark(28)}<span class="brand__name">책있나</span></a>
     <a class="icon-btn" href="#/settings" aria-label="설정">${icon('menu')}</a>`);
 
   const mine = store.myLibraries.list();
   const recent = store.recentSearches.list();
 
   main.innerHTML = toMarkup(html`
-    <section class="section">
+    <div class="hero">
       <h1 class="h1">어떤 책 찾아요?</h1>
-      <form class="stack" id="search-form" role="search">
-        <label class="field__label" for="q">책 제목, 저자, ISBN</label>
-        <div class="searchbox">${icon('search')}<input id="q" name="q" type="search" enterkeyhint="search" autocomplete="off" placeholder="예: 데미안"></div>
-        <div class="btn-row">
-          <button class="btn btn--primary" type="submit">검색</button>
-          <button class="btn" type="button" id="scan" aria-label="바코드로 찾기">${icon('barcode')}바코드</button>
+    </div>
+
+    <section class="section" aria-label="책 찾기">
+      <form id="search-form" role="search">
+        <label class="sr-only" for="q">책 제목, 저자, ISBN</label>
+        <div class="searchbox">
+          <button class="searchbox__icon" type="submit" aria-label="검색">${icon('search')}</button>
+          <input id="q" name="q" type="search" enterkeyhint="search" autocomplete="off" placeholder="제목·저자·ISBN">
+          <button class="searchbox__btn" type="button" id="scan" aria-label="바코드로 찾기">${icon('barcode')}바코드</button>
         </div>
       </form>
       ${recent.length
         ? html`<div class="chips" aria-label="최근 검색어">${recent.map((q) => html`<a class="chip" href="#/search?q=${encodeURIComponent(q)}">${q}</a>`)}</div>`
         : ''}
     </section>
+
+    <div class="promo" id="promo" aria-label="작가 강연 소식" hidden></div>
 
     ${isDemoMode() ? demoNotice() : ''}
 
@@ -44,18 +73,20 @@ export async function render({ main, navigate, signal }) {
         <h2 class="h2" id="mylibs-h">내 도서관 ${mine.length}곳</h2>
         <a href="#/libraries">${mine.length ? '편집' : '고르기'}</a>
       </div>
-      <div class="chips" id="mylibs">
+      <div id="mylibs">
         ${mine.length
-          ? mine.map(() => html`<span class="chip skeleton" style="width:7rem" aria-hidden="true"></span>`)
+          ? skeletonRows(Math.min(mine.length, 3), '2.6rem')
           : html`<a class="chip chip--add" href="#/libraries">${icon('plus')}자주 가는 도서관 고르기</a>`}
       </div>
     </section>
 
     <section class="section" aria-labelledby="pop-h">
-      <h2 class="h2" id="pop-h">이번 주 인기 도서</h2>
-      <p class="small muted" id="pop-sub">불러오는 중</p>
+      <div class="section__head"><h2 class="h2" id="pop-h">이번 주 인기 도서</h2></div>
+      <p class="section__sub" id="pop-sub">불러오는 중</p>
       <ol class="list" id="pop-list">${skeletonRows(3, '3.2rem')}</ol>
-    </section>`);
+    </section>
+
+    <div id="reading"></div>`);
 
   const form = main.querySelector('#search-form');
   form.addEventListener('submit', (event) => {
@@ -79,7 +110,41 @@ export async function render({ main, navigate, signal }) {
     if (isbn) navigate(`#/book/${isbn}`);
   });
 
-  // 내 도서관 이름 채우기 (도서관 목록은 아래 '내 지역 인기 도서'를 고를 때도 쓴다)
+  // ---------- 작가 강연 배너 ----------
+  const region = await myRegion();
+  if (signal.aborted) return;
+  loadEvents().then((data) => {
+    if (signal.aborted) return;
+    const events = upcomingEvents(data.items, { region }).slice(0, 5);
+    const box = main.querySelector('#promo');
+    if (!events.length || !box) return;
+    box.hidden = false;
+    box.innerHTML = toMarkup(html`
+      <div class="promo__track" id="promo-track" tabindex="0">${events.map(promoItem)}</div>
+      <div class="promo__foot">
+        <span class="small muted">작가 강연 · 출처 문학나눔</span>
+        ${events.length > 1 ? html`<span class="promo__dots" aria-hidden="true">${events.map((_, i) => html`<span class="promo__dot" aria-current="${i === 0 ? 'true' : 'false'}"></span>`)}</span>` : ''}
+      </div>`);
+    const track = box.querySelector('#promo-track');
+    const dots = [...box.querySelectorAll('.promo__dot')];
+    const current = () => Math.round(track.scrollLeft / Math.max(1, track.clientWidth));
+    track.addEventListener('scroll', () => dots.forEach((d, i) => d.setAttribute('aria-current', String(i === current()))), { passive: true });
+    // 몇 초마다 다음 소식으로 넘긴다(만지면 멈춤, 동작 줄이기 설정이면 넘기지 않음)
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (events.length > 1 && !reduce) {
+      let touched = false;
+      ['pointerdown', 'focusin', 'wheel'].forEach((type) => track.addEventListener(type, () => (touched = true), { passive: true }));
+      const timer = setInterval(() => {
+        if (signal.aborted || !track.isConnected) return clearInterval(timer);
+        if (touched || document.hidden) return;
+        const next = (current() + 1) % events.length;
+        track.scrollTo({ left: next * track.clientWidth, behavior: 'smooth' });
+      }, 5000);
+      signal.addEventListener('abort', () => clearInterval(timer));
+    }
+  });
+
+  // ---------- 내 도서관 ----------
   const librariesReady = mine.length ? loadLibraries().then(() => true, () => false) : Promise.resolve(false);
   if (mine.length) {
     librariesReady.then((ok) => {
@@ -89,23 +154,19 @@ export async function render({ main, navigate, signal }) {
         box.textContent = '도서관 목록을 불러오지 못했어요.';
         return;
       }
-      box.innerHTML = toMarkup(
-        mine.map((code) => {
-          const lib = getLibrary(code);
-          return html`<span class="chip">${lib ? lib.name : `도서관 ${code}`}</span>`;
-        }),
-      );
+      box.innerHTML = toMarkup(html`<ul class="list">${mine.map((code) => {
+        const lib = getLibrary(code);
+        const closed = lib && lib.closed && closedToday(lib.closed);
+        return html`<li class="row">
+          <span class="row__body"><span class="row__title">${lib ? lib.name : `도서관 ${code}`}</span>${lib && lib.address ? html`<span class="row__sub">${lib.address}</span>` : ''}</span>
+          ${closed ? html`<span class="badge badge--loaned">오늘 휴관</span>` : ''}
+        </li>`;
+      })}</ul>`);
     });
   }
 
-  // 이번 주 인기 도서: 설정한 기본 지역 → 첫 번째 내 도서관의 지역 → 앱 기본 지역(경북) 순서로 고른다
-  const settings = store.settings.get();
-  let region = settings.region || '';
-  if (!region && mine.length) {
-    await librariesReady;
-    region = (getLibrary(mine[0]) || {}).region || '';
-  }
-  const data = await popularBooks(region || CONFIG.defaultRegion);
+  // ---------- 이번 주 인기 도서 (거래 내역처럼 오른쪽에 대출 횟수) ----------
+  const data = await popularBooks(region);
   if (signal.aborted) return;
   main.querySelector('#pop-sub').textContent = popularSubtitle(data);
   const items = data.items.slice(0, 10);
@@ -117,16 +178,23 @@ export async function render({ main, navigate, signal }) {
     }
   }
   main.querySelector('#pop-list').innerHTML = toMarkup(
-    items.map(
-      (book, i) => html`<li><a class="row" href="#/book/${book.isbn13}">
-        <span class="rank">${book.rank || i + 1}</span>
+    items.map((book, i) => {
+      const rank = book.rank || i + 1;
+      return html`<li><a class="row" href="#/book/${book.isbn13}">
+        <span class="rank ${rank <= 3 ? 'rank--top' : ''}">${rank}</span>
         <span class="row__body">
           <span class="row__title">${book.title}</span>
           <span class="row__sub">${book.authors}</span>
         </span>
-        ${data.demo ? demoBadge() : ''}
-        ${icon('chevron', { cls: 'row__chev' })}
-      </a></li>`,
-    ),
+        ${book.loanCount
+          ? html`<span class="row__end"><span class="row__figure">${Number(book.loanCount).toLocaleString('ko-KR')}번</span><span class="row__figure-label">${data.demo ? '예시' : '이번 주 대출'}</span></span>`
+          : data.demo
+            ? demoBadge()
+            : ''}
+      </a></li>`;
+    }),
   );
+
+  // ---------- 오늘의 문장·정보 ----------
+  main.querySelector('#reading').innerHTML = toMarkup(readingCard(nextReading(data)));
 }

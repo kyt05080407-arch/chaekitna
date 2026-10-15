@@ -1,7 +1,8 @@
 import { html, toIsbn13, toMarkup } from '../util.js';
-import { backButton, cover, demoBadge, demoNotice, errorNotice, icon, setTopbar, skeletonRows } from '../ui.js';
+import { backButton, cover, demoBadge, demoNotice, errorNotice, icon, readingCard, setTopbar, skeletonRows } from '../ui.js';
 import * as store from '../store.js';
-import { isDemoMode, searchBooks } from '../api.js';
+import { isDemoMode, myRegion, popularBooks, searchBooks } from '../api.js';
+import { nextReading } from '../reading.js';
 
 const SORTS = [
   { id: 'loan', label: '대출 많은 순' },
@@ -9,7 +10,8 @@ const SORTS = [
   { id: 'title', label: '제목순' },
 ];
 
-function bookRow(book, demo) {
+// hot: 이번 주 인기 목록의 순위(없으면 0)
+function bookRow(book, demo, hot) {
   const meta = [book.publisher, book.year].filter(Boolean).join(' · ');
   return html`<li><a class="row" href="#/book/${book.isbn13}">
     ${cover(book)}
@@ -18,8 +20,11 @@ function bookRow(book, demo) {
       <span class="row__sub">${book.authors}</span>
       ${meta ? html`<span class="row__sub">${meta}</span>` : ''}
     </span>
-    ${demo ? demoBadge() : ''}
-    ${icon('chevron', { cls: 'row__chev' })}
+    <span class="row__end">
+      ${hot ? html`<span class="badge badge--hot">이번 주 ${hot}위</span>` : ''}
+      ${book.loanCount ? html`<span class="row__figure">${Number(book.loanCount).toLocaleString('ko-KR')}회</span><span class="row__figure-label">누적 대출</span>` : ''}
+      ${demo ? demoBadge() : ''}
+    </span>
   </a></li>`;
 }
 
@@ -30,15 +35,15 @@ export async function render({ main, query, navigate, signal }) {
   setTopbar(html`${backButton('#/')}<h1 class="topbar__title">검색 결과</h1>`);
 
   main.innerHTML = toMarkup(html`
-    <form class="stack" id="search-form" role="search">
+    <form class="section" id="search-form" role="search">
       <label class="sr-only" for="q">검색어</label>
-      <div class="searchbox searchbox--soft">${icon('search')}<input id="q" name="q" type="search" enterkeyhint="search" autocomplete="off" value="${q}"></div>
+      <div class="searchbox"><button class="searchbox__icon" type="submit" aria-label="검색">${icon('search')}</button><input id="q" name="q" type="search" enterkeyhint="search" autocomplete="off" value="${q}"></div>
     </form>
     <div class="chips" role="group" aria-label="정렬">
       ${SORTS.map((s) => html`<button class="chip" type="button" data-sort="${s.id}" aria-pressed="${s.id === sort ? 'true' : 'false'}">${s.label}</button>`)}
     </div>
     ${isDemoMode() ? demoNotice() : ''}
-    <div id="results" aria-live="polite">${skeletonRows(4, '5.6rem')}</div>
+    <section class="section" id="results" aria-live="polite">${readingCard(nextReading())}${skeletonRows(3, '5.2rem')}</section>
     <p class="footer-note">책 정보 출처: 도서관 정보나루</p>`);
 
   const form = main.querySelector('#search-form');
@@ -66,6 +71,14 @@ export async function render({ main, query, navigate, signal }) {
   const box = main.querySelector('#results');
   let page = 1;
   let shown = [];
+  // 이번 주 인기 목록에 있는 책은 순위를 함께 보여 준다
+  const hotRank = new Map();
+  try {
+    const popular = await popularBooks(await myRegion());
+    if (!popular.demo) popular.items.forEach((b, i) => hotRank.set(b.isbn13, b.rank || i + 1));
+  } catch {
+    /* 순위 없이 보여 준다 */
+  }
 
   const load = async () => {
     try {
@@ -83,8 +96,8 @@ export async function render({ main, query, navigate, signal }) {
       const more = !result.demo && shown.length < result.total && result.books.length > 0;
       box.innerHTML = toMarkup(html`
         ${result.demo && result.matched === false ? html`<p class="small muted">예시 데이터에는 "${q}"가 없어서 예시 도서를 보여드려요.</p>` : ''}
-        <p class="small muted">${result.demo ? '예시 결과' : `${result.total.toLocaleString('ko-KR')}권 중 ${shown.length}권`}</p>
-        <ul class="list">${shown.map((book) => bookRow(book, result.demo))}</ul>
+        <div class="section__head"><h2 class="h2">${result.demo ? '예시 결과' : `${result.total.toLocaleString('ko-KR')}권`}</h2><span class="small muted">${result.demo ? '' : `${shown.length}권 보는 중`}</span></div>
+        <ul class="list">${shown.map((book) => bookRow(book, result.demo, hotRank.get(book.isbn13) || 0))}</ul>
         ${more ? html`<button class="btn btn--block" type="button" id="more">더 보기</button>` : ''}`);
       const moreBtn = box.querySelector('#more');
       if (moreBtn) {
@@ -99,7 +112,7 @@ export async function render({ main, query, navigate, signal }) {
       if (signal.aborted || (error && error.name === 'AbortError')) return;
       box.innerHTML = toMarkup(errorNotice(error, 'retry'));
       box.querySelector('#retry')?.addEventListener('click', () => {
-        box.innerHTML = toMarkup(skeletonRows(4, '5.6rem'));
+        box.innerHTML = toMarkup(skeletonRows(3, '5.2rem'));
         load();
       });
     }

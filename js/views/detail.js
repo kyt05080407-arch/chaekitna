@@ -1,7 +1,7 @@
 import { basisLabel, html, mapUrl, safeHttpUrl, telHref, toMarkup } from '../util.js';
-import { backButton, cover, demoBadge, demoNotice, errorNotice, icon, setTopbar, skeletonRows, statusBadge, toast } from '../ui.js';
+import { backButton, cover, demoBadge, demoNotice, errorNotice, hotLine, icon, readingCard, setTopbar, skeletonRows, statusBadge, toast } from '../ui.js';
 import * as store from '../store.js';
-import { availability, bookDetail, holdings, isDemoMode } from '../api.js';
+import { availability, bookDetail, holdings, isDemoMode, popularInfo } from '../api.js';
 import { getLibrary, loadLibraries } from '../libraries.js';
 import { REGIONS, regionByCode } from '../regions.js';
 import { statusOf } from '../parse.js';
@@ -9,6 +9,7 @@ import { CONFIG } from '../config.js';
 import * as demo from '../demo.js';
 import { pushStatus } from '../push.js';
 import { closedToday } from '../hours.js';
+import { nextReading } from '../reading.js';
 
 function bookHead(book, isbn) {
   if (!book) {
@@ -43,7 +44,7 @@ function libraryCard(lib, code, status) {
     ${lib && lib.hours ? html`<p class="card__meta">${clip(lib.hours)}</p>` : ''}
     ${lib && lib.closed ? html`<p class="card__meta">휴관 · ${clip(lib.closed)}</p>` : ''}
     <div class="card__links">
-      ${home ? html`<a href="${home}" target="_blank" rel="noopener noreferrer">${icon('external')}홈페이지에서 확인</a>` : ''}
+      ${home ? html`<a href="${home}" target="_blank" rel="noopener noreferrer">${icon('external')}홈페이지</a>` : ''}
       ${tel ? html`<a href="${tel}">${icon('phone')}전화</a>` : ''}
       ${lib ? html`<a href="${mapUrl(lib.name, lib.lat, lib.lng)}" target="_blank" rel="noopener noreferrer">${icon('pin')}지도</a>` : ''}
     </div>
@@ -65,16 +66,28 @@ function alertNote(status) {
   return '관심 도서 탭에서 아침 알림을 켜면, 반납됐을 때 다음 날 아침에 알려 드려요.';
 }
 
-function summaryText(statuses, total) {
+// 잔액처럼 큰 글씨로 보여 줄 요약: big(큰 글씨), main(문장), ok(빌릴 수 있음)
+function summaryView(statuses, total) {
   const values = Object.values(statuses);
-  if (values.length && values.every((s) => s === 'unknown') && isDemoMode()) return '예시 데이터 모드라 실제 대출 정보를 볼 수 없어요';
+  if (values.length && values.every((s) => s === 'unknown') && isDemoMode()) {
+    return { big: '확인 못 함', main: '예시 데이터 모드라 실제 대출 정보를 볼 수 없어요' };
+  }
   const available = values.filter((s) => s === 'available').length;
   const loaned = values.filter((s) => s === 'loaned').length;
   const none = values.filter((s) => s === 'none').length;
-  if (available > 0) return `내 도서관 ${total}곳 중 ${available}곳에서 빌릴 수 있어요`;
-  if (loaned > 0) return `내 도서관에 있지만 지금은 모두 대출 중이에요`;
-  if (none === total) return '내 도서관에는 이 책이 없어요';
-  return '일부 도서관은 확인하지 못했어요';
+  if (available > 0) return { big: `${available}곳`, main: `내 도서관 ${total}곳 중 ${available}곳에서 빌릴 수 있어요`, ok: true };
+  if (loaned > 0) return { big: '모두 대출 중', main: '내 도서관에 있지만 지금은 모두 대출 중이에요' };
+  if (none === total) return { big: '없어요', main: '내 도서관에는 이 책이 없어요' };
+  return { big: '일부 확인 못 함', main: '일부 도서관은 확인하지 못했어요' };
+}
+
+function setSummary(main, view) {
+  const big = main.querySelector('#summary .summary__big');
+  big.textContent = view.big;
+  big.classList.toggle('summary__big--ok', Boolean(view.ok));
+  main.querySelector('#summary .summary__label').textContent = '지금 빌릴 수 있는 곳';
+  main.querySelector('#summary .summary__main').textContent = view.main;
+  main.querySelector('#sum-reading').innerHTML = '';
 }
 
 export async function render({ main, params, signal }) {
@@ -95,17 +108,24 @@ export async function render({ main, params, signal }) {
   const settings = store.settings.get();
 
   main.innerHTML = toMarkup(html`
-    <section id="head">${book ? bookHead(book, isbn) : skeletonRows(1, '6.3rem')}</section>
-    <div id="intro-box">${book ? bookIntro(book, isbn) : ''}</div>
+    <section class="section" aria-label="책 정보">
+      <div id="head">${book ? bookHead(book, isbn) : skeletonRows(1, '7.2rem')}</div>
+      <div id="hot"></div>
+      <div id="intro-box">${book ? bookIntro(book, isbn) : ''}</div>
+    </section>
     ${isDemoMode() || demo.isDemoIsbn(isbn) ? demoNotice() : ''}
     <section class="summary" id="summary" aria-live="polite">
+      <p class="summary__label">${mine.length ? '내 도서관을 확인하는 중' : '내 도서관'}</p>
+      <span class="summary__big" aria-hidden="true">${mine.length ? '' : '0곳'}</span>
       <p class="summary__main">${mine.length ? '내 도서관을 확인하는 중이에요' : '내 도서관을 먼저 골라 주세요'}</p>
       <p class="summary__sub">${basisLabel()} · 대출 정보는 하루 늦게 반영돼요</p>
+      <div id="sum-reading">${mine.length ? readingCard(nextReading()) : ''}</div>
     </section>
-    <section class="section" aria-label="내 도서관별 현황">
-      <div class="stack" id="mine">
+    <section class="section" aria-labelledby="mine-h">
+      <div class="section__head"><h2 class="h2" id="mine-h">내 도서관</h2>${mine.length ? html`<a href="#/libraries?back=${encodeURIComponent(`#/book/${isbn}`)}">편집</a>` : ''}</div>
+      <div id="mine">
         ${mine.length
-          ? skeletonRows(mine.length, '5.2rem')
+          ? skeletonRows(mine.length, '4.4rem')
           : html`<a class="btn btn--primary btn--block" href="#/libraries?back=${encodeURIComponent(`#/book/${isbn}`)}">${icon('library')}자주 가는 도서관 고르기</a>`}
       </div>
     </section>
@@ -114,15 +134,23 @@ export async function render({ main, params, signal }) {
       <p class="small muted">${alertNote(pushStatus())}</p>
     </section>
     <section class="section" aria-labelledby="wide-h">
-      <h2 class="h2" id="wide-h">더 넓게 찾기</h2>
+      <div class="section__head"><h2 class="h2" id="wide-h">더 넓게 찾기</h2></div>
+      <p class="section__sub">같은 시·도에서 이 책을 가진 다른 도서관</p>
       <div class="btn-row">
         <label class="sr-only" for="region">지역</label>
         <select class="input" id="region">${REGIONS.map((r) => html`<option value="${r.code}">${r.name}</option>`)}</select>
-        <button class="btn" type="button" id="find-wide">찾기</button>
+        <button class="btn btn--outline" type="button" id="find-wide">찾기</button>
       </div>
       <div id="wide" class="stack" aria-live="polite"></div>
     </section>
     <p class="footer-note">출처: 도서관 정보나루 · 방문 전 도서관 홈페이지에서 한 번 더 확인하세요</p>`);
+
+  // 이번 주 인기 목록에 있는 책이면 순위와 대출 횟수
+  popularInfo(isbn)
+    .then((info) => {
+      if (!signal.aborted && info) main.querySelector('#hot').innerHTML = toMarkup(hotLine(info));
+    })
+    .catch(() => {});
 
   // ---------- 관심 도서 ----------
   const toggleWatch = () => {
@@ -211,12 +239,12 @@ export async function render({ main, params, signal }) {
         const slot = mineBox.querySelector(`[data-lib="${code}"] [data-status]`);
         if (slot) slot.innerHTML = toMarkup(badges(statuses[code], demo.isDemoIsbn(isbn)));
       }
-      main.querySelector('#summary .summary__main').textContent = summaryText(statuses, mine.length);
+      setSummary(main, summaryView(statuses, mine.length));
       if (result.budget) toast('오늘 조회 한도를 다 써서 일부 도서관은 확인하지 못했어요');
       if (watched()) store.watchlist.update(isbn, { last: statuses, checkedAt: Date.now() });
     } catch (error) {
       if (signal.aborted || (error && error.name === 'AbortError')) return;
-      main.querySelector('#summary .summary__main').textContent = '현황을 불러오지 못했어요';
+      setSummary(main, { big: '확인 못 함', main: '현황을 불러오지 못했어요' });
       mineBox.querySelectorAll('[data-status]').forEach((slot) => {
         slot.innerHTML = toMarkup(statusBadge('unknown'));
       });

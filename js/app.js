@@ -3,6 +3,40 @@
 import * as store from './store.js';
 import { applySettings, toast } from './ui.js';
 import { IN_APP_NAMES, html, inAppBrowser, isStaleModuleError, toMarkup } from './util.js';
+import { QUOTES, pick } from './reading.js';
+
+// ---------- 처음 여는 화면(명언) ----------
+// 첫 화면이 그려지면 닫는다. 이번에 처음 열었으면 문장을 읽을 수 있게 1.2초는 보여 준다(누르면 바로 닫힘).
+const splash = document.getElementById('splash');
+const splashStart = Date.now();
+let splashMin = 0;
+if (splash) {
+  const quote = pick(QUOTES, Math.floor(Math.random() * QUOTES.length));
+  document.getElementById('splash-text').textContent = quote.text;
+  document.getElementById('splash-by').textContent = `${quote.who} · ${quote.where}`;
+  try {
+    if (!sessionStorage.getItem('chaekitna:splashed') && !navigator.webdriver) splashMin = 1200;
+    sessionStorage.setItem('chaekitna:splashed', '1');
+  } catch {
+    /* 무시 */
+  }
+  splash.addEventListener('click', () => hideSplash(true));
+}
+let splashDone = false;
+let splashTimer = null;
+function closeSplash() {
+  if (!splash || splashDone) return;
+  splashDone = true;
+  clearTimeout(splashTimer);
+  splash.classList.add('is-done');
+  setTimeout(() => splash.remove(), 400);
+}
+function hideSplash(now = false) {
+  if (!splash || splashDone) return;
+  if (now) return closeSplash();
+  if (!splashTimer) splashTimer = setTimeout(closeSplash, Math.max(0, splashMin - (Date.now() - splashStart)));
+}
+setTimeout(() => hideSplash(true), 4000); // 무슨 일이 있어도 4초 뒤엔 닫는다
 
 const RELOAD_FLAG = 'chaekitna:reloaded';
 
@@ -70,7 +104,16 @@ async function route() {
     if (signal.aborted) return;
     main.innerHTML = '';
     window.scrollTo(0, 0);
-    await view.render({ main, params, query, navigate, signal });
+    // 화면이 바뀔 때 살짝 떠오르며 나타나게(첫 화면은 로딩 화면이 대신한다)
+    main.classList.remove('is-entering');
+    if (visits > 1) {
+      void main.offsetWidth;
+      main.classList.add('is-entering');
+    }
+    const rendering = view.render({ main, params, query, navigate, signal });
+    // 첫 화면은 글자가 그려지는 즉시 로딩 화면을 닫는다(데이터는 화면 안에서 따로 기다린다)
+    hideSplash();
+    await rendering;
     // 화면이 다 그려지면 본문으로 초점을 옮긴다. 단, 그동안 사용자가 화면 안의 입력칸 등을 눌렀다면 빼앗지 않는다.
     const active = document.activeElement;
     const userIsInView = active && active !== main && main.contains(active);

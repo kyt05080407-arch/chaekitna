@@ -27,6 +27,8 @@ const PATHS = {
   trash: '<path d="M4 7h16"/><path d="M9 7V4h6v3"/><path d="M6 7l1 13h10l1-13"/>',
   warning: '<path d="M12 3l9.5 17h-19z"/><path d="M12 10v4.5"/><path d="M12 17.5h.01"/>',
   share: '<path d="M12 3v12"/><path d="M7.5 7.5L12 3l4.5 4.5"/><path d="M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/>',
+  trend: '<path d="M3 17l6-6 4 4 7-7"/><path d="M14 8h6v6"/>',
+  calendar: '<rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/>',
 };
 
 export function icon(name, { label = '', filled = false, cls = '' } = {}) {
@@ -103,10 +105,28 @@ export function applySettings(settings) {
   const meta = document.querySelector('meta[name="theme-color"]');
   if (meta) {
     const dark = settings.theme === 'dark' || (settings.theme !== 'light' && window.matchMedia('(prefers-color-scheme: dark)').matches);
-    meta.setAttribute('content', dark ? '#0f1420' : '#ffffff');
+    meta.setAttribute('content', dark ? '#101216' : '#f2f4f6');
   }
 }
 
 export function backButton(href = '#/') {
   return html`<a class="icon-btn" href="${href}" data-back aria-label="뒤로">${icon('back')}</a>`;
+}
+
+// 로딩 중에 보여 주는 읽을거리 카드 (js/reading.js의 항목)
+const READING_KIND = { quote: '오늘의 문장', tip: '알아 두면 좋아요', weekly: '이번 주 1위' };
+export function readingCard(item, { live = false } = {}) {
+  if (!item) return '';
+  return html`<div class="reading" ${live ? raw('aria-live="polite"') : ''}>
+    <span class="reading__kind">${READING_KIND[item.kind] || ''}</span>
+    ${item.kind === 'tip' ? html`<p class="reading__text"><strong>${item.title}</strong><br>${item.text}</p>` : html`<p class="reading__text">${item.text}</p>`}
+    ${item.kind === 'quote' ? html`<p class="reading__by">${item.who} · ${item.where}</p>` : ''}
+  </div>`;
+}
+
+// 이번 주 인기 표시: "이번 주 경북 고등학생 3위 · 512번 빌렸어요"
+export function hotLine(info) {
+  if (!info) return '';
+  const count = info.loanCount ? html` · <strong>${Number(info.loanCount).toLocaleString('ko-KR')}번</strong> 빌렸어요` : '';
+  return html`<p class="hot">${icon('trend')}<span>이번 주 ${info.who ? `${info.who} ` : ''}<strong>${info.rank}위</strong>${count}</span>${info.demo ? html`<span class="badge badge--demo">예시</span>` : ''}</p>`;
 }
