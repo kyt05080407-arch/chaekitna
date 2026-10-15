@@ -55,6 +55,13 @@ export function remove(key) {
   memory.delete(key);
 }
 
+// 관심 도서·내 도서관 목록이 바뀌면 앱에 알린다(아침 알림 구독을 맞추기 위해).
+function notify(key) {
+  if (typeof window !== 'undefined' && typeof window.dispatchEvent === 'function' && typeof CustomEvent === 'function') {
+    window.dispatchEvent(new CustomEvent('chaekitna:change', { detail: { key } }));
+  }
+}
+
 // ---------- 만료 시간이 있는 캐시 ----------
 
 const CACHE = 'c:';
@@ -149,11 +156,13 @@ export const myLibraries = {
     if (list.length >= this.max) return { ok: false, reason: 'full', list };
     const next = [...list, code];
     set('myLibraries', next);
+    notify('myLibraries');
     return { ok: true, list: next };
   },
   remove(code) {
     const next = this.list().filter((c) => c !== code);
     set('myLibraries', next);
+    notify('myLibraries');
     return next;
   },
 };
@@ -181,11 +190,13 @@ export const watchlist = {
     };
     const next = [entry, ...list].slice(0, 100);
     set('watchlist', next);
+    notify('watchlist');
     return next;
   },
   remove(isbn13) {
     const next = this.list().filter((b) => b.isbn13 !== isbn13);
     set('watchlist', next);
+    notify('watchlist');
     return next;
   },
   update(isbn13, patch) {

@@ -1,7 +1,8 @@
 // 책있나 서비스 워커: 앱 화면을 저장해 두고 오프라인에서도 열리게 한다.
 // 대출 정보 조회(프록시)는 저장하지 않는다. 앱이 폰 저장소에 따로 캐시한다.
+// 아침 알림(웹 푸시)도 여기서 받아 보여 준다.
 
-const VERSION = 'v0.1.0';
+const VERSION = 'v0.2.0';
 const SHELL_CACHE = `shell-${VERSION}`;
 const DATA_CACHE = 'data';
 // 글꼴 파일은 거의 바뀌지 않으니 따로 오래 보관한다. Pretendard를 올리면 이름도 바꾼다.
@@ -20,6 +21,7 @@ const SHELL = [
   './js/demo.js',
   './js/libraries.js',
   './js/parse.js',
+  './js/push.js',
   './js/regions.js',
   './js/scan.js',
   './js/store.js',
@@ -34,6 +36,7 @@ const SHELL = [
   './assets/icons/icon.svg',
   './assets/icons/icon-192.png',
   './assets/icons/apple-touch-icon.png',
+  './assets/icons/badge-96.png',
 ];
 
 self.addEventListener('install', (event) => {
@@ -114,4 +117,44 @@ self.addEventListener('fetch', (event) => {
     return;
   }
   event.respondWith(staleWhileRevalidate(request));
+});
+
+// ---------- 아침 알림 ----------
+// 보내는 쪽(scripts/send-alerts.mjs)이 { title, body, url, tag }를 JSON으로 보낸다.
+
+self.addEventListener('push', (event) => {
+  let data = {};
+  try {
+    data = event.data ? event.data.json() : {};
+  } catch {
+    data = { body: event.data ? event.data.text() : '' };
+  }
+  const title = typeof data.title === 'string' && data.title ? data.title : '책있나';
+  event.waitUntil(
+    self.registration.showNotification(title, {
+      body: typeof data.body === 'string' && data.body ? data.body : '관심 도서 소식이 있어요.',
+      icon: './assets/icons/icon-192.png',
+      badge: './assets/icons/badge-96.png',
+      tag: typeof data.tag === 'string' && data.tag ? data.tag : 'chaekitna',
+      lang: 'ko',
+      data: { hash: typeof data.url === 'string' && data.url.startsWith('#/') ? data.url : '#/watchlist' },
+    }),
+  );
+});
+
+self.addEventListener('notificationclick', (event) => {
+  event.notification.close();
+  const hash = (event.notification.data && event.notification.data.hash) || '#/watchlist';
+  event.waitUntil(
+    (async () => {
+      const windows = await self.clients.matchAll({ type: 'window', includeUncontrolled: true });
+      const open = windows.find((client) => client.url.startsWith(self.registration.scope));
+      if (open) {
+        await open.focus();
+        open.postMessage({ type: 'open', hash });
+        return;
+      }
+      await self.clients.openWindow(new URL(`./${hash}`, self.registration.scope).href);
+    })(),
+  );
 });

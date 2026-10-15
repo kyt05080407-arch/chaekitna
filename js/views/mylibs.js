@@ -1,4 +1,4 @@
-import { debounce, formatDistance, html, toMarkup } from '../util.js';
+import { debounce, formatDistance, html, objectParticle, toMarkup } from '../util.js';
 import { backButton, errorNotice, icon, setTopbar, skeletonRows, toast } from '../ui.js';
 import * as store from '../store.js';
 import { getLibrary, librariesMeta, loadLibraries, nearbyLibraries, searchLibraries } from '../libraries.js';
@@ -105,7 +105,7 @@ export async function render({ main, query, signal }) {
         }
         const lib = getLibrary(btn.dataset.add);
         if (lib && lib.region && !store.settings.get().region) store.settings.set({ region: lib.region });
-        toast(`${lib ? lib.name : '도서관'}을(를) 추가했어요`);
+        toast(lib ? `${lib.name}${objectParticle(lib.name)} 추가했어요` : '도서관을 추가했어요');
         renderPicked();
         renderTopbar();
         refreshFoundButtons();

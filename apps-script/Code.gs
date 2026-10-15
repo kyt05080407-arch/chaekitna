@@ -20,6 +20,9 @@ var CACHE_SECONDS = 21600; // CacheService 최대 6시간
 var DEFAULT_LIMIT = 450;
 var REGIONS = ['11', '21', '22', '23', '24', '25', '26', '29', '31', '32', '33', '34', '35', '36', '37', '38', '39'];
 var SORTS = { loan: 'desc', pubYear: 'desc', title: 'asc' };
+// 알림 구독 한도: 스크립트 속성 저장 공간(500KB)을 넘지 않게 하고, 매일 확인할 호출 수도 묶어 둔다.
+var MAX_SUBSCRIPTIONS = 150;
+var MAX_ALERT_BOOKS = 10;
 
 // ---------- 진입점 ----------
 
@@ -244,28 +247,52 @@ function cleanupOldCounters() {
 }
 
 // ---------- (v1.1) 대출가능 알림 구독 ----------
-// 저장 내용: 푸시 주소와 키, 관심 도서 ISBN, 도서관 코드. 이름·연락처는 없다.
+// 저장 내용: 푸시 주소와 키, 도서관 코드(최대 5곳), 관심 도서 ISBN과 제목(최대 10권). 이름·연락처는 없다.
 
 function subscribe_(body) {
   var sub = body.subscription || {};
   if (typeof sub.endpoint !== 'string' || sub.endpoint.indexOf('https://') !== 0 || sub.endpoint.length > 600) {
     throw badRequest_('알림 주소가 올바르지 않아요.');
   }
-  if (!sub.keys || typeof sub.keys.p256dh !== 'string' || typeof sub.keys.auth !== 'string') {
+  if (!sub.keys || typeof sub.keys.p256dh !== 'string' || typeof sub.keys.auth !== 'string' ||
+      sub.keys.p256dh.length > 200 || sub.keys.auth.length > 100) {
     throw badRequest_('알림 키가 올바르지 않아요.');
   }
-  var items = (Array.isArray(body.items) ? body.items : []).slice(0, 30).map(function (it) {
-    return {
-      isbn: isbn13_(it.isbn),
-      libs: (Array.isArray(it.libs) ? it.libs : []).filter(function (c) { return /^\d{4,10}$/.test(c); }).slice(0, 5),
-    };
-  }).filter(function (it) { return it.libs.length; });
-  var record = { endpoint: sub.endpoint, keys: { p256dh: sub.keys.p256dh, auth: sub.keys.auth }, items: items, updatedAt: new Date().toISOString() };
-  var text = JSON.stringify(record);
-  if (text.length > 8500) throw badRequest_('관심 도서가 너무 많아요.');
-  PropertiesService.getScriptProperties().setProperty(subKey_(sub.endpoint), text);
+  var libs = (Array.isArray(body.libs) ? body.libs : []).map(String).filter(function (c) { return /^\d{4,10}$/.test(c); });
+  libs = libs.filter(function (c, i) { return libs.indexOf(c) === i; }).slice(0, 5);
+  if (!libs.length) throw badRequest_('내 도서관을 먼저 골라 주세요.');
+  var seen = {};
+  var items = (Array.isArray(body.items) ? body.items : []).map(function (it) {
+    var isbn = String((it && it.isbn) || '').replace(/[^0-9]/g, '');
+    return { isbn: isbn, title: cleanTitle_(it && it.title) };
+  }).filter(function (it) {
+    if (!/^\d{13}$/.test(it.isbn) || seen[it.isbn]) return false;
+    seen[it.isbn] = true;
+    return true;
+  }).slice(0, MAX_ALERT_BOOKS);
+  if (!items.length) throw badRequest_('관심 도서를 먼저 담아 주세요.');
+
+  var props = PropertiesService.getScriptProperties();
+  var key = subKey_(sub.endpoint);
+  if (!props.getProperty(key) && listSubscriptionKeys_().length >= MAX_SUBSCRIPTIONS) {
+    var full = new Error('알림 신청이 많아서 지금은 받을 수 없어요. 앱에서 상태는 계속 볼 수 있어요.');
+    full.code = 'full';
+    throw full;
+  }
+  var record = {
+    endpoint: sub.endpoint,
+    keys: { p256dh: sub.keys.p256dh, auth: sub.keys.auth },
+    libs: libs,
+    items: items,
+    updatedAt: new Date().toISOString(),
+  };
+  props.setProperty(key, JSON.stringify(record));
   count_('subscribe');
-  return { ok: true, items: items.length };
+  return { ok: true, items: items.length, libs: libs.length };
+}
+
+function cleanTitle_(value) {
+  return String(value || '').replace(/[\u0000-\u001f\u007f]/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 40);
 }
 
 function unsubscribe_(body) {

@@ -156,15 +156,42 @@ test('알림 구독 저장과 관리자 내보내기', () => {
   const { get, post, props } = createEnv();
   props.set('ADMIN_TOKEN', 'secret-token');
   const sub = { endpoint: 'https://fcm.googleapis.com/fcm/send/abc', keys: { p256dh: 'p', auth: 'a' } };
-  const r = post({ op: 'subscribe', subscription: sub, items: [{ isbn: '9788971998557', libs: ['147168', 'x'] }] });
-  assert.deepEqual(r, { ok: true, items: 1 });
+  const r = post({
+    op: 'subscribe',
+    subscription: sub,
+    libs: ['147168', 'x', '147168'],
+    items: [{ isbn: '978-89-7199-855-7', title: '  데미안\n(개정판) ' }, { isbn: '123' }, { isbn: '9788971998557' }],
+  });
+  assert.deepEqual(r, { ok: true, items: 1, libs: 1 });
   assert.equal(get({ op: 'export', token: 'wrong' }).error, 'forbidden');
+  assert.equal(get({ op: 'export' }).error, 'forbidden');
   const exported = get({ op: 'export', token: 'secret-token' });
   assert.equal(exported.subscriptions.length, 1);
-  assert.deepEqual(exported.subscriptions[0].items, [{ isbn: '9788971998557', libs: ['147168'] }]);
+  assert.deepEqual(exported.subscriptions[0].libs, ['147168']);
+  assert.deepEqual(exported.subscriptions[0].items, [{ isbn: '9788971998557', title: '데미안 (개정판)' }]);
+  assert.equal(get({ op: 'health' }).subscriptions, 1);
+  // 같은 주소로 다시 구독하면 덮어쓴다(개수는 그대로)
+  post({ op: 'subscribe', subscription: sub, libs: ['147001'], items: [{ isbn: '9788954651135', title: '채식주의자' }] });
+  assert.equal(get({ op: 'export', token: 'secret-token' }).subscriptions[0].libs[0], '147001');
+  assert.equal(get({ op: 'health' }).subscriptions, 1);
   post({ op: 'unsubscribe', subscription: sub });
   assert.equal(get({ op: 'export', token: 'secret-token' }).subscriptions.length, 0);
-  assert.equal(post({ op: 'subscribe', subscription: { endpoint: 'http://insecure' } }).error, 'bad_request');
+});
+
+test('알림 구독: 잘못된 값은 거절하고, 자리가 다 차면 full', () => {
+  const { post, props } = createEnv();
+  const sub = (n) => ({ endpoint: `https://push.example/${n}`, keys: { p256dh: 'p', auth: 'a' } });
+  const ok = { libs: ['147168'], items: [{ isbn: '9788971998557', title: '데미안' }] };
+  assert.equal(post({ op: 'subscribe', subscription: { endpoint: 'http://insecure', keys: { p256dh: 'p', auth: 'a' } }, ...ok }).error, 'bad_request');
+  assert.equal(post({ op: 'subscribe', subscription: sub(0), libs: [], items: ok.items }).error, 'bad_request');
+  assert.equal(post({ op: 'subscribe', subscription: sub(0), libs: ok.libs, items: [] }).error, 'bad_request');
+  const many = Array.from({ length: 15 }, (_, i) => ({ isbn: String(9788900000000 + i), title: `책 ${i}` }));
+  assert.equal(post({ op: 'subscribe', subscription: sub(1), libs: ok.libs, items: many }).items, 10, '책은 10권까지');
+  for (let i = 2; i <= 150; i += 1) props.set(`sub:fake${i}`, '{}');
+  const full = post({ op: 'subscribe', subscription: sub(999), ...ok });
+  assert.equal(full.error, 'full');
+  assert.equal(post({ op: 'subscribe', subscription: sub(1), ...ok }).ok, true, '이미 구독한 사람은 갱신할 수 있다');
+  assert.equal(post({ op: 'nope' }).error, 'bad_request');
 });
 
 test('exist: 한도를 다 써도 캐시에 있던 도서관 결과는 돌려준다', () => {

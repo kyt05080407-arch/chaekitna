@@ -108,4 +108,19 @@ if ('serviceWorker' in navigator && location.protocol === 'https:') {
   window.addEventListener('load', () => {
     navigator.serviceWorker.register('./sw.js').catch(() => {});
   });
+  // 알림을 눌렀을 때 서비스 워커가 열어 달라는 화면으로 이동
+  navigator.serviceWorker.addEventListener('message', (event) => {
+    const data = event.data || {};
+    if (data.type === 'open' && typeof data.hash === 'string' && data.hash.startsWith('#/')) navigate(data.hash);
+  });
 }
+
+// 아침 알림을 켠 사람만: 관심 도서·내 도서관이 바뀌면, 그리고 앱을 열 때 한 번 알림 서버에 맞춰 둔다.
+let pushTimer = null;
+function schedulePushSync(wait) {
+  if (!store.settings.get().push) return;
+  clearTimeout(pushTimer);
+  pushTimer = setTimeout(() => import('./push.js').then((m) => m.syncPush()).catch(() => {}), wait);
+}
+window.addEventListener('chaekitna:change', () => schedulePushSync(1500));
+schedulePushSync(4000);

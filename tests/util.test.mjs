@@ -84,3 +84,22 @@ test('주소 안전 처리', () => {
   assert.equal(telHref('054-650-3900'), 'tel:0546503900');
   assert.equal(telHref('-'), '');
 });
+
+test('웹 푸시 공개 키 변환', async () => {
+  const { urlBase64ToUint8Array } = await import('../js/util.js');
+  assert.deepEqual([...urlBase64ToUint8Array('AQID')], [1, 2, 3]);
+  assert.deepEqual([...urlBase64ToUint8Array('-_8')], [251, 255]);
+  assert.equal(urlBase64ToUint8Array('').length, 0);
+});
+
+test('을/를 고르기', async () => {
+  const { objectParticle } = await import('../js/util.js');
+  assert.equal(objectParticle('데미안'), '을');
+  assert.equal(objectParticle('어린 왕자'), '를');
+  assert.equal(objectParticle("'데미안'"), '을');
+  assert.equal(objectParticle('해리 포터 2'), '를');
+  assert.equal(objectParticle('1984'), '를');
+  assert.equal(objectParticle('총, 균, 쇠 (개정판)'), '을');
+  assert.equal(objectParticle('Harry Potter'), '을(를)');
+  assert.equal(objectParticle(''), '을(를)');
+});

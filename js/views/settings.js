@@ -5,6 +5,7 @@ import { REGIONS } from '../regions.js';
 import { CONFIG } from '../config.js';
 import { isDemoMode } from '../api.js';
 import { librariesMeta, loadLibraries } from '../libraries.js';
+import { disablePush, pushStatus } from '../push.js';
 
 const SIZES = [
   { id: 'm', label: '보통' },
@@ -64,9 +65,12 @@ export async function render({ main }) {
       <h2 class="h2" id="privacy-h">개인정보와 데이터</h2>
       <div class="stack">
         <p>이름, 연락처, 위치 기록을 받지 않아요. 내 도서관과 관심 도서는 이 폰에만 저장돼요.</p>
+        ${pushStatus() !== 'off'
+          ? html`<p>아침 알림을 켜면 알림 주소, 관심 도서 ISBN·제목, 도서관 코드가 알림 서버(Google Apps Script)에 저장돼요. 알림을 끄거나 아래 버튼으로 모두 지우면 함께 지워요. 90일 동안 앱을 열지 않으면 자동으로 지워져요.</p>`
+          : ''}
         <p>책·도서관 정보는 <a href="https://www.data4library.kr/" target="_blank" rel="noopener noreferrer">도서관 정보나루</a> 공공데이터예요. 대출 정보는 하루 늦게 반영돼요.</p>
         <p class="small muted" id="data-meta"></p>
-        <button class="btn" type="button" id="clear">${icon('trash')}이 폰에 저장한 정보 모두 지우기</button>
+        <button class="btn" type="button" id="clear">${icon('trash')}<span>이 폰에 저장한 정보 모두 지우기</span></button>
       </div>
     </section>
 
@@ -100,9 +104,23 @@ export async function render({ main }) {
     toast('기본 지역을 바꿨어요');
   });
 
-  main.querySelector('#clear').addEventListener('click', () => {
-    // eslint-disable-next-line no-alert
-    if (!window.confirm('내 도서관, 관심 도서, 설정을 모두 지울까요?')) return;
+  // 실수로 지우지 않게 한 번 더 누르게 한다(브라우저 확인 창은 앱 안에서 막히는 곳이 있어 쓰지 않음).
+  const clearBtn = main.querySelector('#clear');
+  let armed = null;
+  clearBtn.addEventListener('click', async () => {
+    if (!armed) {
+      clearBtn.classList.add('btn--danger');
+      clearBtn.querySelector('span').textContent = '한 번 더 누르면 모두 지워요';
+      armed = setTimeout(() => {
+        armed = null;
+        clearBtn.classList.remove('btn--danger');
+        clearBtn.querySelector('span').textContent = '이 폰에 저장한 정보 모두 지우기';
+      }, 5000);
+      return;
+    }
+    clearTimeout(armed);
+    clearBtn.disabled = true;
+    if (store.settings.get().push) await disablePush();
     store.clearAll();
     applySettings(store.settings.get());
     toast('모두 지웠어요');

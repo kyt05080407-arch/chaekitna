@@ -7,6 +7,7 @@ import { REGIONS, regionByCode } from '../regions.js';
 import { statusOf } from '../parse.js';
 import { CONFIG } from '../config.js';
 import * as demo from '../demo.js';
+import { pushStatus } from '../push.js';
 
 function bookHead(book, isbn) {
   if (!book) {
@@ -40,6 +41,12 @@ function libraryCard(lib, code, status) {
       ${tel ? html`<a href="${tel}">${icon('phone')}전화</a>` : ''}
     </div>
   </div>`;
+}
+
+function alertNote(status) {
+  if (status === 'on') return '아침 알림을 켜 두었어요. 관심 도서에 담아 두면 반납됐을 때 다음 날 아침에 알려 드려요.';
+  if (status === 'off') return '대출 가능해지면 아침에 알려주는 기능은 다음 업데이트에서 열려요. 지금은 관심 도서 탭에서 상태를 한눈에 볼 수 있어요.';
+  return '관심 도서 탭에서 아침 알림을 켜면, 반납됐을 때 다음 날 아침에 알려 드려요.';
 }
 
 function summaryText(statuses, total) {
@@ -84,7 +91,7 @@ export async function render({ main, params, signal }) {
     </section>
     <section class="section">
       <button class="btn btn--block ${watched() ? 'btn--outline' : 'btn--primary'}" type="button" id="watch">${icon('star')}<span>${watched() ? '관심 도서에 담겼어요' : '관심 도서에 담기'}</span></button>
-      <p class="small muted">대출 가능해지면 아침에 알려주는 기능은 다음 업데이트에서 열려요. 지금은 관심 도서 탭에서 상태를 한눈에 볼 수 있어요.</p>
+      <p class="small muted">${alertNote(pushStatus())}</p>
     </section>
     <section class="section" aria-labelledby="wide-h">
       <h2 class="h2" id="wide-h">더 넓게 찾기</h2>
@@ -167,6 +174,9 @@ export async function render({ main, params, signal }) {
     } catch (error) {
       if (signal.aborted || (error && error.name === 'AbortError')) return;
       main.querySelector('#summary .summary__main').textContent = '현황을 불러오지 못했어요';
+      mineBox.querySelectorAll('[data-status]').forEach((slot) => {
+        slot.innerHTML = toMarkup(statusBadge('unknown'));
+      });
       mineBox.insertAdjacentHTML('afterbegin', toMarkup(errorNotice(error, 'retry-mine')));
       mineBox.querySelector('#retry-mine')?.addEventListener('click', () => loadMine(true));
     }

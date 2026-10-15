@@ -4,6 +4,7 @@ import * as store from '../store.js';
 import { availability } from '../api.js';
 import { statusOf } from '../parse.js';
 import * as demo from '../demo.js';
+import { MAX_ALERT_BOOKS, disablePush, enablePush, pushStatus } from '../push.js';
 
 // 하루 호출 한도를 아끼려고 화면을 열 때 자동으로 확인하는 책은 앞의 10권까지만
 const AUTO_CHECK = 10;
@@ -20,6 +21,37 @@ function summarize(statuses) {
 
 function wasAvailable(statuses) {
   return Object.values(statuses || {}).some((s) => s === 'available');
+}
+
+// 아침 알림 안내·켜기/끄기
+function alertsBox(status) {
+  const what = `최근에 담은 ${MAX_ALERT_BOOKS}권이 내 도서관에서 반납돼 빌릴 수 있게 되면 다음 날 아침 9시쯤 알려 드려요.`;
+  const stored = '알림을 켜면 알림 주소, 관심 도서 ISBN·제목, 도서관 코드가 알림 서버에 저장되고, 끄면 바로 지워요.';
+  switch (status) {
+    case 'off':
+      return html`<p class="footer-note">대출 가능 알림(아침 푸시)은 다음 업데이트에서 열려요.</p>`;
+    case 'ios-install':
+      return html`<div class="card card--soft stack">
+        <p class="alert-head">${icon('bell')}<strong>아침 알림</strong></p>
+        <p class="small">아이폰은 책있나를 홈 화면에 추가한 뒤, 그 앱에서 알림을 켤 수 있어요. 방법은 <a href="#/settings">설정</a>에 있어요.</p></div>`;
+    case 'unsupported':
+      return html`<p class="footer-note">이 브라우저에서는 알림을 받을 수 없어요. 크롬이나 홈 화면에 추가한 앱에서 열어 주세요.</p>`;
+    case 'denied':
+      return html`<div class="card card--soft stack">
+        <p class="alert-head">${icon('bell')}<strong>알림이 막혀 있어요</strong></p>
+        <p class="small">브라우저 설정의 사이트 설정에서 이 사이트 알림을 허용하면 아침 알림을 켤 수 있어요.</p></div>`;
+    case 'on':
+      return html`<div class="card card--soft stack">
+        <p class="alert-head">${icon('bell', { filled: true })}<strong>아침 알림을 받고 있어요</strong></p>
+        <p class="small">${what}</p>
+        <button class="btn btn--small btn--outline" type="button" id="push-off">알림 끄기</button></div>`;
+    default:
+      return html`<div class="card card--soft stack">
+        <p class="alert-head">${icon('bell')}<strong>반납되면 아침에 알려 드릴까요?</strong></p>
+        <p class="small">${what}</p>
+        <button class="btn btn--primary" type="button" id="push-on">${icon('bell')}아침 알림 받기</button>
+        <p class="small muted">${stored}</p></div>`;
+  }
 }
 
 export async function render({ main, signal }) {
@@ -64,7 +96,32 @@ export async function render({ main, signal }) {
         </div>`;
       })}
     </div>
-    <p class="footer-note">대출 가능 알림(아침 푸시)은 다음 업데이트에서 열려요.</p>`);
+    <section class="section" id="alerts" aria-live="polite">${alertsBox(pushStatus())}</section>`);
+
+  // ---------- 아침 알림 ----------
+  const alerts = main.querySelector('#alerts');
+  const renderAlerts = () => {
+    alerts.innerHTML = toMarkup(alertsBox(pushStatus()));
+    alerts.querySelector('#push-on')?.addEventListener('click', async (event) => {
+      const btn = event.currentTarget;
+      btn.disabled = true;
+      btn.lastChild.textContent = '켜는 중…';
+      try {
+        const count = await enablePush();
+        toast(`관심 도서 ${count}권 알림을 켰어요`);
+      } catch (error) {
+        toast((error && error.message) || '알림을 켜지 못했어요');
+      }
+      renderAlerts();
+    });
+    alerts.querySelector('#push-off')?.addEventListener('click', async (event) => {
+      event.currentTarget.disabled = true;
+      await disablePush();
+      toast('아침 알림을 껐어요');
+      renderAlerts();
+    });
+  };
+  renderAlerts();
 
   main.querySelectorAll('[data-remove]').forEach((btn) =>
     btn.addEventListener('click', () => {

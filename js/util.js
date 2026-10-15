@@ -171,3 +171,25 @@ export function telHref(tel) {
   const digits = String(tel ?? '').replace(/[^0-9+]/g, '');
   return digits.length >= 7 ? `tel:${digits}` : '';
 }
+
+// 웹 푸시 공개 키(base64url)를 PushManager가 받는 바이트 배열로
+export function urlBase64ToUint8Array(base64url) {
+  const padded = String(base64url || '').replace(/-/g, '+').replace(/_/g, '/');
+  const base64 = padded + '='.repeat((4 - (padded.length % 4)) % 4);
+  const binary = typeof atob === 'function' ? atob(base64) : Buffer.from(base64, 'base64').toString('binary');
+  const bytes = new Uint8Array(binary.length);
+  for (let i = 0; i < binary.length; i += 1) bytes[i] = binary.charCodeAt(i);
+  return bytes;
+}
+
+// 받침에 따라 을/를을 고른다. 판단할 수 없으면 '을(를)'.
+const DIGIT_HAS_BATCHIM = { 0: true, 1: true, 2: false, 3: true, 4: false, 5: false, 6: true, 7: true, 8: true, 9: false };
+export function objectParticle(word) {
+  const text = String(word ?? '').replace(/[\s'"’”」』)\]>.,!?·~-]+$/u, '');
+  const last = text.slice(-1);
+  if (!last) return '을(를)';
+  const code = last.charCodeAt(0);
+  if (code >= 0xac00 && code <= 0xd7a3) return (code - 0xac00) % 28 ? '을' : '를';
+  if (/\d/.test(last)) return DIGIT_HAS_BATCHIM[last] ? '을' : '를';
+  return '을(를)';
+}

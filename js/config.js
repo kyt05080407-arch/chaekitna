@@ -7,6 +7,9 @@ export const CONFIG = {
   maxLibraries: 5,
   // 첫 화면 '이번 주 인기 도서'의 기본 지역(시·도 코드). 사용자가 설정에서 바꿀 수 있다.
   defaultRegion: '37',
-  appVersion: '0.1.0',
+  appVersion: '0.2.0',
   feedbackUrl: '',
+  // 아침 알림(웹 푸시)용 공개 키. 비어 있으면 알림 기능을 숨긴다.
+  // 짝이 되는 비공개 키는 GitHub 저장소 Secret(VAPID_PRIVATE_KEY)에만 둔다.
+  vapidPublicKey: '',
 };

@@ -39,6 +39,10 @@ const ogSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
   <text x="514" y="440" font-family="Pretendard" font-weight="400" font-size="31" fill="#374151">책 한 권, 도서관 여러 곳의 대출 가능 여부를 한 번에</text>
 </svg>`;
 
+// 안드로이드 알림 표시줄에 쓰는 작은 아이콘: 투명 배경에 흰색 책갈피 실루엣
+const badgeSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <path d="M27 12 H69 V84 L48 69 L27 84 Z" fill="#FFFFFF"/></svg>`;
+
 function png(svg, width) {
   const r = new Resvg(svg, {
     fitTo: { mode: 'width', value: width },
@@ -54,5 +58,6 @@ await writeFile(new URL('icon-192.png', dir), png(iconSvg, 192));
 await writeFile(new URL('icon-512.png', dir), png(iconSvg, 512));
 await writeFile(new URL('icon-maskable-512.png', dir), png(maskableSvg, 512));
 await writeFile(new URL('apple-touch-icon.png', dir), png(maskableSvg, 180));
+await writeFile(new URL('badge-96.png', dir), png(badgeSvg, 96));
 await writeFile(new URL('../og.png', dir), png(ogSvg, 1200));
 console.log('아이콘과 공유 이미지를 만들었어요.');

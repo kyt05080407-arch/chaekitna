@@ -14,10 +14,12 @@
     "icons": "node scripts/make-icons.mjs",
     "data:popular": "node scripts/fetch-popular.mjs",
     "data:libraries": "node scripts/fetch-libraries.mjs",
-    "health": "node scripts/healthcheck.mjs"
+    "health": "node scripts/healthcheck.mjs",
+    "alerts": "node scripts/send-alerts.mjs"
   },
   "devDependencies": {
     "@resvg/resvg-js": "^2.6.2",
-    "pretendard": "^1.3.9"
+    "pretendard": "^1.3.9",
+    "web-push": "3.6.7"
   }
 }

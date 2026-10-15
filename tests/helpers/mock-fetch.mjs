@@ -37,12 +37,43 @@ function libs(page, size, total) {
   }));
 }
 
-globalThis.fetch = async (input) => {
+// 프록시(https://proxy.example/exec) 흉내: 알림 구독 목록과 대출 가능 여부
+function proxyResponse(url, init) {
+  if (init.method === 'POST') {
+    const body = JSON.parse(init.body || '{}');
+    calls.push(`POST ${body.op} ${body.subscription ? body.subscription.endpoint : ''}`);
+    return { ok: true };
+  }
+  const op = url.searchParams.get('op');
+  if (op === 'export') {
+    if (url.searchParams.get('token') !== 'admin-secret') return { error: 'forbidden', message: '권한이 없어요.' };
+    return { subscriptions: JSON.parse(process.env.MOCK_SUBS || '[]') };
+  }
+  if (op === 'exist') {
+    if (scenario === 'budget') return { error: 'budget', message: '오늘 조회 한도를 다 썼어요.' };
+    const avail = JSON.parse(process.env.MOCK_AVAIL || '{}');
+    const isbn = url.searchParams.get('isbn');
+    const results = {};
+    for (const lib of (url.searchParams.get('libs') || '').split(',')) {
+      const v = avail[`${isbn}:${lib}`] || 'N';
+      if (v === 'error') results[lib] = { error: 'upstream' };
+      else if (v === 'none') results[lib] = { response: { result: { hasBook: 'N', loanAvailable: 'N' } } };
+      else results[lib] = { response: { result: { hasBook: 'Y', loanAvailable: v } } };
+    }
+    return { results };
+  }
+  return null;
+}
+
+globalThis.fetch = async (input, init = {}) => {
   const url = new URL(String(input));
-  calls.push(url.pathname + url.search.replace(/authKey=[^&]*/, 'authKey=***'));
+  if (init.method !== 'POST') calls.push(url.pathname + url.search.replace(/authKey=[^&]*/, 'authKey=***').replace(/token=[^&]*/, 'token=***'));
   const ep = url.pathname.split('/').pop();
   let body;
-  if (url.searchParams.get('op') === 'health') {
+  const fromProxy = url.hostname === 'proxy.example' ? proxyResponse(url, init) : null;
+  if (fromProxy) {
+    body = fromProxy;
+  } else if (url.searchParams.get('op') === 'health') {
     // 프록시 점검(healthcheck.mjs)용 응답
     body = {
       ok: true,

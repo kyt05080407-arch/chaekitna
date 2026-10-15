@@ -1,0 +1,71 @@
+name: Morning alerts
+
+# 매일 09:07(한국 시간)에, 관심 도서가 내 도서관에서 새로 대출 가능해진 사람에게 알림을 보낸다.
+# 필요한 것: js/config.js의 proxyUrl·vapidPublicKey, 저장소 Secret ADMIN_TOKEN·VAPID_PRIVATE_KEY
+# 하나라도 없으면 실패하지 않고 건너뛴다. 전날 상태는 Actions 캐시로만 넘기고 저장소에는 올리지 않는다.
+on:
+  schedule:
+    - cron: '7 0 * * *'
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: '보내지 않고 누구에게 갈지 확인만 하기'
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+concurrency:
+  group: alerts
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    outputs:
+      ready: ${{ steps.ready.outputs.ready }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: ready
+        env:
+          ADMIN_TOKEN: ${{ secrets.ADMIN_TOKEN }}
+          VAPID_PRIVATE_KEY: ${{ secrets.VAPID_PRIVATE_KEY }}
+        run: |
+          configured=$(node -e "import('./js/config.js').then(({ CONFIG }) => console.log(CONFIG.proxyUrl && CONFIG.vapidPublicKey ? 'yes' : 'no'))")
+          if [ "$configured" = "yes" ] && [ -n "$ADMIN_TOKEN" ] && [ -n "$VAPID_PRIVATE_KEY" ]; then
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "ready=false" >> "$GITHUB_OUTPUT"
+            echo "::notice::아침 알림 준비 전이라 건너뛰어요. proxyUrl, vapidPublicKey, ADMIN_TOKEN, VAPID_PRIVATE_KEY를 확인해 주세요."
+          fi
+
+  send:
+    needs: check
+    if: needs.check.outputs.ready == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Restore yesterday's state
+        uses: actions/cache/restore@v4
+        with:
+          path: .alerts-state
+          key: alerts-state-${{ github.run_id }}
+          restore-keys: alerts-state-
+      - name: Send alerts
+        env:
+          ADMIN_TOKEN: ${{ secrets.ADMIN_TOKEN }}
+          VAPID_PRIVATE_KEY: ${{ secrets.VAPID_PRIVATE_KEY }}
+          VAPID_SUBJECT: ${{ github.server_url }}/${{ github.repository }}
+          ALERTS_DRY_RUN: ${{ inputs.dry_run && '1' || '' }}
+        run: node scripts/send-alerts.mjs
+      - name: Save today's state
+        if: always() && hashFiles('.alerts-state/state.json') != ''
+        uses: actions/cache/save@v4
+        with:
+          path: .alerts-state
+          key: alerts-state-${{ github.run_id }}

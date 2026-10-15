@@ -203,6 +203,9 @@ select.input { appearance: none; background-image: none; }
 .btn svg { width: 1.2rem; height: 1.2rem; flex: none; }
 .btn--primary { background: var(--accent); color: var(--on-accent); }
 .btn--outline { background: var(--bg); border-color: var(--accent); color: var(--accent-ink); }
+.btn--danger { background: var(--bg); border-color: var(--danger); color: var(--danger); }
+.alert-head { display: flex; align-items: center; gap: 0.45rem; font-size: 1rem; }
+.alert-head svg { width: 1.3rem; height: 1.3rem; flex: none; color: var(--accent-ink); }
 .btn--block { width: 100%; }
 .btn--small { min-height: 2.4rem; font-size: 0.85rem; padding: 0 0.8rem; }
 .btn[disabled], .btn[aria-disabled='true'] { opacity: 0.55; cursor: not-allowed; }

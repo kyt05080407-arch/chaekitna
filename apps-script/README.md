@@ -23,7 +23,7 @@
 |---|---|---|
 | `D4L_AUTH_KEY` | 정보나루 인증키 | 필수 |
 | `DAILY_LIMIT` | 하루 최대 호출 수 (안 넣으면 450) | 선택 |
-| `ADMIN_TOKEN` | 남이 맞힐 수 없는 긴 임의 문자열 | v1.1 알림 기능 때 |
+| `ADMIN_TOKEN` | 남이 맞힐 수 없는 긴 임의 문자열. GitHub Secret `ADMIN_TOKEN`과 같은 값 | 아침 알림을 쓸 때 |
 
 ## 3. 시험 실행
 
@@ -78,7 +78,7 @@
 | `detail` | `isbn` | 책 한 권 정보 |
 | `holdings` | `isbn`, `region` (시·도 코드) | 그 지역에서 이 책을 가진 도서관 |
 | `exist` | `isbn`, `libs` (쉼표로 구분, 최대 5곳) | 도서관별 소장·대출 가능 여부 |
-| `export` | `token` | (v1.1) 알림 구독 목록. `ADMIN_TOKEN`과 같아야 함 |
+| `export` | `token` | 알림 구독 목록(아침 알림 발송용). `ADMIN_TOKEN`과 같아야 함 |
 
 | error | 뜻 |
 |---|---|
@@ -87,8 +87,14 @@
 | `not_configured` | `D4L_AUTH_KEY`가 없음 |
 | `upstream` | 정보나루가 오류를 돌려주거나 응답하지 않음 |
 | `forbidden` | `export`의 token이 틀림 |
+| `full` | 알림 구독이 150명이 차서 새로 받을 수 없음 |
+
+알림 구독은 `POST {프록시 URL}`에 본문을 `text/plain` JSON으로 보내요.
+
+- 구독: `{ "op": "subscribe", "subscription": {endpoint, keys}, "libs": [도서관 코드…], "items": [{ "isbn", "title" }…] }`
+- 해지: `{ "op": "unsubscribe", "subscription": { "endpoint" } }`
 
 ## 저장하는 것
 
 - 날짜별 호출 수(`usage:날짜`)와 기능별 사용 횟수(`stats:날짜`). 누가 요청했는지는 남기지 않아요.
-- (v1.1) 알림을 켠 사람의 푸시 주소와 키, 관심 도서 ISBN, 도서관 코드. 이름·연락처는 없고, 90일 동안 갱신이 없으면 지워요.
+- 아침 알림을 켠 사람의 푸시 주소와 키, 도서관 코드(최대 5곳), 관심 도서 ISBN·제목(최대 10권). 이름·연락처는 없어요. 알림을 끄면 바로 지우고, 90일 동안 갱신이 없어도 지워요. 저장 공간(500KB) 때문에 구독은 150명까지 받아요.

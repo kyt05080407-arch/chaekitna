@@ -30,9 +30,25 @@ async function call(op, params = {}, { signal } = {}) {
   for (const [key, value] of Object.entries(params)) {
     if (value !== undefined && value !== null && value !== '') url.searchParams.set(key, String(value));
   }
+  return send(url.href, { signal, redirect: 'follow' });
+}
+
+// 알림 구독처럼 내용을 보내는 요청. 브라우저의 사전 확인 요청(CORS preflight)이 생기지 않게 text/plain으로 보낸다.
+export async function post(body, { signal } = {}) {
+  if (isDemoMode()) throw new ApiError('demo', '예시 데이터 모드에서는 쓸 수 없어요.');
+  return send(CONFIG.proxyUrl, {
+    method: 'POST',
+    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+    body: JSON.stringify(body),
+    redirect: 'follow',
+    signal,
+  });
+}
+
+async function send(url, init) {
   let res;
   try {
-    res = await fetch(url.href, { signal, redirect: 'follow' });
+    res = await fetch(url, init);
   } catch (error) {
     if (error && error.name === 'AbortError') throw error;
     throw new ApiError('network', '인터넷 연결을 확인해 주세요.');
