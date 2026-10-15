@@ -66,6 +66,7 @@ GitHub Actions: 매주 인기 도서 · 매월 도서관 목록 · 매일 프록
 4. 프록시 주소(`…/exec`)를 `js/config.js`의 `proxyUrl`에 넣고 커밋해요.
 5. 저장소 **Settings → Secrets and variables → Actions**에서 Secret `D4L_AUTH_KEY`를 추가해요. 인기 도서·도서관 목록 자동 갱신에 써요. ([GitHub 문서](https://docs.github.com/en/actions/how-tos/write-workflows/choose-what-workflows-do/use-secrets))
    - 넣은 뒤 **Actions → API check → Run workflow**를 한 번 실행하면, 정보나루 실제 응답 여섯 가지를 앱이 제대로 읽는지 확인해요(호출 6번).
+   - 이어서 **Weekly popular books**와 **Monthly library list**도 한 번씩 직접 실행하면, 다음 정기 실행을 기다리지 않고 바로 실제 인기 도서와 최신 도서관 목록이 들어가요.
 6. (선택) 같은 화면의 Variables에서 인기 도서 기준을 바꿀 수 있어요.
 
 | Variable | 기본값 | 예 |
@@ -89,7 +90,7 @@ GitHub Actions: 매주 인기 도서 · 매월 도서관 목록 · 매일 프록
 
 - 아이폰은 iOS 16.4 이상에서, 책있나를 홈 화면에 추가한 뒤 그 앱에서만 알림을 켤 수 있어요. 안드로이드 크롬은 브라우저에서도 돼요.
 - 처음 확인한 날은 기록만 하고, 다음 날부터 "어제는 못 빌렸는데 오늘 빌릴 수 있게 된 책"만 알려요.
-- 알림 확인도 프록시의 하루 호출 수를 함께 써요. 그래서 하루 최대 150쌍(책×도서관)까지만 확인하고, 구독은 150명까지 받아요.
+- 알림 확인도 프록시의 하루 호출 수를 함께 써요. 그래서 하루 최대 150쌍(책×도서관)까지만 확인하고(Variable `ALERT_MAX_PAIRS`로 조절), 구독은 150명까지 받아요.
 
 ## 자동으로 돌아가는 일
 

@@ -1,6 +1,6 @@
 {
   "name": "chaekitna",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "description": "책 한 권을 검색하면 내 도서관 여러 곳의 소장·대출 가능 여부를 한 화면에 보여주는 웹앱",
   "type": "module",

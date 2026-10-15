@@ -62,6 +62,8 @@ jobs:
           VAPID_PRIVATE_KEY: ${{ secrets.VAPID_PRIVATE_KEY }}
           VAPID_SUBJECT: ${{ github.server_url }}/${{ github.repository }}
           ALERTS_DRY_RUN: ${{ inputs.dry_run && '1' || '' }}
+          # 하루에 확인할 (책, 도서관) 쌍의 최대 수. 프록시 하루 호출 한도를 앱 사용자와 나눠 쓰므로 너무 크게 잡지 않는다.
+          ALERT_MAX_PAIRS: ${{ vars.ALERT_MAX_PAIRS || '150' }}
         run: node scripts/send-alerts.mjs
       - name: Save today's state
         if: always() && hashFiles('.alerts-state/state.json') != ''
