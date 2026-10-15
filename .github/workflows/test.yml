@@ -21,8 +21,10 @@ jobs:
       - run: npm test
 
   # 휴대폰 크기 화면 자동 점검(예시 모드, 가짜 프록시로 실제 모드, 오프라인)
+  # Playwright가 브라우저 실행에 필요한 시스템 패키지를 OS 버전별로 설치하므로 OS를 고정한다
+  # (ubuntu-latest는 2026-10-19부터 Ubuntu 26으로 바뀐다).
   e2e:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
