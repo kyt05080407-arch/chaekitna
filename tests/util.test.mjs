@@ -103,3 +103,11 @@ test('을/를 고르기', async () => {
   assert.equal(objectParticle('Harry Potter'), '을(를)');
   assert.equal(objectParticle(''), '을(를)');
 });
+
+test('이/가 고르기', async () => {
+  const { subjectParticle } = await import('../js/util.js');
+  assert.equal(subjectParticle('고등학생'), '이');
+  assert.equal(subjectParticle('20대'), '가');
+  assert.equal(subjectParticle('유아'), '가');
+  assert.equal(subjectParticle('Teen'), '이(가)');
+});

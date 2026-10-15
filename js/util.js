@@ -193,3 +193,11 @@ export function objectParticle(word) {
   if (/\d/.test(last)) return DIGIT_HAS_BATCHIM[last] ? '을' : '를';
   return '을(를)';
 }
+
+// 받침에 따라 이/가를 고른다. 판단할 수 없으면 '이(가)'.
+export function subjectParticle(word) {
+  const p = objectParticle(word);
+  if (p === '을') return '이';
+  if (p === '를') return '가';
+  return '이(가)';
+}

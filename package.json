@@ -15,7 +15,8 @@
     "data:popular": "node scripts/fetch-popular.mjs",
     "data:libraries": "node scripts/fetch-libraries.mjs",
     "health": "node scripts/healthcheck.mjs",
-    "alerts": "node scripts/send-alerts.mjs"
+    "alerts": "node scripts/send-alerts.mjs",
+    "cards": "node scripts/make-cards.mjs"
   },
   "devDependencies": {
     "@resvg/resvg-js": "^2.6.2",
