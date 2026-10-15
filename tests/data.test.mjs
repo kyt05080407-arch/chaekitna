@@ -85,3 +85,13 @@ test('배포 때 서비스 워커 버전에 커밋 번호를 붙이는 규칙이
   assert.ok(workflow.includes(`sed -i "s/^const VERSION = '\\([^']*\\)';/const VERSION = '\\1-\${GITHUB_SHA::7}';/" _site/sw.js`));
   assert.ok(!sw.includes('staleWhileRevalidate'), '화면 파일은 온라인이면 항상 새로 받는다');
 });
+
+test('보안 정책(CSP): 이 사이트 스크립트만, eval 금지', async () => {
+  const page = await readFile(new URL('../index.html', import.meta.url), 'utf8');
+  const csp = page.match(/http-equiv="Content-Security-Policy" content="([^"]+)"/);
+  assert.ok(csp, 'index.html에 보안 정책이 있다');
+  const script = csp[1].split(';').map((s) => s.trim()).find((s) => s.startsWith('script-src'));
+  assert.equal(script, "script-src 'self' 'wasm-unsafe-eval'");
+  assert.ok(!csp[1].includes("'unsafe-eval'"));
+  assert.ok(!/<script(?![^>]*\bsrc=)[^>]*>/.test(page), '인라인 스크립트가 없다');
+});

@@ -205,6 +205,9 @@ select.input { appearance: none; background-image: none; }
 .btn--outline { background: var(--bg); border-color: var(--accent); color: var(--accent-ink); }
 .btn--danger { background: var(--bg); border-color: var(--danger); color: var(--danger); }
 .alert-head { display: flex; align-items: center; gap: 0.45rem; font-size: 1rem; }
+.inapp { display: grid; gap: 0.45rem; margin: 0.6rem 0.9rem 0; padding: 0.8rem 0.95rem; border-radius: var(--radius); background: var(--ok-bg); color: var(--ink); font-size: 0.9rem; }
+.inapp p { margin: 0; }
+.inapp .btn-row > * { flex: 0 1 auto; }
 .card__alert { display: flex; align-items: center; gap: 0.35rem; margin: 0.4rem 0 0; font-size: 0.85rem; font-weight: 800; color: var(--loan-ink); }
 .card__alert svg { width: 1rem; height: 1rem; flex: none; }
 .book-desc { margin-top: 0.9rem; padding: 0.75rem 0.95rem; border-radius: var(--radius); background: var(--surface); }

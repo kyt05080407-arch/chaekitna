@@ -127,3 +127,14 @@ test('엔티티 풀기와 지도 링크', async () => {
   assert.equal(mapUrl('경북도서관', 36.56, 128.72), `https://map.kakao.com/link/map/${encodeURIComponent('경북도서관')},36.56,128.72`);
   assert.equal(mapUrl('가, 나 도서관', null, null), `https://map.kakao.com/link/search/${encodeURIComponent('가  나 도서관')}`);
 });
+
+test('앱 안 브라우저 알아보기', async () => {
+  const { inAppBrowser } = await import('../js/util.js');
+  assert.equal(inAppBrowser('Mozilla/5.0 (Linux; Android 14; SM-S918N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0 Mobile Safari/537.36;KAKAOTALK 2410560'), 'kakao');
+  assert.equal(inAppBrowser('Mozilla/5.0 (iPhone; CPU iPhone OS 18_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 KAKAOTALK 10.9.0'), 'kakao');
+  assert.equal(inAppBrowser('Mozilla/5.0 (iPhone; CPU iPhone OS 18_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 Instagram 350.0.0.20.105'), 'instagram');
+  assert.equal(inAppBrowser('Mozilla/5.0 (Linux; Android 14) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/129.0 Mobile Safari/537.36 NAVER(inapp; search; 2000; 12.10.1)'), 'naver');
+  assert.equal(inAppBrowser('Mozilla/5.0 (Linux; Android 14) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0 Mobile Safari/537.36'), null);
+  assert.equal(inAppBrowser('Mozilla/5.0 (iPhone; CPU iPhone OS 18_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.0 Mobile/15E148 Safari/604.1'), null);
+  assert.equal(inAppBrowser('Mozilla/5.0 (Linux; Android 14) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0 Whale/3.28 Mobile Safari/537.36'), null);
+});

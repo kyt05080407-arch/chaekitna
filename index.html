@@ -3,6 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<!-- 보안 정책: 이 사이트의 스크립트만 실행. 표지 이미지(https)와 프록시 조회(https)만 바깥으로 허용 -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' https: data: blob:; font-src 'self'; connect-src 'self' https:; media-src 'self' blob:; worker-src 'self'; manifest-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none'">
 <title>책있나 — 내 도서관에 그 책 있나?</title>
 <meta name="description" content="책 한 권을 검색하면 내가 고른 도서관 여러 곳의 소장·대출 가능 여부를 한 화면에 보여주는 무료 웹앱. 로그인 없이 써요.">
 <meta name="theme-color" content="#ffffff">

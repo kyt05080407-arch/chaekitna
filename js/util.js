@@ -234,3 +234,25 @@ export function mapUrl(name, lat, lng) {
   }
   return `https://map.kakao.com/link/search/${encodeURIComponent(label)}`;
 }
+
+// 카카오톡·인스타그램처럼 다른 앱 안에서 열린 브라우저인지 (홈 화면 추가·알림이 안 되고, 저장 공간도 따로다)
+export const IN_APP_NAMES = {
+  kakao: '카카오톡',
+  instagram: '인스타그램',
+  naver: '네이버 앱',
+  facebook: '페이스북',
+  line: '라인',
+  everytime: '에브리타임',
+  daum: '다음 앱',
+};
+export function inAppBrowser(ua = typeof navigator !== 'undefined' ? navigator.userAgent : '') {
+  const s = String(ua || '');
+  if (/KAKAOTALK/i.test(s)) return 'kakao';
+  if (/Instagram/i.test(s)) return 'instagram';
+  if (/NAVER\(inapp/i.test(s)) return 'naver';
+  if (/FBAN|FBAV|FB_IAB/.test(s)) return 'facebook';
+  if (/\bLine\/\d/.test(s)) return 'line';
+  if (/everytimeApp/i.test(s)) return 'everytime';
+  if (/DaumApps/i.test(s)) return 'daum';
+  return null;
+}

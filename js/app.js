@@ -2,7 +2,7 @@
 
 import * as store from './store.js';
 import { applySettings, toast } from './ui.js';
-import { isStaleModuleError } from './util.js';
+import { IN_APP_NAMES, html, inAppBrowser, isStaleModuleError, toMarkup } from './util.js';
 
 const RELOAD_FLAG = 'chaekitna:reloaded';
 
@@ -122,7 +122,43 @@ window.addEventListener('beforeinstallprompt', (event) => {
 window.addEventListener('online', () => toast('다시 연결됐어요'));
 window.addEventListener('offline', () => toast('오프라인이에요. 저장된 정보만 보여요'));
 
+// 카카오톡 등 앱 안 브라우저로 열렸으면, 크롬·사파리로 여는 방법을 위에 알려 준다(닫으면 이번에는 다시 안 보임).
+const INAPP_HIDDEN = 'chaekitna:inapp-hidden';
+function showInAppNotice() {
+  const kind = inAppBrowser();
+  if (!kind) return;
+  try {
+    if (sessionStorage.getItem(INAPP_HIDDEN)) return;
+  } catch {
+    /* 무시 */
+  }
+  const box = document.createElement('div');
+  box.className = 'inapp';
+  box.setAttribute('role', 'note');
+  box.innerHTML = toMarkup(html`
+    <p><strong>${IN_APP_NAMES[kind]} 안에서 열렸어요.</strong> 크롬이나 사파리로 열어야 홈 화면 추가와 아침 알림을 쓸 수 있고, 고른 도서관도 그 브라우저에 저장돼요.</p>
+    <p class="small">화면의 ⋮ 또는 ⋯ 메뉴에서 '다른 브라우저로 열기'(아이폰은 'Safari로 열기')를 눌러 주세요.</p>
+    <div class="btn-row">
+      ${kind === 'kakao' ? html`<button class="btn btn--small btn--primary" type="button" data-open-external>다른 브라우저로 열기</button>` : ''}
+      <button class="btn btn--small" type="button" data-hide>닫기</button>
+    </div>`);
+  document.querySelector('.app').prepend(box);
+  box.querySelector('[data-hide]').addEventListener('click', () => {
+    try {
+      sessionStorage.setItem(INAPP_HIDDEN, '1');
+    } catch {
+      /* 무시 */
+    }
+    box.remove();
+  });
+  // 카카오톡이 지원하는 외부 브라우저 열기 주소(공식 문서는 없지만 널리 쓰이는 방식이라 안내 문구도 함께 둔다)
+  box.querySelector('[data-open-external]')?.addEventListener('click', () => {
+    location.href = `kakaotalk://web/openExternal?url=${encodeURIComponent(location.href)}`;
+  });
+}
+
 applySettings(store.settings.get());
+showInAppNotice();
 window.matchMedia('(prefers-color-scheme: dark)').addEventListener?.('change', () => applySettings(store.settings.get()));
 store.pruneCache();
 window.addEventListener('hashchange', route);
