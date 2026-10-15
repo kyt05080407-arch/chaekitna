@@ -7,9 +7,17 @@ import { parseBookDetail, parseBooks, parseExist, parseLibraries } from '../js/p
 import { isLibCode } from '../js/util.js';
 
 const results = [];
+// GitHub Actions에서는 결과를 실행 요약(주석)에도 남겨, 로그를 열지 않아도 보이게 한다.
+const annotate = (level, text) => {
+  if (!process.env.GITHUB_ACTIONS) return;
+  const safe = String(text).replace(/%/g, '%25').replace(/\r/g, '%0D').replace(/\n/g, '%0A');
+  console.log(`::${level}::${safe}`);
+};
 function check(name, ok, detail) {
   results.push({ name, ok: Boolean(ok), detail });
-  console.log(`${ok ? '통과' : '실패'} · ${name}${detail ? ` · ${detail}` : ''}`);
+  const line = `${ok ? '통과' : '실패'} · ${name}${detail ? ` · ${detail}` : ''}`;
+  console.log(line);
+  annotate(ok ? 'notice' : 'error', line);
 }
 
 async function step(name, fn) {
