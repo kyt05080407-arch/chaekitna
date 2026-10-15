@@ -32,8 +32,9 @@ test('처음 열면 명언이 있는 로딩 화면이 잠깐 보이고, 누르�
   await expect(page.locator('#splash')).toBeVisible();
   await expect(page.locator('#splash-text')).not.toBeEmpty();
   await expect(page.locator('#splash-by')).toContainText('·');
-  await page.locator('#splash').click();
-  await expect(page.locator('#splash')).toHaveCount(0);
+  // 1.2초 안에 스스로 닫히기도 하니, 아직 떠 있으면 눌러서 닫는다
+  await page.locator('#splash:not(.is-done)').click({ timeout: 800 }).catch(() => {});
+  await expect(page.locator('#splash')).toHaveCount(0, { timeout: 3000 });
   // 같은 세션에서 다시 열면 기다리지 않는다
   await page.reload();
   await expect(page.locator('#splash')).toHaveCount(0, { timeout: 3000 });
