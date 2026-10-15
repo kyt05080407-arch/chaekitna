@@ -111,3 +111,19 @@ test('이/가 고르기', async () => {
   assert.equal(subjectParticle('유아'), '가');
   assert.equal(subjectParticle('Teen'), '이(가)');
 });
+
+test('배포 뒤 화면 파일 불일치 오류 알아보기', async () => {
+  const { isStaleModuleError } = await import('../js/util.js');
+  assert.equal(isStaleModuleError(new SyntaxError("The requested module './util.js' does not provide an export named 'x'")), true);
+  assert.equal(isStaleModuleError(new TypeError('Failed to fetch dynamically imported module: https://a/b.js')), true);
+  assert.equal(isStaleModuleError(new TypeError('Importing a module script failed.')), true);
+  assert.equal(isStaleModuleError(new TypeError("Cannot read properties of undefined (reading 'x')")), false);
+  assert.equal(isStaleModuleError(null), false);
+});
+
+test('엔티티 풀기와 지도 링크', async () => {
+  const { decodeEntities, mapUrl } = await import('../js/util.js');
+  assert.equal(decodeEntities('A &amp; B &lt;특별판&gt; &middot; &#39;x&#39; &#x2014; &unknown;'), "A & B <특별판> · 'x' — &unknown;");
+  assert.equal(mapUrl('경북도서관', 36.56, 128.72), `https://map.kakao.com/link/map/${encodeURIComponent('경북도서관')},36.56,128.72`);
+  assert.equal(mapUrl('가, 나 도서관', null, null), `https://map.kakao.com/link/search/${encodeURIComponent('가  나 도서관')}`);
+});

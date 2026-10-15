@@ -2,18 +2,15 @@
 // 시드 데이터(오픈소스 목록)와 정보나루 libSrch 응답을 같은 모양으로 바꾼다.
 
 import { regionFromAddress } from '../../js/regions.js';
-import { isLibCode } from '../../js/util.js';
+import { decodeEntities, isLibCode } from '../../js/util.js';
 
 function num(value) {
   const n = Number(value);
   return Number.isFinite(n) && n !== 0 ? Math.round(n * 1e6) / 1e6 : null;
 }
 
-const ENTITIES = { '&middot;': '·', '&amp;': '&', '&nbsp;': ' ', '&lt;': '<', '&gt;': '>', '&quot;': '"', '&#39;': "'" };
-
 function text(value, max = 200) {
-  const s = String(value ?? '')
-    .replace(/&(middot|amp|nbsp|lt|gt|quot|#39);/g, (m) => ENTITIES[m])
+  const s = decodeEntities(value)
     .replace(/\s+/g, ' ')
     .trim();
   if (!s || s === '-' || s.toLowerCase() === 'null') return '';

@@ -201,3 +201,36 @@ export function subjectParticle(word) {
   if (p === '를') return '가';
   return '이(가)';
 }
+
+// 새 버전이 배포된 뒤 오래 열려 있던 앱이, 바뀐 화면 파일을 불러오다 실패한 경우인지
+// (브라우저마다 문구가 달라서 여러 표현을 함께 본다)
+export function isStaleModuleError(error) {
+  if (!error) return false;
+  if (error.name === 'SyntaxError') return true;
+  const message = String(error.message || '');
+  return /dynamically imported module|Importing a module script failed|does not provide an export|error loading dynamically imported module|module script/i.test(message);
+}
+
+// 정보나루 글자에 섞여 오는 HTML 엔티티(&amp; &middot; &#39; 등)를 글자로 바꾼다.
+const NAMED_ENTITIES = {
+  amp: '&', lt: '<', gt: '>', quot: '"', apos: "'", nbsp: ' ', middot: '·', hellip: '…',
+  lsquo: '‘', rsquo: '’', ldquo: '“', rdquo: '”', ndash: '–', mdash: '—',
+};
+export function decodeEntities(value) {
+  return String(value ?? '').replace(/&(#x[0-9a-f]+|#\d+|[a-z]+);/gi, (match, name) => {
+    if (name[0] === '#') {
+      const code = name[1] === 'x' || name[1] === 'X' ? parseInt(name.slice(2), 16) : parseInt(name.slice(1), 10);
+      return Number.isFinite(code) && code > 0 && code <= 0x10ffff ? String.fromCodePoint(code) : match;
+    }
+    return NAMED_ENTITIES[name.toLowerCase()] ?? match;
+  });
+}
+
+// 카카오맵 바로가기 (https://apis.map.kakao.com/web/guide/ 'URL로 바로가기' 형식: 이름,위도,경도)
+export function mapUrl(name, lat, lng) {
+  const label = String(name || '').replace(/,/g, ' ').trim() || '도서관';
+  if (Number.isFinite(lat) && Number.isFinite(lng) && lat && lng) {
+    return `https://map.kakao.com/link/map/${encodeURIComponent(label)},${lat},${lng}`;
+  }
+  return `https://map.kakao.com/link/search/${encodeURIComponent(label)}`;
+}

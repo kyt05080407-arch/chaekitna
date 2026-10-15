@@ -41,6 +41,16 @@ export function alertPayload() {
   return { libs, items };
 }
 
+function withTimeout(promise, ms) {
+  let timer;
+  return Promise.race([
+    promise.finally(() => clearTimeout(timer)),
+    new Promise((_, reject) => {
+      timer = setTimeout(() => reject(new Error('timeout')), ms);
+    }),
+  ]);
+}
+
 function signature(payload) {
   return JSON.stringify([payload.libs, payload.items.map((it) => it.isbn)]);
 }
@@ -58,19 +68,21 @@ export async function enablePush() {
   if (permission !== 'granted') throw new Error('알림을 허용해야 받을 수 있어요.');
   let sub;
   try {
-    if (!(await navigator.serviceWorker.getRegistration())) await navigator.serviceWorker.register('./sw.js');
-    const reg = await navigator.serviceWorker.ready;
-    sub = await reg.pushManager.getSubscription();
-    if (!sub) {
-      // 알림 서버(브라우저 회사의 푸시 서비스)에 연결이 안 되면 오래 기다리지 않고 멈춘다.
-      sub = await Promise.race([
-        reg.pushManager.subscribe({
-          userVisibleOnly: true,
-          applicationServerKey: urlBase64ToUint8Array(CONFIG.vapidPublicKey),
-        }),
-        new Promise((_, reject) => setTimeout(() => reject(new Error('timeout')), 20000)),
-      ]);
-    }
+    // 서비스 워커 준비나 알림 서버(브라우저 회사의 푸시 서비스) 연결이 막히면 오래 기다리지 않고 멈춘다.
+    sub = await withTimeout(
+      (async () => {
+        if (!(await navigator.serviceWorker.getRegistration())) await navigator.serviceWorker.register('./sw.js');
+        const reg = await navigator.serviceWorker.ready;
+        return (
+          (await reg.pushManager.getSubscription()) ||
+          reg.pushManager.subscribe({
+            userVisibleOnly: true,
+            applicationServerKey: urlBase64ToUint8Array(CONFIG.vapidPublicKey),
+          })
+        );
+      })(),
+      20000,
+    );
   } catch {
     // 시크릿 창(크롬은 여기서 알림을 지원하지 않음)이나 알림 서비스 연결 문제
     throw new Error('알림을 켜지 못했어요. 시크릿 창이라면 일반 창에서 다시 해 보세요.');

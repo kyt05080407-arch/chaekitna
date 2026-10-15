@@ -2,7 +2,7 @@
 // 응답은 { response: { docs: [{ doc: {...} }] } } 처럼 한 겹 더 싸여 오기도 하고
 // 바로 객체로 오기도 해서, 두 경우를 모두 받아준다.
 
-import { isLibCode } from './util.js';
+import { decodeEntities, isLibCode } from './util.js';
 
 function body(resp) {
   if (resp && typeof resp === 'object' && resp.response && typeof resp.response === 'object') {
@@ -55,18 +55,29 @@ export function cleanTitle(value) {
   return value.replace(/\s+/g, ' ').trim();
 }
 
+// 책 소개 글: 엔티티를 풀고, 줄바꿈 태그는 줄바꿈으로, 나머지 태그는 지운다.
+export function cleanDescription(value) {
+  return decodeEntities(value)
+    .replace(/<br\s*\/?>/gi, '\n')
+    .replace(/<\/p>\s*<p[^>]*>/gi, '\n')
+    .replace(/<[^>]+>/g, '')
+    .replace(/[ \t]+/g, ' ')
+    .replace(/\n{3,}/g, '\n\n')
+    .trim();
+}
+
 function normalizeBook(doc) {
   const isbn13 = String(doc.isbn13 ?? '').replace(/[^0-9]/g, '');
   return {
     isbn13,
-    title: cleanTitle(doc.bookname ?? doc.title ?? ''),
-    authors: cleanAuthors(doc.authors ?? doc.author ?? ''),
-    publisher: String(doc.publisher ?? '').trim(),
+    title: cleanTitle(decodeEntities(doc.bookname ?? doc.title ?? '')),
+    authors: cleanAuthors(decodeEntities(doc.authors ?? doc.author ?? '')),
+    publisher: decodeEntities(doc.publisher ?? '').trim(),
     year: String(doc.publication_year ?? doc.publicationYear ?? '').trim(),
     cover: String(doc.bookImageURL ?? doc.bookImageUrl ?? '').trim(),
     loanCount: toNumber(doc.loan_count ?? doc.loanCnt),
     rank: toNumber(doc.ranking ?? doc.no),
-    description: String(doc.description ?? '').trim(),
+    description: cleanDescription(doc.description ?? ''),
   };
 }
 
@@ -89,14 +100,14 @@ function normalizeLibrary(lib) {
   const lng = toNumber(lib.longitude);
   return {
     code: String(lib.libCode ?? lib.code ?? '').trim(),
-    name: String(lib.libName ?? lib.name ?? '').trim(),
-    address: String(lib.address ?? '').trim(),
+    name: decodeEntities(lib.libName ?? lib.name ?? '').trim(),
+    address: decodeEntities(lib.address ?? '').trim(),
     tel: String(lib.tel ?? '').trim(),
     homepage: String(lib.homepage ?? '').trim(),
     lat: lat && lat !== 0 ? lat : null,
     lng: lng && lng !== 0 ? lng : null,
-    hours: String(lib.operatingTime ?? lib.open_hours ?? '').trim(),
-    closed: String(lib.closed ?? lib.closed_info ?? '').trim(),
+    hours: decodeEntities(lib.operatingTime ?? lib.open_hours ?? '').trim(),
+    closed: decodeEntities(lib.closed ?? lib.closed_info ?? '').trim(),
   };
 }
 

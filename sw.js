@@ -2,6 +2,8 @@
 // 대출 정보 조회(프록시)는 저장하지 않는다. 앱이 폰 저장소에 따로 캐시한다.
 // 아침 알림(웹 푸시)도 여기서 받아 보여 준다.
 
+// 배포할 때 pages.yml이 이 값 뒤에 커밋 번호를 붙인다(예: v0.2.0-1a2b3c4). 그래야 새 버전이 나올 때마다
+// 저장해 둔 화면 파일을 한 번에 새것으로 바꾼다.
 const VERSION = 'v0.2.0';
 const SHELL_CACHE = `shell-${VERSION}`;
 const DATA_CACHE = 'data';
@@ -19,6 +21,7 @@ const SHELL = [
   './js/api.js',
   './js/config.js',
   './js/demo.js',
+  './js/hours.js',
   './js/libraries.js',
   './js/parse.js',
   './js/push.js',
@@ -54,12 +57,21 @@ self.addEventListener('activate', (event) => {
   );
 });
 
-async function networkFirst(request, cacheName) {
+// 온라인이면 항상 새 파일을 쓰고(배포 직후에도 화면 파일끼리 버전이 섞이지 않게), 오프라인이면 저장본을 쓴다.
+// 네트워크가 timeout(ms)보다 오래 걸리고 저장본이 있으면 저장본을 먼저 보여 준다.
+async function networkFirst(request, cacheName, { timeout = 0 } = {}) {
   const cache = await caches.open(cacheName);
-  try {
-    const response = await fetch(request);
+  const network = fetch(request).then((response) => {
     if (response.ok) cache.put(request, response.clone());
     return response;
+  });
+  network.catch(() => {}); // 저장본으로 먼저 답한 뒤 실패해도 경고를 남기지 않게
+  try {
+    if (!timeout) return await network;
+    const cachedLater = new Promise((resolve) => {
+      setTimeout(() => cache.match(request, { ignoreSearch: true }).then(resolve, () => resolve(undefined)), timeout);
+    });
+    return (await Promise.race([network, cachedLater])) || (await network);
   } catch (error) {
     const cached = await cache.match(request, { ignoreSearch: true });
     if (cached) return cached;
@@ -74,18 +86,6 @@ async function cacheFirst(request, cacheName) {
   const response = await fetch(request);
   if (response.ok || response.type === 'opaque') cache.put(request, response.clone());
   return response;
-}
-
-async function staleWhileRevalidate(request) {
-  const cache = await caches.open(SHELL_CACHE);
-  const cached = await cache.match(request, { ignoreSearch: true });
-  const network = fetch(request)
-    .then((response) => {
-      if (response.ok) cache.put(request, response.clone());
-      return response;
-    })
-    .catch(() => cached);
-  return cached || network;
 }
 
 self.addEventListener('fetch', (event) => {
@@ -103,12 +103,14 @@ self.addEventListener('fetch', (event) => {
 
   if (request.mode === 'navigate') {
     event.respondWith(
-      fetch(request).catch(async () => (await caches.match('./index.html')) || Response.error()),
+      networkFirst(request, SHELL_CACHE, { timeout: 4000 }).catch(
+        async () => (await caches.match('./index.html')) || Response.error(),
+      ),
     );
     return;
   }
   if (url.pathname.includes('/data/')) {
-    event.respondWith(networkFirst(request, DATA_CACHE));
+    event.respondWith(networkFirst(request, DATA_CACHE, { timeout: 4000 }));
     return;
   }
   // 바코드 인식 모듈: 버전이 바뀔 때 새로 받도록 앱 화면 저장소에 함께 둔다.
@@ -116,7 +118,7 @@ self.addEventListener('fetch', (event) => {
     event.respondWith(cacheFirst(request, SHELL_CACHE));
     return;
   }
-  event.respondWith(staleWhileRevalidate(request));
+  event.respondWith(networkFirst(request, SHELL_CACHE, { timeout: 4000 }));
 });
 
 // ---------- 아침 알림 ----------

@@ -51,6 +51,9 @@ jobs:
             -e "s#<meta property=\"og:image\" content=\"assets/og.png\">#<meta property=\"og:image\" content=\"${BASE_URL}/assets/og.png\">#" \
             _site/index.html
           grep -q "og:image\" content=\"https://" _site/index.html
+          # 서비스 워커 버전에 커밋 번호를 붙여, 배포할 때마다 저장된 화면 파일을 한 번에 새로 받게 한다.
+          sed -i "s/^const VERSION = '\([^']*\)';/const VERSION = '\1-${GITHUB_SHA::7}';/" _site/sw.js
+          grep -q "^const VERSION = '.*-${GITHUB_SHA::7}';" _site/sw.js
       # 인스타그램용 '이번 주 인기 도서' 카드: 저장소에 쌓지 않고 배포할 때마다 새로 그린다 (_site/cards/)
       - name: Instagram cards
         run: |

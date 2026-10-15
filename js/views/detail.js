@@ -1,4 +1,4 @@
-import { basisLabel, html, safeHttpUrl, telHref, toMarkup } from '../util.js';
+import { basisLabel, html, mapUrl, safeHttpUrl, telHref, toMarkup } from '../util.js';
 import { backButton, cover, demoBadge, demoNotice, errorNotice, icon, setTopbar, skeletonRows, statusBadge, toast } from '../ui.js';
 import * as store from '../store.js';
 import { availability, bookDetail, holdings, isDemoMode } from '../api.js';
@@ -8,6 +8,7 @@ import { statusOf } from '../parse.js';
 import { CONFIG } from '../config.js';
 import * as demo from '../demo.js';
 import { pushStatus } from '../push.js';
+import { closedToday } from '../hours.js';
 
 function bookHead(book, isbn) {
   if (!book) {
@@ -29,18 +30,33 @@ function badges(status, isDemo) {
   return html`${statusBadge(status)}${isDemo ? demoBadge() : ''}`;
 }
 
+const clip = (text, max = 60) => (text.length > max ? `${text.slice(0, max)}…` : text);
+
 function libraryCard(lib, code, status) {
   const name = lib ? lib.name : `도서관 ${code}`;
   const home = lib ? safeHttpUrl(lib.homepage) : '';
   const tel = lib ? telHref(lib.tel) : '';
+  const closedNow = Boolean(lib && lib.closed && closedToday(lib.closed));
   return html`<div class="card" data-lib="${code}">
     <div class="card__top"><span class="card__name">${name}</span><span class="badges" data-status>${status ? statusBadge(status) : html`<span class="badge badge--unknown">확인 중</span>`}</span></div>
-    ${lib && lib.hours ? html`<p class="card__meta">${lib.hours.length > 60 ? `${lib.hours.slice(0, 60)}…` : lib.hours}</p>` : ''}
+    ${closedNow ? html`<p class="card__alert">${icon('clock')}오늘은 정기 휴관일이에요</p>` : ''}
+    ${lib && lib.hours ? html`<p class="card__meta">${clip(lib.hours)}</p>` : ''}
+    ${lib && lib.closed ? html`<p class="card__meta">휴관 · ${clip(lib.closed)}</p>` : ''}
     <div class="card__links">
       ${home ? html`<a href="${home}" target="_blank" rel="noopener noreferrer">${icon('external')}홈페이지에서 확인</a>` : ''}
       ${tel ? html`<a href="${tel}">${icon('phone')}전화</a>` : ''}
+      ${lib ? html`<a href="${mapUrl(lib.name, lib.lat, lib.lng)}" target="_blank" rel="noopener noreferrer">${icon('pin')}지도</a>` : ''}
     </div>
   </div>`;
+}
+
+// 책 소개: 이미 받아 둔 글이 있으면 바로 보여 주고, 없으면 눌렀을 때만 받아 온다(하루 조회 한도를 아끼려고).
+function bookIntro(book, isbn) {
+  if (book && book.description) {
+    return html`<details class="book-desc"><summary>책 소개</summary><p>${book.description}</p></details>`;
+  }
+  if (isDemoMode() || demo.isDemoIsbn(isbn)) return '';
+  return html`<button class="btn btn--small" type="button" id="intro">${icon('book')}책 소개 보기</button>`;
 }
 
 function alertNote(status) {
@@ -77,6 +93,7 @@ export async function render({ main, params, signal }) {
 
   main.innerHTML = toMarkup(html`
     <section id="head">${book ? bookHead(book, isbn) : skeletonRows(1, '6.3rem')}</section>
+    <div id="intro-box">${book ? bookIntro(book, isbn) : ''}</div>
     ${isDemoMode() || demo.isDemoIsbn(isbn) ? demoNotice() : ''}
     <section class="summary" id="summary" aria-live="polite">
       <p class="summary__main">${mine.length ? '내 도서관을 확인하는 중이에요' : '내 도서관을 먼저 골라 주세요'}</p>
@@ -133,12 +150,34 @@ export async function render({ main, params, signal }) {
   main.querySelector('#watch').addEventListener('click', toggleWatch);
 
   // ---------- 책 정보 ----------
+  const introBox = main.querySelector('#intro-box');
+  const bindIntro = () => {
+    introBox.querySelector('#intro')?.addEventListener('click', async (event) => {
+      const btn = event.currentTarget;
+      btn.disabled = true;
+      try {
+        const found = await bookDetail(isbn, { signal });
+        if (signal.aborted) return;
+        if (found && found.description) {
+          book = { ...(book || {}), ...found, description: found.description };
+          introBox.innerHTML = toMarkup(html`<details class="book-desc" open><summary>책 소개</summary><p>${found.description}</p></details>`);
+        } else {
+          introBox.innerHTML = toMarkup(html`<p class="small muted">이 책은 소개 글이 없어요.</p>`);
+        }
+      } catch (error) {
+        if (signal.aborted) return;
+        btn.disabled = false;
+        toast((error && error.message) || '소개 글을 불러오지 못했어요');
+      }
+    });
+  };
   if (!book) {
     bookDetail(isbn, { signal })
       .then((found) => {
         if (signal.aborted) return;
         book = found;
         main.querySelector('#head').innerHTML = toMarkup(bookHead(found, isbn));
+        introBox.innerHTML = toMarkup(found && found.description ? bookIntro(found, isbn) : '');
         if (found) document.title = `${found.title} — 책있나`;
       })
       .catch(() => {
@@ -146,6 +185,7 @@ export async function render({ main, params, signal }) {
       });
   } else {
     document.title = `${book.title} — 책있나`;
+    bindIntro();
   }
 
   // ---------- 지역 선택 기본값 ----------

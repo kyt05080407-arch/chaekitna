@@ -2,6 +2,21 @@
 
 import * as store from './store.js';
 import { applySettings, toast } from './ui.js';
+import { isStaleModuleError } from './util.js';
+
+const RELOAD_FLAG = 'chaekitna:reloaded';
+
+// 배포 직후처럼 화면 파일 버전이 섞여 불러오지 못하면 한 번만 새로 고친다(계속 반복되지 않게 표시를 남김).
+function reloadOnce() {
+  try {
+    if (sessionStorage.getItem(RELOAD_FLAG)) return false;
+    sessionStorage.setItem(RELOAD_FLAG, String(Date.now()));
+  } catch {
+    return false;
+  }
+  location.reload();
+  return true;
+}
 
 const ROUTES = [
   { pattern: /^\/$/, tab: 'home', load: () => import('./views/home.js') },
@@ -56,9 +71,18 @@ async function route() {
     main.innerHTML = '';
     window.scrollTo(0, 0);
     await view.render({ main, params, query, navigate, signal });
-    if (!signal.aborted) main.focus({ preventScroll: true });
+    // 화면이 다 그려지면 본문으로 초점을 옮긴다. 단, 그동안 사용자가 화면 안의 입력칸 등을 눌렀다면 빼앗지 않는다.
+    const active = document.activeElement;
+    const userIsInView = active && active !== main && main.contains(active);
+    if (!signal.aborted && !userIsInView) main.focus({ preventScroll: true });
+    try {
+      sessionStorage.removeItem(RELOAD_FLAG);
+    } catch {
+      /* 무시 */
+    }
   } catch (error) {
     if (signal.aborted || (error && error.name === 'AbortError')) return;
+    if (isStaleModuleError(error) && reloadOnce()) return;
     console.error(error);
     main.innerHTML = '<div class="notice notice--warn" role="alert">화면을 여는 중에 문제가 생겼어요. 새로고침해 주세요.</div>';
   }
@@ -104,7 +128,8 @@ store.pruneCache();
 window.addEventListener('hashchange', route);
 route();
 
-if ('serviceWorker' in navigator && location.protocol === 'https:') {
+// https(배포)와 localhost(개발·자동 점검)에서만 서비스 워커를 쓴다.
+if ('serviceWorker' in navigator && window.isSecureContext) {
   window.addEventListener('load', () => {
     navigator.serviceWorker.register('./sw.js').catch(() => {});
   });

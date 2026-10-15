@@ -205,6 +205,13 @@ select.input { appearance: none; background-image: none; }
 .btn--outline { background: var(--bg); border-color: var(--accent); color: var(--accent-ink); }
 .btn--danger { background: var(--bg); border-color: var(--danger); color: var(--danger); }
 .alert-head { display: flex; align-items: center; gap: 0.45rem; font-size: 1rem; }
+.card__alert { display: flex; align-items: center; gap: 0.35rem; margin: 0.4rem 0 0; font-size: 0.85rem; font-weight: 800; color: var(--loan-ink); }
+.card__alert svg { width: 1rem; height: 1rem; flex: none; }
+.book-desc { margin-top: 0.9rem; padding: 0.75rem 0.95rem; border-radius: var(--radius); background: var(--surface); }
+.book-desc summary { font-weight: 800; cursor: pointer; }
+.book-desc p { margin: 0.55rem 0 0; font-size: 0.9rem; line-height: 1.65; color: var(--ink-2); white-space: pre-line; }
+#intro-box:not(:empty) { margin-top: 0.75rem; }
+#intro-box .btn svg { width: 1rem; height: 1rem; }
 .alert-head svg { width: 1.3rem; height: 1.3rem; flex: none; color: var(--accent-ink); }
 .btn--block { width: 100%; }
 .btn--small { min-height: 2.4rem; font-size: 0.85rem; padding: 0 0.8rem; }

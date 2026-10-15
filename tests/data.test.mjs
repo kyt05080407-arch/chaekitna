@@ -76,3 +76,12 @@ test('배포 때 바꿔 넣는 미리보기 주소 자리표시가 index.html과
   }
   assert.ok(!page.includes('cdn.jsdelivr.net'), '글꼴은 직접 제공한다(바깥 CDN 요청 없음)');
 });
+
+test('배포 때 서비스 워커 버전에 커밋 번호를 붙이는 규칙이 sw.js와 맞다', async () => {
+  const sw = await readFile(new URL('../sw.js', import.meta.url), 'utf8');
+  const workflow = await readFile(new URL('../.github/workflows/pages.yml', import.meta.url), 'utf8');
+  const lines = sw.split('\n').filter((line) => /^const VERSION = '[^']*';$/.test(line));
+  assert.equal(lines.length, 1, 'sw.js에 VERSION 줄이 정확히 하나');
+  assert.ok(workflow.includes(`sed -i "s/^const VERSION = '\\([^']*\\)';/const VERSION = '\\1-\${GITHUB_SHA::7}';/" _site/sw.js`));
+  assert.ok(!sw.includes('staleWhileRevalidate'), '화면 파일은 온라인이면 항상 새로 받는다');
+});
