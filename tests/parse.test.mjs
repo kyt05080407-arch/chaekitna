@@ -81,6 +81,14 @@ test('제목: \' :\' 뒤 부제는 떼고 본제목만', () => {
   assert.equal(cleanTitle('소년이 온다 : 한강 장편소설'), '소년이 온다');
   assert.equal(cleanTitle('  데미안  '), '데미안');
   assert.equal(cleanTitle('흔한남매. 18'), '흔한남매. 18');
+  assert.equal(cleanTitle('종의 기원 =정유정 장편소설 /The origin of species'), '종의 기원');
+  assert.equal(cleanTitle('1/2의 미학'), '1/2의 미학');
+  assert.equal(cleanTitle('C++ 프로그래밍 / 개정판'), 'C++ 프로그래밍');
   assert.equal(cleanTitle(':부제만'), ':부제만');
   assert.equal(cleanTitle(null), '');
+});
+
+test('표지 주소는 https로', () => {
+  const { books } = parseBooks({ response: { docs: [{ doc: { bookname: '책', isbn13: '9788936434120', bookImageURL: 'http://image.aladin.co.kr/a.jpg' } }] } });
+  assert.equal(books[0].cover, 'https://image.aladin.co.kr/a.jpg');
 });

@@ -50,11 +50,11 @@ export function cleanAuthors(value) {
     .join(', ');
 }
 
-// 정보나루 제목은 "안녕이라 그랬어 :김애란 소설"처럼 ' :' 뒤에 부제가 붙어 온다. 화면에는 본제목만 쓴다.
+// 정보나루 제목은 도서관 목록 형식이라 "본제목 :부제 =대등 제목 /지은이"처럼 꼬리가 붙어 온다. 화면에는 본제목만 쓴다.
 export function cleanTitle(value) {
   if (typeof value !== 'string') return '';
   const title = value.replace(/\s+/g, ' ').trim();
-  const main = title.split(/\s+:\s*/)[0].trim();
+  const main = title.split(/\s+[:=/]\s*/)[0].trim();
   return main || title;
 }
 
@@ -77,7 +77,8 @@ function normalizeBook(doc) {
     authors: cleanAuthors(decodeEntities(doc.authors ?? doc.author ?? '')),
     publisher: decodeEntities(doc.publisher ?? '').trim(),
     year: String(doc.publication_year ?? doc.publicationYear ?? '').trim(),
-    cover: String(doc.bookImageURL ?? doc.bookImageUrl ?? '').trim(),
+    // http 표지는 보안 연결(https) 사이트에서 막히므로 https로 바꿔 부른다(알라딘·네이버 이미지 서버는 https 지원)
+    cover: String(doc.bookImageURL ?? doc.bookImageUrl ?? '').trim().replace(/^http:\/\//i, 'https://'),
     loanCount: toNumber(doc.loan_count ?? doc.loanCnt),
     rank: toNumber(doc.ranking ?? doc.no),
     description: cleanDescription(doc.description ?? ''),
