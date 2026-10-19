@@ -1,6 +1,6 @@
 {
   "demo": false,
-  "generatedAt": "2026-10-19T11:20:26.387Z",
+  "generatedAt": "2026-10-19T11:23:05.891Z",
   "startDt": "2026-10-12",
   "endDt": "2026-10-18",
   "period": "10월 12일~18일",
@@ -27,7 +27,7 @@
       "authors": "한강",
       "publisher": "창비",
       "year": "2014",
-      "cover": "http://image.aladin.co.kr/product/4086/97/cover/8936434128_2.jpg",
+      "cover": "https://image.aladin.co.kr/product/4086/97/cover/8936434128_2.jpg",
       "loanCount": 721
     },
     {
@@ -827,7 +827,7 @@
       "authors": "김애란",
       "publisher": "문학동네",
       "year": "2017",
-      "cover": "http://image.aladin.co.kr/product/15533/81/cover/k852533629_1.jpg",
+      "cover": "https://image.aladin.co.kr/product/15533/81/cover/k852533629_1.jpg",
       "loanCount": 323
     },
     {
@@ -903,7 +903,7 @@
     {
       "rank": 90,
       "isbn13": "9791198547514",
-      "title": "수족관 =유래혁 장편소설 /すいぞくかん",
+      "title": "수족관",
       "authors": "유래혁",
       "publisher": "Postershop",
       "year": "2023",
@@ -933,11 +933,11 @@
     {
       "rank": 93,
       "isbn13": "9788956609959",
-      "title": "종의 기원 =정유정 장편소설 /The origin of species",
+      "title": "종의 기원",
       "authors": "정유정",
       "publisher": "은행나무",
       "year": "2016",
-      "cover": "http://image.aladin.co.kr/product/7492/9/cover/8956609950_2.jpg",
+      "cover": "https://image.aladin.co.kr/product/7492/9/cover/8956609950_2.jpg",
       "loanCount": 317
     },
     {
@@ -1024,7 +1024,7 @@
           "authors": "한강",
           "publisher": "창비",
           "year": "2014",
-          "cover": "http://image.aladin.co.kr/product/4086/97/cover/8936434128_2.jpg",
+          "cover": "https://image.aladin.co.kr/product/4086/97/cover/8936434128_2.jpg",
           "loanCount": 61
         },
         {
@@ -1054,7 +1054,7 @@
           "authors": "오스카 E. 페르난데스, 김수환",
           "publisher": "프리렉",
           "year": "2015",
-          "cover": "http://image.aladin.co.kr/product/5202/54/cover/8965400910_1.jpg",
+          "cover": "https://image.aladin.co.kr/product/5202/54/cover/8965400910_1.jpg",
           "loanCount": 36
         },
         {
@@ -1094,7 +1094,7 @@
           "authors": "손원평",
           "publisher": "창비",
           "year": "2017",
-          "cover": "http://image.aladin.co.kr/product/16839/4/cover/k492534773_1.jpg",
+          "cover": "https://image.aladin.co.kr/product/16839/4/cover/k492534773_1.jpg",
           "loanCount": 29
         },
         {
@@ -1170,7 +1170,7 @@
           "authors": "한강",
           "publisher": "창비",
           "year": "2014",
-          "cover": "http://image.aladin.co.kr/product/4086/97/cover/8936434128_2.jpg",
+          "cover": "https://image.aladin.co.kr/product/4086/97/cover/8936434128_2.jpg",
           "loanCount": 75
         },
         {
@@ -1216,11 +1216,11 @@
         {
           "rank": 10,
           "isbn13": "9788956609959",
-          "title": "종의 기원 =정유정 장편소설 /The origin of species",
+          "title": "종의 기원",
           "authors": "정유정",
           "publisher": "은행나무",
           "year": "2016",
-          "cover": "http://image.aladin.co.kr/product/7492/9/cover/8956609950_2.jpg",
+          "cover": "https://image.aladin.co.kr/product/7492/9/cover/8956609950_2.jpg",
           "loanCount": 54
         }
       ]
@@ -1306,7 +1306,7 @@
           "authors": "한강",
           "publisher": "창비",
           "year": "2014",
-          "cover": "http://image.aladin.co.kr/product/4086/97/cover/8936434128_2.jpg",
+          "cover": "https://image.aladin.co.kr/product/4086/97/cover/8936434128_2.jpg",
           "loanCount": 102
         },
         {
@@ -1362,7 +1362,7 @@
           "authors": "한강",
           "publisher": "창비",
           "year": "2014",
-          "cover": "http://image.aladin.co.kr/product/4086/97/cover/8936434128_2.jpg",
+          "cover": "https://image.aladin.co.kr/product/4086/97/cover/8936434128_2.jpg",
           "loanCount": 213
         },
         {
@@ -1458,7 +1458,7 @@
           "authors": "한강",
           "publisher": "창비",
           "year": "2014",
-          "cover": "http://image.aladin.co.kr/product/4086/97/cover/8936434128_2.jpg",
+          "cover": "https://image.aladin.co.kr/product/4086/97/cover/8936434128_2.jpg",
           "loanCount": 131
         },
         {
@@ -1614,7 +1614,7 @@
           "authors": "한강",
           "publisher": "창비",
           "year": "2014",
-          "cover": "http://image.aladin.co.kr/product/4086/97/cover/8936434128_2.jpg",
+          "cover": "https://image.aladin.co.kr/product/4086/97/cover/8936434128_2.jpg",
           "loanCount": 68
         },
         {
@@ -1630,7 +1630,7 @@
         {
           "rank": 9,
           "isbn13": "9788936439880",
-          "title": "할매 =황석영 장편소설 /Grandma",
+          "title": "할매",
           "authors": "황석영",
           "publisher": "창비",
           "year": "2025",
