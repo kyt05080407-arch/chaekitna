@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-10-19T15:29:15.685Z",
+ "generatedAt": "2026-10-19T15:50:12.991Z",
  "lists": [
   {
    "id": "snu100",
@@ -43,98 +43,210 @@
      "field": "ko",
      "title": "고향",
      "author": "이기영",
-     "lookup": "고향#이기영"
+     "lookup": "고향#이기영",
+     "match": {
+      "isbn13": "9788970121246",
+      "title": "고향",
+      "authors": "이기영",
+      "publisher": "문학사상사",
+      "year": "1994",
+      "cover": "https://bookthumb-phinf.pstatic.net/cover/000/201/00020188.jpg?type=m1&udate=20130628"
+     }
     },
     {
      "no": 3,
      "field": "ko",
      "title": "광장",
      "author": "최인훈",
-     "lookup": "광장#최인훈"
+     "lookup": "광장#최인훈",
+     "match": {
+      "isbn13": "9788932027098",
+      "title": "광장",
+      "authors": "최인훈 (지은이)",
+      "publisher": "문학과지성사",
+      "year": "2014",
+      "cover": "https://image.aladin.co.kr/product/5201/7/cover/8932027099_2.jpg"
+     }
     },
     {
      "no": 4,
      "field": "ko",
      "title": "구운몽",
      "author": "김만중",
-     "lookup": "구운몽#김만중"
+     "lookup": "구운몽#김만중",
+     "match": {
+      "isbn13": "9788937460722",
+      "title": "구운몽",
+      "authors": "김만중, 송성욱 [공]",
+      "publisher": "민음사",
+      "year": "2003",
+      "cover": "https://bookthumb-phinf.pstatic.net/cover/001/200/00120001.jpg?type=m1&udate=20150120"
+     }
     },
     {
      "no": 5,
      "field": "ko",
      "title": "무정",
      "author": "이광수",
-     "lookup": "무정#이광수"
+     "lookup": "무정#이광수",
+     "match": {
+      "isbn13": "9788937462504",
+      "title": "무정",
+      "authors": "이광수, 정영훈",
+      "publisher": "민음사",
+      "year": "2010",
+      "cover": "https://image.aladin.co.kr/product/734/12/cover/8937462508_2.jpg"
+     }
     },
     {
      "no": 6,
      "field": "ko",
      "title": "백석시전집",
      "author": "백석",
-     "lookup": "백석 시 전집|백석 시집#백석"
+     "lookup": "백석 시 전집|백석 시집#백석",
+     "match": {
+      "isbn13": "9791175490925",
+      "title": "다시 읽는 백석 시 - 백석 시 전집, 수정증보판",
+      "authors": "백석 (지은이), 이경수, 황선희 (엮은이)",
+      "publisher": "소명출판",
+      "year": "2026",
+      "cover": "https://image.aladin.co.kr/product/39944/97/cover200/k082130329_1.jpg"
+     }
     },
     {
      "no": 7,
      "field": "ko",
      "title": "삼대",
      "author": "염상섭",
-     "lookup": "삼대#염상섭"
+     "lookup": "삼대#염상섭",
+     "match": {
+      "isbn13": "9791195632671",
+      "title": "삼대",
+      "authors": "염상섭",
+      "publisher": "새움",
+      "year": "2016",
+      "cover": "https://image.aladin.co.kr/product/7492/3/cover/k592434918_1.jpg"
+     }
     },
     {
      "no": 8,
      "field": "ko",
      "title": "연암산문선",
      "author": "박지원",
-     "lookup": "연암 산문|산문#박지원"
+     "lookup": "연암 산문|산문#박지원",
+     "match": {
+      "isbn13": "9788964068540",
+      "title": "연암 산문집",
+      "authors": "박지원, 박수밀",
+      "publisher": "지식을만드는지식",
+      "year": "2011",
+      "cover": "https://bookthumb-phinf.pstatic.net/cover/067/599/06759970.jpg?type=m1&udate=20150717"
+     }
     },
     {
      "no": 9,
      "field": "ko",
      "title": "인간문제",
      "author": "강경애",
-     "lookup": "인간문제#강경애"
+     "lookup": "인간문제#강경애",
+     "match": {
+      "isbn13": "9788993964981",
+      "title": "인간문제",
+      "authors": "강경애",
+      "publisher": "새움",
+      "year": "2015",
+      "cover": "https://bookthumb-phinf.pstatic.net/cover/090/722/09072295.jpg?type=m1&udate=20180328"
+     }
     },
     {
      "no": 10,
      "field": "ko",
      "title": "정지용전집",
      "author": "정지용",
-     "lookup": "정지용 전집|정지용 시집#정지용"
+     "lookup": "정지용 전집|정지용 시집#정지용",
+     "match": {
+      "isbn13": "9788937407116",
+      "title": "정지용 전집",
+      "authors": "정지용",
+      "publisher": "민음사",
+      "year": "2003",
+      "cover": "https://image.aladin.co.kr/product/41/23/cover/8937407116_1.jpg"
+     }
     },
     {
      "no": 11,
      "field": "ko",
      "title": "천변풍경",
      "author": "박태원",
-     "lookup": "천변풍경#박태원"
+     "lookup": "천변풍경#박태원",
+     "match": {
+      "isbn13": "9788925880532",
+      "title": "천변풍경",
+      "authors": "박태원, 곽은우",
+      "publisher": "학산문화사",
+      "year": "2013",
+      "cover": "https://image.aladin.co.kr/product/2301/1/cover/8925880539_1.jpg"
+     }
     },
     {
      "no": 12,
      "field": "ko",
      "title": "청구야담",
      "author": "작자미상",
-     "lookup": "청구야담#"
+     "lookup": "청구야담#",
+     "match": {
+      "isbn13": "9788934974277",
+      "title": "청구야담",
+      "authors": "정병근, 권문희",
+      "publisher": "김영사",
+      "year": "2016",
+      "cover": "https://image.aladin.co.kr/product/8080/98/cover/8934974273_1.jpg"
+     }
     },
     {
      "no": 13,
      "field": "ko",
      "title": "춘향전",
      "author": "",
-     "lookup": "춘향전#"
+     "lookup": "춘향전#",
+     "match": {
+      "isbn13": "9788936449124",
+      "title": "춘향전",
+      "authors": "정지아, 정성화",
+      "publisher": "창비",
+      "year": "2005",
+      "cover": "https://bookthumb-phinf.pstatic.net/cover/016/201/01620163.jpg?type=m1&udate=20150715"
+     }
     },
     {
      "no": 14,
      "field": "ko",
      "title": "카인의 후예",
      "author": "황순원",
-     "lookup": "카인의 후예#황순원"
+     "lookup": "카인의 후예#황순원",
+     "match": {
+      "isbn13": "9788972755494",
+      "title": "카인의 후예",
+      "authors": "황순원, 김수이",
+      "publisher": "현대문학",
+      "year": "2011",
+      "cover": "https://image.aladin.co.kr/product/1193/36/cover/8972755494_1.jpg"
+     }
     },
     {
      "no": 15,
      "field": "ko",
      "title": "탁류",
      "author": "채만식",
-     "lookup": "탁류#채만식"
+     "lookup": "탁류#채만식",
+     "match": {
+      "isbn13": "9788932025322",
+      "title": "탁류",
+      "authors": "채만식, 우찬제",
+      "publisher": "문학과지성사",
+      "year": "2014",
+      "cover": "https://image.aladin.co.kr/product/3572/87/cover/8932025320_2.jpg"
+     }
     },
     {
      "no": 16,
@@ -142,112 +254,240 @@
      "title": "토지",
      "author": "박경리",
      "note": "여러 권으로 된 소설이에요",
-     "lookup": "토지#박경리"
+     "lookup": "토지#박경리",
+     "match": {
+      "isbn13": "9788960532410",
+      "title": "토지",
+      "authors": "박경리",
+      "publisher": "마로니에북스",
+      "year": "2012",
+      "cover": "https://image.aladin.co.kr/product/1889/81/cover/896053241x_1.jpg"
+     }
     },
     {
      "no": 17,
      "field": "ko",
      "title": "한중록",
      "author": "혜경궁 홍씨",
-     "lookup": "한중록#혜경궁|홍씨"
+     "lookup": "한중록#혜경궁|홍씨",
+     "match": {
+      "isbn13": "9788954608916",
+      "title": "한중록",
+      "authors": "혜경궁 홍씨, 정병설",
+      "publisher": "문학동네",
+      "year": "2010",
+      "cover": "https://bookthumb-phinf.pstatic.net/cover/063/521/06352102.jpg?type=m1&udate=20120419"
+     }
     },
     {
      "no": 18,
      "field": "for",
      "title": "고도를 기다리며",
      "author": "베케트",
-     "lookup": "고도를 기다리며#베케트|베켓"
+     "lookup": "고도를 기다리며#베케트|베켓",
+     "match": {
+      "isbn13": "9788937460432",
+      "title": "고도를 기다리며",
+      "authors": "사뮈엘 베케트, 오증자",
+      "publisher": "민음사",
+      "year": "2000",
+      "cover": "https://bookthumb-phinf.pstatic.net/cover/000/051/00005185.jpg?type=m1&udate=20171018"
+     }
     },
     {
      "no": 19,
      "field": "for",
      "title": "그리스로마신화",
      "author": "",
-     "lookup": "그리스 로마 신화#불핀치|해밀턴|이윤기"
+     "lookup": "그리스 로마 신화#불핀치|해밀턴|이윤기",
+     "match": {
+      "isbn13": "9788937849855",
+      "title": "그리스 로마 신화",
+      "authors": "토머스 불핀치 원작, 이예휘",
+      "publisher": "미래엔",
+      "year": "2011",
+      "cover": "https://bookthumb-phinf.pstatic.net/cover/066/265/06626544.jpg?type=m1&udate=20171229"
+     }
     },
     {
      "no": 20,
      "field": "for",
      "title": "그리스비극선집",
      "author": "소포클레스·아이스퀼로스·에우리피데스",
-     "lookup": "그리스 비극#소포클레스|아이스킬로스|아이스퀼로스|에우리피데스"
+     "lookup": "그리스 비극#소포클레스|아이스킬로스|아이스퀼로스|에우리피데스",
+     "match": {
+      "isbn13": "9788977180208",
+      "title": "그리스 비극",
+      "authors": "소포클레스 外, 조우현",
+      "publisher": "그레이트북",
+      "year": "1994",
+      "cover": ""
+     }
     },
     {
      "no": 21,
      "field": "for",
      "title": "당시선",
      "author": "",
-     "lookup": "당시선#"
+     "lookup": "당시선#",
+     "match": {
+      "isbn13": "9788972709848",
+      "title": "당시선",
+      "authors": "김학주 譯著",
+      "publisher": "명문당",
+      "year": "2011",
+      "cover": "https://image.aladin.co.kr/product/1204/8/cover/8972709840_1.jpg"
+     }
     },
     {
      "no": 22,
      "field": "for",
      "title": "돈키호테",
      "author": "세르반테스",
-     "lookup": "돈키호테#세르반테스"
+     "lookup": "돈키호테#세르반테스",
+     "match": {
+      "isbn13": "9788937840876",
+      "title": "돈 키호테",
+      "authors": "미겔 데 세르반테스 원작, 유남영",
+      "publisher": "대한교과서",
+      "year": "2006",
+      "cover": "https://image.aladin.co.kr/product/62/10/cover/8937840871_1.jpg"
+     }
     },
     {
      "no": 23,
      "field": "for",
      "title": "루쉰전집",
      "author": "루쉰",
-     "lookup": "루쉰 전집|루쉰 소설 전집#루쉰"
+     "lookup": "루쉰 전집|루쉰 소설 전집#루쉰",
+     "match": {
+      "isbn13": "9788976822246",
+      "title": "루쉰전집",
+      "authors": "루쉰, 루쉰전집번역위원회",
+      "publisher": "그린비출판사",
+      "year": "2010",
+      "cover": "https://bookthumb-phinf.pstatic.net/cover/064/237/06423786.jpg?type=m1&udate=20150409"
+     }
     },
     {
      "no": 24,
      "field": "for",
      "title": "마음",
      "author": "나쓰메 소세키",
-     "lookup": "마음#소세키"
+     "lookup": "마음#소세키",
+     "match": {
+      "isbn13": "9788932317960",
+      "title": "마음",
+      "authors": "나쓰메 소세키, 송태욱",
+      "publisher": "현암사",
+      "year": "2016",
+      "cover": "https://bookthumb-phinf.pstatic.net/cover/107/653/10765341.jpg?type=m1&udate=20160629"
+     }
     },
     {
      "no": 25,
      "field": "for",
      "title": "마의 산",
      "author": "토마스 만",
-     "lookup": "마의 산#토마스 만|토마스만"
+     "lookup": "마의 산#토마스 만|토마스만",
+     "match": {
+      "isbn13": "9788932916453",
+      "title": "마의 산",
+      "authors": "토마스 만, 윤순식",
+      "publisher": "열린책들",
+      "year": "2014",
+      "cover": "https://image.aladin.co.kr/product/3730/72/cover/8932916454_2.jpg"
+     }
     },
     {
      "no": 26,
      "field": "for",
      "title": "백년동안의 고독",
      "author": "마르께스",
-     "lookup": "백년의 고독|백년 동안의 고독#마르케스|마르께스"
+     "lookup": "백년의 고독|백년 동안의 고독#마르케스|마르께스",
+     "match": {
+      "isbn13": "9788937460340",
+      "title": "백년의 고독",
+      "authors": "가브리엘 가르시아 마르케스, 조구호",
+      "publisher": "민음사",
+      "year": "2000",
+      "cover": "https://bookthumb-phinf.pstatic.net/cover/000/051/00005176.jpg?type=m1&udate=20141126"
+     }
     },
     {
      "no": 27,
      "field": "for",
      "title": "변신",
      "author": "카프카",
-     "lookup": "변신#카프카"
+     "lookup": "변신#카프카",
+     "match": {
+      "isbn13": "9788937840975",
+      "title": "변신",
+      "authors": "프란츠 카프카 원작, 김명호",
+      "publisher": "대한교과서",
+      "year": "2006",
+      "cover": "https://image.aladin.co.kr/product/63/44/cover/8937840979_1.jpg"
+     }
     },
     {
      "no": 28,
      "field": "for",
      "title": "변신이야기",
      "author": "오비디우스",
-     "lookup": "변신 이야기#오비디우스"
+     "lookup": "변신 이야기#오비디우스",
+     "match": {
+      "isbn13": "9788937460012",
+      "title": "변신이야기",
+      "authors": "오비디우스, 이윤기",
+      "publisher": "민음사",
+      "year": "1998",
+      "cover": "https://image.aladin.co.kr/product/6/4/cover/8937460017_3.jpg"
+     }
     },
     {
      "no": 29,
      "field": "for",
      "title": "변신인형",
      "author": "왕멍",
-     "lookup": "변신 인형#왕멍"
+     "lookup": "변신 인형#왕멍",
+     "match": {
+      "isbn13": "9788932015149",
+      "title": "변신 인형:왕멍 장편소설",
+      "authors": "왕멍, 전형준",
+      "publisher": "문학과지성사",
+      "year": "2004",
+      "cover": "https://image.aladin.co.kr/product/49/70/cover/8932015147_2.jpg"
+     }
     },
     {
      "no": 30,
      "field": "for",
      "title": "보바리 부인",
      "author": "플로베르",
-     "lookup": "보바리 부인#플로베르"
+     "lookup": "보바리 부인#플로베르",
+     "match": {
+      "isbn13": "9788925880679",
+      "title": "보바리 부인",
+      "authors": "귀스타브 플로베르, 박성문",
+      "publisher": "학산문화사",
+      "year": "2014",
+      "cover": "https://image.aladin.co.kr/product/3834/22/cover/8925880679_1.jpg"
+     }
     },
     {
      "no": 31,
      "field": "for",
      "title": "설국",
      "author": "가와바타 야스나리",
-     "lookup": "설국#가와바타"
+     "lookup": "설국#가와바타",
+     "match": {
+      "isbn13": "9788937460616",
+      "title": "설국",
+      "authors": "가와바타 야스나리, 유숙자",
+      "publisher": "민음사",
+      "year": "2002",
+      "cover": "https://bookthumb-phinf.pstatic.net/cover/000/052/00005202.jpg?type=m1&udate=20141126"
+     }
     },
     {
      "no": 32,
@@ -255,7 +495,15 @@
      "title": "셰익스피어 작품",
      "author": "셰익스피어",
      "note": "목록에는 작품 전체로 나와 있어서 4대 비극 모음으로 찾아요",
-     "lookup": "셰익스피어 4대 비극|햄릿#셰익스피어|세익스피어"
+     "lookup": "셰익스피어 4대 비극|햄릿#셰익스피어|세익스피어",
+     "match": {
+      "isbn13": "9788961703208",
+      "title": "셰익스피어 4대 비극",
+      "authors": "윌리엄 셰익스피어, 최지현",
+      "publisher": "푸른책들",
+      "year": "2013",
+      "cover": "https://bookthumb-phinf.pstatic.net/cover/071/481/07148196.jpg?type=m1&udate=20170331"
+     }
     },
     {
      "no": 33,
@@ -263,42 +511,90 @@
      "title": "스완네 집 쪽으로",
      "author": "프루스트",
      "note": "『잃어버린 시간을 찾아서』의 1부예요",
-     "lookup": "스완네 집 쪽으로|잃어버린 시간을 찾아서#프루스트"
+     "lookup": "스완네 집 쪽으로|잃어버린 시간을 찾아서#프루스트",
+     "match": {
+      "isbn13": "9788930102766",
+      "title": "(마르셀 프루스트) 잃어버린 시간을 찾아서:스완네 집 쪽으로 - 스완의 사랑I",
+      "authors": "스테판 외에, 마르셀 프루스트",
+      "publisher": "열화당",
+      "year": "2007",
+      "cover": "https://image.aladin.co.kr/product/89/99/cover/893010276x_1.jpg"
+     }
     },
     {
      "no": 34,
      "field": "for",
      "title": "신곡",
      "author": "단테",
-     "lookup": "신곡#단테"
+     "lookup": "신곡#단테",
+     "match": {
+      "isbn13": "9788937461507",
+      "title": "신곡",
+      "authors": "단테 알리기에리, 박상진",
+      "publisher": "민음사",
+      "year": "2007",
+      "cover": "https://bookthumb-phinf.pstatic.net/cover/030/273/03027362.jpg?type=m1&udate=20160915"
+     }
     },
     {
      "no": 35,
      "field": "for",
      "title": "안나 카레니나",
      "author": "톨스토이",
-     "lookup": "안나 카레니나#톨스토이"
+     "lookup": "안나 카레니나#톨스토이",
+     "match": {
+      "isbn13": "9788937462191",
+      "title": "안나 카레니나",
+      "authors": "톨스토이, 연진희",
+      "publisher": "민음사",
+      "year": "2009",
+      "cover": "https://image.aladin.co.kr/product/461/57/cover/s852532176_1.jpg"
+     }
     },
     {
      "no": 36,
      "field": "for",
      "title": "양철북",
      "author": "귄터 그라스",
-     "lookup": "양철북#그라스"
+     "lookup": "양철북#그라스",
+     "match": {
+      "isbn13": "9788937460326",
+      "title": "양철북",
+      "authors": "권터 그라스, 장희창",
+      "publisher": "민음사",
+      "year": "1999",
+      "cover": "https://image.aladin.co.kr/product/20/74/cover/8937460327_3.jpg"
+     }
     },
     {
      "no": 37,
      "field": "for",
      "title": "위대한 유산",
      "author": "찰스 디킨스",
-     "lookup": "위대한 유산#디킨스"
+     "lookup": "위대한 유산#디킨스",
+     "match": {
+      "isbn13": "9788937462122",
+      "title": "위대한 유산",
+      "authors": "찰스 디킨스, 이인규",
+      "publisher": "민음사",
+      "year": "2009",
+      "cover": "https://image.aladin.co.kr/product/421/38/cover/8937462125_2.jpg"
+     }
     },
     {
      "no": 38,
      "field": "for",
      "title": "인간조건",
      "author": "앙드레 말로",
-     "lookup": "인간의 조건|인간 조건#말로"
+     "lookup": "인간의 조건|인간 조건#말로",
+     "match": {
+      "isbn13": "9788970558097",
+      "title": "인간의 조건",
+      "authors": "앙드레 말로, 박종학",
+      "publisher": "홍신문화사",
+      "year": "2012",
+      "cover": "https://image.aladin.co.kr/product/1651/60/cover/8970558098_1.jpg"
+     }
     },
     {
      "no": 39,
@@ -306,14 +602,30 @@
      "title": "일리아드, 오딧세이아",
      "author": "호메로스",
      "note": "요즘 번역은 『일리아스』, 『오뒷세이아』라는 제목이 많아요",
-     "lookup": "일리아스|일리아드#호메로스"
+     "lookup": "일리아스|일리아드#호메로스",
+     "match": {
+      "isbn13": "9788991290167",
+      "title": "일리아스",
+      "authors": "호메로스, 천병희",
+      "publisher": "숲",
+      "year": "2007",
+      "cover": "https://image.aladin.co.kr/product/10845/54/cover/k272531968_1.jpg"
+     }
     },
     {
      "no": 40,
      "field": "for",
      "title": "젊은 예술가의 초상",
      "author": "제임스 조이스",
-     "lookup": "젊은 예술가의 초상#조이스"
+     "lookup": "젊은 예술가의 초상#조이스",
+     "match": {
+      "isbn13": "9788937460456",
+      "title": "젊은 예술가의 초상",
+      "authors": "제임스 조이스, 이상옥",
+      "publisher": "민음사",
+      "year": "2001",
+      "cover": "https://bookthumb-phinf.pstatic.net/cover/000/051/00005187.jpg?type=m1&udate=20160201"
+     }
     },
     {
      "no": 41,
@@ -321,84 +633,180 @@
      "title": "주홍글씨",
      "author": "호손",
      "note": "요즘 번역은 『주홍 글자』라는 제목이 많아요",
-     "lookup": "주홍 글자|주홍글씨#호손"
+     "lookup": "주홍 글자|주홍글씨#호손",
+     "match": {
+      "isbn13": "9788937461590",
+      "title": "주홍 글자",
+      "authors": "너새니얼 호손, 김욱동",
+      "publisher": "민음사",
+      "year": "2007",
+      "cover": "https://image.aladin.co.kr/product/99/95/cover/8937461595_2.jpg"
+     }
     },
     {
      "no": 42,
      "field": "for",
      "title": "체호프 희곡선",
      "author": "체호프",
-     "lookup": "체호프 희곡|벚꽃 동산|갈매기#체호프"
+     "lookup": "체호프 희곡|벚꽃 동산|갈매기#체호프",
+     "match": {
+      "isbn13": "9788952760074",
+      "title": "체호프 희곡 전집",
+      "authors": "안톤 체호프, 김규종",
+      "publisher": "시공사",
+      "year": "2010",
+      "cover": "https://image.aladin.co.kr/product/827/78/cover/8952760077_1.jpg"
+     }
     },
     {
      "no": 43,
      "field": "for",
      "title": "카라마조프가의 형제들",
      "author": "도스토예프스키",
-     "lookup": "카라마조프가의 형제들#도스토예프스키|도스토옙스키"
+     "lookup": "카라마조프가의 형제들#도스토예프스키|도스토옙스키",
+     "match": {
+      "isbn13": "9788937461545",
+      "title": "카라마조프 가의 형제들",
+      "authors": "도스토예프스키, 김연경",
+      "publisher": "민음사",
+      "year": "2007",
+      "cover": "https://image.aladin.co.kr/product/98/80/cover/8937461544_2.jpg"
+     }
     },
     {
      "no": 44,
      "field": "for",
      "title": "파우스트",
      "author": "괴테",
-     "lookup": "파우스트#괴테"
+     "lookup": "파우스트#괴테",
+     "match": {
+      "isbn13": "9788937460210",
+      "title": "파우스트",
+      "authors": "요한 볼프강 폰 괴테, 정서웅",
+      "publisher": "민음사",
+      "year": "1999",
+      "cover": "https://image.aladin.co.kr/product/18/75/cover/8937460211_3.jpg"
+     }
     },
     {
      "no": 45,
      "field": "for",
      "title": "픽션들",
      "author": "보르헤스",
-     "lookup": "픽션들#보르헤스"
+     "lookup": "픽션들#보르헤스",
+     "match": {
+      "isbn13": "9788937462757",
+      "title": "픽션들",
+      "authors": "호르헤 루이스 보르헤스, 송병선",
+      "publisher": "민음사",
+      "year": "2011",
+      "cover": "https://bookthumb-phinf.pstatic.net/cover/067/650/06765044.jpg?type=m1&udate=20150715"
+     }
     },
     {
      "no": 46,
      "field": "for",
      "title": "허클베리 핀의 모험",
      "author": "마크 트웨인",
-     "lookup": "허클베리 핀의 모험#트웨인"
+     "lookup": "허클베리 핀의 모험#트웨인",
+     "match": {
+      "isbn13": "9788937460067",
+      "title": "허클베리 핀의 모험",
+      "authors": "마크 트웨인, 김욱동",
+      "publisher": "민음사",
+      "year": "1998",
+      "cover": "https://bookthumb-phinf.pstatic.net/cover/000/051/00005152.jpg?type=m1&udate=20150428"
+     }
     },
     {
      "no": 47,
      "field": "for",
      "title": "홍루몽",
      "author": "조설근",
-     "lookup": "홍루몽#조설근|차오쉐친"
+     "lookup": "홍루몽#조설근|차오쉐친",
+     "match": {
+      "isbn13": "9788988473870",
+      "title": "홍루몽",
+      "authors": "조설근,대돈방",
+      "publisher": "청계출판사",
+      "year": "2007",
+      "cover": "https://image.aladin.co.kr/product/87/85/cover/8988473876_1.jpg"
+     }
     },
     {
      "no": 48,
      "field": "for",
      "title": "황무지",
      "author": "T.S. 엘리엇",
-     "lookup": "황무지#엘리엇"
+     "lookup": "황무지#엘리엇",
+     "match": {
+      "isbn13": "9788937475177",
+      "title": "황무지",
+      "authors": "T. S. 엘리엇 (지은이), 황동규 (옮긴이)",
+      "publisher": "민음사",
+      "year": "2017",
+      "cover": "https://image.aladin.co.kr/product/10614/62/cover/8937475170_1.jpg"
+     }
     },
     {
      "no": 49,
      "field": "east",
      "title": "논어",
      "author": "",
-     "lookup": "논어#"
+     "lookup": "논어#",
+     "match": {
+      "isbn13": "9788956251707",
+      "title": "논어",
+      "authors": "최은순, 이보람",
+      "publisher": "학고재",
+      "year": "2012",
+      "cover": "https://bookthumb-phinf.pstatic.net/cover/068/612/06861227.jpg?type=m1&udate=20170425"
+     }
     },
     {
      "no": 50,
      "field": "east",
      "title": "다산문선",
      "author": "정약용",
-     "lookup": "다산 문선|다산 산문|다산 시문선#정약용"
+     "lookup": "다산 문선|다산 산문|다산 시문선#정약용",
+     "match": {
+      "isbn13": "9788981330989",
+      "title": "다산문선",
+      "authors": "정약용, 민족문화추진회",
+      "publisher": "솔출판사",
+      "year": "1997",
+      "cover": "https://image.aladin.co.kr/product/3/47/cover/9788981330989.gif"
+     }
     },
     {
      "no": 51,
      "field": "east",
      "title": "대학, 중용",
      "author": "",
-     "lookup": "대학 중용#"
+     "lookup": "대학 중용#",
+     "match": {
+      "isbn13": "9791160803815",
+      "title": "대학·중용",
+      "authors": "증자,김원중",
+      "publisher": "Humanist(휴머니스트 출판그룹)",
+      "year": "2020",
+      "cover": "https://image.aladin.co.kr/product/23700/90/cover/k582638348_1.jpg"
+     }
     },
     {
      "no": 52,
      "field": "east",
      "title": "맹자",
      "author": "",
-     "lookup": "맹자#"
+     "lookup": "맹자#",
+     "match": {
+      "isbn13": "9788970650357",
+      "title": "맹자",
+      "authors": "맹자, 박경환",
+      "publisher": "홍익출판사",
+      "year": "2005",
+      "cover": "https://bookthumb-phinf.pstatic.net/cover/015/332/01533226.jpg?type=m1&udate=20130125"
+     }
     },
     {
      "no": 53,
@@ -412,112 +820,240 @@
      "field": "east",
      "title": "사기열전",
      "author": "사마천",
-     "lookup": "사기열전#사마천"
+     "lookup": "사기열전#사마천",
+     "match": {
+      "isbn13": "9788937425967",
+      "title": "사기열전",
+      "authors": "사마천, 김원중",
+      "publisher": "민음사",
+      "year": "2011",
+      "cover": "https://bookthumb-phinf.pstatic.net/cover/030/866/03086604.jpg?type=m1&udate=20170914"
+     }
     },
     {
      "no": 55,
      "field": "east",
      "title": "삼국유사",
      "author": "일연",
-     "lookup": "삼국유사#일연"
+     "lookup": "삼국유사#일연",
+     "match": {
+      "isbn13": "9788937848933",
+      "title": "삼국유사",
+      "authors": "일연 원작, 김영랑",
+      "publisher": "미래엔",
+      "year": "2013",
+      "cover": "https://bookthumb-phinf.pstatic.net/cover/052/780/05278018.jpg?type=m1&udate=20150723"
+     }
     },
     {
      "no": 56,
      "field": "east",
      "title": "아함경",
      "author": "",
-     "lookup": "아함경#"
+     "lookup": "아함경#",
+     "match": {
+      "isbn13": "9788932311029",
+      "title": "아함경",
+      "authors": "마스타니 후미오, 이원섭",
+      "publisher": "현암사",
+      "year": "2001",
+      "cover": "https://image.aladin.co.kr/product/27/56/cover/8932311021_2.jpg"
+     }
     },
     {
      "no": 57,
      "field": "east",
      "title": "율곡문선",
      "author": "이이",
-     "lookup": "율곡 문선|율곡#이이"
+     "lookup": "율곡 문선|율곡#이이",
+     "match": {
+      "isbn13": "9788901141657",
+      "title": "(이이의) 율곡문선",
+      "authors": "이이, 이금희",
+      "publisher": "웅진씽크빅",
+      "year": "2012",
+      "cover": ""
+     }
     },
     {
      "no": 58,
      "field": "east",
      "title": "장자",
      "author": "",
-     "lookup": "장자#"
+     "lookup": "장자#",
+     "match": {
+      "isbn13": "9788932309774",
+      "title": "장자",
+      "authors": "오강남 풀이",
+      "publisher": "현암사",
+      "year": "1999",
+      "cover": "https://image.aladin.co.kr/product/12/55/cover/8932309779_2.jpg"
+     }
     },
     {
      "no": 59,
      "field": "east",
      "title": "제자백가선도",
      "author": "",
-     "lookup": "제자백가#"
+     "lookup": "제자백가#",
+     "match": {
+      "isbn13": "9788949705347",
+      "title": "제자백가",
+      "authors": "김영수 역해",
+      "publisher": "동서문화사",
+      "year": "2009",
+      "cover": "https://image.aladin.co.kr/product/440/46/cover/8949705346_1.jpg"
+     }
     },
     {
      "no": 60,
      "field": "east",
      "title": "주역",
      "author": "",
-     "lookup": "주역#"
+     "lookup": "주역#",
+     "match": {
+      "isbn13": "9788967352301",
+      "title": "주역",
+      "authors": "정이천 주해, 심의용",
+      "publisher": "글항아리",
+      "year": "2015",
+      "cover": "https://bookthumb-phinf.pstatic.net/cover/094/244/09424476.jpg?type=m1&udate=20160809"
+     }
     },
     {
      "no": 61,
      "field": "east",
      "title": "퇴계문선",
      "author": "이황",
-     "lookup": "퇴계 문선|퇴계#이황"
+     "lookup": "퇴계 문선|퇴계#이황",
+     "match": {
+      "isbn13": "9788901141640",
+      "title": "(이황의) 퇴계문선",
+      "authors": "이황, 김영도",
+      "publisher": "웅진씽크빅",
+      "year": "2012",
+      "cover": ""
+     }
     },
     {
      "no": 62,
      "field": "west",
      "title": "간디 자서전",
      "author": "간디",
-     "lookup": "간디 자서전#간디"
+     "lookup": "간디 자서전#간디",
+     "match": {
+      "isbn13": "9788989192350",
+      "title": "간디 자서전",
+      "authors": "모한다스 간디 원작, 이정아",
+      "publisher": "파란자전거",
+      "year": "2004",
+      "cover": "https://image.aladin.co.kr/product/11159/43/cover/k402531088_1.jpg"
+     }
     },
     {
      "no": 63,
      "field": "west",
      "title": "감시와 처벌",
      "author": "미셸 푸코",
-     "lookup": "감시와 처벌#푸코"
+     "lookup": "감시와 처벌#푸코",
+     "match": {
+      "isbn13": "9788930032483",
+      "title": "감시와 처벌",
+      "authors": "미셸 푸코, 오생근",
+      "publisher": "나남출판",
+      "year": "2004",
+      "cover": "https://bookthumb-phinf.pstatic.net/cover/001/925/00192519.jpg?type=m1&udate=20130125"
+     }
     },
     {
      "no": 64,
      "field": "west",
      "title": "고백록",
      "author": "아우구스티누스",
-     "lookup": "고백록#아우구스티누스"
+     "lookup": "고백록#아우구스티누스",
+     "match": {
+      "isbn13": "9788944724084",
+      "title": "고백록",
+      "authors": "성 아우구스티누스, 박문재",
+      "publisher": "크리스천다이제스트",
+      "year": "2016",
+      "cover": "https://bookthumb-phinf.pstatic.net/cover/109/943/10994354.jpg?type=m1&udate=20180112"
+     }
     },
     {
      "no": 65,
      "field": "west",
      "title": "국가",
      "author": "플라톤",
-     "lookup": "국가#플라톤"
+     "lookup": "국가#플라톤",
+     "match": {
+      "isbn13": "9788991290495",
+      "title": "국가",
+      "authors": "플라톤, 천병희",
+      "publisher": "숲",
+      "year": "2013",
+      "cover": "https://bookthumb-phinf.pstatic.net/cover/071/482/07148234.jpg?type=m1&udate=20161124"
+     }
     },
     {
      "no": 66,
      "field": "west",
      "title": "국부론",
      "author": "애덤 스미스",
-     "lookup": "국부론#스미스"
+     "lookup": "국부론#스미스",
+     "match": {
+      "isbn13": "9788949704760",
+      "title": "국부론",
+      "authors": "애덤 스미스, 유인호",
+      "publisher": "동서문화사",
+      "year": "2008",
+      "cover": "https://image.aladin.co.kr/product/228/80/cover/8949704765_1.jpg"
+     }
     },
     {
      "no": 67,
      "field": "west",
      "title": "군주론",
      "author": "마키아벨리",
-     "lookup": "군주론#마키아벨리"
+     "lookup": "군주론#마키아벨리",
+     "match": {
+      "isbn13": "9788972915782",
+      "title": "군주론",
+      "authors": "니콜로 마키아벨리, 김경희",
+      "publisher": "까치",
+      "year": "2015",
+      "cover": "https://image.aladin.co.kr/product/5320/66/cover/8972915785_1.jpg"
+     }
     },
     {
      "no": 68,
      "field": "west",
      "title": "꿈의 해석",
      "author": "프로이트",
-     "lookup": "꿈의 해석#프로이트"
+     "lookup": "꿈의 해석#프로이트",
+     "match": {
+      "isbn13": "9788961671712",
+      "title": "꿈의 해석",
+      "authors": "프로이트, 이환 편",
+      "publisher": "돋을새김",
+      "year": "2014",
+      "cover": "https://image.aladin.co.kr/product/5009/15/cover/8961671715_1.jpg"
+     }
     },
     {
      "no": 69,
      "field": "west",
      "title": "니코마코스 윤리학",
      "author": "아리스토텔레스",
-     "lookup": "니코마코스 윤리학#아리스토텔레스"
+     "lookup": "니코마코스 윤리학#아리스토텔레스",
+     "match": {
+      "isbn13": "9788991290525",
+      "title": "니코마코스 윤리학",
+      "authors": "아리스토텔레스, 천병희",
+      "publisher": "숲",
+      "year": "2013",
+      "cover": "https://bookthumb-phinf.pstatic.net/cover/073/162/07316286.jpg?type=m1&udate=20180315"
+     }
     },
     {
      "no": 70,
@@ -525,98 +1061,210 @@
      "title": "도덕계보학",
      "author": "니체",
      "note": "요즘 번역은 『도덕의 계보』라는 제목이 많아요",
-     "lookup": "도덕의 계보|도덕 계보학#니체"
+     "lookup": "도덕의 계보|도덕 계보학#니체",
+     "match": {
+      "isbn13": "9788957337356",
+      "title": "도덕의 계보",
+      "authors": "프리드리히 니체, 박찬국",
+      "publisher": "아카넷",
+      "year": "2021",
+      "cover": "https://image.aladin.co.kr/product/27464/78/cover/8957337350_1.jpg"
+     }
     },
     {
      "no": 71,
      "field": "west",
      "title": "리바이어던",
      "author": "토머스 홉스",
-     "lookup": "리바이어던#홉스"
+     "lookup": "리바이어던#홉스",
+     "match": {
+      "isbn13": "9788974833220",
+      "title": "리바이어던",
+      "authors": "토머스 홉스, 신재일 엮어",
+      "publisher": "서해문집",
+      "year": "2007",
+      "cover": "https://bookthumb-phinf.pstatic.net/cover/030/853/03085396.jpg?type=m1&udate=20170118"
+     }
     },
     {
      "no": 72,
      "field": "west",
      "title": "문학과 예술의 사회사",
      "author": "아르놀트 하우저",
-     "lookup": "문학과 예술의 사회사#하우저"
+     "lookup": "문학과 예술의 사회사#하우저",
+     "match": {
+      "isbn13": "9788936483432",
+      "title": "문학과 예술의 사회사",
+      "authors": "아르놀트 하우저, 염무웅",
+      "publisher": "창비",
+      "year": "2016",
+      "cover": "https://image.aladin.co.kr/product/7492/4/cover/8936483439_1.jpg"
+     }
     },
     {
      "no": 73,
      "field": "west",
      "title": "물질문명과 자본주의",
      "author": "페르낭 브로델",
-     "lookup": "물질문명과 자본주의#브로델"
+     "lookup": "물질문명과 자본주의#브로델",
+     "match": {
+      "isbn13": "9788972918233",
+      "title": "물질문명과 자본주의",
+      "authors": "페르낭 브로델, 주경철",
+      "publisher": "까치(까치글방)",
+      "year": "2024",
+      "cover": "https://image.aladin.co.kr/product/33403/70/cover/8972918237_3.jpg"
+     }
     },
     {
      "no": 74,
      "field": "west",
      "title": "미국의 민주주의",
      "author": "토크빌",
-     "lookup": "미국의 민주주의#토크빌"
+     "lookup": "미국의 민주주의#토크빌",
+     "match": {
+      "isbn13": "9788935601950",
+      "title": "미국의 민주주의",
+      "authors": "알렉시스 드 토크빌, 박지동 [공]옮김.",
+      "publisher": "한길사",
+      "year": "1997",
+      "cover": "https://bookthumb-phinf.pstatic.net/cover/001/963/00196392.jpg?type=m1&udate=20130207"
+     }
     },
     {
      "no": 75,
      "field": "west",
      "title": "미디어의 이해",
      "author": "마셜 매클루언",
-     "lookup": "미디어의 이해#맥루한|매클루언|맥루언"
+     "lookup": "미디어의 이해#맥루한|매클루언|맥루언",
+     "match": {
+      "isbn13": "9788986099409",
+      "title": "미디어의 이해",
+      "authors": "마샬 맥루한, 박정규",
+      "publisher": "커뮤니케이션북스",
+      "year": "1997",
+      "cover": "https://image.aladin.co.kr/product/5/36/cover/9788986099409.gif"
+     }
     },
     {
      "no": 76,
      "field": "west",
      "title": "방법서설",
      "author": "데카르트",
-     "lookup": "방법서설#데카르트"
+     "lookup": "방법서설#데카르트",
+     "match": {
+      "isbn13": "9788931011333",
+      "title": "방법서설",
+      "authors": "르네 데카르트, 이현복",
+      "publisher": "문예출판사",
+      "year": "2019",
+      "cover": "https://image.aladin.co.kr/product/18025/5/cover/8931011334_1.jpg"
+     }
     },
     {
      "no": 77,
      "field": "west",
      "title": "법의 정신",
      "author": "몽테스키외",
-     "lookup": "법의 정신#몽테스키외"
+     "lookup": "법의 정신#몽테스키외",
+     "match": {
+      "isbn13": "9788931009507",
+      "title": "법의 정신",
+      "authors": "몽테스키외, 이재형",
+      "publisher": "문예출판사",
+      "year": "2015",
+      "cover": "https://image.aladin.co.kr/product/6051/65/cover/893100950x_1.jpg"
+     }
     },
     {
      "no": 78,
      "field": "west",
      "title": "슬픈 열대",
      "author": "레비스트로스",
-     "lookup": "슬픈 열대#레비스트로스"
+     "lookup": "슬픈 열대#레비스트로스",
+     "match": {
+      "isbn13": "9788935677955",
+      "title": "슬픈 열대",
+      "authors": "클로드 레비스트로스, 박옥줄",
+      "publisher": "한길사",
+      "year": "2022",
+      "cover": "https://image.aladin.co.kr/product/30935/22/cover/8935677957_1.jpg"
+     }
     },
     {
      "no": 79,
      "field": "west",
      "title": "실천이성비판",
      "author": "칸트",
-     "lookup": "실천이성비판#칸트"
+     "lookup": "실천이성비판#칸트",
+     "match": {
+      "isbn13": "9788989103820",
+      "title": "실천이성비판",
+      "authors": "임마누엘 칸트, 백종현",
+      "publisher": "아카넷",
+      "year": "2002",
+      "cover": "https://bookthumb-phinf.pstatic.net/cover/001/119/00111918.jpg?type=m1&udate=20130629"
+     }
     },
     {
      "no": 80,
      "field": "west",
      "title": "에밀",
      "author": "루소",
-     "lookup": "에밀#루소"
+     "lookup": "에밀#루소",
+     "match": {
+      "isbn13": "9788961671736",
+      "title": "에밀",
+      "authors": "장 자크 루소, 이환 편",
+      "publisher": "돋을새김",
+      "year": "2015",
+      "cover": "https://image.aladin.co.kr/product/5157/25/cover/8961671731_1.jpg"
+     }
     },
     {
      "no": 81,
      "field": "west",
      "title": "역사",
      "author": "헤로도토스",
-     "lookup": "역사#헤로도토스"
+     "lookup": "역사#헤로도토스",
+     "match": {
+      "isbn13": "9788991290266",
+      "title": "역사",
+      "authors": "헤로도토스, 천병희",
+      "publisher": "숲",
+      "year": "2009",
+      "cover": "https://image.aladin.co.kr/product/328/29/cover/8991290264_1.jpg"
+     }
     },
     {
      "no": 82,
      "field": "west",
      "title": "우파니샤드",
      "author": "",
-     "lookup": "우파니샤드#"
+     "lookup": "우파니샤드#",
+     "match": {
+      "isbn13": "9791195682102",
+      "title": "우파니샤드",
+      "authors": "정창영 편",
+      "publisher": "무지개다리너머",
+      "year": "2016",
+      "cover": "https://bookthumb-phinf.pstatic.net/cover/106/945/10694573.jpg?type=m1&udate=20160823"
+     }
     },
     {
      "no": 83,
      "field": "west",
      "title": "의무론",
      "author": "키케로",
-     "lookup": "의무론#키케로"
+     "lookup": "의무론#키케로",
+     "match": {
+      "isbn13": "9788957339138",
+      "title": "의무론",
+      "authors": "키케로, 임성진",
+      "publisher": "아카넷",
+      "year": "2024",
+      "cover": "https://image.aladin.co.kr/product/33486/28/cover/8957339132_1.jpg"
+     }
     },
     {
      "no": 84,
@@ -624,14 +1272,30 @@
      "title": "자본론",
      "author": "마르크스",
      "note": "요즘 번역은 『자본』이라는 제목도 있어요",
-     "lookup": "자본론|자본#마르크스"
+     "lookup": "자본론|자본#마르크스",
+     "match": {
+      "isbn13": "9788937604324",
+      "title": "자본론",
+      "authors": "카를 마르크스, 김수행",
+      "publisher": "비봉출판사",
+      "year": "2015",
+      "cover": "https://image.aladin.co.kr/product/7114/32/cover/8937604329_1.jpg"
+     }
     },
     {
      "no": 85,
      "field": "west",
      "title": "자유론",
      "author": "존 스튜어트 밀",
-     "lookup": "자유론#밀"
+     "lookup": "자유론#밀",
+     "match": {
+      "isbn13": "9788960010253",
+      "title": "자유론",
+      "authors": "존 스튜어트 밀, 조현수",
+      "publisher": "타임기획",
+      "year": "2006",
+      "cover": "https://image.aladin.co.kr/product/86/54/cover/8960010251_1.jpg"
+     }
     },
     {
      "no": 86,
@@ -639,7 +1303,15 @@
      "title": "정부론",
      "author": "존 로크",
      "note": "요즘 번역은 『통치론』이라는 제목이 많아요",
-     "lookup": "통치론|정부론#로크"
+     "lookup": "통치론|정부론#로크",
+     "match": {
+      "isbn13": "9788949704876",
+      "title": "통치론",
+      "authors": "존 로크, 김현욱",
+      "publisher": "동서문화사",
+      "year": "2008",
+      "cover": "https://bookthumb-phinf.pstatic.net/cover/046/895/04689580.jpg?type=m1&udate=20171111"
+     }
     },
     {
      "no": 87,
@@ -647,14 +1319,30 @@
      "title": "페더랄리스트 페이퍼",
      "author": "알렉산더 해밀턴 외",
      "note": "『페더럴리스트』라고도 해요",
-     "lookup": "페더랄리스트|페더럴리스트#해밀턴"
+     "lookup": "페더랄리스트|페더럴리스트#해밀턴",
+     "match": {
+      "isbn13": "9788946047440",
+      "title": "페더랄리스트 페이퍼",
+      "authors": "알렉산더 해밀턴,김동영",
+      "publisher": "한울",
+      "year": "2013",
+      "cover": "https://image.aladin.co.kr/product/3202/55/cover/8946047445_1.jpg"
+     }
     },
     {
      "no": 88,
      "field": "west",
      "title": "프로테스탄티즘의 윤리와 자본주의 정신",
      "author": "막스 베버",
-     "lookup": "프로테스탄티즘의 윤리와 자본주의 정신#베버"
+     "lookup": "프로테스탄티즘의 윤리와 자본주의 정신#베버",
+     "match": {
+      "isbn13": "9788931000443",
+      "title": "프로테스탄티즘의 윤리와 자본주의 정신",
+      "authors": "막스 베버, 박성수",
+      "publisher": "문예출판사",
+      "year": "2010",
+      "cover": "https://image.aladin.co.kr/product/15/54/cover/8931000448_2.jpg"
+     }
     },
     {
      "no": 89,
@@ -662,84 +1350,766 @@
      "title": "홉스봄 4부작",
      "author": "에릭 홉스봄",
      "note": "4부작(혁명·자본·제국·극단의 시대) 중 첫 권으로 찾아요",
-     "lookup": "혁명의 시대#홉스봄"
+     "lookup": "혁명의 시대#홉스봄",
+     "match": {
+      "isbn13": "9788935651764",
+      "title": "혁명의 시대",
+      "authors": "에릭 홉스봄, 차명수 [공]",
+      "publisher": "한길사",
+      "year": "1998",
+      "cover": "https://image.aladin.co.kr/product/16/95/cover/8935651761_2.jpg"
+     }
     },
     {
      "no": 90,
      "field": "sci",
      "title": "같기도 하고, 아니 같기도 하고",
      "author": "로얼드 호프만",
-     "lookup": "같기도 하고 아니 같기도 하고#호프만"
+     "lookup": "같기도 하고 아니 같기도 하고#호프만",
+     "match": {
+      "isbn13": "9788972911395",
+      "title": "같기도 하고 아니 같기도 하고",
+      "authors": "로얼드 호프만, 이덕환",
+      "publisher": "까치",
+      "year": "1996",
+      "cover": "https://bookthumb-phinf.pstatic.net/cover/015/963/01596386.jpg?type=m1&udate=20160316"
+     }
     },
     {
      "no": 91,
      "field": "sci",
      "title": "객관성의 칼날",
      "author": "찰스 길리스피",
-     "lookup": "객관성의 칼날#길리스피"
+     "lookup": "객관성의 칼날#길리스피",
+     "match": {
+      "isbn13": "9788388336256",
+      "title": "객관성의 칼날",
+      "authors": "찰스 길리스피",
+      "publisher": "새물결",
+      "year": "1999",
+      "cover": ""
+     }
     },
     {
      "no": 92,
      "field": "sci",
      "title": "과학고전선집",
      "author": "홍성욱",
-     "lookup": "과학 고전 선집#홍성욱"
+     "lookup": "과학 고전 선집#홍성욱",
+     "match": {
+      "isbn13": "9788952107015",
+      "title": "과학고전선집:코페르니쿠스에서 뉴턴까지=Classics in science",
+      "authors": "홍성욱 편",
+      "publisher": "서울대학교 출판부",
+      "year": "2006",
+      "cover": "https://image.aladin.co.kr/product/64/74/cover/8952107012_1.jpg"
+     }
     },
     {
      "no": 93,
      "field": "sci",
      "title": "과학혁명의 구조",
      "author": "토머스 쿤",
-     "lookup": "과학혁명의 구조#쿤"
+     "lookup": "과학혁명의 구조#쿤",
+     "match": {
+      "isbn13": "9788972915546",
+      "title": "과학혁명의 구조",
+      "authors": "토머스 S. 쿤, 홍성욱",
+      "publisher": "까치글방",
+      "year": "2013",
+      "cover": "https://bookthumb-phinf.pstatic.net/cover/073/125/07312547.jpg?type=m1&udate=20170823"
+     }
     },
     {
      "no": 94,
      "field": "sci",
      "title": "괴델, 에셔, 바흐",
      "author": "더글러스 호프스태터",
-     "lookup": "괴델 에셔 바흐#호프스태터"
+     "lookup": "괴델 에셔 바흐#호프스태터",
+     "match": {
+      "isbn13": "9788972916383",
+      "title": "괴델, 에셔, 바흐",
+      "authors": "더글러스 호프스태터, 안병서",
+      "publisher": "까치",
+      "year": "2017",
+      "cover": "https://image.aladin.co.kr/product/11328/50/cover/8972916382_1.jpg"
+     }
     },
     {
      "no": 95,
      "field": "sci",
      "title": "부분과 전체",
      "author": "하이젠베르크",
-     "lookup": "부분과 전체#하이젠베르크"
+     "lookup": "부분과 전체#하이젠베르크",
+     "match": {
+      "isbn13": "9791195568758",
+      "title": "부분과 전체",
+      "authors": "베르너 하이젠베르크, 유영미",
+      "publisher": "서커스",
+      "year": "2016",
+      "cover": "https://image.aladin.co.kr/product/8929/13/cover/k472535591_1.jpg"
+     }
     },
     {
      "no": 96,
      "field": "sci",
      "title": "신기관",
      "author": "프랜시스 베이컨",
-     "lookup": "신기관#베이컨"
+     "lookup": "신기관#베이컨",
+     "match": {
+      "isbn13": "9788935664481",
+      "title": "신기관",
+      "authors": "프랜시스 베이컨, 진석용",
+      "publisher": "한길사",
+      "year": "2016",
+      "cover": "https://image.aladin.co.kr/product/7878/31/cover/8935664480_1.jpg"
+     }
     },
     {
      "no": 97,
      "field": "sci",
      "title": "엔트로피",
      "author": "제러미 리프킨",
-     "lookup": "엔트로피#리프킨"
+     "lookup": "엔트로피#리프킨",
+     "match": {
+      "isbn13": "9788986698824",
+      "title": "엔트로피",
+      "authors": "제레미 리프킨, 이창희",
+      "publisher": "세종연구원",
+      "year": "2015",
+      "cover": "https://image.aladin.co.kr/product/5566/66/cover/898669882x_1.jpg"
+     }
     },
     {
      "no": 98,
      "field": "sci",
      "title": "이기적 유전자",
      "author": "리처드 도킨스",
-     "lookup": "이기적 유전자#도킨스"
+     "lookup": "이기적 유전자#도킨스",
+     "match": {
+      "isbn13": "9788932471631",
+      "title": "이기적 유전자",
+      "authors": "리처드 도킨스, 이상임",
+      "publisher": "을유문화사",
+      "year": "2010",
+      "cover": "https://image.aladin.co.kr/product/751/8/cover/8932471630_1.jpg"
+     }
     },
     {
      "no": 99,
      "field": "sci",
      "title": "종의 기원",
      "author": "찰스 다윈",
-     "lookup": "종의 기원#다윈"
+     "lookup": "종의 기원#다윈",
+     "match": {
+      "isbn13": "9791189198862",
+      "title": "종의 기원",
+      "authors": "찰스 다윈, 장대익",
+      "publisher": "사이언스북스",
+      "year": "2019",
+      "cover": "https://image.aladin.co.kr/product/19841/97/cover/k712635336_1.jpg"
+     }
     },
     {
      "no": 100,
      "field": "sci",
      "title": "카오스",
      "author": "제임스 글릭",
-     "lookup": "카오스#글릭|글리크"
+     "lookup": "카오스#글릭|글리크",
+     "match": {
+      "isbn13": "9788962620696",
+      "title": "카오스",
+      "authors": "제임스 글릭, 박래선",
+      "publisher": "동아시아",
+      "year": "2013",
+      "cover": "https://bookthumb-phinf.pstatic.net/cover/072/200/07220093.jpg?type=m1&udate=20170801"
+     }
+    }
+   ]
+  },
+  {
+   "id": "teen-high",
+   "title": "고등학생이 요즘 많이 빌린 책",
+   "short": "고등학생 인기",
+   "kind": "popular",
+   "description": "최근 30일(9월 20일~10월 19일) 동안 전국 공공도서관에서 고등학생이 많이 빌린 책 20권이에요.",
+   "source": "도서관 정보나루 인기대출도서",
+   "sourceUrl": "https://www.data4library.kr/",
+   "startDt": "2026-09-20",
+   "endDt": "2026-10-19",
+   "books": [
+    {
+     "no": 1,
+     "title": "미적분으로 바라본 하루",
+     "author": "오스카 E. 페르난데스, 김수환",
+     "match": {
+      "isbn13": "9788965400912",
+      "title": "미적분으로 바라본 하루",
+      "authors": "오스카 E. 페르난데스, 김수환",
+      "publisher": "프리렉",
+      "year": "2015",
+      "cover": "https://image.aladin.co.kr/product/5202/54/cover/8965400910_1.jpg"
+     },
+     "loanCount": 80
+    },
+    {
+     "no": 2,
+     "title": "미적분의 쓸모",
+     "author": "한화택",
+     "match": {
+      "isbn13": "9791165215491",
+      "title": "미적분의 쓸모",
+      "authors": "한화택",
+      "publisher": "길벗",
+      "year": "2021",
+      "cover": "https://image.aladin.co.kr/product/27073/68/cover/k012731588_2.jpg"
+     },
+     "loanCount": 73
+    },
+    {
+     "no": 3,
+     "title": "미적분의 힘",
+     "author": "스티븐 스트로가츠, 이충호",
+     "match": {
+      "isbn13": "9791164051335",
+      "title": "미적분의 힘",
+      "authors": "스티븐 스트로가츠, 이충호",
+      "publisher": "북하우스 퍼블리셔스",
+      "year": "2021",
+      "cover": "https://image.aladin.co.kr/product/27959/0/cover/k612734212_1.jpg"
+     },
+     "loanCount": 66
+    },
+    {
+     "no": 4,
+     "title": "소년이 온다",
+     "author": "한강",
+     "match": {
+      "isbn13": "9788936434120",
+      "title": "소년이 온다",
+      "authors": "한강",
+      "publisher": "창비",
+      "year": "2014",
+      "cover": "https://image.aladin.co.kr/product/4086/97/cover/8936434128_2.jpg"
+     },
+     "loanCount": 65
+    },
+    {
+     "no": 5,
+     "title": "(이해하는) 미적분 수업",
+     "author": "데이비드 애치슨, 김의석",
+     "match": {
+      "isbn13": "9791189932473",
+      "title": "(이해하는) 미적분 수업",
+      "authors": "데이비드 애치슨, 김의석",
+      "publisher": "바다출판사",
+      "year": "2020",
+      "cover": "https://image.aladin.co.kr/product/22963/5/cover/k172637497_1.jpg"
+     },
+     "loanCount": 64
+    },
+    {
+     "no": 6,
+     "title": "공정하다는 착각",
+     "author": "마이클 샌델, 함규진",
+     "match": {
+      "isbn13": "9791164136452",
+      "title": "공정하다는 착각",
+      "authors": "마이클 샌델, 함규진",
+      "publisher": "미래엔",
+      "year": "2020",
+      "cover": "https://image.aladin.co.kr/product/25470/6/cover/k092633826_1.jpg"
+     },
+     "loanCount": 48
+    },
+    {
+     "no": 7,
+     "title": "우리가 빛의 속도로 갈 수 없다면",
+     "author": "김초엽",
+     "match": {
+      "isbn13": "9791190090018",
+      "title": "우리가 빛의 속도로 갈 수 없다면",
+      "authors": "김초엽",
+      "publisher": "허블",
+      "year": "2019",
+      "cover": "https://image.aladin.co.kr/product/19359/16/cover/s972635417_1.jpg"
+     },
+     "loanCount": 44
+    },
+    {
+     "no": 8,
+     "title": "수학이 생명의 언어라면",
+     "author": "김재경",
+     "match": {
+      "isbn13": "9788962624953",
+      "title": "수학이 생명의 언어라면",
+      "authors": "김재경",
+      "publisher": "동아시아",
+      "year": "2024",
+      "cover": "https://image.aladin.co.kr/product/34554/83/cover200/8962624958_1.jpg"
+     },
+     "loanCount": 41
+    },
+    {
+     "no": 9,
+     "title": "선량한 차별주의자",
+     "author": "김지혜",
+     "match": {
+      "isbn13": "9788936477196",
+      "title": "선량한 차별주의자",
+      "authors": "김지혜",
+      "publisher": "창비",
+      "year": "2019",
+      "cover": "https://image.aladin.co.kr/product/19874/76/cover/8936477196_1.jpg"
+     },
+     "loanCount": 38
+    },
+    {
+     "no": 9,
+     "title": "종의 기원",
+     "author": "정유정",
+     "match": {
+      "isbn13": "9788956609959",
+      "title": "종의 기원",
+      "authors": "정유정",
+      "publisher": "은행나무",
+      "year": "2016",
+      "cover": "https://image.aladin.co.kr/product/7492/9/cover/8956609950_2.jpg"
+     },
+     "loanCount": 38
+    },
+    {
+     "no": 9,
+     "title": "절창",
+     "author": "구병모",
+     "match": {
+      "isbn13": "9791141602451",
+      "title": "절창",
+      "authors": "구병모",
+      "publisher": "문학동네",
+      "year": "2025",
+      "cover": "https://image.aladin.co.kr/product/37172/36/cover200/k662031678_1.jpg"
+     },
+     "loanCount": 38
+    },
+    {
+     "no": 12,
+     "title": "숨결이 바람 될 때",
+     "author": "폴 칼라니티, 이종인",
+     "match": {
+      "isbn13": "9788965961956",
+      "title": "숨결이 바람 될 때",
+      "authors": "폴 칼라니티, 이종인",
+      "publisher": "흐름출판",
+      "year": "2016",
+      "cover": "https://image.aladin.co.kr/product/8992/81/cover/8965961955_1.jpg"
+     },
+     "loanCount": 37
+    },
+    {
+     "no": 13,
+     "title": "오늘 밤, 세계에서 이 사랑이 사라진다 해도",
+     "author": "이치조 미사키, 권영주",
+     "match": {
+      "isbn13": "9791191043297",
+      "title": "오늘 밤, 세계에서 이 사랑이 사라진다 해도",
+      "authors": "이치조 미사키, 권영주",
+      "publisher": "바이포엠",
+      "year": "2021",
+      "cover": "https://image.aladin.co.kr/product/27407/79/cover/k362732558_1.jpg"
+     },
+     "loanCount": 33
+    },
+    {
+     "no": 13,
+     "title": "지구 끝의 온실",
+     "author": "김초엽",
+     "match": {
+      "isbn13": "9791191824001",
+      "title": "지구 끝의 온실",
+      "authors": "김초엽",
+      "publisher": "Giant Books(자이언트북스)",
+      "year": "2021",
+      "cover": "https://image.aladin.co.kr/product/27692/63/cover/k082733434_1.jpg"
+     },
+     "loanCount": 33
+    },
+    {
+     "no": 13,
+     "title": "자몽살구클럽",
+     "author": "한로로 (HANRORO) (지은이)",
+     "match": {
+      "isbn13": "9791199305304",
+      "title": "자몽살구클럽",
+      "authors": "한로로 (HANRORO) (지은이)",
+      "publisher": "어센틱",
+      "year": "2025",
+      "cover": "https://image.aladin.co.kr/product/36808/37/cover200/k082030009_1.jpg"
+     },
+     "loanCount": 33
+    },
+    {
+     "no": 16,
+     "title": "채식주의자",
+     "author": "한강",
+     "match": {
+      "isbn13": "9788936434595",
+      "title": "채식주의자",
+      "authors": "한강",
+      "publisher": "창비",
+      "year": "2022",
+      "cover": "https://image.aladin.co.kr/product/29137/2/cover/8936434594_1.jpg"
+     },
+     "loanCount": 32
+    },
+    {
+     "no": 16,
+     "title": "정의란 무엇인가",
+     "author": "마이클 샌델, 김명철",
+     "match": {
+      "isbn13": "9788937834790",
+      "title": "정의란 무엇인가",
+      "authors": "마이클 샌델, 김명철",
+      "publisher": "미래엔",
+      "year": "2014",
+      "cover": "https://image.aladin.co.kr/product/10826/23/cover/k742530554_1.jpg"
+     },
+     "loanCount": 32
+    },
+    {
+     "no": 16,
+     "title": "홍학의 자리",
+     "author": "정해연",
+     "match": {
+      "isbn13": "9788954681155",
+      "title": "홍학의 자리",
+      "authors": "정해연",
+      "publisher": "문학동네",
+      "year": "2021",
+      "cover": "https://image.aladin.co.kr/product/27587/94/cover/8954681158_1.jpg"
+     },
+     "loanCount": 32
+    },
+    {
+     "no": 16,
+     "title": "더 이상한 수학책",
+     "author": "벤 올린, 이경민",
+     "match": {
+      "isbn13": "9791191013122",
+      "title": "더 이상한 수학책",
+      "authors": "벤 올린, 이경민",
+      "publisher": "북라이프",
+      "year": "2021",
+      "cover": "https://image.aladin.co.kr/product/26534/91/cover/k112738626_1.jpg"
+     },
+     "loanCount": 32
+    },
+    {
+     "no": 20,
+     "title": "팩트풀니스",
+     "author": "한스 로슬링,옮긴이: 이창신",
+     "match": {
+      "isbn13": "9788934985068",
+      "title": "팩트풀니스",
+      "authors": "한스 로슬링,옮긴이: 이창신",
+      "publisher": "김영사",
+      "year": "2019",
+      "cover": "https://image.aladin.co.kr/product/18456/45/cover/8934985062_1.jpg"
+     },
+     "loanCount": 31
+    }
+   ]
+  },
+  {
+   "id": "teen-mid",
+   "title": "중학생이 요즘 많이 빌린 책",
+   "short": "중학생 인기",
+   "kind": "popular",
+   "description": "최근 30일(9월 20일~10월 19일) 동안 전국 공공도서관에서 중학생이 많이 빌린 책 20권이에요.",
+   "source": "도서관 정보나루 인기대출도서",
+   "sourceUrl": "https://www.data4library.kr/",
+   "startDt": "2026-09-20",
+   "endDt": "2026-10-19",
+   "books": [
+    {
+     "no": 1,
+     "title": "소년이 온다",
+     "author": "한강",
+     "match": {
+      "isbn13": "9788936434120",
+      "title": "소년이 온다",
+      "authors": "한강",
+      "publisher": "창비",
+      "year": "2014",
+      "cover": "https://image.aladin.co.kr/product/4086/97/cover/8936434128_2.jpg"
+     },
+     "loanCount": 96
+    },
+    {
+     "no": 2,
+     "title": "오늘 밤, 세계에서 이 사랑이 사라진다 해도",
+     "author": "이치조 미사키, 권영주",
+     "match": {
+      "isbn13": "9791191043297",
+      "title": "오늘 밤, 세계에서 이 사랑이 사라진다 해도",
+      "authors": "이치조 미사키, 권영주",
+      "publisher": "바이포엠",
+      "year": "2021",
+      "cover": "https://image.aladin.co.kr/product/27407/79/cover/k362732558_1.jpg"
+     },
+     "loanCount": 92
+    },
+    {
+     "no": 3,
+     "title": "불편한 편의점",
+     "author": "김호연",
+     "match": {
+      "isbn13": "9791161571188",
+      "title": "불편한 편의점",
+      "authors": "김호연",
+      "publisher": "나무옆의자",
+      "year": "2021",
+      "cover": "https://image.aladin.co.kr/product/26942/84/cover/k582730818_1.jpg"
+     },
+     "loanCount": 67
+    },
+    {
+     "no": 3,
+     "title": "당연하게도 나는 너를",
+     "author": "이꽃님",
+     "match": {
+      "isbn13": "9791167550972",
+      "title": "당연하게도 나는 너를",
+      "authors": "이꽃님",
+      "publisher": "우리학교",
+      "year": "2023",
+      "cover": "https://image.aladin.co.kr/product/31269/43/cover/k872832466_1.jpg"
+     },
+     "loanCount": 67
+    },
+    {
+     "no": 5,
+     "title": "수학이 필요한 순간",
+     "author": "김민형",
+     "match": {
+      "isbn13": "9791186560785",
+      "title": "수학이 필요한 순간",
+      "authors": "김민형",
+      "publisher": "인플루엔셜",
+      "year": "2018",
+      "cover": "https://image.aladin.co.kr/product/15892/11/cover/s802533642_1.jpg"
+     },
+     "loanCount": 65
+    },
+    {
+     "no": 6,
+     "title": "여름을 한 입 베어 물었더니",
+     "author": "이꽃님",
+     "match": {
+      "isbn13": "9788954694575",
+      "title": "여름을 한 입 베어 물었더니",
+      "authors": "이꽃님",
+      "publisher": "문학동네",
+      "year": "2023",
+      "cover": "https://image.aladin.co.kr/product/32294/5/cover/8954694578_1.jpg"
+     },
+     "loanCount": 62
+    },
+    {
+     "no": 6,
+     "title": "비스킷",
+     "author": "김선미",
+     "match": {
+      "isbn13": "9791168127630",
+      "title": "비스킷",
+      "authors": "김선미",
+      "publisher": "위즈덤하우스",
+      "year": "2023",
+      "cover": "https://image.aladin.co.kr/product/32443/92/cover/k002935195_1.jpg"
+     },
+     "loanCount": 62
+    },
+    {
+     "no": 8,
+     "title": "선량한 차별주의자",
+     "author": "김지혜",
+     "match": {
+      "isbn13": "9788936477196",
+      "title": "선량한 차별주의자",
+      "authors": "김지혜",
+      "publisher": "창비",
+      "year": "2019",
+      "cover": "https://image.aladin.co.kr/product/19874/76/cover/8936477196_1.jpg"
+     },
+     "loanCount": 61
+    },
+    {
+     "no": 8,
+     "title": "시한부",
+     "author": "백은별",
+     "match": {
+      "isbn13": "9791193647646",
+      "title": "시한부",
+      "authors": "백은별",
+      "publisher": "바른북스",
+      "year": "2024",
+      "cover": "https://image.aladin.co.kr/product/33249/36/cover/k132938568_1.jpg"
+     },
+     "loanCount": 61
+    },
+    {
+     "no": 10,
+     "title": "공정하다는 착각",
+     "author": "마이클 샌델, 함규진",
+     "match": {
+      "isbn13": "9791164136452",
+      "title": "공정하다는 착각",
+      "authors": "마이클 샌델, 함규진",
+      "publisher": "미래엔",
+      "year": "2020",
+      "cover": "https://image.aladin.co.kr/product/25470/6/cover/k092633826_1.jpg"
+     },
+     "loanCount": 58
+    },
+    {
+     "no": 10,
+     "title": "내가 없던 어느 밤에",
+     "author": "이꽃님",
+     "match": {
+      "isbn13": "9791167553300",
+      "title": "내가 없던 어느 밤에",
+      "authors": "이꽃님",
+      "publisher": "우리학교",
+      "year": "2025",
+      "cover": "https://image.aladin.co.kr/product/37061/57/cover200/k702030236_1.jpg"
+     },
+     "loanCount": 58
+    },
+    {
+     "no": 12,
+     "title": "순례 주택",
+     "author": "유은실",
+     "match": {
+      "isbn13": "9788949123493",
+      "title": "순례 주택",
+      "authors": "유은실",
+      "publisher": "비룡소",
+      "year": "2021",
+      "cover": "https://image.aladin.co.kr/product/26674/56/cover/8949123495_1.jpg"
+     },
+     "loanCount": 57
+    },
+    {
+     "no": 13,
+     "title": "아몬드",
+     "author": "손원평",
+     "match": {
+      "isbn13": "9788936434267",
+      "title": "아몬드",
+      "authors": "손원평",
+      "publisher": "창비",
+      "year": "2017",
+      "cover": "https://image.aladin.co.kr/product/16839/4/cover/k492534773_1.jpg"
+     },
+     "loanCount": 55
+    },
+    {
+     "no": 14,
+     "title": "아픔이 길이 되려면",
+     "author": "김승섭",
+     "match": {
+      "isbn13": "9788962621952",
+      "title": "아픔이 길이 되려면",
+      "authors": "김승섭",
+      "publisher": "동아시아",
+      "year": "2017",
+      "cover": "https://image.aladin.co.kr/product/11765/13/cover/s132532088_1.jpg"
+     },
+     "loanCount": 54
+    },
+    {
+     "no": 14,
+     "title": "오늘 밤, 세계에서 이 눈물이 사라진다 해도",
+     "author": "이치조 미사키, 김윤경",
+     "match": {
+      "isbn13": "9791191043976",
+      "title": "오늘 밤, 세계에서 이 눈물이 사라진다 해도",
+      "authors": "이치조 미사키, 김윤경",
+      "publisher": "바이포엠 스튜디오",
+      "year": "2022",
+      "cover": "https://bookthumb-phinf.pstatic.net/cover/225/848/22584874.jpg?type=m1&udate=20220714"
+     },
+     "loanCount": 54
+    },
+    {
+     "no": 16,
+     "title": "고백해도 되는 타이밍",
+     "author": "황영미",
+     "match": {
+      "isbn13": "9791167553294",
+      "title": "고백해도 되는 타이밍",
+      "authors": "황영미",
+      "publisher": "우리학교",
+      "year": "2025",
+      "cover": "https://image.aladin.co.kr/product/36443/38/cover200/k132039397_1.jpg"
+     },
+     "loanCount": 53
+    },
+    {
+     "no": 17,
+     "title": "윤슬의 바다",
+     "author": "백은별",
+     "match": {
+      "isbn13": "9791172634001",
+      "title": "윤슬의 바다",
+      "authors": "백은별",
+      "publisher": "바른북스",
+      "year": "2025",
+      "cover": "https://image.aladin.co.kr/product/36565/72/cover200/k052039142_1.jpg"
+     },
+     "loanCount": 52
+    },
+    {
+     "no": 17,
+     "title": "자몽살구클럽",
+     "author": "한로로 (HANRORO) (지은이)",
+     "match": {
+      "isbn13": "9791199305304",
+      "title": "자몽살구클럽",
+      "authors": "한로로 (HANRORO) (지은이)",
+      "publisher": "어센틱",
+      "year": "2025",
+      "cover": "https://image.aladin.co.kr/product/36808/37/cover200/k082030009_1.jpg"
+     },
+     "loanCount": 52
+    },
+    {
+     "no": 19,
+     "title": "지구 끝의 온실",
+     "author": "김초엽",
+     "match": {
+      "isbn13": "9791191824001",
+      "title": "지구 끝의 온실",
+      "authors": "김초엽",
+      "publisher": "Giant Books(자이언트북스)",
+      "year": "2021",
+      "cover": "https://image.aladin.co.kr/product/27692/63/cover/k082733434_1.jpg"
+     },
+     "loanCount": 51
+    },
+    {
+     "no": 20,
+     "title": "잃어버린 건 없는지 잊은 건 아닌지",
+     "author": "이꽃님",
+     "match": {
+      "isbn13": "9791198792129",
+      "title": "잃어버린 건 없는지 잊은 건 아닌지",
+      "authors": "이꽃님",
+      "publisher": "이끌",
+      "year": "2026",
+      "cover": "https://image.aladin.co.kr/product/38596/44/cover200/k412136370_1.jpg"
+     },
+     "loanCount": 50
     }
    ]
   }
