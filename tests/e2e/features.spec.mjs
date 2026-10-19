@@ -49,6 +49,12 @@ test('홈 위쪽에 다가오는 작가 강연이 날짜순으로 나오고, 지
   await expect(items.first()).toContainText('10월 23일(금) 저녁 7시');
   await expect(items.first()).toHaveAttribute('href', /munhaknanum\.kr/);
   await expect(items.first()).toHaveAttribute('target', '_blank');
+  // 공식 포스터와 날짜 표시
+  const poster = items.first().locator('.promo__poster img');
+  await expect(poster).toHaveAttribute('src', /^https:\/\/munhaknanum\.kr\/.+\.jpg$/);
+  await expect(poster).toHaveAttribute('referrerpolicy', 'no-referrer');
+  await expect(items.first().locator('.promo__chip')).toHaveText('10.23 금');
+  await expect(page.locator('#promo')).toContainText('정보와 포스터 출처 문학나눔');
 
   await page.clock.setFixedTime(new Date('2026-11-05T10:00:00+09:00'));
   await page.reload();
@@ -130,4 +136,23 @@ test('인기 도서는 나잇대 탭으로 바꿔 보고, 책 화면은 모든 �
   await page.locator('#pop-list .row').first().click();
   await expect(page.locator('.hot')).toContainText('이번 주 전국 11위');
   await expect(page.locator('.hot')).toContainText('모든 나이 합쳐 310번 빌렸어요');
+});
+
+test('강연 포스터를 못 불러오면 포스터 칸만 숨기고 글은 그대로 보여 준다', async ({ page }) => {
+  await page.clock.setFixedTime(new Date('2026-10-16T10:00:00+09:00'));
+  await page.route(/munhaknanum\.kr\/.*\.jpg/, (route) => route.abort());
+  problems.console = [];
+  await page.goto('#/');
+  const first = page.locator('#promo .promo__item').first();
+  await expect(first).toContainText('괜찮다고 말해주는 문장들');
+  await expect(first.locator('.promo__poster')).toBeHidden();
+  // 이 시험에서 일부러 막은 포스터 요청의 콘솔 안내는 문제로 보지 않는다
+  problems.console = problems.console.filter((t) => !/Failed to load resource/.test(t));
+});
+
+test('인기 도서 1위는 큰 표지, 나머지는 작은 표지로 보여 준다', async ({ page }) => {
+  await page.goto('#/');
+  await expect(page.locator('#pop-list .row').first()).toHaveClass(/row--top/);
+  await expect(page.locator('#pop-list .row').first().locator('.cover--lg')).toHaveCount(1);
+  await expect(page.locator('#pop-list .row').nth(1).locator('.cover--sm')).toHaveCount(1);
 });

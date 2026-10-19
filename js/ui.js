@@ -60,7 +60,7 @@ export function demoBadge() {
 
 export function cover(book, size = '') {
   const src = safeImageUrl(book && book.cover);
-  const cls = size === 'lg' ? 'cover cover--lg' : 'cover';
+  const cls = size === 'lg' ? 'cover cover--lg' : size === 'sm' ? 'cover cover--sm' : 'cover';
   if (src) {
     // 표지를 못 불러오면 app.js의 오류 처리기가 빈 표지로 바꾼다.
     return html`<img class="${cls}" src="${src}" alt="" loading="lazy" referrerpolicy="no-referrer" data-cover>`;

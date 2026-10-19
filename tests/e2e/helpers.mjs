@@ -1,9 +1,12 @@
 // 화면 점검 공용 도구: 콘솔 오류·바깥 요청 기록, 도서관 고르기, 가짜 프록시
 import { expect } from '@playwright/test';
 
+// 1×1 투명 PNG
+const BLANK_PNG = Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=', 'base64');
+
 // 콘솔 오류/경고, 페이지 오류, 이 사이트 밖으로 나간 요청을 모은다(바깥 요청은 막는다).
 export async function watchProblems(page, { allowHosts = [] } = {}) {
-  const problems = { console: [], errors: [], external: [] };
+  const problems = { console: [], errors: [], external: [], images: [] };
   page.on('console', (msg) => {
     const text = msg.text();
     // 점검 도구가 서비스 워커를 막을 때 남기는 안내는 앱 문제가 아니다
@@ -15,6 +18,11 @@ export async function watchProblems(page, { allowHosts = [] } = {}) {
     const url = new URL(route.request().url());
     if (url.hostname === '127.0.0.1' || url.protocol === 'data:' || url.protocol === 'blob:' || allowHosts.includes(url.hostname)) {
       return route.fallback();
+    }
+    // 책 표지·강연 포스터는 원래 바깥(https) 이미지라, 시험에서는 빈 그림으로 대신 답한다(실제로 나가지 않음)
+    if (route.request().resourceType() === 'image' && url.protocol === 'https:') {
+      problems.images.push(url.hostname);
+      return route.fulfill({ contentType: 'image/png', body: BLANK_PNG });
     }
     problems.external.push(url.href.slice(0, 120));
     return route.abort();

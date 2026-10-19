@@ -1,6 +1,6 @@
 {
   "updatedAt": "2026-10-15",
-  "note": "작가 강연 소식. 공식 안내 페이지를 출처로 직접 모은 목록이에요. 날짜가 지난 행사는 앱에서 자동으로 숨겨요.",
+  "note": "작가 강연 소식. 공식 안내 페이지를 출처로 직접 모은 목록이에요. image는 공식 페이지의 행사 포스터 주소를 그대로 쓰고(복사해 오지 않음), 누르면 공식 페이지로 가요. 날짜가 지난 행사는 앱에서 자동으로 숨겨요.",
   "items": [
     {
       "id": "munhaknanum-2026-317",
@@ -13,7 +13,9 @@
       "area": "서울 구로구",
       "status": "온라인 신청",
       "url": "https://munhaknanum.kr/2026/front/index.php?g_page=program&m_page=program02&act=View&D_IDX=317&ViewType=List",
-      "source": "2026 문학나눔(한국출판문화산업진흥원)"
+      "source": "2026 문학나눔(한국출판문화산업진흥원)",
+      "image": "https://munhaknanum.kr/2026/wdFiles/upload/display/26100746820000.jpg",
+      "imageCredit": "포스터 © 한국출판문화산업진흥원(문학나눔)"
     },
     {
       "id": "munhaknanum-2026-318",
@@ -26,7 +28,9 @@
       "area": "강원 원주시",
       "status": "온라인 신청",
       "url": "https://munhaknanum.kr/2026/front/index.php?g_page=program&m_page=program02&act=View&D_IDX=318&ViewType=List",
-      "source": "2026 문학나눔(한국출판문화산업진흥원)"
+      "source": "2026 문학나눔(한국출판문화산업진흥원)",
+      "image": "https://munhaknanum.kr/2026/wdFiles/upload/display/26100784726800.jpg",
+      "imageCredit": "포스터 © 한국출판문화산업진흥원(문학나눔)"
     },
     {
       "id": "munhaknanum-2026-319",
@@ -39,7 +43,9 @@
       "area": "전남 목포시",
       "status": "모집 전",
       "url": "https://munhaknanum.kr/2026/front/index.php?g_page=program&m_page=program02&act=View&D_IDX=319&ViewType=List",
-      "source": "2026 문학나눔(한국출판문화산업진흥원)"
+      "source": "2026 문학나눔(한국출판문화산업진흥원)",
+      "image": "https://munhaknanum.kr/2026/wdFiles/upload/display/26100732346400.jpg",
+      "imageCredit": "포스터 © 한국출판문화산업진흥원(문학나눔)"
     }
   ]
 }

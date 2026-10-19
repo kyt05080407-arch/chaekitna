@@ -1,5 +1,5 @@
-import { html, toIsbn13, toMarkup } from '../util.js';
-import { brandMark, demoBadge, demoNotice, icon, readingCard, setTopbar, skeletonRows } from '../ui.js';
+import { html, safeImageUrl, toIsbn13, toMarkup } from '../util.js';
+import { brandMark, cover, demoBadge, demoNotice, icon, readingCard, setTopbar, skeletonRows } from '../ui.js';
 import * as store from '../store.js';
 import { isDemoMode, myRegion, popularBooks } from '../api.js';
 import { getLibrary, loadLibraries } from '../libraries.js';
@@ -24,7 +24,7 @@ function popularTabs(data) {
 
 const DAYS = ['일', '월', '화', '수', '목', '금', '토'];
 
-// 작가 강연 배너 한 장
+// 작가 강연 배너 한 장: 공식 포스터가 있으면 왼쪽에 포스터(날짜 표시를 얹어서), 없으면 날짜 칸
 function promoItem(event) {
   const d = new Date(event.start);
   const parts = Object.fromEntries(
@@ -33,13 +33,18 @@ function promoItem(event) {
       .map((p) => [p.type, p.value]),
   );
   const dow = DAYS[['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].indexOf(parts.weekday)];
-  return html`<a class="promo__item" href="${event.url}" target="_blank" rel="noopener noreferrer" aria-label="${event.kind} ${event.title}, ${eventWhen(event.start)}, ${event.area} (새 창)">
-    <span class="promo__date" aria-hidden="true"><span class="promo__month">${parts.month}월</span><span class="promo__day">${parts.day}</span><span class="promo__dow">${dow}요일</span></span>
+  const poster = safeImageUrl(event.image);
+  const visual = poster
+    ? html`<span class="promo__poster"><img src="${poster}" alt="" loading="lazy" referrerpolicy="no-referrer" data-poster><span class="promo__chip" aria-hidden="true">${parts.month}.${parts.day} ${dow}</span></span>`
+    : html`<span class="promo__date" aria-hidden="true"><span class="promo__month">${parts.month}월</span><span class="promo__day">${parts.day}</span><span class="promo__dow">${dow}요일</span></span>`;
+  return html`<a class="promo__item${poster ? ' promo__item--poster' : ''}" href="${event.url}" target="_blank" rel="noopener noreferrer" aria-label="${event.kind} ${event.title}, ${eventWhen(event.start)}, ${event.area} (새 창)">
+    ${visual}
     <span class="promo__body">
       <span class="promo__kind">${event.kind} · ${event.area}</span>
       <span class="promo__title">${event.title}</span>
       <span class="promo__meta">${event.people}</span>
-      <span class="promo__meta">${eventWhen(event.start)} · ${event.status}</span>
+      <span class="promo__meta">${eventWhen(event.start)}</span>
+      <span class="promo__status">${event.status}</span>
     </span>
   </a>`;
 }
@@ -131,7 +136,7 @@ export async function render({ main, navigate, signal }) {
     box.innerHTML = toMarkup(html`
       <div class="promo__track" id="promo-track" tabindex="0">${events.map(promoItem)}</div>
       <div class="promo__foot">
-        <span class="small muted">작가 강연 · 출처 문학나눔</span>
+        <span class="small muted">작가 강연 · 정보와 포스터 출처 문학나눔</span>
         ${events.length > 1 ? html`<span class="promo__dots" aria-hidden="true">${events.map((_, i) => html`<span class="promo__dot" aria-current="${i === 0 ? 'true' : 'false'}"></span>`)}</span>` : ''}
       </div>`);
     const track = box.querySelector('#promo-track');
@@ -194,8 +199,11 @@ export async function render({ main, navigate, signal }) {
     main.querySelector('#pop-list').innerHTML = toMarkup(
       current.items.slice(0, 10).map((book, i) => {
         const rank = book.rank || i + 1;
-        return html`<li><a class="row" href="#/book/${book.isbn13}">
+        // 1위는 큰 표지로 눈에 띄게, 나머지는 작은 표지
+        const top = i === 0;
+        return html`<li><a class="row${top ? ' row--top' : ''}" href="#/book/${book.isbn13}">
           <span class="rank ${rank <= 3 ? 'rank--top' : ''}">${rank}</span>
+          ${cover(book, top ? 'lg' : 'sm')}
           <span class="row__body">
             <span class="row__title">${book.title}</span>
             <span class="row__sub">${book.authors}</span>

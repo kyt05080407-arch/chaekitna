@@ -145,6 +145,12 @@ document.addEventListener(
   'error',
   (event) => {
     const img = event.target;
+    // 강연 포스터를 못 불러오면 포스터 칸을 숨긴다(날짜는 글로도 나와 있다)
+    if (img && img.tagName === 'IMG' && img.hasAttribute('data-poster')) {
+      const box = img.closest('.promo__poster');
+      if (box) box.hidden = true;
+      return;
+    }
     if (img && img.tagName === 'IMG' && img.hasAttribute('data-cover')) {
       const span = document.createElement('span');
       span.className = img.className;
