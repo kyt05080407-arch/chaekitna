@@ -60,6 +60,31 @@ test('설정: 글자 크기와 어두운 화면이 바로 바뀐다', async ({ p
   expect(bg).toBe('rgb(16, 18, 22)');
   await page.reload();
   await expect(page.locator('html')).toHaveAttribute('data-size', 'xl');
+  await expect(page.locator('#font-px')).toHaveValue('22');
+});
+
+test('설정: 글자 크기 막대를 좌우로 끌면 바로 바뀌고, 단계 버튼과 맞춰진다', async ({ page }) => {
+  await page.goto('#/settings');
+  const rootPx = () => page.evaluate(() => getComputedStyle(document.documentElement).fontSize);
+  const slider = page.locator('#font-px');
+  await expect(slider).toHaveValue('19');
+  await expect(page.locator('button[data-size=l]')).toHaveAttribute('aria-pressed', 'true');
+  await slider.fill('24');
+  expect(await rootPx()).toBe('24px');
+  await expect(page.locator('button[data-size][aria-pressed=true]')).toHaveCount(0);
+  await expect(slider).toHaveAttribute('aria-valuetext', '24픽셀');
+  // 키보드(왼쪽 화살표)로도 줄일 수 있다
+  await slider.focus();
+  await page.keyboard.press('ArrowLeft');
+  await page.keyboard.press('ArrowLeft');
+  expect(await rootPx()).toBe('22px');
+  await expect(page.locator('button[data-size=xl]')).toHaveAttribute('aria-pressed', 'true');
+  // 다른 화면과 다시 열었을 때도 그대로
+  await page.reload();
+  expect(await rootPx()).toBe('22px');
+  await page.locator('button[data-size=m]').click();
+  expect(await rootPx()).toBe('17px');
+  await expect(slider).toHaveValue('17');
 });
 
 test('설정: 모두 지우기는 두 번 눌러야 지워진다', async ({ page }) => {

@@ -1,5 +1,5 @@
 import { html, toMarkup } from '../util.js';
-import { applySettings, icon, setTopbar, toast } from '../ui.js';
+import { FONT_PX, applySettings, fontPxOf, icon, setTopbar, toast } from '../ui.js';
 import * as store from '../store.js';
 import { REGIONS } from '../regions.js';
 import { CONFIG } from '../config.js';
@@ -31,9 +31,15 @@ export async function render({ main }) {
     <section class="section" aria-labelledby="size-h">
       <h2 class="h2" id="size-h">글자 크기</h2>
       <div class="seg" role="group" aria-labelledby="size-h">
-        ${SIZES.map((x) => html`<button type="button" data-size="${x.id}" aria-pressed="${s.size === x.id ? 'true' : 'false'}">${x.label}</button>`)}
+        ${SIZES.map((x) => html`<button type="button" data-size="${x.id}" aria-pressed="${fontPxOf(s) === FONT_PX.presets[x.id] ? 'true' : 'false'}">${x.label}</button>`)}
       </div>
-      <p class="small muted">이 크기로 책 제목과 도서관 이름이 보여요.</p>
+      <div class="size-slider">
+        <span class="size-slider__a size-slider__a--s" aria-hidden="true">가</span>
+        <label class="sr-only" for="font-px">글자 크기 직접 조절</label>
+        <input type="range" id="font-px" min="${FONT_PX.min}" max="${FONT_PX.max}" step="1" value="${fontPxOf(s)}" aria-valuetext="${fontPxOf(s)}픽셀">
+        <span class="size-slider__a size-slider__a--l" aria-hidden="true">가</span>
+      </div>
+      <p class="small muted">막대를 좌우로 끌면 바로 바뀌어요. 이 크기로 책 제목과 도서관 이름이 보여요.</p>
     </section>
 
     <section class="section" aria-labelledby="theme-h">
@@ -84,12 +90,25 @@ export async function render({ main }) {
     return next;
   };
 
+  // 글자 크기: 단계 버튼과 막대가 서로 맞춰 움직인다
+  const slider = main.querySelector('#font-px');
+  const syncSize = (px) => {
+    slider.value = String(px);
+    slider.setAttribute('aria-valuetext', `${px}픽셀`);
+    main.querySelectorAll('[data-size]').forEach((b) => b.setAttribute('aria-pressed', String(FONT_PX.presets[b.dataset.size] === px)));
+  };
   main.querySelectorAll('[data-size]').forEach((btn) =>
     btn.addEventListener('click', () => {
-      update({ size: btn.dataset.size });
-      main.querySelectorAll('[data-size]').forEach((b) => b.setAttribute('aria-pressed', String(b === btn)));
+      const px = FONT_PX.presets[btn.dataset.size];
+      update({ size: btn.dataset.size, fontPx: px });
+      syncSize(px);
     }),
   );
+  slider.addEventListener('input', () => {
+    const px = Number(slider.value);
+    update({ fontPx: px });
+    syncSize(px);
+  });
   main.querySelectorAll('[data-theme]').forEach((btn) =>
     btn.addEventListener('click', () => {
       update({ theme: btn.dataset.theme });

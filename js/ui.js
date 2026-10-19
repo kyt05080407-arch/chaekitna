@@ -99,10 +99,27 @@ export function setTopbar(markup) {
   if (bar) bar.innerHTML = String(markup.value ?? markup);
 }
 
+// 글자 크기: 단계(보통·크게·아주 크게) 또는 막대로 고른 픽셀 값
+export const FONT_PX = { min: 15, max: 26, presets: { m: 17, l: 19, xl: 22 } };
+
+export function fontPxOf(settings) {
+  const px = Number(settings && settings.fontPx);
+  if (Number.isFinite(px) && px >= FONT_PX.min && px <= FONT_PX.max) return Math.round(px);
+  return FONT_PX.presets[settings && settings.size] || FONT_PX.presets.l;
+}
+
+// 막대 값에 가장 가까운 단계(단계 버튼 표시와 예전 설정 호환용)
+export function nearestSize(px) {
+  return Object.entries(FONT_PX.presets).reduce((best, [id, v]) => (Math.abs(v - px) < Math.abs(FONT_PX.presets[best] - px) ? id : best), 'l');
+}
+
 // 글자 크기·화면 밝기 설정을 문서에 적용
 export function applySettings(settings) {
   const root = document.documentElement;
-  root.dataset.size = settings.size || 'l';
+  const px = fontPxOf(settings);
+  root.dataset.size = nearestSize(px);
+  // 모든 크기를 rem으로 써서, 문서 기본 글자 크기만 바꾸면 화면 전체가 같이 바뀐다
+  root.style.fontSize = `${px}px`;
   if (settings.theme === 'light' || settings.theme === 'dark') root.dataset.theme = settings.theme;
   else delete root.dataset.theme;
   const meta = document.querySelector('meta[name="theme-color"]');

@@ -89,7 +89,7 @@
   color-scheme: dark;
 }
 
-/* 글자 크기 3단계: 모든 크기를 rem으로 써서 한 번에 바뀐다 */
+/* 글자 크기: 3단계 기본값(설정 막대로 고른 값은 ui.js가 html에 직접 넣는다). 모든 크기를 rem으로 써서 한 번에 바뀐다 */
 html { font-size: 19px; -webkit-text-size-adjust: 100%; -webkit-tap-highlight-color: transparent; }
 html[data-size='m'] { font-size: 17px; }
 html[data-size='l'] { font-size: 19px; }
@@ -268,6 +268,12 @@ select.input { appearance: none; -webkit-appearance: none; background-image: non
 .seg { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.25rem; padding: 0.25rem; background: var(--fill); border-radius: var(--r); }
 .seg button { min-height: 2.7rem; border: 0; border-radius: var(--r-sm); background: transparent; color: var(--muted); font-weight: 700; cursor: pointer; }
 .seg button[aria-pressed='true'] { background: var(--card); color: var(--ink); box-shadow: 0 1px 3px rgba(25, 31, 40, 0.12); }
+/* 글자 크기 막대: 좌우로 끌어서 조절 */
+.size-slider { display: flex; align-items: center; gap: 0.7rem; margin-top: 0.9rem; padding: 0 0.2rem; }
+.size-slider__a { flex: none; font-weight: 800; color: var(--ink-2); line-height: 1; }
+.size-slider__a--s { font-size: 15px; }
+.size-slider__a--l { font-size: 26px; }
+.size-slider input[type='range'] { flex: 1; min-width: 0; height: 2.6rem; margin: 0; accent-color: var(--accent); cursor: pointer; touch-action: pan-y; }
 
 /* ---------- 목록 (거래 내역처럼: 왼쪽 내용, 오른쪽 숫자) ---------- */
 
