@@ -25,10 +25,25 @@ export function hostOf(url) {
   }
 }
 
+// 한 주소 아래 도서관마다 따로 사이트가 있는 경우(예: lib.ice.go.kr/gyeyang)를 위해 '호스트/첫 경로'를 먼저 본다.
+export function opacKeys(homepage) {
+  const host = hostOf(homepage);
+  if (!host) return [];
+  let first = '';
+  try {
+    const u = new URL(/^https?:\/\//i.test(homepage.trim()) ? homepage.trim() : `http://${homepage.trim()}`);
+    first = u.pathname.split('/').filter(Boolean)[0] || '';
+  } catch {
+    /* 호스트만 */
+  }
+  return first && !/\.(do|html?|jsp|php|asp|aspx|web)$/i.test(first) ? [`${host}/${first.toLowerCase()}`, host] : [host];
+}
+
 // 이 도서관 홈페이지에서 제목으로 바로 검색하는 주소. 모르면 ''.
 export function searchUrl(templates, lib, title) {
   if (!lib || !title || !templates) return '';
-  const template = templates[hostOf(lib.homepage)];
+  const key = opacKeys(lib.homepage).find((k) => typeof templates[k] === 'string');
+  const template = key ? templates[key] : '';
   // 새 창으로 여는 링크라 http 사이트도 그대로 둔다(일부 도서관은 https를 지원하지 않는다)
   if (typeof template !== 'string' || !/^https?:\/\/\S+\{q\}/i.test(template)) return '';
   try {
