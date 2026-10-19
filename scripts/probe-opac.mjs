@@ -34,7 +34,7 @@ function hostOf(url) {
 }
 
 async function get(url) {
-  const res = await fetch(url, { headers: { 'user-agent': UA, 'accept-language': 'ko-KR,ko;q=0.9' }, redirect: 'follow', signal: AbortSignal.timeout(20000) });
+  const res = await fetch(url, { headers: { 'user-agent': UA, 'accept-language': 'ko-KR,ko;q=0.9' }, redirect: 'follow', signal: AbortSignal.timeout(12000) });
   const buf = Buffer.from(await res.arrayBuffer());
   const head = buf.subarray(0, 4000).toString('latin1');
   const charset = (res.headers.get('content-type') || '').match(/charset=([\w-]+)/i)?.[1] || head.match(/charset=["']?([\w-]+)/i)?.[1] || 'utf-8';
@@ -76,6 +76,21 @@ function searchForms(html, baseUrl) {
   return forms;
 }
 
+function scriptSearchUrls(html, baseUrl) {
+  const out = new Set();
+  const re = /["'](\/?[\w./-]*(?:search|Search|srch)[\w./-]*\.(?:do|jsp|php|asp|aspx)?\??[^"'\s<>]*?(?:searchKeyword|keyword|searchWord|search_text|search_txt|searchTxt|kwd|query|sw)=)["']/g;
+  for (const m of html.matchAll(re)) {
+    try {
+      const url = new URL(m[1], baseUrl);
+      if (/^https?:$/.test(url.protocol)) out.add(`${url.href}{q}`);
+    } catch {
+      /* 무시 */
+    }
+    if (out.size >= 4) break;
+  }
+  return [...out];
+}
+
 function formTemplate(f) {
   const params = new URLSearchParams();
   for (const h of f.hidden) params.set(h.name, h.value);
@@ -113,11 +128,16 @@ for (const g of targets) {
     out.charset = home.charset;
     const homeCount = count(home.text, TITLE);
     const candidates = [
-      ...searchForms(home.text, home.url).filter((f) => f.method === 'get').map((f) => ({ via: 'form', template: formTemplate(f) })),
+      // GET 폼 먼저, POST 폼도 GET으로 시도(많은 도서관 서버가 둘 다 받는다)
+      ...searchForms(home.text, home.url)
+        .sort((a, b) => (a.method === 'get' ? 0 : 1) - (b.method === 'get' ? 0 : 1))
+        .map((f) => ({ via: f.method === 'get' ? 'form' : 'form-post-as-get', template: formTemplate(f) })),
+      // 스크립트 안에 들어 있는 검색 주소(예: location.href='/search/list.do?searchKeyword='+값)
+      ...scriptSearchUrls(home.text, home.url).map((t) => ({ via: 'script', template: t })),
       ...PATTERNS.map((p) => ({ via: 'pattern', template: new URL(home.url).origin + p })),
     ];
-    for (const c of candidates.slice(0, 12)) {
-      await sleep(700);
+    for (const c of candidates.slice(0, 14)) {
+      await sleep(400);
       try {
         const v = await verify(c.template, homeCount);
         out.tried.push({ template: c.template, status: v.status, hits: v.hits });
