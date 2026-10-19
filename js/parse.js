@@ -50,9 +50,12 @@ export function cleanAuthors(value) {
     .join(', ');
 }
 
+// 정보나루 제목은 "안녕이라 그랬어 :김애란 소설"처럼 ' :' 뒤에 부제가 붙어 온다. 화면에는 본제목만 쓴다.
 export function cleanTitle(value) {
   if (typeof value !== 'string') return '';
-  return value.replace(/\s+/g, ' ').trim();
+  const title = value.replace(/\s+/g, ' ').trim();
+  const main = title.split(/\s+:\s*/)[0].trim();
+  return main || title;
 }
 
 // 책 소개 글: 엔티티를 풀고, 줄바꿈 태그는 줄바꿈으로, 나머지 태그는 지운다.

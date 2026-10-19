@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { apiError, cleanAuthors, parseBookDetail, parseBooks, parseExist, parseLibraries, statusOf, yn } from '../js/parse.js';
+import { apiError, cleanAuthors, cleanTitle, parseBookDetail, parseBooks, parseExist, parseLibraries, statusOf, yn } from '../js/parse.js';
 
 test('책 검색 응답: doc으로 한 겹 싸인 목록', () => {
   const resp = {
@@ -74,4 +74,13 @@ test('책 상세 응답', () => {
   assert.equal(book.title, '데미안');
   assert.equal(book.authors, '헤르만 헤세');
   assert.equal(parseBookDetail({ response: {} }), null);
+});
+
+test('제목: \' :\' 뒤 부제는 떼고 본제목만', () => {
+  assert.equal(cleanTitle('안녕이라 그랬어 :김애란 소설'), '안녕이라 그랬어');
+  assert.equal(cleanTitle('소년이 온다 : 한강 장편소설'), '소년이 온다');
+  assert.equal(cleanTitle('  데미안  '), '데미안');
+  assert.equal(cleanTitle('흔한남매. 18'), '흔한남매. 18');
+  assert.equal(cleanTitle(':부제만'), ':부제만');
+  assert.equal(cleanTitle(null), '');
 });
