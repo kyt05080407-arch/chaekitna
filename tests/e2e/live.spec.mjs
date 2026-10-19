@@ -182,3 +182,27 @@ test('도서관마다 홈페이지에서 이 책을 바로 찾는 링크(모르�
   await page.reload();
   await expect(page.locator('#mine [data-lib="147030"] [data-site] a')).toHaveAttribute('href', /kw=%EB%8D%B0%EB%AF%B8%EC%95%88/);
 });
+
+test('요청서(POST) 방식 도서관: 바로 찾기를 누르면 제목을 채워 새 창으로 검색을 보낸다', async ({ page, context }) => {
+  await page.route('**/data/opac.json', (route) =>
+    route.fulfill({
+      json: { hosts: { 'lib.andong.go.kr': { method: 'post', action: 'https://proxy.example/opac-search.do', fields: { mode: 'simple', searchWord: '{q}' }, charset: 'UTF-8' } } },
+    }),
+  );
+  const sent = [];
+  await context.route('https://proxy.example/opac-search.do', (route) => {
+    sent.push({ method: route.request().method(), body: route.request().postData() });
+    return route.fulfill({ contentType: 'text/html; charset=utf-8', body: '<p>검색 결과</p>' });
+  });
+  await pickLibraries(page);
+  await openFirstResult(page);
+  const button = page.locator('#mine [data-lib="147163"] [data-site] button');
+  await expect(button).toHaveText('홈페이지에서 바로 찾기');
+  const [popup] = await Promise.all([page.waitForEvent('popup'), button.click()]);
+  await popup.waitForLoadState();
+  expect(sent).toEqual([{ method: 'POST', body: `mode=simple&searchWord=${encodeURIComponent('데미안')}` }]);
+  await expect(popup.locator('p')).toHaveText('검색 결과');
+  await popup.close();
+  // 폼은 보낸 뒤 바로 치운다
+  await expect(page.locator('body > form')).toHaveCount(0);
+});

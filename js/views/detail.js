@@ -2,7 +2,7 @@ import { basisLabel, html, mapUrl, safeHttpUrl, telHref, toMarkup } from '../uti
 import { backButton, cover, demoBadge, demoNotice, errorNotice, hotLine, icon, readingCard, setTopbar, skeletonRows, statusBadge, toast } from '../ui.js';
 import * as store from '../store.js';
 import { availability, bookDetail, holdings, isDemoMode, popularInfo } from '../api.js';
-import { loadOpac, searchUrl } from '../opac.js';
+import { loadOpac, searchTarget, submitSearch } from '../opac.js';
 import { getLibrary, loadLibraries } from '../libraries.js';
 import { REGIONS, regionByCode } from '../regions.js';
 import { statusOf } from '../parse.js';
@@ -36,9 +36,12 @@ const clip = (text, max = 60) => (text.length > max ? `${text.slice(0, max)}…`
 
 // 도서관 홈페이지 링크: 바로 검색 주소를 알면 그 책 검색 결과로, 모르면 제목을 복사해 두고 홈페이지로
 function siteLink(lib, title, templates) {
-  const direct = searchUrl(templates, lib, title);
-  if (direct) {
-    return html`<a class="is-go" href="${direct}" target="_blank" rel="noopener noreferrer">${icon('search')}홈페이지에서 바로 찾기</a>`;
+  const target = searchTarget(templates, lib, title);
+  if (target && target.kind === 'get') {
+    return html`<a class="is-go" href="${target.href}" target="_blank" rel="noopener noreferrer">${icon('search')}홈페이지에서 바로 찾기</a>`;
+  }
+  if (target && target.kind === 'post') {
+    return html`<button class="is-go" type="button" data-post-search="${JSON.stringify(target)}">${icon('search')}홈페이지에서 바로 찾기</button>`;
   }
   const home = lib ? safeHttpUrl(lib.homepage) : '';
   if (!home) return '';
@@ -283,6 +286,16 @@ export async function render({ main, params, signal }) {
 
   // 바로 검색 주소가 없는 도서관: 홈페이지를 열면서 제목을 복사해 둔다(검색창에 붙여 넣기)
   main.addEventListener('click', (event) => {
+    // POST 방식 도서관: 검색 요청서를 채워 새 창으로 보낸다
+    const post = event.target.closest('[data-post-search]');
+    if (post) {
+      try {
+        submitSearch(JSON.parse(post.dataset.postSearch));
+      } catch {
+        toast('도서관 홈페이지를 열지 못했어요');
+      }
+      return;
+    }
     const link = event.target.closest('[data-copy-title]');
     const title = link && link.dataset.copyTitle;
     if (!title || !navigator.clipboard) return;

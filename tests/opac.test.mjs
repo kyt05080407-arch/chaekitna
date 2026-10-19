@@ -28,3 +28,22 @@ test('바로 찾기 주소: 제목을 넣고, 같은 호스트의 다른 사이�
   assert.equal(searchUrl(T, { homepage: 'https://lib.junggu.ulsan.kr' }, ''), '');
   assert.equal(searchUrl(T, null, '책'), '');
 });
+
+test('요청서(POST) 방식: 제목을 채운 검색 요청서를 만든다', async () => {
+  const { searchTarget } = await import('../js/opac.js');
+  const T2 = {
+    'lib.example.kr': { method: 'post', action: 'https://lib.example.kr/search/result.do', fields: { mode: 'simple', searchWord: '{q}' }, charset: 'EUC-KR' },
+    'nofield.kr': { method: 'post', action: 'https://nofield.kr/s', fields: { a: 'b' } },
+    'js.kr': { method: 'post', action: 'javascript:void(0)', fields: { q: '{q}' } },
+    'get.kr': 'https://get.kr/s?q={q}',
+  };
+  assert.deepEqual(searchTarget(T2, { homepage: 'https://www.lib.example.kr/' }, '모순'), {
+    kind: 'post',
+    action: 'https://lib.example.kr/search/result.do',
+    fields: { mode: 'simple', searchWord: '모순' },
+    charset: 'EUC-KR',
+  });
+  assert.equal(searchTarget(T2, { homepage: 'https://nofield.kr' }, '모순'), null, '검색어 칸이 없으면 쓰지 않는다');
+  assert.equal(searchTarget(T2, { homepage: 'https://js.kr' }, '모순'), null);
+  assert.deepEqual(searchTarget(T2, { homepage: 'https://get.kr' }, '모순'), { kind: 'get', href: `https://get.kr/s?q=${encodeURIComponent('모순')}` });
+});

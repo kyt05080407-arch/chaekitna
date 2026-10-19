@@ -314,12 +314,13 @@ a.row:active { background: var(--fill); }
 .card__top .badges { margin-left: auto; }
 .card__meta { font-size: 0.8rem; color: var(--muted); margin-top: 0.2rem; }
 .card__links { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: 0.6rem; }
-.card__links a, .card__links .btn {
+.card__links a, .card__links .btn, .card__links button {
   font-size: 0.8rem; font-weight: 700; text-decoration: none; display: inline-flex; align-items: center; gap: 0.25rem;
   min-height: 2.2rem; padding: 0 0.65rem; border-radius: 999px; background: var(--fill); color: var(--ink-2);
 }
 .card__links svg { width: 0.95rem; height: 0.95rem; }
 .card__links .is-go { background: var(--accent-soft); color: var(--accent-ink); }
+.card__links button { border: 0; font-family: inherit; cursor: pointer; }
 .card__links--row { margin-top: 0.4rem; }
 .site-link { display: contents; }
 .card__alert { display: flex; align-items: center; gap: 0.35rem; margin-top: 0.45rem; font-size: 0.82rem; font-weight: 700; color: var(--loan-ink); }
