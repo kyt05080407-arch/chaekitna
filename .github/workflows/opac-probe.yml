@@ -1,0 +1,35 @@
+name: Library search check
+
+# 도서관 홈페이지마다 '이 책 바로 검색' 주소를 찾아 opac-probe 브랜치에 결과를 남긴다(직접 실행할 때만).
+on:
+  workflow_dispatch:
+    inputs:
+      limit:
+        description: '많이 쓰는 홈페이지 몇 곳까지 볼지(경북은 모두 포함)'
+        default: '80'
+
+permissions:
+  contents: write
+
+jobs:
+  probe:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Probe library sites
+        run: node scripts/probe-opac.mjs "${{ inputs.limit }}"
+      - name: Save to opac-probe branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          mv opac-probe.json /tmp/opac-probe.json
+          git checkout --orphan opac-probe
+          git rm -rq --cached .
+          cp /tmp/opac-probe.json opac-probe.json
+          git add opac-probe.json
+          git commit -qm "도서관 바로 검색 주소 점검 결과"
+          git push -f origin opac-probe
