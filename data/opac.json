@@ -1,0 +1,5 @@
+{
+  "checkedAt": null,
+  "note": "도서관 홈페이지별 \"이 책 바로 찾기\" 주소. scripts/probe-opac.mjs 점검에서 실제 검색 결과가 확인된 것만 넣는다. {q} 자리에 책 제목.",
+  "hosts": {}
+}

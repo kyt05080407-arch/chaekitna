@@ -2,6 +2,7 @@ import { basisLabel, html, mapUrl, safeHttpUrl, telHref, toMarkup } from '../uti
 import { backButton, cover, demoBadge, demoNotice, errorNotice, hotLine, icon, readingCard, setTopbar, skeletonRows, statusBadge, toast } from '../ui.js';
 import * as store from '../store.js';
 import { availability, bookDetail, holdings, isDemoMode, popularInfo } from '../api.js';
+import { loadOpac, searchUrl } from '../opac.js';
 import { getLibrary, loadLibraries } from '../libraries.js';
 import { REGIONS, regionByCode } from '../regions.js';
 import { statusOf } from '../parse.js';
@@ -33,9 +34,19 @@ function badges(status, isDemo) {
 
 const clip = (text, max = 60) => (text.length > max ? `${text.slice(0, max)}…` : text);
 
-function libraryCard(lib, code, status) {
-  const name = lib ? lib.name : `도서관 ${code}`;
+// 도서관 홈페이지 링크: 바로 검색 주소를 알면 그 책 검색 결과로, 모르면 제목을 복사해 두고 홈페이지로
+function siteLink(lib, title, templates) {
+  const direct = searchUrl(templates, lib, title);
+  if (direct) {
+    return html`<a class="is-go" href="${direct}" target="_blank" rel="noopener noreferrer">${icon('search')}홈페이지에서 바로 찾기</a>`;
+  }
   const home = lib ? safeHttpUrl(lib.homepage) : '';
+  if (!home) return '';
+  return html`<a href="${home}" target="_blank" rel="noopener noreferrer" data-copy-title="${title || ''}">${icon('external')}${title ? '홈페이지 (제목 복사)' : '홈페이지'}</a>`;
+}
+
+function libraryCard(lib, code, status, { title = '', templates = {} } = {}) {
+  const name = lib ? lib.name : `도서관 ${code}`;
   const tel = lib ? telHref(lib.tel) : '';
   const closedNow = Boolean(lib && lib.closed && closedToday(lib.closed));
   return html`<div class="card" data-lib="${code}">
@@ -44,7 +55,7 @@ function libraryCard(lib, code, status) {
     ${lib && lib.hours ? html`<p class="card__meta">${clip(lib.hours)}</p>` : ''}
     ${lib && lib.closed ? html`<p class="card__meta">휴관 · ${clip(lib.closed)}</p>` : ''}
     <div class="card__links">
-      ${home ? html`<a href="${home}" target="_blank" rel="noopener noreferrer">${icon('external')}홈페이지</a>` : ''}
+      <span class="site-link" data-site>${siteLink(lib, title, templates)}</span>
       ${tel ? html`<a href="${tel}">${icon('phone')}전화</a>` : ''}
       ${lib ? html`<a href="${mapUrl(lib.name, lib.lat, lib.lng)}" target="_blank" rel="noopener noreferrer">${icon('pin')}지도</a>` : ''}
     </div>
@@ -145,6 +156,19 @@ export async function render({ main, params, signal }) {
     </section>
     <p class="footer-note">출처: 도서관 정보나루 · 방문 전 도서관 홈페이지에서 한 번 더 확인하세요</p>`);
 
+  // ---------- 도서관 홈페이지 바로 찾기 ----------
+  const opacReady = loadOpac();
+  const searchTitle = () => (book && book.title) || '';
+  // 책 정보가 늦게 오면(제목을 몰랐다가 알게 되면) 홈페이지 링크를 제목 검색으로 바꾼다
+  const refreshSiteLinks = async () => {
+    const templates = await opacReady;
+    if (signal.aborted) return;
+    main.querySelectorAll('#mine [data-lib]').forEach((card) => {
+      const slot = card.querySelector('[data-site]');
+      if (slot) slot.innerHTML = toMarkup(siteLink(getLibrary(card.dataset.lib), searchTitle(), templates));
+    });
+  };
+
   // 이번 주 인기 목록에 있는 책이면 순위와 대출 횟수
   popularInfo(isbn)
     .then((info) => {
@@ -208,6 +232,7 @@ export async function render({ main, params, signal }) {
         if (signal.aborted) return;
         book = found;
         main.querySelector('#head').innerHTML = toMarkup(bookHead(found, isbn));
+        refreshSiteLinks();
         introBox.innerHTML = toMarkup(found && found.description ? bookIntro(found, isbn) : '');
         if (found) document.title = `${found.title} — 책있나`;
       })
@@ -229,7 +254,9 @@ export async function render({ main, params, signal }) {
   // ---------- 내 도서관 현황 ----------
   const mineBox = main.querySelector('#mine');
   const loadMine = async (force = false) => {
-    mineBox.innerHTML = toMarkup(mine.map((code) => libraryCard(getLibrary(code), code, null)));
+    const templates = await opacReady;
+    if (signal.aborted) return;
+    mineBox.innerHTML = toMarkup(mine.map((code) => libraryCard(getLibrary(code), code, null, { title: searchTitle(), templates })));
     try {
       const result = await availability(isbn, mine, { signal, force });
       if (signal.aborted) return;
@@ -254,6 +281,17 @@ export async function render({ main, params, signal }) {
   };
   if (mine.length) loadMine();
 
+  // 바로 검색 주소가 없는 도서관: 홈페이지를 열면서 제목을 복사해 둔다(검색창에 붙여 넣기)
+  main.addEventListener('click', (event) => {
+    const link = event.target.closest('[data-copy-title]');
+    const title = link && link.dataset.copyTitle;
+    if (!title || !navigator.clipboard) return;
+    navigator.clipboard.writeText(title).then(
+      () => toast(`'${title}' 제목을 복사했어요. 홈페이지 검색창에 붙여 넣으세요`),
+      () => {},
+    );
+  });
+
   // ---------- 더 넓게 찾기 ----------
   const wide = main.querySelector('#wide');
   main.querySelector('#find-wide').addEventListener('click', async () => {
@@ -272,12 +310,14 @@ export async function render({ main, params, signal }) {
         wide.innerHTML = toMarkup(html`<p class="muted">${regionName}에서 내 도서관 말고 이 책을 가진 도서관을 찾지 못했어요.</p>`);
         return;
       }
+      const templates = await opacReady;
       wide.innerHTML = toMarkup(html`
         <p class="small muted">${regionName}에서 이 책을 가진 도서관 ${codes.length}곳${found.demo ? ' (예시)' : ''}</p>
         <ul class="list">${codes.map((code) => {
           const lib = getLibrary(code) || (found.libraries || []).find((l) => l.code === code);
+          const link = siteLink(lib, searchTitle(), templates);
           return html`<li class="row" data-wide="${code}">
-            <span class="row__body"><span class="row__title">${lib ? lib.name : code}</span><span class="row__sub">${lib ? lib.address : ''}</span></span>
+            <span class="row__body"><span class="row__title">${lib ? lib.name : code}</span><span class="row__sub">${lib ? lib.address : ''}</span>${link ? html`<span class="card__links card__links--row">${link}</span>` : ''}</span>
             <span class="badges" data-status><button class="btn btn--small" type="button" data-check="${code}">대출 확인</button></span>
           </li>`;
         })}</ul>`);

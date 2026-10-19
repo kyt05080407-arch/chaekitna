@@ -160,3 +160,25 @@ test('처음 화면의 인기 도서는 내 지역 목록을 보여 준다', asy
   await expect(page.locator('#pop-sub')).toContainText('경북 고등학생');
   expect(asked).toEqual(['11']);
 });
+
+test('도서관마다 홈페이지에서 이 책을 바로 찾는 링크(모르는 곳은 제목 복사 후 홈페이지)', async ({ page }) => {
+  await page.route('**/data/opac.json', (route) =>
+    route.fulfill({ json: { hosts: { 'lib.andong.go.kr': 'https://lib.andong.go.kr/search/result?kw={q}&lib=ALL' } } }),
+  );
+  await pickLibraries(page);
+  await openFirstResult(page);
+  const andong = page.locator('#mine [data-lib="147163"] [data-site] a');
+  await expect(andong).toHaveText('홈페이지에서 바로 찾기');
+  await expect(andong).toHaveAttribute('href', `https://lib.andong.go.kr/search/result?kw=${encodeURIComponent('데미안')}&lib=ALL`);
+  await expect(andong).toHaveAttribute('target', '_blank');
+  const gb = page.locator('#mine [data-lib="147168"] [data-site] a');
+  await expect(gb).toHaveText('홈페이지 (제목 복사)');
+  await expect(gb).toHaveAttribute('href', 'https://www.gb.go.kr/lib');
+  await expect(gb).toHaveAttribute('data-copy-title', '데미안');
+
+  // 책 정보를 처음 받아 오는 경우(바로 이 주소로 들어옴)에도 제목이 들어간다
+  await page.evaluate(() => Object.keys(localStorage).filter((k) => k.includes(':c:')).forEach((k) => localStorage.removeItem(k)));
+  await page.goto('#/book/9788937460449');
+  await page.reload();
+  await expect(page.locator('#mine [data-lib="147030"] [data-site] a')).toHaveAttribute('href', /kw=%EB%8D%B0%EB%AF%B8%EC%95%88/);
+});
