@@ -1,0 +1,4283 @@
+{
+  "checkedAt": "2026-10-19T13:19:59.744Z",
+  "title": "데미안",
+  "results": [
+    {
+      "host": "library.daegu.go.kr",
+      "libraries": 58,
+      "homepage": "http://library.daegu.go.kr/228lib/index.do",
+      "template": null,
+      "post": null,
+      "via": null,
+      "tried": [
+        {
+          "template": "https://library.daegu.go.kr/kolaseek/plus/search/plusSearchResultList.do?searchType=SIMPLE&searchKey=ALL&searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://library.daegu.go.kr/plus/search/plusSearchResultList.do?searchType=SIMPLE&searchKey=ALL&searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://library.daegu.go.kr/search/tot/result?st=KWRD&si=TOTAL&q={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://library.daegu.go.kr/intro/search/index.do?search_text={q}",
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "https://library.daegu.go.kr/search/searchList.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://library.daegu.go.kr/search/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://library.daegu.go.kr/data/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://library.daegu.go.kr/book/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://library.daegu.go.kr/search?q={q}",
+          "status": 404,
+          "hits": 0
+        }
+      ],
+      "charset": "utf-8"
+    },
+    {
+      "host": "lib.gimhae.go.kr",
+      "libraries": 45,
+      "homepage": "http://lib.gimhae.go.kr/01293/01298/00116.web",
+      "template": null,
+      "post": null,
+      "via": null,
+      "tried": [],
+      "error": "fetch failed"
+    },
+    {
+      "host": "phlib.pohang.go.kr",
+      "libraries": 41,
+      "homepage": "http://phlib.pohang.go.kr/",
+      "template": null,
+      "post": null,
+      "via": null,
+      "tried": [
+        {
+          "template": "http://phlib.pohang.go.kr/kolaseek/plus/search/plusSearchResultList.do?searchType=SIMPLE&searchKey=ALL&searchKeyword={q}",
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "http://phlib.pohang.go.kr/plus/search/plusSearchResultList.do?searchType=SIMPLE&searchKey=ALL&searchKeyword={q}",
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "http://phlib.pohang.go.kr/search/tot/result?st=KWRD&si=TOTAL&q={q}",
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "http://phlib.pohang.go.kr/intro/search/index.do?search_text={q}",
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "http://phlib.pohang.go.kr/search/searchList.do?searchKeyword={q}",
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "http://phlib.pohang.go.kr/search/search.do?searchKeyword={q}",
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "http://phlib.pohang.go.kr/data/search.do?searchKeyword={q}",
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "http://phlib.pohang.go.kr/book/search.do?searchKeyword={q}",
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "http://phlib.pohang.go.kr/search?q={q}",
+          "status": 200,
+          "hits": 0
+        }
+      ],
+      "charset": "utf-8"
+    },
+    {
+      "host": "nowonlib.kr",
+      "libraries": 35,
+      "homepage": "https://www.nowonlib.kr/",
+      "template": null,
+      "post": null,
+      "via": null,
+      "tried": [],
+      "error": "fetch failed"
+    },
+    {
+      "host": "bcl.go.kr",
+      "libraries": 34,
+      "homepage": "https://www.bcl.go.kr/",
+      "template": null,
+      "post": null,
+      "via": null,
+      "tried": [],
+      "error": "fetch failed"
+    },
+    {
+      "host": "hscitylib.or.kr",
+      "libraries": 31,
+      "homepage": "https://www.hscitylib.or.kr/dtlib/",
+      "template": null,
+      "post": null,
+      "via": null,
+      "tried": [],
+      "error": "fetch failed"
+    },
+    {
+      "host": "unilib.dobong.kr",
+      "libraries": 27,
+      "homepage": "http://www.unilib.dobong.kr/",
+      "template": null,
+      "post": null,
+      "via": null,
+      "tried": [
+        {
+          "template": "http://www.unilib.dobong.kr/kolaseek/plus/search/plusSearchResultList.do?searchType=SIMPLE&searchKey=ALL&searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "http://www.unilib.dobong.kr/plus/search/plusSearchResultList.do?searchType=SIMPLE&searchKey=ALL&searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "http://www.unilib.dobong.kr/search/tot/result?st=KWRD&si=TOTAL&q={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "http://www.unilib.dobong.kr/intro/search/index.do?search_text={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "http://www.unilib.dobong.kr/search/searchList.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "http://www.unilib.dobong.kr/search/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "http://www.unilib.dobong.kr/data/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "http://www.unilib.dobong.kr/book/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "http://www.unilib.dobong.kr/search?q={q}",
+          "status": 404,
+          "hits": 0
+        }
+      ],
+      "charset": "UTF-8"
+    },
+    {
+      "host": "lib.ansan.go.kr",
+      "libraries": 27,
+      "homepage": "http://lib.ansan.go.kr/smalllib",
+      "template": null,
+      "post": null,
+      "via": null,
+      "tried": [
+        {
+          "template": "http://lib.ansan.go.kr/kolaseek/plus/search/plusSearchResultList.do?searchType=SIMPLE&searchKey=ALL&searchKeyword={q}",
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "http://lib.ansan.go.kr/plus/search/plusSearchResultList.do?searchType=SIMPLE&searchKey=ALL&searchKeyword={q}",
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "http://lib.ansan.go.kr/search/tot/result?st=KWRD&si=TOTAL&q={q}",
+          "status": 502,
+          "hits": 0
+        },
+        {
+          "template": "http://lib.ansan.go.kr/intro/search/index.do?search_text={q}",
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "http://lib.ansan.go.kr/search/searchList.do?searchKeyword={q}",
+          "status": 502,
+          "hits": 0
+        },
+        {
+          "template": "http://lib.ansan.go.kr/search/search.do?searchKeyword={q}",
+          "status": 502,
+          "hits": 0
+        },
+        {
+          "template": "http://lib.ansan.go.kr/data/search.do?searchKeyword={q}",
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "http://lib.ansan.go.kr/book/search.do?searchKeyword={q}",
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "http://lib.ansan.go.kr/search?q={q}",
+          "status": 200,
+          "hits": 0
+        }
+      ],
+      "charset": "utf-8"
+    },
+    {
+      "host": "gbelib.kr",
+      "libraries": 27,
+      "homepage": "http://www.gbelib.kr/gr",
+      "template": null,
+      "post": null,
+      "via": null,
+      "tried": [
+        {
+          "template": "https://www.gbelib.kr/kolaseek/plus/search/plusSearchResultList.do?searchType=SIMPLE&searchKey=ALL&searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.gbelib.kr/plus/search/plusSearchResultList.do?searchType=SIMPLE&searchKey=ALL&searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.gbelib.kr/search/tot/result?st=KWRD&si=TOTAL&q={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.gbelib.kr/intro/search/index.do?search_text={q}",
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "https://www.gbelib.kr/search/searchList.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.gbelib.kr/search/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.gbelib.kr/data/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.gbelib.kr/book/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.gbelib.kr/search?q={q}",
+          "status": 404,
+          "hits": 0
+        }
+      ],
+      "charset": "UTF-8"
+    },
+    {
+      "host": "goyanglib.or.kr",
+      "libraries": 26,
+      "homepage": "https://www.goyanglib.or.kr/MC/index.do",
+      "template": null,
+      "post": null,
+      "via": null,
+      "tried": [
+        {
+          "template": "https://www.goyanglib.or.kr/MC/index.do?searchType=SIMPLE&searchManageCodeArr=MC&searchKeyword={q}",
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "https://www.goyanglib.or.kr/kolaseek/plus/search/plusSearchResultList.do?searchType=SIMPLE&searchKey=ALL&searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.goyanglib.or.kr/plus/search/plusSearchResultList.do?searchType=SIMPLE&searchKey=ALL&searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.goyanglib.or.kr/search/tot/result?st=KWRD&si=TOTAL&q={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.goyanglib.or.kr/intro/search/index.do?search_text={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.goyanglib.or.kr/search/searchList.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.goyanglib.or.kr/search/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.goyanglib.or.kr/data/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.goyanglib.or.kr/book/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.goyanglib.or.kr/search?q={q}",
+          "status": 404,
+          "hits": 0
+        }
+      ],
+      "charset": "UTF-8"
+    },
+    {
+      "host": "l4d.or.kr",
+      "libraries": 24,
+      "homepage": "https://www.l4d.or.kr/small",
+      "template": null,
+      "post": null,
+      "via": null,
+      "tried": [
+        {
+          "template": "https://www.l4d.or.kr/small/index.do?searchType=SIMPLE&searchKey=ALL&searchCategory=ALL&searchLibrary=ALL&searchKeyword={q}",
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "https://www.l4d.or.kr/kolaseek/plus/search/plusSearchResultList.do?searchType=SIMPLE&searchKey=ALL&searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.l4d.or.kr/plus/search/plusSearchResultList.do?searchType=SIMPLE&searchKey=ALL&searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.l4d.or.kr/search/tot/result?st=KWRD&si=TOTAL&q={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.l4d.or.kr/intro/search/index.do?search_text={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.l4d.or.kr/search/searchList.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.l4d.or.kr/search/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.l4d.or.kr/data/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.l4d.or.kr/book/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.l4d.or.kr/search?q={q}",
+          "status": 404,
+          "hits": 0
+        }
+      ],
+      "charset": "UTF-8"
+    },
+    {
+      "host": "library.gangnam.go.kr",
+      "libraries": 23,
+      "homepage": "https://library.gangnam.go.kr/hnkklib",
+      "template": null,
+      "post": null,
+      "via": null,
+      "tried": [
+        {
+          "template": "https://library.gangnam.go.kr/kolaseek/plus/search/plusSearchResultList.do?searchType=SIMPLE&searchKey=ALL&searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://library.gangnam.go.kr/plus/search/plusSearchResultList.do?searchType=SIMPLE&searchKey=ALL&searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://library.gangnam.go.kr/search/tot/result?st=KWRD&si=TOTAL&q={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://library.gangnam.go.kr/intro/search/index.do?search_text={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://library.gangnam.go.kr/search/searchList.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://library.gangnam.go.kr/search/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://library.gangnam.go.kr/data/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://library.gangnam.go.kr/book/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://library.gangnam.go.kr/search?q={q}",
+          "status": 404,
+          "hits": 0
+        }
+      ],
+      "charset": "UTF-8"
+    },
+    {
+      "host": "suwonlib.go.kr",
+      "libraries": 23,
+      "homepage": "https://www.suwonlib.go.kr/gps/",
+      "template": null,
+      "post": null,
+      "via": null,
+      "tried": [
+        {
+          "post": {
+            "action": "https://www.suwonlib.go.kr/inc/sso_search.asp",
+            "fields": {
+              "manage_code": "141595",
+              "searchWord": "{q}"
+            },
+            "charset": "UTF-8"
+          },
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "post": {
+            "action": "https://www.suwonlib.go.kr/inc/sso_search.asp",
+            "fields": {
+              "manage_code": "141595",
+              "searchWord": "{q}"
+            },
+            "charset": "UTF-8"
+          },
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "https://www.suwonlib.go.kr/inc/sso_search.asp?manage_code=141595&searchWord={q}",
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "https://www.suwonlib.go.kr/inc/sso_search.asp?manage_code=141595&searchWord={q}",
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "https://www.suwonlib.go.kr/kolaseek/plus/search/plusSearchResultList.do?searchType=SIMPLE&searchKey=ALL&searchKeyword={q}",
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "https://www.suwonlib.go.kr/plus/search/plusSearchResultList.do?searchType=SIMPLE&searchKey=ALL&searchKeyword={q}",
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "https://www.suwonlib.go.kr/search/tot/result?st=KWRD&si=TOTAL&q={q}",
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "https://www.suwonlib.go.kr/intro/search/index.do?search_text={q}",
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "https://www.suwonlib.go.kr/search/searchList.do?searchKeyword={q}",
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "https://www.suwonlib.go.kr/search/search.do?searchKeyword={q}",
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "https://www.suwonlib.go.kr/data/search.do?searchKeyword={q}",
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "https://www.suwonlib.go.kr/book/search.do?searchKeyword={q}",
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "https://www.suwonlib.go.kr/search?q={q}",
+          "status": 200,
+          "hits": 0
+        }
+      ],
+      "charset": "UTF-8"
+    },
+    {
+      "host": "usbl.bukgu.ulsan.kr",
+      "libraries": 22,
+      "homepage": "https://usbl.bukgu.ulsan.kr/",
+      "template": null,
+      "post": null,
+      "via": null,
+      "tried": [
+        {
+          "template": "https://usbl.bukgu.ulsan.kr/kolaseek/plus/search/plusSearchResultList.do?searchType=SIMPLE&searchKey=ALL&searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://usbl.bukgu.ulsan.kr/plus/search/plusSearchResultList.do?searchType=SIMPLE&searchKey=ALL&searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://usbl.bukgu.ulsan.kr/search/tot/result?st=KWRD&si=TOTAL&q={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://usbl.bukgu.ulsan.kr/intro/search/index.do?search_text={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://usbl.bukgu.ulsan.kr/search/searchList.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://usbl.bukgu.ulsan.kr/search/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://usbl.bukgu.ulsan.kr/data/search.do?searchKeyword={q}",
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "https://usbl.bukgu.ulsan.kr/book/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://usbl.bukgu.ulsan.kr/search?q={q}",
+          "status": 404,
+          "hits": 0
+        }
+      ],
+      "charset": "UTF-8"
+    },
+    {
+      "host": "lib.paju.go.kr",
+      "libraries": 22,
+      "homepage": "https://lib.paju.go.kr",
+      "template": null,
+      "post": null,
+      "via": null,
+      "tried": [
+        {
+          "template": "https://lib.paju.go.kr/kolaseek/plus/search/plusSearchResultList.do?searchType=SIMPLE&searchKey=ALL&searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.paju.go.kr/plus/search/plusSearchResultList.do?searchType=SIMPLE&searchKey=ALL&searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.paju.go.kr/search/tot/result?st=KWRD&si=TOTAL&q={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.paju.go.kr/intro/search/index.do?search_text={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.paju.go.kr/search/searchList.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.paju.go.kr/search/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.paju.go.kr/data/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.paju.go.kr/book/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.paju.go.kr/search?q={q}",
+          "status": 404,
+          "hits": 0
+        }
+      ],
+      "charset": "utf-8"
+    },
+    {
+      "host": "lib.gwe.go.kr",
+      "libraries": 22,
+      "homepage": "https://lib.gwe.go.kr/gnecc",
+      "template": null,
+      "post": null,
+      "via": null,
+      "tried": [
+        {
+          "template": "https://lib.gwe.go.kr/kolaseek/plus/search/plusSearchResultList.do?searchType=SIMPLE&searchKey=ALL&searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.gwe.go.kr/plus/search/plusSearchResultList.do?searchType=SIMPLE&searchKey=ALL&searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.gwe.go.kr/search/tot/result?st=KWRD&si=TOTAL&q={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.gwe.go.kr/intro/search/index.do?search_text={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.gwe.go.kr/search/searchList.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.gwe.go.kr/search/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.gwe.go.kr/data/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.gwe.go.kr/book/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.gwe.go.kr/search?q={q}",
+          "status": 200,
+          "hits": 0
+        }
+      ],
+      "charset": "UTF-8"
+    },
+    {
+      "host": "lib.yongin.go.kr",
+      "libraries": 20,
+      "homepage": "http://lib.yongin.go.kr/gugal/",
+      "template": null,
+      "post": null,
+      "via": null,
+      "tried": [
+        {
+          "template": "https://lib.yongin.go.kr/gugal/index.do?searchType=SIMPLE&searchCategory=BOOK&searchKey=ALL&searchLibrary=gugal&searchKeyword={q}",
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.yongin.go.kr/gugal/index.do?searchType=SIMPLE&searchCategory=BOOK&searchKey=ALL&searchLibraryArr=MI&searchKeyword={q}",
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.yongin.go.kr/kolaseek/plus/search/plusSearchResultList.do?searchType=SIMPLE&searchKey=ALL&searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.yongin.go.kr/plus/search/plusSearchResultList.do?searchType=SIMPLE&searchKey=ALL&searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.yongin.go.kr/search/tot/result?st=KWRD&si=TOTAL&q={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.yongin.go.kr/intro/search/index.do?search_text={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.yongin.go.kr/search/searchList.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.yongin.go.kr/search/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.yongin.go.kr/data/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.yongin.go.kr/book/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.yongin.go.kr/search?q={q}",
+          "status": 404,
+          "hits": 0
+        }
+      ],
+      "charset": "UTF-8"
+    },
+    {
+      "host": "snlib.go.kr",
+      "libraries": 18,
+      "homepage": "https://www.snlib.go.kr/gd/index.do",
+      "template": null,
+      "post": null,
+      "via": null,
+      "tried": [
+        {
+          "template": "https://www.snlib.go.kr/gd/index.do?searchType=SIMPLE&searchCategory=BOOK&searchKey=ALL&searchLibraryArr=MD&searchKeyword={q}",
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "https://www.snlib.go.kr/kolaseek/plus/search/plusSearchResultList.do?searchType=SIMPLE&searchKey=ALL&searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.snlib.go.kr/plus/search/plusSearchResultList.do?searchType=SIMPLE&searchKey=ALL&searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.snlib.go.kr/search/tot/result?st=KWRD&si=TOTAL&q={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.snlib.go.kr/intro/search/index.do?search_text={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.snlib.go.kr/search/searchList.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.snlib.go.kr/search/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.snlib.go.kr/data/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.snlib.go.kr/book/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.snlib.go.kr/search?q={q}",
+          "status": 404,
+          "hits": 0
+        }
+      ],
+      "charset": "UTF-8"
+    },
+    {
+      "host": "lib.jbe.go.kr",
+      "libraries": 18,
+      "homepage": "https://lib.jbe.go.kr/gecc",
+      "template": null,
+      "post": null,
+      "via": null,
+      "tried": [
+        {
+          "template": "https://lib.jbe.go.kr/kolaseek/plus/search/plusSearchResultList.do?searchType=SIMPLE&searchKey=ALL&searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.jbe.go.kr/plus/search/plusSearchResultList.do?searchType=SIMPLE&searchKey=ALL&searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.jbe.go.kr/search/tot/result?st=KWRD&si=TOTAL&q={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.jbe.go.kr/intro/search/index.do?search_text={q}",
+          "error": "fetch failed"
+        },
+        {
+          "template": "https://lib.jbe.go.kr/search/searchList.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.jbe.go.kr/search/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.jbe.go.kr/data/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.jbe.go.kr/book/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.jbe.go.kr/search?q={q}",
+          "status": 404,
+          "hits": 0
+        }
+      ],
+      "charset": "UTF-8"
+    },
+    {
+      "host": "yspubliclib.go.kr",
+      "libraries": 17,
+      "homepage": "http://www.yspubliclib.go.kr",
+      "template": null,
+      "post": null,
+      "via": null,
+      "tried": [
+        {
+          "template": "http://www.yspubliclib.go.kr/kolaseek/plus/search/plusSearchResultList.do?searchType=SIMPLE&searchKey=ALL&searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "http://www.yspubliclib.go.kr/plus/search/plusSearchResultList.do?searchType=SIMPLE&searchKey=ALL&searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "http://www.yspubliclib.go.kr/search/tot/result?st=KWRD&si=TOTAL&q={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "http://www.yspubliclib.go.kr/intro/search/index.do?search_text={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "http://www.yspubliclib.go.kr/search/searchList.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "http://www.yspubliclib.go.kr/search/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "http://www.yspubliclib.go.kr/data/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "http://www.yspubliclib.go.kr/book/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "http://www.yspubliclib.go.kr/search?q={q}",
+          "status": 404,
+          "hits": 0
+        }
+      ],
+      "charset": "UTF-8"
+    },
+    {
+      "host": "yslibrary.or.kr",
+      "libraries": 16,
+      "homepage": "https://www.yslibrary.or.kr/small/index.do",
+      "template": null,
+      "post": null,
+      "via": null,
+      "tried": [
+        {
+          "template": "https://www.yslibrary.or.kr/small/index.do?searchLibrary=ALL&searchType=SIMPLE&searchKey=ALL&searchKeyword={q}",
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "https://www.yslibrary.or.kr/kolaseek/plus/search/plusSearchResultList.do?searchType=SIMPLE&searchKey=ALL&searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.yslibrary.or.kr/plus/search/plusSearchResultList.do?searchType=SIMPLE&searchKey=ALL&searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.yslibrary.or.kr/search/tot/result?st=KWRD&si=TOTAL&q={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.yslibrary.or.kr/intro/search/index.do?search_text={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.yslibrary.or.kr/search/searchList.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.yslibrary.or.kr/search/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.yslibrary.or.kr/data/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.yslibrary.or.kr/book/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.yslibrary.or.kr/search?q={q}",
+          "status": 404,
+          "hits": 0
+        }
+      ],
+      "charset": "UTF-8"
+    },
+    {
+      "host": "eplib.or.kr",
+      "libraries": 15,
+      "homepage": "https://www.eplib.or.kr/intro",
+      "template": null,
+      "post": null,
+      "via": null,
+      "tried": [
+        {
+          "template": "https://www.eplib.or.kr/kolaseek/plus/search/plusSearchResultList.do?searchType=SIMPLE&searchKey=ALL&searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.eplib.or.kr/plus/search/plusSearchResultList.do?searchType=SIMPLE&searchKey=ALL&searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.eplib.or.kr/search/tot/result?st=KWRD&si=TOTAL&q={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.eplib.or.kr/intro/search/index.do?search_text={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.eplib.or.kr/search/searchList.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.eplib.or.kr/search/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.eplib.or.kr/data/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.eplib.or.kr/book/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.eplib.or.kr/search?q={q}",
+          "status": 404,
+          "hits": 0
+        }
+      ],
+      "charset": "UTF-8"
+    },
+    {
+      "host": "mplib.mapo.go.kr",
+      "libraries": 15,
+      "homepage": "https://mplib.mapo.go.kr/englib/",
+      "template": null,
+      "post": null,
+      "via": null,
+      "tried": [
+        {
+          "template": "https://mplib.mapo.go.kr/englib/index.do?searchKey=ALL&searchLibraryArr=ML&searchKeyword={q}",
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "https://mplib.mapo.go.kr/kolaseek/plus/search/plusSearchResultList.do?searchType=SIMPLE&searchKey=ALL&searchKeyword={q}",
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "https://mplib.mapo.go.kr/plus/search/plusSearchResultList.do?searchType=SIMPLE&searchKey=ALL&searchKeyword={q}",
+          "status": 400,
+          "hits": 0
+        },
+        {
+          "template": "https://mplib.mapo.go.kr/search/tot/result?st=KWRD&si=TOTAL&q={q}",
+          "status": 400,
+          "hits": 0
+        },
+        {
+          "template": "https://mplib.mapo.go.kr/intro/search/index.do?search_text={q}",
+          "status": 400,
+          "hits": 0
+        },
+        {
+          "template": "https://mplib.mapo.go.kr/search/searchList.do?searchKeyword={q}",
+          "status": 400,
+          "hits": 0
+        },
+        {
+          "template": "https://mplib.mapo.go.kr/search/search.do?searchKeyword={q}",
+          "status": 400,
+          "hits": 0
+        },
+        {
+          "template": "https://mplib.mapo.go.kr/data/search.do?searchKeyword={q}",
+          "status": 400,
+          "hits": 0
+        },
+        {
+          "template": "https://mplib.mapo.go.kr/book/search.do?searchKeyword={q}",
+          "status": 400,
+          "hits": 0
+        },
+        {
+          "template": "https://mplib.mapo.go.kr/search?q={q}",
+          "status": 400,
+          "hits": 0
+        }
+      ],
+      "charset": "UTF-8"
+    },
+    {
+      "host": "lib.sejong.go.kr",
+      "libraries": 15,
+      "homepage": "https://lib.sejong.go.kr/gounsouth/",
+      "template": null,
+      "post": null,
+      "via": null,
+      "tried": [],
+      "error": "fetch failed"
+    },
+    {
+      "host": "library.cheongju.go.kr",
+      "libraries": 15,
+      "homepage": "https://library.cheongju.go.kr/lib/",
+      "template": null,
+      "post": null,
+      "via": null,
+      "tried": [
+        {
+          "template": "https://library.cheongju.go.kr/kolaseek/plus/search/plusSearchResultList.do?searchType=SIMPLE&searchKey=ALL&searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://library.cheongju.go.kr/plus/search/plusSearchResultList.do?searchType=SIMPLE&searchKey=ALL&searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://library.cheongju.go.kr/search/tot/result?st=KWRD&si=TOTAL&q={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://library.cheongju.go.kr/intro/search/index.do?search_text={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://library.cheongju.go.kr/search/searchList.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://library.cheongju.go.kr/search/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://library.cheongju.go.kr/data/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://library.cheongju.go.kr/book/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://library.cheongju.go.kr/search?q={q}",
+          "status": 404,
+          "hits": 0
+        }
+      ],
+      "charset": "UTF-8"
+    },
+    {
+      "host": "lib.jeju.go.kr",
+      "libraries": 15,
+      "homepage": "http://lib.jeju.go.kr/",
+      "template": null,
+      "post": null,
+      "via": null,
+      "tried": [
+        {
+          "template": "https://www.jeju.go.kr/lib/service/search/simple.htm?q={q}",
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "https://www.jeju.go.kr/kolaseek/plus/search/plusSearchResultList.do?searchType=SIMPLE&searchKey=ALL&searchKeyword={q}",
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "https://www.jeju.go.kr/plus/search/plusSearchResultList.do?searchType=SIMPLE&searchKey=ALL&searchKeyword={q}",
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "https://www.jeju.go.kr/search/tot/result?st=KWRD&si=TOTAL&q={q}",
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "https://www.jeju.go.kr/intro/search/index.do?search_text={q}",
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "https://www.jeju.go.kr/search/searchList.do?searchKeyword={q}",
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "https://www.jeju.go.kr/search/search.do?searchKeyword={q}",
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "https://www.jeju.go.kr/data/search.do?searchKeyword={q}",
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "https://www.jeju.go.kr/book/search.do?searchKeyword={q}",
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "https://www.jeju.go.kr/search?q={q}",
+          "status": 200,
+          "hits": 0
+        }
+      ],
+      "charset": "UTF-8"
+    },
+    {
+      "host": "sblib.seoul.kr",
+      "libraries": 14,
+      "homepage": "https://www.sblib.seoul.kr/gbitlib",
+      "template": null,
+      "post": null,
+      "via": null,
+      "tried": [],
+      "error": "fetch failed"
+    },
+    {
+      "host": "lib.sdm.or.kr",
+      "libraries": 14,
+      "homepage": "http://lib.sdm.or.kr",
+      "template": null,
+      "post": null,
+      "via": null,
+      "tried": [
+        {
+          "post": {
+            "action": "https://lib.sdm.or.kr/sdmlib/index.do",
+            "fields": {
+              "searchType": "SIMPLE",
+              "searchManageCode": "ALL",
+              "searchKeyword": "{q}"
+            },
+            "charset": "UTF-8"
+          },
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "post": {
+            "action": "https://lib.sdm.or.kr/sdmlib/index.do",
+            "fields": {
+              "searchType": "SIMPLE",
+              "searchManageCode": "ALL",
+              "searchKeyword": "",
+              "mainSearchKeyword": "{q}"
+            },
+            "charset": "UTF-8"
+          },
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.sdm.or.kr/sdmlib/index.do?searchType=SIMPLE&searchManageCode=ALL&searchKeyword={q}",
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.sdm.or.kr/sdmlib/index.do?searchType=SIMPLE&searchManageCode=ALL&searchKeyword=&mainSearchKeyword={q}",
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.sdm.or.kr/kolaseek/plus/search/plusSearchResultList.do?searchType=SIMPLE&searchKey=ALL&searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.sdm.or.kr/plus/search/plusSearchResultList.do?searchType=SIMPLE&searchKey=ALL&searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.sdm.or.kr/search/tot/result?st=KWRD&si=TOTAL&q={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.sdm.or.kr/intro/search/index.do?search_text={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.sdm.or.kr/search/searchList.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.sdm.or.kr/search/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.sdm.or.kr/data/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.sdm.or.kr/book/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.sdm.or.kr/search?q={q}",
+          "status": 404,
+          "hits": 0
+        }
+      ],
+      "charset": "UTF-8"
+    },
+    {
+      "host": "public.seocholib.or.kr",
+      "libraries": 14,
+      "homepage": "http://public.seocholib.or.kr/",
+      "template": null,
+      "post": null,
+      "via": null,
+      "tried": [
+        {
+          "template": "https://public.seocholib.or.kr/kolaseek/plus/search/plusSearchResultList.do?searchType=SIMPLE&searchKey=ALL&searchKeyword={q}",
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "https://public.seocholib.or.kr/plus/search/plusSearchResultList.do?searchType=SIMPLE&searchKey=ALL&searchKeyword={q}",
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "https://public.seocholib.or.kr/search/tot/result?st=KWRD&si=TOTAL&q={q}",
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "https://public.seocholib.or.kr/intro/search/index.do?search_text={q}",
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "https://public.seocholib.or.kr/search/searchList.do?searchKeyword={q}",
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "https://public.seocholib.or.kr/search/search.do?searchKeyword={q}",
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "https://public.seocholib.or.kr/data/search.do?searchKeyword={q}",
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "https://public.seocholib.or.kr/book/search.do?searchKeyword={q}",
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "https://public.seocholib.or.kr/search?q={q}",
+          "status": 200,
+          "hits": 0
+        }
+      ],
+      "charset": "UTF-8"
+    },
+    {
+      "host": "home.pen.go.kr",
+      "libraries": 14,
+      "homepage": "https://home.pen.go.kr/guducklib",
+      "template": null,
+      "post": null,
+      "via": null,
+      "tried": [
+        {
+          "template": "https://home.pen.go.kr/kolaseek/plus/search/plusSearchResultList.do?searchType=SIMPLE&searchKey=ALL&searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://home.pen.go.kr/plus/search/plusSearchResultList.do?searchType=SIMPLE&searchKey=ALL&searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://home.pen.go.kr/search/tot/result?st=KWRD&si=TOTAL&q={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://home.pen.go.kr/intro/search/index.do?search_text={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://home.pen.go.kr/search/searchList.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://home.pen.go.kr/search/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://home.pen.go.kr/data/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://home.pen.go.kr/book/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://home.pen.go.kr/search?q={q}",
+          "status": 404,
+          "hits": 0
+        }
+      ],
+      "charset": "UTF-8"
+    },
+    {
+      "host": "ptlib.go.kr",
+      "libraries": 14,
+      "homepage": "https://www.ptlib.go.kr/bjsmall/index.do",
+      "template": null,
+      "post": null,
+      "via": null,
+      "tried": [],
+      "error": "fetch failed"
+    },
+    {
+      "host": "lib.guro.go.kr",
+      "libraries": 13,
+      "homepage": "https://lib.guro.go.kr",
+      "template": null,
+      "post": null,
+      "via": null,
+      "tried": [
+        {
+          "template": "https://lib.guro.go.kr/kolaseek/plus/search/plusSearchResultList.do?searchType=SIMPLE&searchKey=ALL&searchKeyword={q}",
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.guro.go.kr/plus/search/plusSearchResultList.do?searchType=SIMPLE&searchKey=ALL&searchKeyword={q}",
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.guro.go.kr/search/tot/result?st=KWRD&si=TOTAL&q={q}",
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.guro.go.kr/intro/search/index.do?search_text={q}",
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.guro.go.kr/search/searchList.do?searchKeyword={q}",
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.guro.go.kr/search/search.do?searchKeyword={q}",
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.guro.go.kr/data/search.do?searchKeyword={q}",
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.guro.go.kr/book/search.do?searchKeyword={q}",
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.guro.go.kr/search?q={q}",
+          "status": 200,
+          "hits": 0
+        }
+      ],
+      "charset": "UTF-8"
+    },
+    {
+      "host": "lib.nyj.go.kr",
+      "libraries": 13,
+      "homepage": "http://lib.nyj.go.kr/bnae/",
+      "template": null,
+      "post": null,
+      "via": null,
+      "tried": [],
+      "error": "fetch failed"
+    },
+    {
+      "host": "lib.gumi.go.kr",
+      "libraries": 13,
+      "homepage": "https://lib.gumi.go.kr",
+      "template": null,
+      "post": null,
+      "via": null,
+      "tried": [],
+      "error": "fetch failed"
+    },
+    {
+      "host": "splib.or.kr",
+      "libraries": 12,
+      "homepage": "http://www.splib.or.kr/spalib/",
+      "template": null,
+      "post": null,
+      "via": null,
+      "tried": [],
+      "error": "fetch failed"
+    },
+    {
+      "host": "uwlib.or.kr",
+      "libraries": 12,
+      "homepage": "http://www.uwlib.or.kr/",
+      "template": null,
+      "post": null,
+      "via": null,
+      "tried": [
+        {
+          "post": {
+            "action": "https://www.uwlib.or.kr/intro/index.do",
+            "fields": {
+              "searchType": "SIMPLE",
+              "searchCategory": "ALL",
+              "searchLibrary": "ALL",
+              "searchPbLibrary": "ALL",
+              "searchSmLibrary": "ALL",
+              "searchWord": "{q}"
+            },
+            "charset": "UTF-8"
+          },
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "post": {
+            "action": "https://www.uwlib.or.kr/intro/index.do",
+            "fields": {
+              "searchType": "SIMPLE",
+              "searchCategory": "ALL",
+              "searchClassNo1Aggs": "ALL",
+              "searchField": "ALL",
+              "searchWord": "{q}"
+            },
+            "charset": "UTF-8"
+          },
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "https://www.uwlib.or.kr/intro/index.do?searchType=SIMPLE&searchCategory=ALL&searchLibrary=ALL&searchPbLibrary=ALL&searchSmLibrary=ALL&searchWord={q}",
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "https://www.uwlib.or.kr/intro/index.do?searchType=SIMPLE&searchCategory=ALL&searchClassNo1Aggs=ALL&searchField=ALL&searchWord={q}",
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "https://www.uwlib.or.kr/kolaseek/plus/search/plusSearchResultList.do?searchType=SIMPLE&searchKey=ALL&searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.uwlib.or.kr/plus/search/plusSearchResultList.do?searchType=SIMPLE&searchKey=ALL&searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.uwlib.or.kr/search/tot/result?st=KWRD&si=TOTAL&q={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.uwlib.or.kr/intro/search/index.do?search_text={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.uwlib.or.kr/search/searchList.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.uwlib.or.kr/search/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.uwlib.or.kr/data/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.uwlib.or.kr/book/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.uwlib.or.kr/search?q={q}",
+          "status": 404,
+          "hits": 0
+        }
+      ],
+      "charset": "UTF-8"
+    },
+    {
+      "host": "lib.siheung.go.kr",
+      "libraries": 12,
+      "homepage": "https://lib.siheung.go.kr",
+      "template": null,
+      "post": null,
+      "via": null,
+      "tried": [
+        {
+          "template": "https://lib.siheung.go.kr/kolaseek/plus/search/plusSearchResultList.do?searchType=SIMPLE&searchKey=ALL&searchKeyword={q}",
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.siheung.go.kr/plus/search/plusSearchResultList.do?searchType=SIMPLE&searchKey=ALL&searchKeyword={q}",
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.siheung.go.kr/search/tot/result?st=KWRD&si=TOTAL&q={q}",
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.siheung.go.kr/intro/search/index.do?search_text={q}",
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.siheung.go.kr/search/searchList.do?searchKeyword={q}",
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.siheung.go.kr/search/search.do?searchKeyword={q}",
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.siheung.go.kr/data/search.do?searchKeyword={q}",
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.siheung.go.kr/book/search.do?searchKeyword={q}",
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.siheung.go.kr/search?q={q}",
+          "status": 200,
+          "hits": 0
+        }
+      ],
+      "charset": "UTF-8"
+    },
+    {
+      "host": "dangjin.go.kr",
+      "libraries": 12,
+      "homepage": "http://www.dangjin.go.kr/lib.do",
+      "template": null,
+      "post": null,
+      "via": null,
+      "tried": [
+        {
+          "template": "https://www.dangjin.go.kr/kolaseek/plus/search/plusSearchResultList.do?searchType=SIMPLE&searchKey=ALL&searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.dangjin.go.kr/plus/search/plusSearchResultList.do?searchType=SIMPLE&searchKey=ALL&searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.dangjin.go.kr/search/tot/result?st=KWRD&si=TOTAL&q={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.dangjin.go.kr/intro/search/index.do?search_text={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.dangjin.go.kr/search/searchList.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.dangjin.go.kr/search/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.dangjin.go.kr/data/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.dangjin.go.kr/book/search.do?searchKeyword={q}",
+          "status": 500,
+          "hits": 0
+        },
+        {
+          "template": "https://www.dangjin.go.kr/search?q={q}",
+          "status": 200,
+          "hits": 0
+        }
+      ],
+      "charset": "UTF-8"
+    },
+    {
+      "host": "lib.jeonju.go.kr",
+      "libraries": 12,
+      "homepage": "http://lib.jeonju.go.kr/",
+      "template": null,
+      "post": null,
+      "via": null,
+      "tried": [],
+      "error": "fetch failed"
+    },
+    {
+      "host": "lib.geoje.go.kr",
+      "libraries": 12,
+      "homepage": "https://lib.geoje.go.kr",
+      "template": null,
+      "post": null,
+      "via": null,
+      "tried": [
+        {
+          "template": "https://lib.geoje.go.kr/?search_txt=&main_search_txt={q}",
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.geoje.go.kr/kolaseek/plus/search/plusSearchResultList.do?searchType=SIMPLE&searchKey=ALL&searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.geoje.go.kr/plus/search/plusSearchResultList.do?searchType=SIMPLE&searchKey=ALL&searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.geoje.go.kr/search/tot/result?st=KWRD&si=TOTAL&q={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.geoje.go.kr/intro/search/index.do?search_text={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.geoje.go.kr/search/searchList.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.geoje.go.kr/search/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.geoje.go.kr/data/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.geoje.go.kr/book/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.geoje.go.kr/search?q={q}",
+          "status": 404,
+          "hits": 0
+        }
+      ],
+      "charset": "UTF-8"
+    },
+    {
+      "host": "lib.dongjak.go.kr",
+      "libraries": 11,
+      "homepage": "https://lib.dongjak.go.kr/",
+      "template": null,
+      "post": null,
+      "via": null,
+      "tried": [
+        {
+          "template": "https://lib.dongjak.go.kr/kolaseek/plus/search/plusSearchResultList.do?searchType=SIMPLE&searchKey=ALL&searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.dongjak.go.kr/plus/search/plusSearchResultList.do?searchType=SIMPLE&searchKey=ALL&searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.dongjak.go.kr/search/tot/result?st=KWRD&si=TOTAL&q={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.dongjak.go.kr/intro/search/index.do?search_text={q}",
+          "error": "fetch failed"
+        },
+        {
+          "template": "https://lib.dongjak.go.kr/search/searchList.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.dongjak.go.kr/search/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.dongjak.go.kr/data/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.dongjak.go.kr/book/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.dongjak.go.kr/search?q={q}",
+          "status": 404,
+          "hits": 0
+        }
+      ],
+      "charset": "utf-8"
+    },
+    {
+      "host": "donggu-lib.kr",
+      "libraries": 11,
+      "homepage": "http://www.donggu-lib.kr/",
+      "template": null,
+      "post": null,
+      "via": null,
+      "tried": [
+        {
+          "template": "https://library.daegu.go.kr/kolaseek/plus/search/plusSearchResultList.do?searchType=SIMPLE&searchKey=ALL&searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://library.daegu.go.kr/plus/search/plusSearchResultList.do?searchType=SIMPLE&searchKey=ALL&searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://library.daegu.go.kr/search/tot/result?st=KWRD&si=TOTAL&q={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://library.daegu.go.kr/intro/search/index.do?search_text={q}",
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "https://library.daegu.go.kr/search/searchList.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://library.daegu.go.kr/search/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://library.daegu.go.kr/data/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://library.daegu.go.kr/book/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://library.daegu.go.kr/search?q={q}",
+          "status": 404,
+          "hits": 0
+        }
+      ],
+      "charset": "utf-8"
+    },
+    {
+      "host": "lib.goe.go.kr",
+      "libraries": 11,
+      "homepage": "https://lib.goe.go.kr/kwa/",
+      "template": null,
+      "post": null,
+      "via": null,
+      "tried": [
+        {
+          "template": "https://lib.goe.go.kr/kolaseek/plus/search/plusSearchResultList.do?searchType=SIMPLE&searchKey=ALL&searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.goe.go.kr/plus/search/plusSearchResultList.do?searchType=SIMPLE&searchKey=ALL&searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.goe.go.kr/search/tot/result?st=KWRD&si=TOTAL&q={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.goe.go.kr/intro/search/index.do?search_text={q}",
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.goe.go.kr/search/searchList.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.goe.go.kr/search/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.goe.go.kr/data/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.goe.go.kr/book/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.goe.go.kr/search?q={q}",
+          "status": 404,
+          "hits": 0
+        }
+      ],
+      "charset": "UTF-8"
+    },
+    {
+      "host": "gimpo.go.kr",
+      "libraries": 11,
+      "homepage": "http://www.gimpo.go.kr/lib/index.do",
+      "template": null,
+      "post": null,
+      "via": null,
+      "tried": [
+        {
+          "post": {
+            "action": "http://www.gimpo.go.kr/lib/bookSearchList.do",
+            "fields": {
+              "rep": "1",
+              "key": "1",
+              "searchKrwd": "{q}"
+            },
+            "charset": "UTF-8"
+          },
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "http://www.gimpo.go.kr/lib/bookSearchList.do?rep=1&key=1&searchKrwd={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "http://www.gimpo.go.kr/kolaseek/plus/search/plusSearchResultList.do?searchType=SIMPLE&searchKey=ALL&searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "http://www.gimpo.go.kr/plus/search/plusSearchResultList.do?searchType=SIMPLE&searchKey=ALL&searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "http://www.gimpo.go.kr/search/tot/result?st=KWRD&si=TOTAL&q={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "http://www.gimpo.go.kr/intro/search/index.do?search_text={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "http://www.gimpo.go.kr/search/searchList.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "http://www.gimpo.go.kr/search/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "http://www.gimpo.go.kr/data/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "http://www.gimpo.go.kr/book/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "http://www.gimpo.go.kr/search?q={q}",
+          "status": 404,
+          "hits": 0
+        }
+      ],
+      "charset": "UTF-8"
+    },
+    {
+      "host": "apl.go.kr",
+      "libraries": 11,
+      "homepage": "http://www.apl.go.kr/",
+      "template": null,
+      "post": null,
+      "via": null,
+      "tried": [
+        {
+          "template": "http://www.apl.go.kr/kolaseek/plus/search/plusSearchResultList.do?searchType=SIMPLE&searchKey=ALL&searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "http://www.apl.go.kr/plus/search/plusSearchResultList.do?searchType=SIMPLE&searchKey=ALL&searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "http://www.apl.go.kr/search/tot/result?st=KWRD&si=TOTAL&q={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "http://www.apl.go.kr/intro/search/index.do?search_text={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "http://www.apl.go.kr/search/searchList.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "http://www.apl.go.kr/search/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "http://www.apl.go.kr/data/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "http://www.apl.go.kr/book/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "http://www.apl.go.kr/search?q={q}",
+          "status": 404,
+          "hits": 0
+        }
+      ],
+      "charset": "EUC-KR"
+    },
+    {
+      "host": "lib.anyang.go.kr",
+      "libraries": 11,
+      "homepage": "https://lib.anyang.go.kr/gwanyang/index.do",
+      "template": null,
+      "post": null,
+      "via": null,
+      "tried": [
+        {
+          "post": {
+            "action": "https://lib.anyang.go.kr/gwanyang/index.do",
+            "fields": {
+              "searchType": "SIMPLE",
+              "searchManageCodeArr": "MG",
+              "searchKeyword": "{q}"
+            },
+            "charset": "UTF-8"
+          },
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "post": {
+            "action": "https://lib.anyang.go.kr/gwanyang/index.do",
+            "fields": {
+              "searchType": "SIMPLE",
+              "searchManageCode": "ALL",
+              "searchManageCodeArr": "",
+              "searchKeyword": "{q}"
+            },
+            "charset": "UTF-8"
+          },
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.anyang.go.kr/gwanyang/index.do?searchType=SIMPLE&searchManageCodeArr=MG&searchKeyword={q}",
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.anyang.go.kr/gwanyang/index.do?searchType=SIMPLE&searchManageCode=ALL&searchManageCodeArr=&searchKeyword={q}",
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.anyang.go.kr/kolaseek/plus/search/plusSearchResultList.do?searchType=SIMPLE&searchKey=ALL&searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.anyang.go.kr/plus/search/plusSearchResultList.do?searchType=SIMPLE&searchKey=ALL&searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.anyang.go.kr/search/tot/result?st=KWRD&si=TOTAL&q={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.anyang.go.kr/intro/search/index.do?search_text={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.anyang.go.kr/search/searchList.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.anyang.go.kr/search/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.anyang.go.kr/data/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.anyang.go.kr/book/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.anyang.go.kr/search?q={q}",
+          "status": 404,
+          "hits": 0
+        }
+      ],
+      "charset": "UTF-8"
+    },
+    {
+      "host": "lib.junggu.ulsan.kr",
+      "libraries": 10,
+      "homepage": "https://lib.junggu.ulsan.kr",
+      "template": "https://lib.junggu.ulsan.kr/lib/unit/search/list.do?mId=001003001000000000&search_txt={q}",
+      "post": null,
+      "via": "form",
+      "tried": [
+        {
+          "template": "https://lib.junggu.ulsan.kr/lib/unit/search/list.do?mId=001003001000000000&search_txt={q}",
+          "status": 200,
+          "hits": 29
+        }
+      ],
+      "charset": "UTF-8"
+    },
+    {
+      "host": "libyj.go.kr",
+      "libraries": 10,
+      "homepage": "https://www.libyj.go.kr/goamlib/index.do",
+      "template": null,
+      "post": null,
+      "via": null,
+      "tried": [
+        {
+          "template": "https://www.libyj.go.kr/goamlib/index.do?searchType=SIMPLE&searchCategory=ALL&searchKey=ALL&searchKeyword={q}",
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "https://www.libyj.go.kr/kolaseek/plus/search/plusSearchResultList.do?searchType=SIMPLE&searchKey=ALL&searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.libyj.go.kr/plus/search/plusSearchResultList.do?searchType=SIMPLE&searchKey=ALL&searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.libyj.go.kr/search/tot/result?st=KWRD&si=TOTAL&q={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.libyj.go.kr/intro/search/index.do?search_text={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.libyj.go.kr/search/searchList.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.libyj.go.kr/search/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.libyj.go.kr/data/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.libyj.go.kr/book/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.libyj.go.kr/search?q={q}",
+          "status": 404,
+          "hits": 0
+        }
+      ],
+      "charset": "UTF-8"
+    },
+    {
+      "host": "lib.gjcity.go.kr",
+      "libraries": 10,
+      "homepage": "https://lib.gjcity.go.kr/slib",
+      "template": null,
+      "post": null,
+      "via": null,
+      "tried": [],
+      "error": "The operation was aborted due to timeout"
+    },
+    {
+      "host": "lib.yangsan.go.kr",
+      "libraries": 10,
+      "homepage": "https://lib.yangsan.go.kr/small/GROUP_00000000000291/intro.do",
+      "template": null,
+      "post": null,
+      "via": null,
+      "tried": [],
+      "error": "fetch failed"
+    },
+    {
+      "host": "lib.yangcheon.or.kr",
+      "libraries": 9,
+      "homepage": "https://lib.yangcheon.or.kr/libgalsan",
+      "template": null,
+      "post": null,
+      "via": null,
+      "tried": [
+        {
+          "template": "https://lib.yangcheon.or.kr/kolaseek/plus/search/plusSearchResultList.do?searchType=SIMPLE&searchKey=ALL&searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.yangcheon.or.kr/plus/search/plusSearchResultList.do?searchType=SIMPLE&searchKey=ALL&searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.yangcheon.or.kr/search/tot/result?st=KWRD&si=TOTAL&q={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.yangcheon.or.kr/intro/search/index.do?search_text={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.yangcheon.or.kr/search/searchList.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.yangcheon.or.kr/search/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.yangcheon.or.kr/data/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.yangcheon.or.kr/book/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.yangcheon.or.kr/search?q={q}",
+          "status": 404,
+          "hits": 0
+        }
+      ],
+      "charset": "UTF-8"
+    },
+    {
+      "host": "lib.ice.go.kr",
+      "libraries": 9,
+      "homepage": "https://lib.ice.go.kr/gyeyang/index.do",
+      "template": "https://lib.ice.go.kr/gyeyang/intro/search/index.do?menu_idx=236&booktype=BOOK&search_type=L_TITLE&search_text={q}",
+      "post": null,
+      "via": "form",
+      "tried": [
+        {
+          "template": "https://lib.ice.go.kr/gyeyang/intro/search/index.do?menu_idx=236&booktype=BOOK&search_type=L_TITLE&search_text={q}",
+          "status": 200,
+          "hits": 29
+        }
+      ],
+      "charset": "utf-8"
+    },
+    {
+      "host": "lib.yuseong.go.kr",
+      "libraries": 9,
+      "homepage": "https://lib.yuseong.go.kr/",
+      "template": null,
+      "post": {
+        "action": "https://lib.yuseong.go.kr/web/index.do",
+        "fields": {
+          "csrfToken": "fc091942-4085-4148-9ed5-25c6a95b516b",
+          "vSrchText": "{q}"
+        },
+        "charset": "UTF-8"
+      },
+      "via": "form-post",
+      "tried": [
+        {
+          "post": {
+            "action": "https://lib.yuseong.go.kr/web/index.do",
+            "fields": {
+              "csrfToken": "fc091942-4085-4148-9ed5-25c6a95b516b",
+              "vSrchText": "{q}"
+            },
+            "charset": "UTF-8"
+          },
+          "status": 200,
+          "hits": 8
+        }
+      ],
+      "charset": "UTF-8"
+    },
+    {
+      "host": "small.icheonlib.go.kr",
+      "libraries": 9,
+      "homepage": "http://small.icheonlib.go.kr",
+      "template": null,
+      "post": null,
+      "via": null,
+      "tried": [
+        {
+          "template": "https://small.icheonlib.go.kr/search/tot/result?si=TOTAL&st=KWRD&q={q}",
+          "status": 403,
+          "hits": 0
+        },
+        {
+          "template": "https://small.icheonlib.go.kr/kolaseek/plus/search/plusSearchResultList.do?searchType=SIMPLE&searchKey=ALL&searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://small.icheonlib.go.kr/plus/search/plusSearchResultList.do?searchType=SIMPLE&searchKey=ALL&searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://small.icheonlib.go.kr/search/tot/result?st=KWRD&si=TOTAL&q={q}",
+          "status": 403,
+          "hits": 0
+        },
+        {
+          "template": "https://small.icheonlib.go.kr/intro/search/index.do?search_text={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://small.icheonlib.go.kr/search/searchList.do?searchKeyword={q}",
+          "status": 403,
+          "hits": 0
+        },
+        {
+          "template": "https://small.icheonlib.go.kr/search/search.do?searchKeyword={q}",
+          "status": 403,
+          "hits": 0
+        },
+        {
+          "template": "https://small.icheonlib.go.kr/data/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://small.icheonlib.go.kr/book/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://small.icheonlib.go.kr/search?q={q}",
+          "status": 500,
+          "hits": 0
+        }
+      ],
+      "charset": "UTF-8"
+    },
+    {
+      "host": "gjl.gimje.go.kr",
+      "libraries": 9,
+      "homepage": "https://gjl.gimje.go.kr/",
+      "template": null,
+      "post": null,
+      "via": null,
+      "tried": [],
+      "error": "fetch failed"
+    },
+    {
+      "host": "library.suncheon.go.kr",
+      "libraries": 9,
+      "homepage": "https://library.suncheon.go.kr/miracle/",
+      "template": null,
+      "post": null,
+      "via": null,
+      "tried": [
+        {
+          "template": "https://library.suncheon.go.kr/kolaseek/plus/search/plusSearchResultList.do?searchType=SIMPLE&searchKey=ALL&searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://library.suncheon.go.kr/plus/search/plusSearchResultList.do?searchType=SIMPLE&searchKey=ALL&searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://library.suncheon.go.kr/search/tot/result?st=KWRD&si=TOTAL&q={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://library.suncheon.go.kr/intro/search/index.do?search_text={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://library.suncheon.go.kr/search/searchList.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://library.suncheon.go.kr/search/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://library.suncheon.go.kr/data/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://library.suncheon.go.kr/book/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://library.suncheon.go.kr/search?q={q}",
+          "status": 404,
+          "hits": 0
+        }
+      ],
+      "charset": "utf-8"
+    },
+    {
+      "host": "lib.uljin.go.kr",
+      "libraries": 9,
+      "homepage": "https://lib.uljin.go.kr",
+      "template": null,
+      "post": null,
+      "via": null,
+      "tried": [],
+      "error": "fetch failed"
+    },
+    {
+      "host": "junggulib.or.kr",
+      "libraries": 8,
+      "homepage": "https://www.junggulib.or.kr",
+      "template": null,
+      "post": null,
+      "via": null,
+      "tried": [
+        {
+          "post": {
+            "action": "https://www.junggulib.or.kr/index.do",
+            "fields": {
+              "searchType": "SIMPLE",
+              "searchManageCode": "ALL",
+              "searchKeyword": "{q}"
+            },
+            "charset": "UTF-8"
+          },
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "https://www.junggulib.or.kr/index.do?searchType=SIMPLE&searchManageCode=ALL&searchKeyword={q}",
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "https://www.junggulib.or.kr/kolaseek/plus/search/plusSearchResultList.do?searchType=SIMPLE&searchKey=ALL&searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.junggulib.or.kr/plus/search/plusSearchResultList.do?searchType=SIMPLE&searchKey=ALL&searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.junggulib.or.kr/search/tot/result?st=KWRD&si=TOTAL&q={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.junggulib.or.kr/intro/search/index.do?search_text={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.junggulib.or.kr/search/searchList.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.junggulib.or.kr/search/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.junggulib.or.kr/data/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.junggulib.or.kr/book/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.junggulib.or.kr/search?q={q}",
+          "status": 404,
+          "hits": 0
+        }
+      ],
+      "charset": "UTF-8"
+    },
+    {
+      "host": "gdlibrary.or.kr",
+      "libraries": 8,
+      "homepage": "http://www.gdlibrary.or.kr/gilib",
+      "template": null,
+      "post": null,
+      "via": null,
+      "tried": [
+        {
+          "template": "https://www.gdlibrary.or.kr/kolaseek/plus/search/plusSearchResultList.do?searchType=SIMPLE&searchKey=ALL&searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.gdlibrary.or.kr/plus/search/plusSearchResultList.do?searchType=SIMPLE&searchKey=ALL&searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.gdlibrary.or.kr/search/tot/result?st=KWRD&si=TOTAL&q={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.gdlibrary.or.kr/intro/search/index.do?search_text={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.gdlibrary.or.kr/search/searchList.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.gdlibrary.or.kr/search/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.gdlibrary.or.kr/data/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.gdlibrary.or.kr/book/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.gdlibrary.or.kr/search?q={q}",
+          "status": 404,
+          "hits": 0
+        }
+      ],
+      "charset": "UTF-8"
+    },
+    {
+      "host": "lib.gangseo.seoul.kr",
+      "libraries": 8,
+      "homepage": "http://lib.gangseo.seoul.kr/",
+      "template": null,
+      "post": null,
+      "via": null,
+      "tried": [
+        {
+          "template": "https://lib.gangseo.seoul.kr/kolaseek/plus/search/plusSearchResultList.do?searchType=SIMPLE&searchKey=ALL&searchKeyword={q}",
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.gangseo.seoul.kr/plus/search/plusSearchResultList.do?searchType=SIMPLE&searchKey=ALL&searchKeyword={q}",
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.gangseo.seoul.kr/search/tot/result?st=KWRD&si=TOTAL&q={q}",
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.gangseo.seoul.kr/intro/search/index.do?search_text={q}",
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.gangseo.seoul.kr/search/searchList.do?searchKeyword={q}",
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.gangseo.seoul.kr/search/search.do?searchKeyword={q}",
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.gangseo.seoul.kr/data/search.do?searchKeyword={q}",
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.gangseo.seoul.kr/book/search.do?searchKeyword={q}",
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.gangseo.seoul.kr/search?q={q}",
+          "status": 200,
+          "hits": 0
+        }
+      ],
+      "charset": "UTF-8"
+    },
+    {
+      "host": "lib.gwanak.go.kr",
+      "libraries": 8,
+      "homepage": "http://lib.gwanak.go.kr/",
+      "template": null,
+      "post": null,
+      "via": null,
+      "tried": [],
+      "error": "fetch failed"
+    },
+    {
+      "host": "gwangjinlib.seoul.kr",
+      "libraries": 8,
+      "homepage": "https://www.gwangjinlib.seoul.kr/childeng/index.do",
+      "template": null,
+      "post": null,
+      "via": null,
+      "tried": [
+        {
+          "post": {
+            "action": "https://www.gwangjinlib.seoul.kr/childeng/index.do",
+            "fields": {
+              "searchType": "SIMPLE",
+              "searchLibraryArr": "MI",
+              "searchKeyword": "{q}"
+            },
+            "charset": "UTF-8"
+          },
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "https://www.gwangjinlib.seoul.kr/childeng/index.do?searchType=SIMPLE&searchLibraryArr=MI&searchKeyword={q}",
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "https://www.gwangjinlib.seoul.kr/kolaseek/plus/search/plusSearchResultList.do?searchType=SIMPLE&searchKey=ALL&searchKeyword={q}",
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "https://www.gwangjinlib.seoul.kr/plus/search/plusSearchResultList.do?searchType=SIMPLE&searchKey=ALL&searchKeyword={q}",
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "https://www.gwangjinlib.seoul.kr/search/tot/result?st=KWRD&si=TOTAL&q={q}",
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "https://www.gwangjinlib.seoul.kr/intro/search/index.do?search_text={q}",
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "https://www.gwangjinlib.seoul.kr/search/searchList.do?searchKeyword={q}",
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "https://www.gwangjinlib.seoul.kr/search/search.do?searchKeyword={q}",
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "https://www.gwangjinlib.seoul.kr/data/search.do?searchKeyword={q}",
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "https://www.gwangjinlib.seoul.kr/book/search.do?searchKeyword={q}",
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "https://www.gwangjinlib.seoul.kr/search?q={q}",
+          "status": 200,
+          "hits": 0
+        }
+      ],
+      "charset": "UTF-8"
+    },
+    {
+      "host": "dalseong.daegu.kr",
+      "libraries": 8,
+      "homepage": "http://dalseong.daegu.kr/culture/index.do?menu_id=00001924",
+      "template": null,
+      "post": null,
+      "via": null,
+      "tried": [
+        {
+          "post": {
+            "action": "https://www.dalseong.daegu.kr/search_page/search_page.jsp",
+            "fields": {
+              "query": "{q}"
+            },
+            "charset": "UTF-8"
+          },
+          "status": 200,
+          "hits": 6
+        },
+        {
+          "post": {
+            "action": "https://www.dalseong.daegu.kr/search_page/search_page.jsp",
+            "fields": {
+              "query": "{q}"
+            },
+            "charset": "UTF-8"
+          },
+          "status": 200,
+          "hits": 6
+        },
+        {
+          "template": "https://www.dalseong.daegu.kr/search_page/search_page.jsp?query={q}",
+          "status": 200,
+          "hits": 6
+        },
+        {
+          "template": "https://www.dalseong.daegu.kr/search_page/search_page.jsp?query={q}",
+          "status": 200,
+          "hits": 6
+        },
+        {
+          "template": "https://www.dalseong.daegu.kr/kolaseek/plus/search/plusSearchResultList.do?searchType=SIMPLE&searchKey=ALL&searchKeyword={q}",
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "https://www.dalseong.daegu.kr/plus/search/plusSearchResultList.do?searchType=SIMPLE&searchKey=ALL&searchKeyword={q}",
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "https://www.dalseong.daegu.kr/search/tot/result?st=KWRD&si=TOTAL&q={q}",
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "https://www.dalseong.daegu.kr/intro/search/index.do?search_text={q}",
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "https://www.dalseong.daegu.kr/search/searchList.do?searchKeyword={q}",
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "https://www.dalseong.daegu.kr/search/search.do?searchKeyword={q}",
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "https://www.dalseong.daegu.kr/data/search.do?searchKeyword={q}",
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "https://www.dalseong.daegu.kr/book/search.do?searchKeyword={q}",
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "https://www.dalseong.daegu.kr/search?q={q}",
+          "status": 200,
+          "hits": 0
+        }
+      ],
+      "charset": "UTF-8"
+    },
+    {
+      "host": "yjlib.go.kr",
+      "libraries": 8,
+      "homepage": "http://www.yjlib.go.kr",
+      "template": null,
+      "post": null,
+      "via": null,
+      "tried": [
+        {
+          "template": "https://www.yjlib.go.kr/kolaseek/plus/search/plusSearchResultList.do?searchType=SIMPLE&searchKey=ALL&searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.yjlib.go.kr/plus/search/plusSearchResultList.do?searchType=SIMPLE&searchKey=ALL&searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.yjlib.go.kr/search/tot/result?st=KWRD&si=TOTAL&q={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.yjlib.go.kr/intro/search/index.do?search_text={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.yjlib.go.kr/search/searchList.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.yjlib.go.kr/search/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.yjlib.go.kr/data/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.yjlib.go.kr/book/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.yjlib.go.kr/search?q={q}",
+          "status": 404,
+          "hits": 0
+        }
+      ],
+      "charset": "UTF-8"
+    },
+    {
+      "host": "hanamlib.go.kr",
+      "libraries": 8,
+      "homepage": "https://www.hanamlib.go.kr/nalib",
+      "template": null,
+      "post": null,
+      "via": null,
+      "tried": [
+        {
+          "template": "https://www.hanamlib.go.kr/kolaseek/plus/search/plusSearchResultList.do?searchType=SIMPLE&searchKey=ALL&searchKeyword={q}",
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "https://www.hanamlib.go.kr/plus/search/plusSearchResultList.do?searchType=SIMPLE&searchKey=ALL&searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.hanamlib.go.kr/search/tot/result?st=KWRD&si=TOTAL&q={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.hanamlib.go.kr/intro/search/index.do?search_text={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.hanamlib.go.kr/search/searchList.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.hanamlib.go.kr/search/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.hanamlib.go.kr/data/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.hanamlib.go.kr/book/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.hanamlib.go.kr/search?q={q}",
+          "status": 404,
+          "hits": 0
+        }
+      ],
+      "charset": "UTF-8"
+    },
+    {
+      "host": "library.chuncheon.go.kr",
+      "libraries": 8,
+      "homepage": "https://library.chuncheon.go.kr/",
+      "template": null,
+      "post": {
+        "action": "https://library.chuncheon.go.kr/search/book-search/librarybook/",
+        "fields": {
+          "manageCode": "MA,TM,HM,SM,NM,DM,YM,DD",
+          "searchType": "ALL",
+          "searchTxt": "{q}"
+        },
+        "charset": "UTF-8"
+      },
+      "via": "form-post",
+      "tried": [
+        {
+          "post": {
+            "action": "https://library.chuncheon.go.kr/search/book-search/librarybook/",
+            "fields": {
+              "manageCode": "MA,TM,HM,SM,NM,DM,YM,DD",
+              "searchType": "ALL",
+              "searchTxt": "{q}"
+            },
+            "charset": "UTF-8"
+          },
+          "status": 200,
+          "hits": 53
+        }
+      ],
+      "charset": "UTF-8"
+    },
+    {
+      "host": "gblib.or.kr",
+      "libraries": 7,
+      "homepage": "https://www.gblib.or.kr/gangbuk/",
+      "template": null,
+      "post": null,
+      "via": null,
+      "tried": [
+        {
+          "template": "https://www.gblib.or.kr/kolaseek/plus/search/plusSearchResultList.do?searchType=SIMPLE&searchKey=ALL&searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.gblib.or.kr/plus/search/plusSearchResultList.do?searchType=SIMPLE&searchKey=ALL&searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.gblib.or.kr/search/tot/result?st=KWRD&si=TOTAL&q={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.gblib.or.kr/intro/search/index.do?search_text={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.gblib.or.kr/search/searchList.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.gblib.or.kr/search/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.gblib.or.kr/data/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.gblib.or.kr/book/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.gblib.or.kr/search?q={q}",
+          "status": 404,
+          "hits": 0
+        }
+      ],
+      "charset": "utf-8"
+    },
+    {
+      "host": "ydplib.or.kr",
+      "libraries": 7,
+      "homepage": "https://www.ydplib.or.kr/drlib",
+      "template": null,
+      "post": null,
+      "via": null,
+      "tried": [],
+      "error": "fetch failed"
+    },
+    {
+      "host": "sdlib.or.kr",
+      "libraries": 7,
+      "homepage": "https://www.sdlib.or.kr/KH/",
+      "template": null,
+      "post": null,
+      "via": null,
+      "tried": [
+        {
+          "template": "https://www.sdlib.or.kr/kolaseek/plus/search/plusSearchResultList.do?searchType=SIMPLE&searchKey=ALL&searchKeyword={q}",
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "https://www.sdlib.or.kr/plus/search/plusSearchResultList.do?searchType=SIMPLE&searchKey=ALL&searchKeyword={q}",
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "https://www.sdlib.or.kr/search/tot/result?st=KWRD&si=TOTAL&q={q}",
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "https://www.sdlib.or.kr/intro/search/index.do?search_text={q}",
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "https://www.sdlib.or.kr/search/searchList.do?searchKeyword={q}",
+          "error": "fetch failed"
+        },
+        {
+          "template": "https://www.sdlib.or.kr/search/search.do?searchKeyword={q}",
+          "error": "fetch failed"
+        },
+        {
+          "template": "https://www.sdlib.or.kr/data/search.do?searchKeyword={q}",
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "https://www.sdlib.or.kr/book/search.do?searchKeyword={q}",
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "https://www.sdlib.or.kr/search?q={q}",
+          "status": 200,
+          "hits": 0
+        }
+      ],
+      "charset": "utf-8"
+    },
+    {
+      "host": "jungnanglib.seoul.kr",
+      "libraries": 7,
+      "homepage": "http://www.jungnanglib.seoul.kr/mmlib/",
+      "template": null,
+      "post": null,
+      "via": null,
+      "tried": [
+        {
+          "template": "https://www.jungnanglib.seoul.kr/kolaseek/plus/search/plusSearchResultList.do?searchType=SIMPLE&searchKey=ALL&searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.jungnanglib.seoul.kr/plus/search/plusSearchResultList.do?searchType=SIMPLE&searchKey=ALL&searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.jungnanglib.seoul.kr/search/tot/result?st=KWRD&si=TOTAL&q={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.jungnanglib.seoul.kr/intro/search/index.do?search_text={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.jungnanglib.seoul.kr/search/searchList.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.jungnanglib.seoul.kr/search/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.jungnanglib.seoul.kr/data/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.jungnanglib.seoul.kr/book/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.jungnanglib.seoul.kr/search?q={q}",
+          "status": 404,
+          "hits": 0
+        }
+      ],
+      "charset": "UTF-8"
+    },
+    {
+      "host": "lib.pocheon.go.kr",
+      "libraries": 7,
+      "homepage": "https://lib.pocheon.go.kr/gasan",
+      "template": null,
+      "post": null,
+      "via": null,
+      "tried": [
+        {
+          "template": "https://lib.pocheon.go.kr/kolaseek/plus/search/plusSearchResultList.do?searchType=SIMPLE&searchKey=ALL&searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.pocheon.go.kr/plus/search/plusSearchResultList.do?searchType=SIMPLE&searchKey=ALL&searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.pocheon.go.kr/search/tot/result?st=KWRD&si=TOTAL&q={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.pocheon.go.kr/intro/search/index.do?search_text={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.pocheon.go.kr/search/searchList.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.pocheon.go.kr/search/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.pocheon.go.kr/data/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.pocheon.go.kr/book/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.pocheon.go.kr/search?q={q}",
+          "status": 404,
+          "hits": 0
+        }
+      ],
+      "charset": "UTF-8"
+    },
+    {
+      "host": "osanlibrary.go.kr",
+      "libraries": 7,
+      "homepage": "http://www.osanlibrary.go.kr/kkumdure/main.do",
+      "template": null,
+      "post": null,
+      "via": null,
+      "tried": [
+        {
+          "template": "https://www.osanlibrary.go.kr/kkumdure/main.do?searchType=SIMPLE&searchCategory=ALL&searchKey=TITLE&searchKeyword={q}",
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "https://www.osanlibrary.go.kr/kkumdure/main.do?searchType=SIMPLE&searchCategory=ALL&searchKey=TITLE&searchKeyword={q}",
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "https://www.osanlibrary.go.kr/kolaseek/plus/search/plusSearchResultList.do?searchType=SIMPLE&searchKey=ALL&searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.osanlibrary.go.kr/plus/search/plusSearchResultList.do?searchType=SIMPLE&searchKey=ALL&searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.osanlibrary.go.kr/search/tot/result?st=KWRD&si=TOTAL&q={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.osanlibrary.go.kr/intro/search/index.do?search_text={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.osanlibrary.go.kr/search/searchList.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.osanlibrary.go.kr/search/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.osanlibrary.go.kr/data/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.osanlibrary.go.kr/book/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.osanlibrary.go.kr/search?q={q}",
+          "status": 404,
+          "hits": 0
+        }
+      ],
+      "charset": "UTF-8"
+    },
+    {
+      "host": "ascl.asan.go.kr",
+      "libraries": 7,
+      "homepage": "http://ascl.asan.go.kr/",
+      "template": null,
+      "post": null,
+      "via": null,
+      "tried": [
+        {
+          "template": "https://ascl.asan.go.kr/kolaseek/plus/search/plusSearchResultList.do?searchType=SIMPLE&searchKey=ALL&searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://ascl.asan.go.kr/plus/search/plusSearchResultList.do?searchType=SIMPLE&searchKey=ALL&searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://ascl.asan.go.kr/search/tot/result?st=KWRD&si=TOTAL&q={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://ascl.asan.go.kr/intro/search/index.do?search_text={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://ascl.asan.go.kr/search/searchList.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://ascl.asan.go.kr/search/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://ascl.asan.go.kr/data/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://ascl.asan.go.kr/book/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://ascl.asan.go.kr/search?q={q}",
+          "status": 404,
+          "hits": 0
+        }
+      ],
+      "charset": "UTF-8"
+    },
+    {
+      "host": "lib.iksan.go.kr",
+      "libraries": 7,
+      "homepage": "https://lib.iksan.go.kr/gm",
+      "template": null,
+      "post": null,
+      "via": null,
+      "tried": [
+        {
+          "template": "https://lib.iksan.go.kr/kolaseek/plus/search/plusSearchResultList.do?searchType=SIMPLE&searchKey=ALL&searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.iksan.go.kr/plus/search/plusSearchResultList.do?searchType=SIMPLE&searchKey=ALL&searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.iksan.go.kr/search/tot/result?st=KWRD&si=TOTAL&q={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.iksan.go.kr/intro/search/index.do?search_text={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.iksan.go.kr/search/searchList.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.iksan.go.kr/search/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.iksan.go.kr/data/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.iksan.go.kr/book/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.iksan.go.kr/search?q={q}",
+          "status": 404,
+          "hits": 0
+        }
+      ],
+      "charset": "UTF-8"
+    },
+    {
+      "host": "yslib.yeosu.go.kr",
+      "libraries": 7,
+      "homepage": "http://yslib.yeosu.go.kr/",
+      "template": null,
+      "post": null,
+      "via": null,
+      "tried": [],
+      "error": "fetch failed"
+    },
+    {
+      "host": "lib.jinju.go.kr",
+      "libraries": 7,
+      "homepage": "https://lib.jinju.go.kr",
+      "template": null,
+      "post": null,
+      "via": null,
+      "tried": [
+        {
+          "template": "https://lib.jinju.go.kr/kolaseek/plus/search/plusSearchResultList.do?searchType=SIMPLE&searchKey=ALL&searchKeyword={q}",
+          "status": 207,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.jinju.go.kr/plus/search/plusSearchResultList.do?searchType=SIMPLE&searchKey=ALL&searchKeyword={q}",
+          "status": 207,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.jinju.go.kr/search/tot/result?st=KWRD&si=TOTAL&q={q}",
+          "status": 207,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.jinju.go.kr/intro/search/index.do?search_text={q}",
+          "status": 207,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.jinju.go.kr/search/searchList.do?searchKeyword={q}",
+          "status": 207,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.jinju.go.kr/search/search.do?searchKeyword={q}",
+          "status": 207,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.jinju.go.kr/data/search.do?searchKeyword={q}",
+          "status": 207,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.jinju.go.kr/book/search.do?searchKeyword={q}",
+          "status": 207,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.jinju.go.kr/search?q={q}",
+          "status": 207,
+          "hits": 0
+        }
+      ],
+      "charset": "UTF-8"
+    },
+    {
+      "host": "issl.go.kr",
+      "libraries": 6,
+      "homepage": "http://www.issl.go.kr/",
+      "template": null,
+      "post": null,
+      "via": null,
+      "tried": [],
+      "error": "fetch failed"
+    },
+    {
+      "host": "incheonlib.go.kr",
+      "libraries": 6,
+      "homepage": "https://www.incheonlib.go.kr/maj/main.do",
+      "template": null,
+      "post": null,
+      "via": null,
+      "tried": [
+        {
+          "post": {
+            "action": "https://www.incheonlib.go.kr/maj/main.do",
+            "fields": {
+              "searchLibMngCd": "MF",
+              "searchKeyword": "{q}"
+            },
+            "charset": "UTF-8"
+          },
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "https://www.incheonlib.go.kr/maj/main.do?searchLibMngCd=MF&searchKeyword={q}",
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "https://www.incheonlib.go.kr/kolaseek/plus/search/plusSearchResultList.do?searchType=SIMPLE&searchKey=ALL&searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.incheonlib.go.kr/plus/search/plusSearchResultList.do?searchType=SIMPLE&searchKey=ALL&searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.incheonlib.go.kr/search/tot/result?st=KWRD&si=TOTAL&q={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.incheonlib.go.kr/intro/search/index.do?search_text={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.incheonlib.go.kr/search/searchList.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.incheonlib.go.kr/search/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.incheonlib.go.kr/data/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.incheonlib.go.kr/book/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.incheonlib.go.kr/search?q={q}",
+          "status": 404,
+          "hits": 0
+        }
+      ],
+      "charset": "UTF-8"
+    },
+    {
+      "host": "bppl.or.kr",
+      "libraries": 6,
+      "homepage": "https://www.bppl.or.kr/galsan/index.do",
+      "template": null,
+      "post": null,
+      "via": null,
+      "tried": [
+        {
+          "template": "https://www.bppl.or.kr/kolaseek/plus/search/plusSearchResultList.do?searchType=SIMPLE&searchKey=ALL&searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.bppl.or.kr/plus/search/plusSearchResultList.do?searchType=SIMPLE&searchKey=ALL&searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.bppl.or.kr/search/tot/result?st=KWRD&si=TOTAL&q={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.bppl.or.kr/intro/search/index.do?search_text={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.bppl.or.kr/search/searchList.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.bppl.or.kr/search/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.bppl.or.kr/data/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.bppl.or.kr/book/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.bppl.or.kr/search?q={q}",
+          "status": 404,
+          "hits": 0
+        }
+      ],
+      "charset": "UTF-8"
+    },
+    {
+      "host": "lib.gen.go.kr",
+      "libraries": 6,
+      "homepage": "http://lib.gen.go.kr/gecs",
+      "template": null,
+      "post": null,
+      "via": null,
+      "tried": [
+        {
+          "template": "https://lib.jge.go.kr/kolaseek/plus/search/plusSearchResultList.do?searchType=SIMPLE&searchKey=ALL&searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.jge.go.kr/plus/search/plusSearchResultList.do?searchType=SIMPLE&searchKey=ALL&searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.jge.go.kr/search/tot/result?st=KWRD&si=TOTAL&q={q}",
+          "error": "fetch failed"
+        },
+        {
+          "template": "https://lib.jge.go.kr/intro/search/index.do?search_text={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.jge.go.kr/search/searchList.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.jge.go.kr/search/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.jge.go.kr/data/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.jge.go.kr/book/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.jge.go.kr/search?q={q}",
+          "status": 404,
+          "hits": 0
+        }
+      ],
+      "charset": "UTF-8"
+    },
+    {
+      "host": "library.gyeongju.go.kr",
+      "libraries": 6,
+      "homepage": "http://library.gyeongju.go.kr",
+      "template": "http://library.gyeongju.go.kr/?page_id=search_booklist&mode=tBookList&collection=tot_book&search_field1=IAL&search_txt={q}",
+      "post": null,
+      "via": "form",
+      "tried": [
+        {
+          "template": "http://library.gyeongju.go.kr/?page_id=search_booklist&mode=tBookList&collection=tot_book&search_field1=IAL&search_txt={q}",
+          "status": 200,
+          "hits": 21
+        }
+      ],
+      "charset": "utf-8"
+    },
+    {
+      "host": "lib.andong.go.kr",
+      "libraries": 3,
+      "homepage": "https://lib.andong.go.kr",
+      "template": null,
+      "post": null,
+      "via": null,
+      "tried": [
+        {
+          "template": "https://lib.andong.go.kr/kolaseek/plus/search/plusSearchResultList.do?searchType=SIMPLE&searchKey=ALL&searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.andong.go.kr/plus/search/plusSearchResultList.do?searchType=SIMPLE&searchKey=ALL&searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.andong.go.kr/search/tot/result?st=KWRD&si=TOTAL&q={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.andong.go.kr/intro/search/index.do?search_text={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.andong.go.kr/search/searchList.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.andong.go.kr/search/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.andong.go.kr/data/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.andong.go.kr/book/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://lib.andong.go.kr/search?q={q}",
+          "status": 404,
+          "hits": 0
+        }
+      ],
+      "charset": "utf-8"
+    },
+    {
+      "host": "library.chilgok.go.kr",
+      "libraries": 3,
+      "homepage": "https://library.chilgok.go.kr/",
+      "template": null,
+      "post": null,
+      "via": null,
+      "tried": [
+        {
+          "template": "https://library.chilgok.go.kr/kolaseek/plus/search/plusSearchResultList.do?searchType=SIMPLE&searchKey=ALL&searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://library.chilgok.go.kr/plus/search/plusSearchResultList.do?searchType=SIMPLE&searchKey=ALL&searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://library.chilgok.go.kr/search/tot/result?st=KWRD&si=TOTAL&q={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://library.chilgok.go.kr/intro/search/index.do?search_text={q}",
+          "error": "fetch failed"
+        },
+        {
+          "template": "https://library.chilgok.go.kr/search/searchList.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://library.chilgok.go.kr/search/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://library.chilgok.go.kr/data/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://library.chilgok.go.kr/book/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://library.chilgok.go.kr/search?q={q}",
+          "status": 404,
+          "hits": 0
+        }
+      ],
+      "charset": "UTF-8"
+    },
+    {
+      "host": "gbgs.go.kr",
+      "libraries": 2,
+      "homepage": "https://www.gbgs.go.kr/lib/",
+      "template": null,
+      "post": null,
+      "via": null,
+      "tried": [
+        {
+          "template": "https://www.gbgs.go.kr/kolaseek/plus/search/plusSearchResultList.do?searchType=SIMPLE&searchKey=ALL&searchKeyword={q}",
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "https://www.gbgs.go.kr/plus/search/plusSearchResultList.do?searchType=SIMPLE&searchKey=ALL&searchKeyword={q}",
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "https://www.gbgs.go.kr/search/tot/result?st=KWRD&si=TOTAL&q={q}",
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "https://www.gbgs.go.kr/intro/search/index.do?search_text={q}",
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "https://www.gbgs.go.kr/search/searchList.do?searchKeyword={q}",
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "https://www.gbgs.go.kr/search/search.do?searchKeyword={q}",
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "https://www.gbgs.go.kr/data/search.do?searchKeyword={q}",
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "https://www.gbgs.go.kr/book/search.do?searchKeyword={q}",
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "https://www.gbgs.go.kr/search?q={q}",
+          "status": 200,
+          "hits": 0
+        }
+      ],
+      "charset": "utf-8"
+    },
+    {
+      "host": "usc.go.kr",
+      "libraries": 2,
+      "homepage": "https://www.usc.go.kr/lib",
+      "template": null,
+      "post": null,
+      "via": null,
+      "tried": [
+        {
+          "template": "https://www.usc.go.kr/kolaseek/plus/search/plusSearchResultList.do?searchType=SIMPLE&searchKey=ALL&searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.usc.go.kr/plus/search/plusSearchResultList.do?searchType=SIMPLE&searchKey=ALL&searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.usc.go.kr/search/tot/result?st=KWRD&si=TOTAL&q={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.usc.go.kr/intro/search/index.do?search_text={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.usc.go.kr/search/searchList.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.usc.go.kr/search/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.usc.go.kr/data/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.usc.go.kr/book/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.usc.go.kr/search?q={q}",
+          "status": 404,
+          "hits": 0
+        }
+      ],
+      "charset": "utf-8"
+    },
+    {
+      "host": "gb.go.kr",
+      "libraries": 1,
+      "homepage": "https://www.gb.go.kr/lib",
+      "template": null,
+      "post": null,
+      "via": null,
+      "tried": [
+        {
+          "template": "http://27.101.35.10/kolaseek/plus/search/plusSearchResultList.do?searchType=SIMPLE&searchKey=ALL&searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "http://27.101.35.10/plus/search/plusSearchResultList.do?searchType=SIMPLE&searchKey=ALL&searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "http://27.101.35.10/search/tot/result?st=KWRD&si=TOTAL&q={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "http://27.101.35.10/intro/search/index.do?search_text={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "http://27.101.35.10/search/searchList.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "http://27.101.35.10/search/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "http://27.101.35.10/data/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "http://27.101.35.10/book/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "http://27.101.35.10/search?q={q}",
+          "status": 200,
+          "hits": 0
+        }
+      ],
+      "charset": "utf-8"
+    },
+    {
+      "host": "gbeti.or.kr",
+      "libraries": 1,
+      "homepage": "http://www.gbeti.or.kr",
+      "template": null,
+      "post": null,
+      "via": null,
+      "tried": [
+        {
+          "template": "https://www.gbeti.or.kr/homepage/search/selectTotalSearchList.do?searchKeyword={q}",
+          "status": 200,
+          "hits": 6
+        },
+        {
+          "template": "https://www.gbeti.or.kr/kolaseek/plus/search/plusSearchResultList.do?searchType=SIMPLE&searchKey=ALL&searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.gbeti.or.kr/plus/search/plusSearchResultList.do?searchType=SIMPLE&searchKey=ALL&searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.gbeti.or.kr/search/tot/result?st=KWRD&si=TOTAL&q={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.gbeti.or.kr/intro/search/index.do?search_text={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.gbeti.or.kr/search/searchList.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.gbeti.or.kr/search/search.do?searchKeyword={q}",
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "https://www.gbeti.or.kr/data/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.gbeti.or.kr/book/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "https://www.gbeti.or.kr/search?q={q}",
+          "status": 404,
+          "hits": 0
+        }
+      ],
+      "charset": "UTF-8"
+    },
+    {
+      "host": "lib.goryeong.go.kr",
+      "libraries": 1,
+      "homepage": "http://lib.goryeong.go.kr",
+      "template": null,
+      "post": null,
+      "via": null,
+      "tried": [
+        {
+          "post": {
+            "action": "http://lib.goryeong.go.kr/book/bookCommon.do",
+            "fields": {
+              "MANAGE_CODE": "147167",
+              "ingubun": "find1",
+              "mainsearch": "Y",
+              "field1": "IAL",
+              "searchCondition": "1",
+              "searchKeyword": "{q}"
+            },
+            "charset": "UTF-8"
+          },
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "http://lib.goryeong.go.kr/book/bookCommon.do?MANAGE_CODE=147167&ingubun=find1&mainsearch=Y&field1=IAL&searchCondition=1&searchKeyword={q}",
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "http://lib.goryeong.go.kr/kolaseek/plus/search/plusSearchResultList.do?searchType=SIMPLE&searchKey=ALL&searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "http://lib.goryeong.go.kr/plus/search/plusSearchResultList.do?searchType=SIMPLE&searchKey=ALL&searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "http://lib.goryeong.go.kr/search/tot/result?st=KWRD&si=TOTAL&q={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "http://lib.goryeong.go.kr/intro/search/index.do?search_text={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "http://lib.goryeong.go.kr/search/searchList.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "http://lib.goryeong.go.kr/search/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "http://lib.goryeong.go.kr/data/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "http://lib.goryeong.go.kr/book/search.do?searchKeyword={q}",
+          "status": 404,
+          "hits": 0
+        },
+        {
+          "template": "http://lib.goryeong.go.kr/search?q={q}",
+          "status": 404,
+          "hits": 0
+        }
+      ],
+      "charset": "utf-8"
+    },
+    {
+      "host": "yclib.go.kr",
+      "libraries": 1,
+      "homepage": "http://www.yclib.go.kr/",
+      "template": null,
+      "post": null,
+      "via": null,
+      "tried": [
+        {
+          "template": "http://www.yclib.go.kr/kolaseek/plus/search/plusSearchResultList.do?searchType=SIMPLE&searchKey=ALL&searchKeyword={q}",
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "http://www.yclib.go.kr/plus/search/plusSearchResultList.do?searchType=SIMPLE&searchKey=ALL&searchKeyword={q}",
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "http://www.yclib.go.kr/search/tot/result?st=KWRD&si=TOTAL&q={q}",
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "http://www.yclib.go.kr/intro/search/index.do?search_text={q}",
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "http://www.yclib.go.kr/search/searchList.do?searchKeyword={q}",
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "http://www.yclib.go.kr/search/search.do?searchKeyword={q}",
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "http://www.yclib.go.kr/data/search.do?searchKeyword={q}",
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "http://www.yclib.go.kr/book/search.do?searchKeyword={q}",
+          "status": 200,
+          "hits": 0
+        },
+        {
+          "template": "http://www.yclib.go.kr/search?q={q}",
+          "status": 200,
+          "hits": 0
+        }
+      ],
+      "charset": "utf-8"
+    }
+  ]
+}
