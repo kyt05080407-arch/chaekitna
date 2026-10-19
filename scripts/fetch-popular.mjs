@@ -30,23 +30,54 @@ if ((region && !isRegionCode(region)) || (age && !(age in AGE_NAMES))) {
 const endDt = kstDate(-1);
 const startDt = kstDate(-7);
 
-async function fetchList(params) {
-  const data = await callApi('loanItemSrch', { startDt, endDt, pageNo: 1, pageSize: 10, ...params });
-  return parseBooks(data).books.filter((b) => /^\d{13}$/.test(b.isbn13));
+// 같은 조건(지역·연령)은 한 번만 부른다. 더 많이 받아 둔 결과가 있으면 잘라서 쓴다.
+const fetched = new Map();
+async function fetchList({ region: r = '', age: a = '' }, size = 10) {
+  const key = `${r}|${a}`;
+  const hit = fetched.get(key);
+  if (hit && (hit.size >= size || hit.items.length < hit.size)) return hit.items.slice(0, size);
+  const data = await callApi('loanItemSrch', { startDt, endDt, pageNo: 1, pageSize: size, region: r, age: a });
+  const items = parseBooks(data).books.filter((b) => /^\d{13}$/.test(b.isbn13));
+  fetched.set(key, { size, items });
+  return items;
 }
 
 // 조건을 차례로 넓혀 5권 이상 나오면 멈춘다(같은 조건은 한 번만)
-async function firstEnough(attempts) {
+async function firstEnough(attempts, size = 10) {
   const unique = attempts.filter((a, i, all) => all.findIndex((b) => b.region === a.region && b.age === a.age) === i);
   let items = [];
   let used = unique[0];
   for (const attempt of unique) {
-    items = await fetchList(attempt);
+    items = await fetchList(attempt, size);
     used = attempt;
     if (items.length >= 5) break;
   }
   return { items, used };
 }
+
+// 처음 화면 나잇대 탭. 정보나루 연령 코드: 14=청소년, 20~60=연령대
+const AGE_GROUPS = [
+  { age: '14', label: '10대', basis: '청소년' },
+  { age: '20', label: '20대' },
+  { age: '30', label: '30대' },
+  { age: '40', label: '40대' },
+  { age: '50', label: '50대' },
+  { age: '60', label: '60대 이상' },
+];
+// 기본 목록은 책 화면에서 '이번 주 전국 N위'를 찾을 수 있게 넉넉히 받는다(호출 수는 같다)
+const MAIN_SIZE = 100;
+
+const slim = (items) =>
+  items.map((b, i) => ({
+    rank: b.rank || i + 1,
+    isbn13: b.isbn13,
+    title: b.title,
+    authors: b.authors,
+    publisher: b.publisher,
+    year: b.year,
+    cover: b.cover,
+    loanCount: b.loanCount,
+  }));
 
 function toFile({ items, used }) {
   return {
@@ -60,16 +91,7 @@ function toFile({ items, used }) {
     age: used.age,
     ageName: AGE_NAMES[used.age] || '',
     source: '도서관 정보나루 인기대출도서 (loanItemSrch)',
-    items: items.map((b, i) => ({
-      rank: b.rank || i + 1,
-      isbn13: b.isbn13,
-      title: b.title,
-      authors: b.authors,
-      publisher: b.publisher,
-      year: b.year,
-      cover: b.cover,
-      loanCount: b.loanCount,
-    })),
+    items: slim(items),
   };
 }
 
@@ -84,17 +106,33 @@ function attemptsFor(r, { national = true } = {}) {
   return list;
 }
 
-// 1) 기본 목록
-const main = await firstEnough(attemptsFor(region));
+// 1) 기본 목록(넉넉히 100권)
+const main = await firstEnough(attemptsFor(region), MAIN_SIZE);
 if (!main.items.length) {
   console.error('인기 도서를 받지 못했어요. 기존 파일을 그대로 둡니다.');
   process.exit(1);
 }
 const file = toFile(main);
+
+// 2) 나잇대별 TOP 10 (기본 목록과 같은 지역). POPULAR_AGE_GROUPS=0이면 건너뛴다. 호출 6번.
+const groups = [];
+if (process.env.POPULAR_AGE_GROUPS !== '0') {
+  for (const g of AGE_GROUPS) {
+    try {
+      const items = await fetchList({ region: main.used.region || '', age: g.age }, 10);
+      if (items.length) groups.push({ ...g, items: slim(items) });
+    } catch (error) {
+      console.log(`::warning::${g.label} 인기 도서를 받지 못했어요: ${error.message}`);
+    }
+  }
+  console.log(`나잇대별 인기 도서 ${groups.length}/${AGE_GROUPS.length}개 저장`);
+}
+file.groups = groups;
+
 await mkdir(new URL('history/', outDir), { recursive: true });
 await writeFile(new URL(`history/popular-${endDt}.json`, outDir), json(file));
 
-// 2) 시·도별 목록 (전국으로 넓히지는 않는다: 그 지역 목록이 아니게 되므로)
+// 3) 시·도별 목록 (전국으로 넓히지는 않는다: 그 지역 목록이 아니게 되므로)
 const saved = [];
 if (process.env.POPULAR_ALL_REGIONS === '1') {
   await mkdir(new URL('popular/', outDir), { recursive: true });

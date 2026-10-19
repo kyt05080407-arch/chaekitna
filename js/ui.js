@@ -124,9 +124,11 @@ export function readingCard(item, { live = false } = {}) {
   </div>`;
 }
 
-// 이번 주 인기 표시: "이번 주 경북 고등학생 3위 · 512번 빌렸어요"
+// 이번 주 인기 표시: "이번 주 전국 3위 · 모든 나이 합쳐 512번 빌렸어요"
 export function hotLine(info) {
   if (!info) return '';
-  const count = info.loanCount ? html` · <strong>${Number(info.loanCount).toLocaleString('ko-KR')}번</strong> 빌렸어요` : '';
+  const count = info.loanCount
+    ? html` · ${info.allAges ? '모든 나이 합쳐 ' : ''}<strong>${Number(info.loanCount).toLocaleString('ko-KR')}번</strong> 빌렸어요`
+    : '';
   return html`<p class="hot">${icon('trend')}<span>이번 주 ${info.who ? `${info.who} ` : ''}<strong>${info.rank}위</strong>${count}</span>${info.demo ? html`<span class="badge badge--demo">예시</span>` : ''}</p>`;
 }

@@ -219,6 +219,8 @@ export async function popularInfo(isbn13) {
     rank: book.rank || index + 1,
     loanCount: book.loanCount || null,
     who: [data.regionName, data.ageName].filter(Boolean).join(' '),
+    // 연령 조건이 없는 목록이면 모든 나이를 합친 대출 횟수
+    allAges: !data.demo && !data.ageName,
     demo: Boolean(data.demo),
   };
 }

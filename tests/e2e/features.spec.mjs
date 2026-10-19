@@ -85,3 +85,49 @@ test('불러오는 동안 독서 정보나 명언을 보여 준다', async ({ pa
   await expect(page.locator('#results .row').first()).toBeVisible({ timeout: 10000 });
   await expect(page.locator('#results .reading')).toHaveCount(0);
 });
+
+test('인기 도서는 나잇대 탭으로 바꿔 보고, 책 화면은 모든 나이를 합친 대출 횟수를 보여 준다', async ({ page }) => {
+  const book = (rank, isbn13, title, loanCount) => ({ rank, isbn13, title, authors: '저자', loanCount });
+  await page.route('**/data/popular.json', (route) =>
+    route.fulfill({
+      json: {
+        demo: false,
+        period: '10월 12일~18일',
+        region: '',
+        regionName: '전국',
+        ageName: '',
+        regions: [],
+        // 전체 목록은 넉넉히(11권 이상) 들어 있어도 화면에는 10권만
+        items: [
+          ...Array.from({ length: 10 }, (_, i) => book(i + 1, `97911000000${String(i).padStart(2, '0')}`, `전체 ${i + 1}위 책`, 800 - i)),
+          book(11, '9788937460449', '데미안', 310),
+        ],
+        groups: [
+          { age: '14', label: '10대', basis: '청소년', items: [book(1, '9788937460449', '데미안', 42)] },
+          { age: '20', label: '20대', items: [book(1, '9788932917245', '어린 왕자', 77)] },
+        ],
+      },
+    }),
+  );
+  await page.goto('#/');
+  const tabs = page.locator('#pop-tabs .chip');
+  await expect(tabs).toHaveText(['전체', '10대', '20대']);
+  await expect(tabs.first()).toHaveAttribute('aria-pressed', 'true');
+  await expect(page.locator('#pop-list .row')).toHaveCount(10);
+  await expect(page.locator('#pop-sub')).toContainText('전국 모든 나이 · 10월 12일~18일');
+
+  await tabs.nth(1).click();
+  await expect(tabs.nth(1)).toHaveAttribute('aria-pressed', 'true');
+  await expect(page.locator('#pop-list .row__title')).toHaveText(['데미안']);
+  await expect(page.locator('#pop-list .row__figure')).toHaveText('42번');
+  await expect(page.locator('#pop-sub')).toContainText('전국 10대(청소년)');
+
+  // 고른 탭은 다시 열어도 그대로
+  await page.reload();
+  await expect(page.locator('#pop-tabs .chip').nth(1)).toHaveAttribute('aria-pressed', 'true');
+
+  // 10대 목록에서 들어가도 책 화면은 모든 나이를 합친 이번 주 순위·횟수
+  await page.locator('#pop-list .row').first().click();
+  await expect(page.locator('.hot')).toContainText('이번 주 전국 11위');
+  await expect(page.locator('.hot')).toContainText('모든 나이 합쳐 310번 빌렸어요');
+});

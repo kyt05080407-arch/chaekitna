@@ -8,10 +8,18 @@ import { closedToday } from '../hours.js';
 import { eventWhen, loadEvents, upcomingEvents } from '../events.js';
 import { nextReading } from '../reading.js';
 
-function popularSubtitle(data) {
+function popularSubtitle(data, tab) {
   if (data.demo) return '예시 목록이에요. 매주 월요일 도서관 정보나루 데이터로 바뀌어요.';
-  const parts = [data.regionName, data.ageName].filter(Boolean).join(' ');
+  const who = tab && tab.age ? `${tab.label}${tab.basis ? `(${tab.basis})` : ''}` : data.ageName || (data.groups && data.groups.length ? '모든 나이' : '');
+  const parts = [data.regionName, who].filter(Boolean).join(' ');
   return `${parts ? `${parts} · ` : ''}${data.period || ''} · 출처 도서관 정보나루`;
+}
+
+// 나잇대 탭: 전체(기본 목록 앞 10권) + 정보나루 나잇대별 TOP 10
+function popularTabs(data) {
+  const all = { age: '', label: '전체', items: data.items.slice(0, 10) };
+  const groups = Array.isArray(data.groups) ? data.groups.filter((g) => g && g.label && Array.isArray(g.items) && g.items.length) : [];
+  return [all, ...groups];
 }
 
 const DAYS = ['일', '월', '화', '수', '목', '금', '토'];
@@ -82,6 +90,7 @@ export async function render({ main, navigate, signal }) {
 
     <section class="section" aria-labelledby="pop-h">
       <div class="section__head"><h2 class="h2" id="pop-h">이번 주 인기 도서</h2></div>
+      <div class="chips chips--scroll" id="pop-tabs" role="group" aria-label="나잇대" hidden></div>
       <p class="section__sub" id="pop-sub">불러오는 중</p>
       <ol class="list" id="pop-list">${skeletonRows(3, '3.2rem')}</ol>
     </section>
@@ -165,35 +174,57 @@ export async function render({ main, navigate, signal }) {
     });
   }
 
-  // ---------- 이번 주 인기 도서 (거래 내역처럼 오른쪽에 대출 횟수) ----------
+  // ---------- 이번 주 인기 도서 (거래 내역처럼 오른쪽에 대출 횟수, 나잇대 탭) ----------
   const data = await popularBooks(region);
   if (signal.aborted) return;
-  main.querySelector('#pop-sub').textContent = popularSubtitle(data);
-  const items = data.items.slice(0, 10);
+  const tabs = popularTabs(data);
   // 인기 도서의 제목·저자는 이미 있으니, 눌러서 상세로 갈 때 책 정보를 다시 조회하지 않게 저장해 둔다.
   if (!data.demo) {
     const until = Date.now() + 7 * 24 * 3600 * 1000;
-    for (const book of items) {
+    for (const book of tabs.flatMap((t) => t.items)) {
       if (/^\d{13}$/.test(book.isbn13 || '') && !store.cacheGet(`b:${book.isbn13}`)) store.cacheSet(`b:${book.isbn13}`, book, until);
     }
   }
-  main.querySelector('#pop-list').innerHTML = toMarkup(
-    items.map((book, i) => {
-      const rank = book.rank || i + 1;
-      return html`<li><a class="row" href="#/book/${book.isbn13}">
-        <span class="rank ${rank <= 3 ? 'rank--top' : ''}">${rank}</span>
-        <span class="row__body">
-          <span class="row__title">${book.title}</span>
-          <span class="row__sub">${book.authors}</span>
-        </span>
-        ${book.loanCount
-          ? html`<span class="row__end"><span class="row__figure">${Number(book.loanCount).toLocaleString('ko-KR')}번</span><span class="row__figure-label">${data.demo ? '예시' : '이번 주 대출'}</span></span>`
-          : data.demo
-            ? demoBadge()
-            : ''}
-      </a></li>`;
-    }),
-  );
+  const tabsEl = main.querySelector('#pop-tabs');
+  const saved = store.settings.get().popularAge;
+  let current = tabs.find((t) => t.age === saved) || tabs[0];
+
+  const drawList = () => {
+    main.querySelector('#pop-sub').textContent = popularSubtitle(data, current);
+    main.querySelector('#pop-list').innerHTML = toMarkup(
+      current.items.slice(0, 10).map((book, i) => {
+        const rank = book.rank || i + 1;
+        return html`<li><a class="row" href="#/book/${book.isbn13}">
+          <span class="rank ${rank <= 3 ? 'rank--top' : ''}">${rank}</span>
+          <span class="row__body">
+            <span class="row__title">${book.title}</span>
+            <span class="row__sub">${book.authors}</span>
+          </span>
+          ${book.loanCount
+            ? html`<span class="row__end"><span class="row__figure">${Number(book.loanCount).toLocaleString('ko-KR')}번</span><span class="row__figure-label">${data.demo ? '예시' : '이번 주 대출'}</span></span>`
+            : data.demo
+              ? demoBadge()
+              : ''}
+        </a></li>`;
+      }),
+    );
+  };
+
+  if (tabs.length > 1) {
+    tabsEl.hidden = false;
+    tabsEl.innerHTML = toMarkup(
+      tabs.map((t) => html`<button class="chip" type="button" data-age="${t.age}" aria-pressed="${t === current ? 'true' : 'false'}">${t.label}</button>`),
+    );
+    tabsEl.addEventListener('click', (event) => {
+      const button = event.target.closest('[data-age]');
+      if (!button) return;
+      current = tabs.find((t) => t.age === button.dataset.age) || tabs[0];
+      store.settings.set({ popularAge: current.age });
+      tabsEl.querySelectorAll('[data-age]').forEach((b) => b.setAttribute('aria-pressed', String(b === button)));
+      drawList();
+    });
+  }
+  drawList();
 
   // ---------- 오늘의 문장·정보 ----------
   main.querySelector('#reading').innerHTML = toMarkup(readingCard(nextReading(data)));

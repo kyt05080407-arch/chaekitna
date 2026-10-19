@@ -259,6 +259,9 @@ select.input { appearance: none; -webkit-appearance: none; background-image: non
   border: 0; text-decoration: none; cursor: pointer;
 }
 .chip svg { width: 1.05rem; height: 1.05rem; flex: none; }
+.chips--scroll { flex-wrap: nowrap; overflow-x: auto; margin: 0 0 0.6rem; padding-bottom: 2px; scrollbar-width: none; }
+.chips--scroll::-webkit-scrollbar { display: none; }
+.chips--scroll .chip { flex: none; }
 .chip[aria-pressed='true'] { background: var(--ink); color: var(--card); }
 .chip--add { background: var(--accent-soft); color: var(--accent-ink); }
 
