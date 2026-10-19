@@ -67,14 +67,15 @@ GitHub Actions: 매주 인기 도서 · 매월 도서관 목록 · 매일 프록
 5. 저장소 **Settings → Secrets and variables → Actions**에서 Secret `D4L_AUTH_KEY`를 추가해요. 인기 도서·도서관 목록 자동 갱신에 써요. ([GitHub 문서](https://docs.github.com/en/actions/how-tos/write-workflows/choose-what-workflows-do/use-secrets))
    - 넣은 뒤 **Actions → API check → Run workflow**를 한 번 실행하면, 정보나루 실제 응답 여섯 가지를 앱이 제대로 읽는지 확인해요(호출 6번).
    - 이어서 **Weekly popular books**와 **Monthly library list**도 한 번씩 직접 실행하면, 다음 정기 실행을 기다리지 않고 바로 실제 인기 도서와 최신 도서관 목록이 들어가요.
-6. (선택) 같은 화면의 Variables에서 인기 도서 기준을 바꿀 수 있어요.
+6. (선택) 같은 화면의 Variables에서 인기 도서 기준을 좁힐 수 있어요. 비워 두면 **전국 · 전체 연령**이에요.
 
 | Variable | 기본값 | 예 |
 |---|---|---|
-| `POPULAR_REGION` | `37` (경북) | `11` 서울, `21` 부산, `31` 경기 |
-| `POPULAR_AGE` | `a17` (고등학생) | `a14` 중학생, `14` 청소년, `8` 초등학생, `20`~`60` 연령대 |
+| `POPULAR_REGION` | 비움 (전국) | `11` 서울, `21` 부산, `31` 경기, `37` 경북 |
+| `POPULAR_AGE` | 비움 (전체 연령) | `a17` 고등학생, `a14` 중학생, `14` 청소년, `8` 초등학생, `20`~`60` 연령대 |
+| `POPULAR_ALL_REGIONS` | `0` | `1`이면 17개 시·도별 목록도 만들고, 앱이 내 지역 목록을 보여 줘요(호출 최대 34번) |
 
-기본 목록은 데이터가 적으면 "지역+연령 → 지역+청소년 → 전국" 순서로 넓혀서 채우고, 시·도별 목록은 그 지역 청소년까지만 넓혀요.
+조건을 좁혔는데 데이터가 적으면 "지역+연령 → 지역+청소년 → 전국+연령 → 전국 전체" 순서로 넓혀서 채워요. 시·도별 목록은 그 지역 안에서만 넓혀요.
 
 ### 아침 알림 켜기 (선택)
 

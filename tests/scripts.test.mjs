@@ -28,8 +28,24 @@ test('기간 표시', () => {
   assert.match(kstDate(0), /^\d{4}-\d{2}-\d{2}$/);
 });
 
-test('인기 도서: 경북 고등학생 TOP 10 저장 + 기록 쌓기', async () => {
+test('인기 도서: 기본은 전국 · 전체 연령, 한 번만 부르고 시·도별 목록은 만들지 않는다', async () => {
   const { dir, result } = await runScript('fetch-popular.mjs', {});
+  assert.equal(result.code ?? 0, 0, String(result.stderr));
+  const file = JSON.parse(await readFile(join(dir, 'popular.json'), 'utf8'));
+  assert.equal(file.region, '');
+  assert.equal(file.regionName, '전국');
+  assert.equal(file.ageName, '');
+  assert.equal(file.items.length, 10);
+  assert.deepEqual(file.regions, []);
+  const calls = JSON.parse(result.stdout.match(/MOCK_CALLS (.*)/)[1]);
+  assert.equal(calls.length, 1);
+  assert.doesNotMatch(calls[0], /[?&](region|age)=/);
+  await assert.rejects(readdir(join(dir, 'popular')));
+  assert.match(result.stdout, /전국 인기 도서 10권/);
+});
+
+test('인기 도서: 경북 고등학생 TOP 10 저장 + 기록 쌓기', async () => {
+  const { dir, result } = await runScript('fetch-popular.mjs', { POPULAR_REGION: '37', POPULAR_AGE: 'a17' });
   assert.equal(result.code ?? 0, 0, String(result.stderr));
   const file = JSON.parse(await readFile(join(dir, 'popular.json'), 'utf8'));
   assert.equal(file.demo, false);
@@ -44,7 +60,7 @@ test('인기 도서: 경북 고등학생 TOP 10 저장 + 기록 쌓기', async (
 });
 
 test('인기 도서: 데이터가 적으면 청소년으로 넓힌다', async () => {
-  const { dir, result } = await runScript('fetch-popular.mjs', { MOCK_SCENARIO: 'sparse' });
+  const { dir, result } = await runScript('fetch-popular.mjs', { POPULAR_REGION: '37', POPULAR_AGE: 'a17', MOCK_SCENARIO: 'sparse' });
   assert.equal(result.code ?? 0, 0, String(result.stderr));
   const file = JSON.parse(await readFile(join(dir, 'popular.json'), 'utf8'));
   assert.equal(file.age, '14');
@@ -127,7 +143,7 @@ test('인기 도서: 잘못된 지역·연령 코드는 저장하지 않고 멈�
 });
 
 test('인기 도서: 연령이 이미 청소년이면 같은 조회를 두 번 하지 않는다', async () => {
-  const { result } = await runScript('fetch-popular.mjs', { POPULAR_AGE: '14', MOCK_SCENARIO: 'sparse' });
+  const { result } = await runScript('fetch-popular.mjs', { POPULAR_REGION: '37', POPULAR_AGE: '14', MOCK_SCENARIO: 'sparse' });
   assert.equal(result.code ?? 0, 0, String(result.stderr));
   const calls = JSON.parse(result.stdout.match(/MOCK_CALLS (.*)/)[1]);
   assert.equal(calls.length, new Set(calls).size);
@@ -149,8 +165,8 @@ test('API 점검: 응답 모양이 다르면 실패로 끝난다', async () => {
   assert.match(result.stdout, /실패 · 대출 가능 bookExist/);
 });
 
-test('인기 도서: 17개 시·도별 목록도 만들고, 기본 지역 결과는 다시 부르지 않는다', async () => {
-  const { dir, result } = await runScript('fetch-popular.mjs', {});
+test('인기 도서: 켜면 17개 시·도별 목록도 만들고, 기본 지역 결과는 다시 부르지 않는다', async () => {
+  const { dir, result } = await runScript('fetch-popular.mjs', { POPULAR_REGION: '37', POPULAR_AGE: 'a17', POPULAR_ALL_REGIONS: '1' });
   assert.equal(result.code ?? 0, 0, String(result.stderr));
   const files = (await readdir(join(dir, 'popular'))).sort();
   assert.equal(files.length, 17);
@@ -167,7 +183,7 @@ test('인기 도서: 17개 시·도별 목록도 만들고, 기본 지역 결과
 });
 
 test('인기 도서: 지역 목록이 적으면 그 지역 청소년으로 넓히고(최대 34번), 끌 수도 있다', async () => {
-  const sparse = await runScript('fetch-popular.mjs', { MOCK_SCENARIO: 'sparse' });
+  const sparse = await runScript('fetch-popular.mjs', { POPULAR_REGION: '37', POPULAR_AGE: 'a17', POPULAR_ALL_REGIONS: '1', MOCK_SCENARIO: 'sparse' });
   assert.equal(sparse.result.code ?? 0, 0, String(sparse.result.stderr));
   const calls = JSON.parse(sparse.result.stdout.match(/MOCK_CALLS (.*)/)[1]);
   assert.equal(calls.length, 34);
@@ -175,7 +191,7 @@ test('인기 도서: 지역 목록이 적으면 그 지역 청소년으로 넓�
   assert.equal(busan.age, '14');
   assert.equal(busan.region, '21', '전국으로 넓히지 않는다');
 
-  const off = await runScript('fetch-popular.mjs', { POPULAR_ALL_REGIONS: '0' });
+  const off = await runScript('fetch-popular.mjs', { POPULAR_REGION: '37', POPULAR_AGE: 'a17', POPULAR_ALL_REGIONS: '0' });
   assert.equal(off.result.code ?? 0, 0);
   await assert.rejects(readdir(join(off.dir, 'popular')));
   assert.deepEqual(JSON.parse(await readFile(join(off.dir, 'popular.json'), 'utf8')).regions, []);
