@@ -543,3 +543,28 @@ a.row:active { background: var(--fill); }
   .btn:active { transform: none; }
   * { scroll-behavior: auto !important; }
 }
+
+/* ---------- 없을 때 다음 방법 ---------- */
+.next .h2 { font-size: 1.05rem; line-height: 1.45; }
+.next__list { list-style: none; margin: 0.8rem 0 0; padding: 0; display: flex; flex-direction: column; gap: 1rem; }
+.next__step { display: flex; gap: 0.75rem; align-items: flex-start; }
+.next__n {
+  flex: none; width: 1.6rem; height: 1.6rem; border-radius: 999px; display: grid; place-items: center;
+  background: var(--accent-soft); color: var(--accent-ink); font-size: 0.85rem; font-weight: 800;
+}
+.next__body { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 0.2rem; }
+.next__title { display: flex; align-items: center; gap: 0.35rem; font-weight: 800; }
+.next__title svg { width: 1.05rem; height: 1.05rem; flex: none; color: var(--accent-ink); }
+.next__sub { font-size: 0.85rem; line-height: 1.55; color: var(--ink-2); }
+.next__body .card__links { margin-top: 0.35rem; }
+.next__done { display: inline-flex; align-items: center; gap: 0.25rem; font-size: 0.8rem; font-weight: 700; color: var(--ok-ink); }
+.next__done svg { width: 0.95rem; height: 0.95rem; }
+
+/* ---------- 오늘 어디 갈까 ---------- */
+.today .section__sub strong { color: var(--ink); }
+.today__row { align-items: flex-start; }
+.today__row .rank { padding-top: 0.1rem; }
+.today__row .card__links { margin-top: 0.35rem; }
+.today__row--best { background: var(--accent-soft); }
+.today__row--best .row__figure { color: var(--accent-ink); }
+.today__row--zero .row__figure, .today__row--zero .row__title { color: var(--muted); }

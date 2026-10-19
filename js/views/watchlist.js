@@ -1,10 +1,13 @@
-import { basisLabel, html, toMarkup } from '../util.js';
+import { basisLabel, html, mapUrl, toMarkup } from '../util.js';
 import { cover, demoBadge, errorNotice, icon, setTopbar, statusBadge, toast } from '../ui.js';
 import * as store from '../store.js';
 import { availability } from '../api.js';
 import { statusOf } from '../parse.js';
 import * as demo from '../demo.js';
 import { MAX_ALERT_BOOKS, disablePush, enablePush, pushStatus } from '../push.js';
+import { getLibrary, loadLibraries } from '../libraries.js';
+import { closedToday } from '../hours.js';
+import { todayPlan, uncheckedCount } from '../today.js';
 
 // 하루 호출 한도를 아끼려고 화면을 열 때 자동으로 확인하는 책은 앞의 10권까지만
 const AUTO_CHECK = 10;
@@ -54,6 +57,31 @@ function alertsBox(status) {
   }
 }
 
+// 오늘 어디 갈까: 내 도서관마다 오늘 빌릴 수 있는 관심 도서
+function todayView(plan, unchecked) {
+  const best = plan.find((p) => !p.closed && p.available.length);
+  const titleOf = (b) => b.title;
+  return html`
+    <div class="section__head"><h2 class="h2" id="today-h">오늘 어디 갈까</h2></div>
+    <p class="section__sub">${best ? html`<strong>${best.name}</strong>에 가면 관심 도서 ${best.available.length}권을 빌릴 수 있어요` : '오늘 내 도서관에서 바로 빌릴 수 있는 관심 도서가 없어요. 반납되면 아침 알림으로 알려 드려요'}</p>
+    <ol class="list">${plan.map((p, i) => {
+      const titles = p.available.slice(0, 3).map(titleOf).join(', ');
+      const more = p.available.length > 3 ? ` 외 ${p.available.length - 3}권` : '';
+      return html`<li class="row today__row${p === best ? ' today__row--best' : ''}${p.available.length ? '' : ' today__row--zero'}">
+        <span class="rank ${p === best ? 'rank--top' : ''}">${i + 1}</span>
+        <span class="row__body">
+          <span class="row__title">${p.name}</span>
+          <span class="row__sub">${p.available.length ? `${titles}${more}` : '빌릴 수 있는 관심 도서 없음'}</span>
+          ${p.lib ? html`<span class="card__links"><a href="${mapUrl(p.lib.name, p.lib.lat, p.lib.lng)}" target="_blank" rel="noopener noreferrer">${icon('pin')}지도</a></span>` : ''}
+        </span>
+        <span class="row__end">
+          ${p.closed ? html`<span class="badge badge--loaned">오늘 휴관</span>` : html`<span class="row__figure">${p.available.length}권</span><span class="row__figure-label">빌릴 수 있음</span>`}
+        </span>
+      </li>`;
+    })}</ol>
+    ${unchecked ? html`<p class="small muted">아직 확인하지 않은 관심 도서 ${unchecked}권은 빼고 셌어요.</p>` : ''}`;
+}
+
 export async function render({ main, signal }) {
   document.title = '관심 도서 — 책있나';
   setTopbar(html`<h1 class="topbar__title" style="padding-left:0.45rem">관심 도서</h1>`);
@@ -72,6 +100,7 @@ export async function render({ main, signal }) {
   main.innerHTML = toMarkup(html`
     <p class="small muted" style="padding:0 0.35rem">내 도서관 ${mine.length}곳 기준 · ${basisLabel()}</p>
     <div id="news" aria-live="polite"></div>
+    ${mine.length ? html`<section class="section today" id="today" aria-labelledby="today-h" aria-live="polite"></section>` : ''}
     ${!mine.length ? html`<div class="notice">${icon('info')}<span>내 도서관을 고르면 담은 책의 대출 상태를 한눈에 볼 수 있어요. <a href="#/libraries?back=%23%2Fwatchlist">고르기</a></span></div>` : ''}
     <section class="section" id="books" aria-label="담은 책">
       ${books.map((b, i) => {
@@ -133,6 +162,20 @@ export async function render({ main, signal }) {
 
   if (!mine.length) return;
 
+  // ---------- 오늘 어디 갈까 ----------
+  const todayBox = main.querySelector('#today');
+  const librariesReady = loadLibraries().then(
+    () => true,
+    () => false,
+  );
+  const drawToday = async () => {
+    await librariesReady;
+    if (signal.aborted || !todayBox) return;
+    const list = store.watchlist.list();
+    todayBox.innerHTML = toMarkup(todayView(todayPlan(list, mine, getLibrary, closedToday), uncheckedCount(list, mine)));
+  };
+  drawToday();
+
   let newlyAvailable = 0;
   const check = async (book) => {
     const card = main.querySelector(`[data-isbn="${book.isbn13}"]`);
@@ -160,6 +203,7 @@ export async function render({ main, signal }) {
       const book = store.watchlist.list().find((b) => b.isbn13 === btn.dataset.check);
       if (book) await check(book);
       btn.remove();
+      drawToday();
     }),
   );
 
@@ -167,6 +211,7 @@ export async function render({ main, signal }) {
     await check(book);
     if (signal.aborted) return;
   }
+  drawToday();
   if (newlyAvailable) {
     main.querySelector('#news').innerHTML = toMarkup(html`<div class="notice notice--demo">${icon('bell')}<span><strong>새로 빌릴 수 있게 된 책 ${newlyAvailable}권</strong></span></div>`);
   }

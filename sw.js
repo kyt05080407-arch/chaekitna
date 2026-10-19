@@ -23,6 +23,8 @@ const SHELL = [
   './js/demo.js',
   './js/hours.js',
   './js/opac.js',
+  './js/nextsteps.js',
+  './js/today.js',
   './js/libraries.js',
   './js/parse.js',
   './js/push.js',

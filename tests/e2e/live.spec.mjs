@@ -206,3 +206,59 @@ test('요청서(POST) 방식 도서관: 바로 찾기를 누르면 제목을 채
   // 폼은 보낸 뒤 바로 치운다
   await expect(page.locator('body > form')).toHaveCount(0);
 });
+
+test('모두 대출 중이면 알림 → 예약 → 다른 도서관 → 책바다 → 사기 순서로 다음 방법을 보여 준다', async ({ page }) => {
+  await pickLibraries(page);
+  // 대출 중(147030)과 소장 안 함(147163)만 남긴다
+  await page.evaluate(() => localStorage.setItem('chaekitna:myLibraries', JSON.stringify(['147030', '147163'])));
+  await page.goto('#/book/9788937460449');
+  const next = page.locator('#next');
+  await expect(next.locator('h2')).toHaveText('지금은 모두 대출 중이에요. 이렇게 해 보세요');
+  await expect(next.locator('.next__title')).toHaveText(['반납되면 알림 받기', '도서관 홈페이지에서 예약하기', '같은 시·도 다른 도서관', '책바다로 다른 지역 책 받기', '사서 읽기']);
+  // 예약 단계는 대출 중인 도서관(안동시립웅부도서관) 홈페이지로
+  await expect(next.locator('.next__step').nth(1).locator('a')).toHaveAttribute('href', 'https://lib.andong.go.kr/');
+  // 관심 도서에 담으면 그 단계가 '담겨 있어요'로 바뀐다
+  await next.getByRole('button', { name: '관심 도서에 담기' }).click();
+  await expect(next.locator('.next__done')).toHaveText('관심 도서에 담겨 있어요');
+  await expect(page.locator('#watch')).toContainText('관심 도서에 담겼어요');
+  // 다른 도서관 찾아보기는 더 넓게 찾기를 실행한다
+  await next.getByRole('button', { name: '다른 도서관 찾아보기' }).click();
+  await expect(page.locator('#wide .row')).toHaveCount(2);
+});
+
+test('내 도서관에 없으면 다른 도서관 → 책바다 → 희망도서 → 사기, 빌릴 수 있으면 안내하지 않는다', async ({ page }) => {
+  await pickLibraries(page);
+  await page.evaluate(() => localStorage.setItem('chaekitna:myLibraries', JSON.stringify(['147163'])));
+  await page.goto('#/book/9788937460449');
+  await expect(page.locator('#next .next__title')).toHaveText(['같은 시·도 다른 도서관', '책바다로 다른 지역 책 받기', '희망도서로 신청하기', '사서 읽기']);
+  await expect(page.locator('#next a', { hasText: '책바다에서 신청' })).toHaveAttribute('href', 'https://books.nl.go.kr/nill/contents/NI2010000000.do');
+  await expect(page.locator('#next a', { hasText: '교보문고' })).toHaveAttribute('href', 'https://search.kyobobook.co.kr/search?keyword=9788937460449');
+
+  await page.evaluate(() => localStorage.setItem('chaekitna:myLibraries', JSON.stringify(['147168', '147163'])));
+  await page.reload();
+  await expect(page.locator('#summary .summary__big')).toHaveText('1곳');
+  await expect(page.locator('#next')).toHaveCount(0);
+});
+
+test('관심 도서: 오늘 어디 갈까 - 빌릴 수 있는 관심 도서가 많은 내 도서관부터', async ({ page }) => {
+  await page.clock.setFixedTime(new Date('2026-10-21T10:00:00+09:00')); // 수요일
+  await pickLibraries(page);
+  await page.evaluate(() =>
+    localStorage.setItem(
+      'chaekitna:watchlist',
+      JSON.stringify([
+        { isbn13: '9788937460449', title: '데미안', authors: '헤르만 헤세', addedAt: 1 },
+        { isbn13: '9791164455221', title: '데미안 (큰글자책)', authors: '헤르만 헤세', addedAt: 2 },
+      ]),
+    ),
+  );
+  await page.goto('#/watchlist');
+  const today = page.locator('#today');
+  await expect(today.locator('h2')).toHaveText('오늘 어디 갈까');
+  // 가짜 프록시: 경북도서관(147168)만 대출 가능
+  await expect(today.locator('.today__row').first().locator('.row__title')).toHaveText('경북도서관');
+  await expect(today.locator('.today__row').first().locator('.row__figure')).toHaveText('2권');
+  await expect(today.locator('.section__sub')).toContainText('경북도서관에 가면 관심 도서 2권을 빌릴 수 있어요');
+  await expect(today.locator('.today__row').first().locator('.row__sub')).toHaveText('데미안, 데미안 (큰글자책)');
+  await expect(today.locator('.today__row')).toHaveCount(3);
+});

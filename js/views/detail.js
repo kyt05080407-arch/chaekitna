@@ -3,6 +3,7 @@ import { backButton, cover, demoBadge, demoNotice, errorNotice, hotLine, icon, r
 import * as store from '../store.js';
 import { availability, bookDetail, holdings, isDemoMode, popularInfo } from '../api.js';
 import { loadOpac, searchTarget, submitSearch } from '../opac.js';
+import { nextStepsView, situation } from '../nextsteps.js';
 import { getLibrary, loadLibraries } from '../libraries.js';
 import { REGIONS, regionByCode } from '../regions.js';
 import { statusOf } from '../parse.js';
@@ -135,6 +136,7 @@ export async function render({ main, params, signal }) {
       <p class="summary__sub">${basisLabel()} · 대출 정보는 하루 늦게 반영돼요</p>
       <div id="sum-reading">${mine.length ? readingCard(nextReading()) : ''}</div>
     </section>
+    <div id="next-box"></div>
     <section class="section" aria-labelledby="mine-h">
       <div class="section__head"><h2 class="h2" id="mine-h">내 도서관</h2>${mine.length ? html`<a href="#/libraries?back=${encodeURIComponent(`#/book/${isbn}`)}">편집</a>` : ''}</div>
       <div id="mine">
@@ -180,6 +182,30 @@ export async function render({ main, params, signal }) {
     .catch(() => {});
 
   // ---------- 관심 도서 ----------
+  // ---------- 없을 때 다음 방법 ----------
+  let lastStatuses = null;
+  const renderNext = async () => {
+    const box = main.querySelector('#next-box');
+    const kind = situation(lastStatuses);
+    if (!box || (kind !== 'loaned' && kind !== 'none')) {
+      if (box) box.innerHTML = '';
+      return;
+    }
+    const templates = await opacReady;
+    if (signal.aborted) return;
+    const title = searchTitle();
+    const loanedCode = mine.find((code) => lastStatuses[code] === 'loaned');
+    box.innerHTML = toMarkup(
+      nextStepsView({
+        kind,
+        isbn,
+        watched: watched(),
+        reserveLink: loanedCode ? siteLink(getLibrary(loanedCode), title, templates) : '',
+        requestLink: mine.length ? siteLink(getLibrary(mine[0]), title, templates) : '',
+      }),
+    );
+  };
+
   const toggleWatch = () => {
     if (watched()) {
       store.watchlist.remove(isbn);
@@ -270,6 +296,8 @@ export async function render({ main, params, signal }) {
         if (slot) slot.innerHTML = toMarkup(badges(statuses[code], demo.isDemoIsbn(isbn)));
       }
       setSummary(main, summaryView(statuses, mine.length));
+      lastStatuses = statuses;
+      renderNext();
       if (result.budget) toast('오늘 조회 한도를 다 써서 일부 도서관은 확인하지 못했어요');
       if (watched()) store.watchlist.update(isbn, { last: statuses, checkedAt: Date.now() });
     } catch (error) {
@@ -296,11 +324,24 @@ export async function render({ main, params, signal }) {
       }
       return;
     }
+    // 다음 방법 안내의 버튼
+    const next = event.target.closest('[data-next]');
+    if (next) {
+      if (next.dataset.next === 'watch') {
+        if (!watched()) main.querySelector('#watch').click();
+        renderNext();
+      } else if (next.dataset.next === 'wide') {
+        main.querySelector('#find-wide').click();
+        const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        main.querySelector('#wide-h').scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+      }
+      return;
+    }
     const link = event.target.closest('[data-copy-title]');
     const title = link && link.dataset.copyTitle;
     if (!title || !navigator.clipboard) return;
     navigator.clipboard.writeText(title).then(
-      () => toast(`'${title}' 제목을 복사했어요. 홈페이지 검색창에 붙여 넣으세요`),
+      () => toast(link.dataset.copyHint || `'${title}' 제목을 복사했어요. 홈페이지 검색창에 붙여 넣으세요`),
       () => {},
     );
   });
