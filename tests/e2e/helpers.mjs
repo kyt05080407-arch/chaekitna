@@ -82,7 +82,7 @@ export const TEST_VAPID_PUBLIC_KEY = 'BFOevrEIybrv8YLSt5GSvjdJ48_z1M3j3cjF_61tfs
 // config.js를 바꿔 끼우고 proxy.example을 흉내 낸다. 반환값으로 호출 기록과 상태를 조절할 수 있다.
 // target: page 또는 context (서비스 워커를 켠 시험은 context여야 워커가 보내는 요청도 바꿔 끼운다)
 export async function fakeProxy(target) {
-  const state = { budget: false, calls: [], posts: [] };
+  const state = { budget: false, calls: [], posts: [], holdingsFor: null };
   await target.route('**/js/config.js', async (route) => {
     const res = await route.fetch();
     const body = (await res.text())
@@ -117,6 +117,15 @@ export async function fakeProxy(target) {
               }),
             ),
           };
+    } else if (q.op === 'holdings' && state.holdingsFor) {
+      // 시험마다 책별 소장 도서관을 정할 수 있다: (isbn, region) → { codes, total? }
+      const { codes = [], total } = state.holdingsFor(q.isbn, q.region) || {};
+      data = {
+        response: {
+          numFound: total ?? codes.length,
+          libs: codes.map((libCode) => ({ lib: { libCode, libName: `도서관 ${libCode}`, address: '' } })),
+        },
+      };
     } else if (q.op === 'holdings') {
       data = {
         response: {

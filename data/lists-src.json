@@ -1,0 +1,1258 @@
+{
+ "lists": [
+  {
+   "id": "snu100",
+   "title": "서울대 권장도서 100선",
+   "short": "서울대 권장도서",
+   "description": "서울대학교 기초교육원이 고른 고전 100권. 한국문학·외국문학·동양사상·서양사상·과학기술 다섯 분야예요.",
+   "source": "서울대학교 기초교육원 「책 읽는 관악인」 권장도서 100선",
+   "sourceUrl": "http://book100.snu.ac.kr/book/book/",
+   "fields": [
+    {
+     "id": "ko",
+     "label": "한국문학"
+    },
+    {
+     "id": "for",
+     "label": "외국문학"
+    },
+    {
+     "id": "east",
+     "label": "동양사상"
+    },
+    {
+     "id": "west",
+     "label": "서양사상"
+    },
+    {
+     "id": "sci",
+     "label": "과학기술"
+    }
+   ],
+   "books": [
+    {
+     "no": 1,
+     "field": "ko",
+     "title": "고전시가선집",
+     "author": "",
+     "queries": [
+      "고전시가선집"
+     ],
+     "authorKeys": []
+    },
+    {
+     "no": 2,
+     "field": "ko",
+     "title": "고향",
+     "author": "이기영",
+     "queries": [
+      "고향"
+     ],
+     "authorKeys": [
+      "이기영"
+     ]
+    },
+    {
+     "no": 3,
+     "field": "ko",
+     "title": "광장",
+     "author": "최인훈",
+     "queries": [
+      "광장"
+     ],
+     "authorKeys": [
+      "최인훈"
+     ]
+    },
+    {
+     "no": 4,
+     "field": "ko",
+     "title": "구운몽",
+     "author": "김만중",
+     "queries": [
+      "구운몽"
+     ],
+     "authorKeys": [
+      "김만중"
+     ]
+    },
+    {
+     "no": 5,
+     "field": "ko",
+     "title": "무정",
+     "author": "이광수",
+     "queries": [
+      "무정"
+     ],
+     "authorKeys": [
+      "이광수"
+     ]
+    },
+    {
+     "no": 6,
+     "field": "ko",
+     "title": "백석시전집",
+     "author": "백석",
+     "queries": [
+      "백석 시 전집",
+      "백석 시집"
+     ],
+     "authorKeys": [
+      "백석"
+     ]
+    },
+    {
+     "no": 7,
+     "field": "ko",
+     "title": "삼대",
+     "author": "염상섭",
+     "queries": [
+      "삼대"
+     ],
+     "authorKeys": [
+      "염상섭"
+     ]
+    },
+    {
+     "no": 8,
+     "field": "ko",
+     "title": "연암산문선",
+     "author": "박지원",
+     "queries": [
+      "연암 산문",
+      "산문"
+     ],
+     "authorKeys": [
+      "박지원"
+     ]
+    },
+    {
+     "no": 9,
+     "field": "ko",
+     "title": "인간문제",
+     "author": "강경애",
+     "queries": [
+      "인간문제"
+     ],
+     "authorKeys": [
+      "강경애"
+     ]
+    },
+    {
+     "no": 10,
+     "field": "ko",
+     "title": "정지용전집",
+     "author": "정지용",
+     "queries": [
+      "정지용 전집",
+      "정지용 시집"
+     ],
+     "authorKeys": [
+      "정지용"
+     ]
+    },
+    {
+     "no": 11,
+     "field": "ko",
+     "title": "천변풍경",
+     "author": "박태원",
+     "queries": [
+      "천변풍경"
+     ],
+     "authorKeys": [
+      "박태원"
+     ]
+    },
+    {
+     "no": 12,
+     "field": "ko",
+     "title": "청구야담",
+     "author": "작자미상",
+     "queries": [
+      "청구야담"
+     ],
+     "authorKeys": []
+    },
+    {
+     "no": 13,
+     "field": "ko",
+     "title": "춘향전",
+     "author": "",
+     "queries": [
+      "춘향전"
+     ],
+     "authorKeys": []
+    },
+    {
+     "no": 14,
+     "field": "ko",
+     "title": "카인의 후예",
+     "author": "황순원",
+     "queries": [
+      "카인의 후예"
+     ],
+     "authorKeys": [
+      "황순원"
+     ]
+    },
+    {
+     "no": 15,
+     "field": "ko",
+     "title": "탁류",
+     "author": "채만식",
+     "queries": [
+      "탁류"
+     ],
+     "authorKeys": [
+      "채만식"
+     ]
+    },
+    {
+     "no": 16,
+     "field": "ko",
+     "title": "토지",
+     "author": "박경리",
+     "queries": [
+      "토지"
+     ],
+     "authorKeys": [
+      "박경리"
+     ],
+     "note": "여러 권으로 된 소설이에요"
+    },
+    {
+     "no": 17,
+     "field": "ko",
+     "title": "한중록",
+     "author": "혜경궁 홍씨",
+     "queries": [
+      "한중록"
+     ],
+     "authorKeys": [
+      "혜경궁",
+      "홍씨"
+     ]
+    },
+    {
+     "no": 18,
+     "field": "for",
+     "title": "고도를 기다리며",
+     "author": "베케트",
+     "queries": [
+      "고도를 기다리며"
+     ],
+     "authorKeys": [
+      "베케트",
+      "베켓"
+     ]
+    },
+    {
+     "no": 19,
+     "field": "for",
+     "title": "그리스로마신화",
+     "author": "",
+     "queries": [
+      "그리스 로마 신화"
+     ],
+     "authorKeys": [
+      "불핀치",
+      "해밀턴",
+      "이윤기"
+     ]
+    },
+    {
+     "no": 20,
+     "field": "for",
+     "title": "그리스비극선집",
+     "author": "소포클레스·아이스퀼로스·에우리피데스",
+     "queries": [
+      "그리스 비극"
+     ],
+     "authorKeys": [
+      "소포클레스",
+      "아이스킬로스",
+      "아이스퀼로스",
+      "에우리피데스"
+     ]
+    },
+    {
+     "no": 21,
+     "field": "for",
+     "title": "당시선",
+     "author": "",
+     "queries": [
+      "당시선"
+     ],
+     "authorKeys": []
+    },
+    {
+     "no": 22,
+     "field": "for",
+     "title": "돈키호테",
+     "author": "세르반테스",
+     "queries": [
+      "돈키호테"
+     ],
+     "authorKeys": [
+      "세르반테스"
+     ]
+    },
+    {
+     "no": 23,
+     "field": "for",
+     "title": "루쉰전집",
+     "author": "루쉰",
+     "queries": [
+      "루쉰 전집",
+      "루쉰 소설 전집"
+     ],
+     "authorKeys": [
+      "루쉰"
+     ]
+    },
+    {
+     "no": 24,
+     "field": "for",
+     "title": "마음",
+     "author": "나쓰메 소세키",
+     "queries": [
+      "마음"
+     ],
+     "authorKeys": [
+      "소세키"
+     ]
+    },
+    {
+     "no": 25,
+     "field": "for",
+     "title": "마의 산",
+     "author": "토마스 만",
+     "queries": [
+      "마의 산"
+     ],
+     "authorKeys": [
+      "토마스 만",
+      "토마스만"
+     ]
+    },
+    {
+     "no": 26,
+     "field": "for",
+     "title": "백년동안의 고독",
+     "author": "마르께스",
+     "queries": [
+      "백년의 고독",
+      "백년 동안의 고독"
+     ],
+     "authorKeys": [
+      "마르케스",
+      "마르께스"
+     ]
+    },
+    {
+     "no": 27,
+     "field": "for",
+     "title": "변신",
+     "author": "카프카",
+     "queries": [
+      "변신"
+     ],
+     "authorKeys": [
+      "카프카"
+     ]
+    },
+    {
+     "no": 28,
+     "field": "for",
+     "title": "변신이야기",
+     "author": "오비디우스",
+     "queries": [
+      "변신 이야기"
+     ],
+     "authorKeys": [
+      "오비디우스"
+     ]
+    },
+    {
+     "no": 29,
+     "field": "for",
+     "title": "변신인형",
+     "author": "왕멍",
+     "queries": [
+      "변신 인형"
+     ],
+     "authorKeys": [
+      "왕멍"
+     ]
+    },
+    {
+     "no": 30,
+     "field": "for",
+     "title": "보바리 부인",
+     "author": "플로베르",
+     "queries": [
+      "보바리 부인"
+     ],
+     "authorKeys": [
+      "플로베르"
+     ]
+    },
+    {
+     "no": 31,
+     "field": "for",
+     "title": "설국",
+     "author": "가와바타 야스나리",
+     "queries": [
+      "설국"
+     ],
+     "authorKeys": [
+      "가와바타"
+     ]
+    },
+    {
+     "no": 32,
+     "field": "for",
+     "title": "셰익스피어 작품",
+     "author": "셰익스피어",
+     "queries": [
+      "셰익스피어 4대 비극",
+      "햄릿"
+     ],
+     "authorKeys": [
+      "셰익스피어",
+      "세익스피어"
+     ],
+     "note": "목록에는 작품 전체로 나와 있어서 4대 비극 모음으로 찾아요"
+    },
+    {
+     "no": 33,
+     "field": "for",
+     "title": "스완네 집 쪽으로",
+     "author": "프루스트",
+     "queries": [
+      "스완네 집 쪽으로",
+      "잃어버린 시간을 찾아서"
+     ],
+     "authorKeys": [
+      "프루스트"
+     ],
+     "note": "『잃어버린 시간을 찾아서』의 1부예요"
+    },
+    {
+     "no": 34,
+     "field": "for",
+     "title": "신곡",
+     "author": "단테",
+     "queries": [
+      "신곡"
+     ],
+     "authorKeys": [
+      "단테"
+     ]
+    },
+    {
+     "no": 35,
+     "field": "for",
+     "title": "안나 카레니나",
+     "author": "톨스토이",
+     "queries": [
+      "안나 카레니나"
+     ],
+     "authorKeys": [
+      "톨스토이"
+     ]
+    },
+    {
+     "no": 36,
+     "field": "for",
+     "title": "양철북",
+     "author": "귄터 그라스",
+     "queries": [
+      "양철북"
+     ],
+     "authorKeys": [
+      "그라스"
+     ]
+    },
+    {
+     "no": 37,
+     "field": "for",
+     "title": "위대한 유산",
+     "author": "찰스 디킨스",
+     "queries": [
+      "위대한 유산"
+     ],
+     "authorKeys": [
+      "디킨스"
+     ]
+    },
+    {
+     "no": 38,
+     "field": "for",
+     "title": "인간조건",
+     "author": "앙드레 말로",
+     "queries": [
+      "인간의 조건",
+      "인간 조건"
+     ],
+     "authorKeys": [
+      "말로"
+     ]
+    },
+    {
+     "no": 39,
+     "field": "for",
+     "title": "일리아드, 오딧세이아",
+     "author": "호메로스",
+     "queries": [
+      "일리아스",
+      "일리아드"
+     ],
+     "authorKeys": [
+      "호메로스"
+     ],
+     "note": "요즘 번역은 『일리아스』, 『오뒷세이아』라는 제목이 많아요"
+    },
+    {
+     "no": 40,
+     "field": "for",
+     "title": "젊은 예술가의 초상",
+     "author": "제임스 조이스",
+     "queries": [
+      "젊은 예술가의 초상"
+     ],
+     "authorKeys": [
+      "조이스"
+     ]
+    },
+    {
+     "no": 41,
+     "field": "for",
+     "title": "주홍글씨",
+     "author": "호손",
+     "queries": [
+      "주홍 글자",
+      "주홍글씨"
+     ],
+     "authorKeys": [
+      "호손"
+     ],
+     "note": "요즘 번역은 『주홍 글자』라는 제목이 많아요"
+    },
+    {
+     "no": 42,
+     "field": "for",
+     "title": "체호프 희곡선",
+     "author": "체호프",
+     "queries": [
+      "체호프 희곡",
+      "벚꽃 동산",
+      "갈매기"
+     ],
+     "authorKeys": [
+      "체호프"
+     ]
+    },
+    {
+     "no": 43,
+     "field": "for",
+     "title": "카라마조프가의 형제들",
+     "author": "도스토예프스키",
+     "queries": [
+      "카라마조프가의 형제들"
+     ],
+     "authorKeys": [
+      "도스토예프스키",
+      "도스토옙스키"
+     ]
+    },
+    {
+     "no": 44,
+     "field": "for",
+     "title": "파우스트",
+     "author": "괴테",
+     "queries": [
+      "파우스트"
+     ],
+     "authorKeys": [
+      "괴테"
+     ]
+    },
+    {
+     "no": 45,
+     "field": "for",
+     "title": "픽션들",
+     "author": "보르헤스",
+     "queries": [
+      "픽션들"
+     ],
+     "authorKeys": [
+      "보르헤스"
+     ]
+    },
+    {
+     "no": 46,
+     "field": "for",
+     "title": "허클베리 핀의 모험",
+     "author": "마크 트웨인",
+     "queries": [
+      "허클베리 핀의 모험"
+     ],
+     "authorKeys": [
+      "트웨인"
+     ]
+    },
+    {
+     "no": 47,
+     "field": "for",
+     "title": "홍루몽",
+     "author": "조설근",
+     "queries": [
+      "홍루몽"
+     ],
+     "authorKeys": [
+      "조설근",
+      "차오쉐친"
+     ]
+    },
+    {
+     "no": 48,
+     "field": "for",
+     "title": "황무지",
+     "author": "T.S. 엘리엇",
+     "queries": [
+      "황무지"
+     ],
+     "authorKeys": [
+      "엘리엇"
+     ]
+    },
+    {
+     "no": 49,
+     "field": "east",
+     "title": "논어",
+     "author": "",
+     "queries": [
+      "논어"
+     ],
+     "authorKeys": []
+    },
+    {
+     "no": 50,
+     "field": "east",
+     "title": "다산문선",
+     "author": "정약용",
+     "queries": [
+      "다산 문선",
+      "다산 산문",
+      "다산 시문선"
+     ],
+     "authorKeys": [
+      "정약용"
+     ]
+    },
+    {
+     "no": 51,
+     "field": "east",
+     "title": "대학, 중용",
+     "author": "",
+     "queries": [
+      "대학 중용"
+     ],
+     "authorKeys": []
+    },
+    {
+     "no": 52,
+     "field": "east",
+     "title": "맹자",
+     "author": "",
+     "queries": [
+      "맹자"
+     ],
+     "authorKeys": []
+    },
+    {
+     "no": 53,
+     "field": "east",
+     "title": "보조법어",
+     "author": "지눌",
+     "queries": [
+      "보조법어"
+     ],
+     "authorKeys": [
+      "지눌",
+      "보조"
+     ]
+    },
+    {
+     "no": 54,
+     "field": "east",
+     "title": "사기열전",
+     "author": "사마천",
+     "queries": [
+      "사기열전"
+     ],
+     "authorKeys": [
+      "사마천"
+     ]
+    },
+    {
+     "no": 55,
+     "field": "east",
+     "title": "삼국유사",
+     "author": "일연",
+     "queries": [
+      "삼국유사"
+     ],
+     "authorKeys": [
+      "일연"
+     ]
+    },
+    {
+     "no": 56,
+     "field": "east",
+     "title": "아함경",
+     "author": "",
+     "queries": [
+      "아함경"
+     ],
+     "authorKeys": []
+    },
+    {
+     "no": 57,
+     "field": "east",
+     "title": "율곡문선",
+     "author": "이이",
+     "queries": [
+      "율곡 문선",
+      "율곡"
+     ],
+     "authorKeys": [
+      "이이"
+     ]
+    },
+    {
+     "no": 58,
+     "field": "east",
+     "title": "장자",
+     "author": "",
+     "queries": [
+      "장자"
+     ],
+     "authorKeys": []
+    },
+    {
+     "no": 59,
+     "field": "east",
+     "title": "제자백가선도",
+     "author": "",
+     "queries": [
+      "제자백가"
+     ],
+     "authorKeys": []
+    },
+    {
+     "no": 60,
+     "field": "east",
+     "title": "주역",
+     "author": "",
+     "queries": [
+      "주역"
+     ],
+     "authorKeys": []
+    },
+    {
+     "no": 61,
+     "field": "east",
+     "title": "퇴계문선",
+     "author": "이황",
+     "queries": [
+      "퇴계 문선",
+      "퇴계"
+     ],
+     "authorKeys": [
+      "이황"
+     ]
+    },
+    {
+     "no": 62,
+     "field": "west",
+     "title": "간디 자서전",
+     "author": "간디",
+     "queries": [
+      "간디 자서전"
+     ],
+     "authorKeys": [
+      "간디"
+     ]
+    },
+    {
+     "no": 63,
+     "field": "west",
+     "title": "감시와 처벌",
+     "author": "미셸 푸코",
+     "queries": [
+      "감시와 처벌"
+     ],
+     "authorKeys": [
+      "푸코"
+     ]
+    },
+    {
+     "no": 64,
+     "field": "west",
+     "title": "고백록",
+     "author": "아우구스티누스",
+     "queries": [
+      "고백록"
+     ],
+     "authorKeys": [
+      "아우구스티누스"
+     ]
+    },
+    {
+     "no": 65,
+     "field": "west",
+     "title": "국가",
+     "author": "플라톤",
+     "queries": [
+      "국가"
+     ],
+     "authorKeys": [
+      "플라톤"
+     ]
+    },
+    {
+     "no": 66,
+     "field": "west",
+     "title": "국부론",
+     "author": "애덤 스미스",
+     "queries": [
+      "국부론"
+     ],
+     "authorKeys": [
+      "스미스"
+     ]
+    },
+    {
+     "no": 67,
+     "field": "west",
+     "title": "군주론",
+     "author": "마키아벨리",
+     "queries": [
+      "군주론"
+     ],
+     "authorKeys": [
+      "마키아벨리"
+     ]
+    },
+    {
+     "no": 68,
+     "field": "west",
+     "title": "꿈의 해석",
+     "author": "프로이트",
+     "queries": [
+      "꿈의 해석"
+     ],
+     "authorKeys": [
+      "프로이트"
+     ]
+    },
+    {
+     "no": 69,
+     "field": "west",
+     "title": "니코마코스 윤리학",
+     "author": "아리스토텔레스",
+     "queries": [
+      "니코마코스 윤리학"
+     ],
+     "authorKeys": [
+      "아리스토텔레스"
+     ]
+    },
+    {
+     "no": 70,
+     "field": "west",
+     "title": "도덕계보학",
+     "author": "니체",
+     "queries": [
+      "도덕의 계보",
+      "도덕 계보학"
+     ],
+     "authorKeys": [
+      "니체"
+     ],
+     "note": "요즘 번역은 『도덕의 계보』라는 제목이 많아요"
+    },
+    {
+     "no": 71,
+     "field": "west",
+     "title": "리바이어던",
+     "author": "토머스 홉스",
+     "queries": [
+      "리바이어던"
+     ],
+     "authorKeys": [
+      "홉스"
+     ]
+    },
+    {
+     "no": 72,
+     "field": "west",
+     "title": "문학과 예술의 사회사",
+     "author": "아르놀트 하우저",
+     "queries": [
+      "문학과 예술의 사회사"
+     ],
+     "authorKeys": [
+      "하우저"
+     ]
+    },
+    {
+     "no": 73,
+     "field": "west",
+     "title": "물질문명과 자본주의",
+     "author": "페르낭 브로델",
+     "queries": [
+      "물질문명과 자본주의"
+     ],
+     "authorKeys": [
+      "브로델"
+     ]
+    },
+    {
+     "no": 74,
+     "field": "west",
+     "title": "미국의 민주주의",
+     "author": "토크빌",
+     "queries": [
+      "미국의 민주주의"
+     ],
+     "authorKeys": [
+      "토크빌"
+     ]
+    },
+    {
+     "no": 75,
+     "field": "west",
+     "title": "미디어의 이해",
+     "author": "마셜 매클루언",
+     "queries": [
+      "미디어의 이해"
+     ],
+     "authorKeys": [
+      "맥루한",
+      "매클루언",
+      "맥루언"
+     ]
+    },
+    {
+     "no": 76,
+     "field": "west",
+     "title": "방법서설",
+     "author": "데카르트",
+     "queries": [
+      "방법서설"
+     ],
+     "authorKeys": [
+      "데카르트"
+     ]
+    },
+    {
+     "no": 77,
+     "field": "west",
+     "title": "법의 정신",
+     "author": "몽테스키외",
+     "queries": [
+      "법의 정신"
+     ],
+     "authorKeys": [
+      "몽테스키외"
+     ]
+    },
+    {
+     "no": 78,
+     "field": "west",
+     "title": "슬픈 열대",
+     "author": "레비스트로스",
+     "queries": [
+      "슬픈 열대"
+     ],
+     "authorKeys": [
+      "레비스트로스"
+     ]
+    },
+    {
+     "no": 79,
+     "field": "west",
+     "title": "실천이성비판",
+     "author": "칸트",
+     "queries": [
+      "실천이성비판"
+     ],
+     "authorKeys": [
+      "칸트"
+     ]
+    },
+    {
+     "no": 80,
+     "field": "west",
+     "title": "에밀",
+     "author": "루소",
+     "queries": [
+      "에밀"
+     ],
+     "authorKeys": [
+      "루소"
+     ]
+    },
+    {
+     "no": 81,
+     "field": "west",
+     "title": "역사",
+     "author": "헤로도토스",
+     "queries": [
+      "역사"
+     ],
+     "authorKeys": [
+      "헤로도토스"
+     ]
+    },
+    {
+     "no": 82,
+     "field": "west",
+     "title": "우파니샤드",
+     "author": "",
+     "queries": [
+      "우파니샤드"
+     ],
+     "authorKeys": []
+    },
+    {
+     "no": 83,
+     "field": "west",
+     "title": "의무론",
+     "author": "키케로",
+     "queries": [
+      "의무론"
+     ],
+     "authorKeys": [
+      "키케로"
+     ]
+    },
+    {
+     "no": 84,
+     "field": "west",
+     "title": "자본론",
+     "author": "마르크스",
+     "queries": [
+      "자본론",
+      "자본"
+     ],
+     "authorKeys": [
+      "마르크스"
+     ],
+     "note": "요즘 번역은 『자본』이라는 제목도 있어요"
+    },
+    {
+     "no": 85,
+     "field": "west",
+     "title": "자유론",
+     "author": "존 스튜어트 밀",
+     "queries": [
+      "자유론"
+     ],
+     "authorKeys": [
+      "밀"
+     ]
+    },
+    {
+     "no": 86,
+     "field": "west",
+     "title": "정부론",
+     "author": "존 로크",
+     "queries": [
+      "통치론",
+      "정부론"
+     ],
+     "authorKeys": [
+      "로크"
+     ],
+     "note": "요즘 번역은 『통치론』이라는 제목이 많아요"
+    },
+    {
+     "no": 87,
+     "field": "west",
+     "title": "페더랄리스트 페이퍼",
+     "author": "알렉산더 해밀턴 외",
+     "queries": [
+      "페더랄리스트",
+      "페더럴리스트"
+     ],
+     "authorKeys": [
+      "해밀턴"
+     ],
+     "note": "『페더럴리스트』라고도 해요"
+    },
+    {
+     "no": 88,
+     "field": "west",
+     "title": "프로테스탄티즘의 윤리와 자본주의 정신",
+     "author": "막스 베버",
+     "queries": [
+      "프로테스탄티즘의 윤리와 자본주의 정신"
+     ],
+     "authorKeys": [
+      "베버"
+     ]
+    },
+    {
+     "no": 89,
+     "field": "west",
+     "title": "홉스봄 4부작",
+     "author": "에릭 홉스봄",
+     "queries": [
+      "혁명의 시대"
+     ],
+     "authorKeys": [
+      "홉스봄"
+     ],
+     "note": "4부작(혁명·자본·제국·극단의 시대) 중 첫 권으로 찾아요"
+    },
+    {
+     "no": 90,
+     "field": "sci",
+     "title": "같기도 하고, 아니 같기도 하고",
+     "author": "로얼드 호프만",
+     "queries": [
+      "같기도 하고 아니 같기도 하고"
+     ],
+     "authorKeys": [
+      "호프만"
+     ]
+    },
+    {
+     "no": 91,
+     "field": "sci",
+     "title": "객관성의 칼날",
+     "author": "찰스 길리스피",
+     "queries": [
+      "객관성의 칼날"
+     ],
+     "authorKeys": [
+      "길리스피"
+     ]
+    },
+    {
+     "no": 92,
+     "field": "sci",
+     "title": "과학고전선집",
+     "author": "홍성욱",
+     "queries": [
+      "과학 고전 선집"
+     ],
+     "authorKeys": [
+      "홍성욱"
+     ]
+    },
+    {
+     "no": 93,
+     "field": "sci",
+     "title": "과학혁명의 구조",
+     "author": "토머스 쿤",
+     "queries": [
+      "과학혁명의 구조"
+     ],
+     "authorKeys": [
+      "쿤"
+     ]
+    },
+    {
+     "no": 94,
+     "field": "sci",
+     "title": "괴델, 에셔, 바흐",
+     "author": "더글러스 호프스태터",
+     "queries": [
+      "괴델 에셔 바흐"
+     ],
+     "authorKeys": [
+      "호프스태터"
+     ]
+    },
+    {
+     "no": 95,
+     "field": "sci",
+     "title": "부분과 전체",
+     "author": "하이젠베르크",
+     "queries": [
+      "부분과 전체"
+     ],
+     "authorKeys": [
+      "하이젠베르크"
+     ]
+    },
+    {
+     "no": 96,
+     "field": "sci",
+     "title": "신기관",
+     "author": "프랜시스 베이컨",
+     "queries": [
+      "신기관"
+     ],
+     "authorKeys": [
+      "베이컨"
+     ]
+    },
+    {
+     "no": 97,
+     "field": "sci",
+     "title": "엔트로피",
+     "author": "제러미 리프킨",
+     "queries": [
+      "엔트로피"
+     ],
+     "authorKeys": [
+      "리프킨"
+     ]
+    },
+    {
+     "no": 98,
+     "field": "sci",
+     "title": "이기적 유전자",
+     "author": "리처드 도킨스",
+     "queries": [
+      "이기적 유전자"
+     ],
+     "authorKeys": [
+      "도킨스"
+     ]
+    },
+    {
+     "no": 99,
+     "field": "sci",
+     "title": "종의 기원",
+     "author": "찰스 다윈",
+     "queries": [
+      "종의 기원"
+     ],
+     "authorKeys": [
+      "다윈"
+     ]
+    },
+    {
+     "no": 100,
+     "field": "sci",
+     "title": "카오스",
+     "author": "제임스 글릭",
+     "queries": [
+      "카오스"
+     ],
+     "authorKeys": [
+      "글릭",
+      "글리크"
+     ]
+    }
+   ]
+  }
+ ]
+}

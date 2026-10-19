@@ -56,6 +56,7 @@ const ROUTES = [
   { pattern: /^\/$/, tab: 'home', load: () => import('./views/home.js') },
   { pattern: /^\/search$/, tab: 'home', load: () => import('./views/results.js') },
   { pattern: /^\/book\/(\d{13})$/, tab: 'home', keys: ['isbn'], load: () => import('./views/detail.js') },
+  { pattern: /^\/list\/([\w-]{1,30})$/, tab: 'home', keys: ['id'], load: () => import('./views/lists.js') },
   { pattern: /^\/libraries$/, tab: 'libraries', load: () => import('./views/mylibs.js') },
   { pattern: /^\/watchlist$/, tab: 'watchlist', load: () => import('./views/watchlist.js') },
   { pattern: /^\/settings$/, tab: 'settings', load: () => import('./views/settings.js') },

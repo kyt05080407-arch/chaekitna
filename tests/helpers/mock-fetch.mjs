@@ -80,6 +80,31 @@ function proxyResponse(url, init) {
   return null;
 }
 
+// 책 목록 만들기용 도서 검색: 찾는 제목을 그대로 돌려준다(만화판을 먼저, 진짜 책을 다음에).
+// MOCK_NO_TITLE=1이면 제목 칸 검색은 오류로 답한다(키워드 검색으로 넘어가는지 보려고).
+function fakeIsbn(text) {
+  let h = 7;
+  for (const ch of text) h = (h * 31 + ch.codePointAt(0)) % 1e9;
+  return `979${String(h).padStart(10, '0')}`;
+}
+function listSearch(url) {
+  const title = url.searchParams.get('title');
+  const keyword = url.searchParams.get('keyword');
+  if (title && process.env.MOCK_NO_TITLE === '1') return { response: { error: '검색 조건을 확인해 주세요' } };
+  const q = title || keyword || '';
+  if (q.includes('없는책')) return { response: { numFound: 0, docs: [] } };
+  const author = url.searchParams.get('author') || '아무개';
+  return {
+    response: {
+      numFound: 2,
+      docs: [
+        { doc: { bookname: `만화로 읽는 ${q}`, authors: '그림: 다른사람', isbn13: fakeIsbn(`comic${q}`), loan_count: '900' } },
+        { doc: { bookname: `${q} :부제`, authors: `지은이: ${author}`, publisher: '고전 출판사', publication_year: '2010', isbn13: fakeIsbn(q), loan_count: '50', bookImageURL: 'http://image.example.com/c.jpg' } },
+      ],
+    },
+  };
+}
+
 globalThis.fetch = async (input, init = {}) => {
   const url = new URL(String(input));
   if (init.method !== 'POST') calls.push(url.pathname + url.search.replace(/authKey=[^&]*/, 'authKey=***').replace(/token=[^&]*/, 'token=***'));
@@ -100,6 +125,8 @@ globalThis.fetch = async (input, init = {}) => {
       yesterday: { date: '2026-10-14', used: scenario === 'health-busy' ? 430 : 120, stats: { search: 40, exist: 70 } },
       subscriptions: 0,
     };
+  } else if (ep === 'srchBooks' && scenario === 'lists') {
+    body = listSearch(url);
   } else if (ep === 'srchBooks') {
     body = { response: { numFound: 120, docs: popularDocs(3) } };
   } else if (ep === 'srchDtlList') {

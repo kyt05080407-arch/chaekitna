@@ -7,6 +7,7 @@ import { openScanner } from '../scan.js';
 import { closedToday } from '../hours.js';
 import { eventWhen, loadEvents, upcomingEvents } from '../events.js';
 import { nextReading } from '../reading.js';
+import { loadLists } from '../lists.js';
 
 function popularSubtitle(data, tab) {
   if (data.demo) return '예시 목록이에요. 매주 월요일 도서관 정보나루 데이터로 바뀌어요.';
@@ -47,6 +48,34 @@ function promoItem(event) {
       <span class="promo__status">${event.status}</span>
     </span>
   </a>`;
+}
+
+// 책 목록 바로 가기(서울대 권장도서·중고생 인기·내 목록)
+const LIST_ICON = { popular: 'trend', mine: 'edit' };
+function listRows(lists) {
+  const saved = store.get('myList', null);
+  const mineCount = saved && Array.isArray(saved.books) ? saved.books.length : 0;
+  const rows = [
+    ...lists.map((l) => ({
+      href: `#/list/${l.id}`,
+      ico: LIST_ICON[l.kind] || 'book',
+      title: l.title,
+      sub: l.kind === 'popular' ? `${l.books.length}권 · 최근 30일 전국` : `${l.books.length}권${Array.isArray(l.fields) && l.fields.length ? ` · ${l.fields.length}개 분야` : ''}`,
+    })),
+    {
+      href: '#/list/mine',
+      ico: 'edit',
+      title: '내 목록',
+      sub: mineCount ? `${mineCount}권 · 직접 만든 목록` : '선생님이 준 목록을 붙여 넣어 확인',
+    },
+  ];
+  return rows.map(
+    (r) => html`<li><a class="row" href="${r.href}">
+      <span class="list-icon">${icon(r.ico)}</span>
+      <span class="row__body"><span class="row__title">${r.title}</span><span class="row__sub">${r.sub}</span></span>
+      ${icon('chevron', { cls: 'row__chev' })}
+    </a></li>`,
+  );
 }
 
 export async function render({ main, navigate, signal }) {
@@ -91,6 +120,12 @@ export async function render({ main, navigate, signal }) {
           ? skeletonRows(Math.min(mine.length, 3), '2.6rem')
           : html`<a class="chip chip--add" href="#/libraries">${icon('plus')}자주 가는 도서관 고르기</a>`}
       </div>
+    </section>
+
+    <section class="section" aria-labelledby="lists-h">
+      <div class="section__head"><h2 class="h2" id="lists-h">책 목록 한 번에 확인</h2></div>
+      <p class="section__sub">목록 속 책이 내 도서관에 있는지 한 번에 봐요</p>
+      <ul class="list" id="lists">${listRows([])}</ul>
     </section>
 
     <section class="section" aria-labelledby="pop-h">
@@ -178,6 +213,12 @@ export async function render({ main, navigate, signal }) {
       })}</ul>`);
     });
   }
+
+  // ---------- 책 목록 바로 가기 ----------
+  loadLists().then((lists) => {
+    const el = main.querySelector('#lists');
+    if (!signal.aborted && el && lists.lists.length) el.innerHTML = toMarkup(listRows(lists.lists));
+  });
 
   // ---------- 이번 주 인기 도서 (거래 내역처럼 오른쪽에 대출 횟수, 나잇대 탭) ----------
   const data = await popularBooks(region);

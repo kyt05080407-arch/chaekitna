@@ -226,6 +226,32 @@ test('모두 대출 중이면 알림 → 예약 → 다른 도서관 → 책바�
   await expect(page.locator('#wide .row')).toHaveCount(2);
 });
 
+test('책 화면을 여러 번 옮겨 다녀도 버튼이 한 번만 동작한다(지난 책 화면의 처리기가 남지 않음)', async ({ page, context }) => {
+  await page.route('**/data/opac.json', (route) =>
+    route.fulfill({
+      json: { hosts: { 'lib.andong.go.kr': { method: 'post', action: 'https://proxy.example/opac-search.do', fields: { searchWord: '{q}' }, charset: 'UTF-8' } } },
+    }),
+  );
+  const sent = [];
+  await context.route('https://proxy.example/opac-search.do', (route) => {
+    sent.push(route.request().postData());
+    return route.fulfill({ contentType: 'text/html; charset=utf-8', body: '<p>검색 결과</p>' });
+  });
+  await pickLibraries(page);
+  // 다른 책 화면을 두 번 거친 뒤
+  await page.goto('#/book/9791164455221');
+  await expect(page.locator('#mine .card')).toHaveCount(3);
+  await page.goto('#/watchlist');
+  await openFirstResult(page);
+  const popups = [];
+  context.on('page', (p) => popups.push(p));
+  await page.locator('#mine [data-lib="147163"] [data-site] button').click();
+  await expect.poll(() => sent.length).toBe(1);
+  await page.waitForTimeout(500);
+  expect(sent, '검색 요청은 한 번만').toHaveLength(1);
+  expect(popups, '새 창은 하나만').toHaveLength(1);
+});
+
 test('내 도서관에 없으면 다른 도서관 → 책바다 → 희망도서 → 사기, 빌릴 수 있으면 안내하지 않는다', async ({ page }) => {
   await pickLibraries(page);
   await page.evaluate(() => localStorage.setItem('chaekitna:myLibraries', JSON.stringify(['147163'])));

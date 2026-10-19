@@ -111,10 +111,17 @@ export async function holdings(isbn13, region, { signal } = {}) {
   const cached = store.cacheGet(key);
   if (cached) return cached;
   const data = await call('holdings', { isbn: isbn13, region }, { signal });
-  const { libraries } = parseLibraries(data);
-  const result = { codes: libraries.map((lib) => lib.code), libraries };
+  const { libraries, total } = parseLibraries(data);
+  // total: 그 시·도에서 이 책을 가진 도서관 수. 한 번에 받는 수(100곳)보다 많으면 codes가 잘려 있다.
+  const result = { codes: libraries.map((lib) => lib.code), libraries, total };
   store.cacheSet(key, result, Date.now() + 3 * DAY);
   return result;
+}
+
+// 폰에 저장해 둔 소장 도서관 목록만 본다(조회하지 않음). 없으면 null.
+export function holdingsCached(isbn13, region) {
+  if (isDemoMode() || demo.isDemoIsbn(isbn13)) return null;
+  return store.cacheGet(`h:${region}:${isbn13}`);
 }
 
 // ---------- 도서관별 소장·대출가능 (전날 기준) ----------

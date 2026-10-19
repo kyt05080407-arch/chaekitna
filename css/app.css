@@ -109,7 +109,7 @@ body {
 }
 
 a { color: var(--accent-ink); }
-button, input, select { font: inherit; color: inherit; letter-spacing: inherit; }
+button, input, select, textarea { font: inherit; color: inherit; letter-spacing: inherit; }
 img { max-width: 100%; display: block; }
 p { margin: 0; }
 [hidden] { display: none !important; }
@@ -574,3 +574,26 @@ a.row:active { background: var(--fill); }
 .today__row--best { background: var(--accent-soft); }
 .today__row--best .row__figure { color: var(--accent-ink); }
 .today__row--zero .row__figure, .today__row--zero .row__title { color: var(--muted); }
+
+/* ---------- 책 목록 한 번에 확인 ---------- */
+.list-icon {
+  flex: none; width: 2.5rem; height: 2.5rem; border-radius: 0.8rem; display: grid; place-items: center;
+  background: var(--accent-soft); color: var(--accent-ink);
+}
+.list-icon svg { width: 1.25rem; height: 1.25rem; }
+.list-row { align-items: flex-start; }
+.list-row .rank { padding-top: 0.15rem; font-size: 0.9rem; color: var(--muted); }
+.list-row .row__end { padding-top: 0.1rem; }
+.row__status { display: flex; }
+.row__status:empty { display: none; }
+.row__status .badge { margin-top: 0.3rem; }
+.row__libs { display: flex; align-items: flex-start; gap: 0.25rem; color: var(--ok-ink); font-weight: 600; }
+.row__libs:empty { display: none; }
+.row__libs svg { width: 0.9rem; height: 0.9rem; flex: none; margin-top: 0.12rem; }
+.check__sum { font-size: 1rem; }
+.check__sum strong { font-size: 1.35rem; color: var(--accent-ink); }
+.check__progress { display: flex; align-items: center; gap: 0.6rem; }
+.check__progress progress { flex: 1; height: 0.6rem; accent-color: var(--accent); }
+#check-box { display: flex; flex-direction: column; gap: 0.6rem; }
+#check-box .small svg { width: 0.95rem; height: 0.95rem; vertical-align: -0.12rem; }
+.textarea { min-height: 10rem; padding: 0.75rem 0.9rem; line-height: 1.6; resize: vertical; font-weight: 500; }

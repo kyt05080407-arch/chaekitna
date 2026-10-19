@@ -344,7 +344,8 @@ export async function render({ main, params, signal }) {
       () => toast(link.dataset.copyHint || `'${title}' 제목을 복사했어요. 홈페이지 검색창에 붙여 넣으세요`),
       () => {},
     );
-  });
+    // 다른 화면으로 가면 이 처리기를 뗀다(본문 칸은 화면이 바뀌어도 그대로라, 안 떼면 다음 책 화면에서 두 번 실행된다)
+  }, { signal });
 
   // ---------- 더 넓게 찾기 ----------
   const wide = main.querySelector('#wide');

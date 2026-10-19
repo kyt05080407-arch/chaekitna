@@ -5,7 +5,7 @@ on:
   push:
     branches: [main]
   workflow_run:
-    workflows: ["Weekly popular books", "Monthly library list"]
+    workflows: ["Weekly popular books", "Monthly library list", "Book lists"]
     types: [completed]
   workflow_dispatch:
 

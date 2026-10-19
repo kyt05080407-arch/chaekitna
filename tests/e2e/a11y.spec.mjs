@@ -11,6 +11,8 @@ const SCREENS = [
   { name: '책 상세', hash: '#/book/0000000000002', ready: '#mine .card [data-status] .badge:not(.badge--unknown)' },
   { name: '내 도서관', hash: '#/libraries', ready: '#picked .card' },
   { name: '관심 도서', hash: '#/watchlist', ready: '#books .card' },
+  { name: '책 목록', hash: '#/list/snu100', ready: '#books li' },
+  { name: '내 목록', hash: '#/list/mine', ready: '#paste' },
   { name: '설정', hash: '#/settings', ready: '#clear' },
 ];
 
