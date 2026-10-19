@@ -1,0 +1,114 @@
+{
+  "demo": false,
+  "generatedAt": "2026-10-19T10:55:33.704Z",
+  "startDt": "2026-10-12",
+  "endDt": "2026-10-18",
+  "period": "10월 12일~18일",
+  "region": "26",
+  "regionName": "울산",
+  "age": "a17",
+  "ageName": "고등학생",
+  "source": "도서관 정보나루 인기대출도서 (loanItemSrch)",
+  "items": [
+    {
+      "rank": 1,
+      "isbn13": "9780152001186",
+      "title": "Mouse Paint (Paperback)",
+      "authors": "Lasky, Kathryn, Hawkes, Kevin (ILT)",
+      "publisher": "VoyagerBooks",
+      "year": "1995",
+      "cover": "https://bookthumb-phinf.pstatic.net/cover/003/237/00323785.jpg?type=m1&udate=20170713",
+      "loanCount": 2
+    },
+    {
+      "rank": 1,
+      "isbn13": "9780859537162",
+      "title": "The Princess and the Dragon (Paperback)",
+      "authors": "audrey wood (지은이)",
+      "publisher": "Child's Play International",
+      "year": "2002",
+      "cover": "http://image.aladin.co.kr/product/903/29/cover/0859537161_2.jpg",
+      "loanCount": 2
+    },
+    {
+      "rank": 1,
+      "isbn13": "9788937434488",
+      "title": "노르웨이의 숲 =Norwegian wood",
+      "authors": "무라카미 하루키, 양억관",
+      "publisher": "민음사",
+      "year": "2017",
+      "cover": "https://bookthumb-phinf.pstatic.net/cover/124/287/12428742.jpg?type=m1&udate=20170930",
+      "loanCount": 2
+    },
+    {
+      "rank": 1,
+      "isbn13": "9788937461798",
+      "title": "브람스를 좋아하세요",
+      "authors": "프랑수아즈 사강, 김남주",
+      "publisher": "민음사",
+      "year": "2008",
+      "cover": "https://bookthumb-phinf.pstatic.net/cover/045/694/04569434.jpg?type=m1&udate=20130412",
+      "loanCount": 2
+    },
+    {
+      "rank": 1,
+      "isbn13": "9788954923248",
+      "title": "Monster, Monster",
+      "authors": "Melanie Walsh",
+      "publisher": "",
+      "year": "2014",
+      "cover": "",
+      "loanCount": 2
+    },
+    {
+      "rank": 1,
+      "isbn13": "9788972917304",
+      "title": "생명이란 무엇인가 :5단계로 이해하는 생물학",
+      "authors": "폴 너스, 이한음",
+      "publisher": "까치(까치글방)",
+      "year": "2021",
+      "cover": "https://image.aladin.co.kr/product/25967/83/cover/8972917303_1.jpg",
+      "loanCount": 2
+    },
+    {
+      "rank": 1,
+      "isbn13": "9789919188412",
+      "title": "노부영 Small in the City (Paperback + CD) - 노래부르는 영어동화",
+      "authors": "시드니 스미스 (글)",
+      "publisher": "JYbooks(제이와이북스)",
+      "year": "2020",
+      "cover": "https://image.aladin.co.kr/product/26314/66/cover/9919188417_1.jpg",
+      "loanCount": 2
+    },
+    {
+      "rank": 1,
+      "isbn13": "9791130625904",
+      "title": "물 만난 물고기 :이찬혁 소설",
+      "authors": "이찬혁",
+      "publisher": "다산북스",
+      "year": "2019",
+      "cover": "https://image.aladin.co.kr/product/20782/69/cover/k622636666_1.jpg",
+      "loanCount": 2
+    },
+    {
+      "rank": 1,
+      "isbn13": "9791162203620",
+      "title": "파과 :구병모 장편소설",
+      "authors": "구병모",
+      "publisher": "위즈덤하우스 미디어그룹",
+      "year": "2018",
+      "cover": "http://image.aladin.co.kr/product/14224/40/cover/k872532537_1.jpg",
+      "loanCount": 2
+    },
+    {
+      "rank": 1,
+      "isbn13": "9791167901996",
+      "title": "매스커레이드 게임 :히가시노 게이고 장편소설",
+      "authors": "히가시노 게이고, 양윤옥",
+      "publisher": "H(현대문학)",
+      "year": "2023",
+      "cover": "https://image.aladin.co.kr/product/31938/46/cover/k552833159_1.jpg",
+      "loanCount": 2
+    }
+  ]
+}

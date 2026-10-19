@@ -1,0 +1,114 @@
+{
+  "demo": false,
+  "generatedAt": "2026-10-19T10:55:20.639Z",
+  "startDt": "2026-10-12",
+  "endDt": "2026-10-18",
+  "period": "10월 12일~18일",
+  "region": "21",
+  "regionName": "부산",
+  "age": "a17",
+  "ageName": "고등학생",
+  "source": "도서관 정보나루 인기대출도서 (loanItemSrch)",
+  "items": [
+    {
+      "rank": 1,
+      "isbn13": "9788901260716",
+      "title": "역행자 :돈·시간·운명으로부터 완전한 자유를 얻는 7단계 인생 공략집",
+      "authors": "자청",
+      "publisher": "웅진씽크빅",
+      "year": "2022",
+      "cover": "https://image.aladin.co.kr/product/29521/63/cover/8901260719_1.jpg",
+      "loanCount": 1
+    },
+    {
+      "rank": 1,
+      "isbn13": "9788925533575",
+      "title": "스톤헨지",
+      "authors": "버나드 콘웰, 유소영",
+      "publisher": "랜덤하우스코리아",
+      "year": "2010",
+      "cover": "http://image.aladin.co.kr/product/726/99/cover/892553357x_1.jpg",
+      "loanCount": 1
+    },
+    {
+      "rank": 1,
+      "isbn13": "9788954415859",
+      "title": "(네이피어가 들려주는) 로그 이야기",
+      "authors": "김승태",
+      "publisher": "자음과모음",
+      "year": "2008",
+      "cover": "http://image.aladin.co.kr/product/254/60/cover/8954415857_1.jpg",
+      "loanCount": 1
+    },
+    {
+      "rank": 1,
+      "isbn13": "9788954415866",
+      "title": "(뉴턴이 들려주는) 지수함수와 로그함수 이야기",
+      "authors": "이지현",
+      "publisher": "자음과모음",
+      "year": "2009",
+      "cover": "http://image.aladin.co.kr/product/255/70/cover/8954415865_1.jpg",
+      "loanCount": 1
+    },
+    {
+      "rank": 1,
+      "isbn13": "9788957821305",
+      "title": "현명한 투자자",
+      "authors": "벤저민 그레이엄,이건",
+      "publisher": "국일미디어",
+      "year": "2020",
+      "cover": "https://image.aladin.co.kr/product/24075/29/cover/8957821309_1.jpg",
+      "loanCount": 1
+    },
+    {
+      "rank": 1,
+      "isbn13": "9788960309241",
+      "title": "주식은 미국의 전략을 따라 움직인다 :패권 전쟁이 만드는 부의 지도",
+      "authors": "소현철",
+      "publisher": "첨단",
+      "year": "2026",
+      "cover": "https://shopping-phinf.pstatic.net/main_6065519/60655198959.20260701162217.jpg",
+      "loanCount": 1
+    },
+    {
+      "rank": 1,
+      "isbn13": "9788972916802",
+      "title": "호킹의 빅 퀘스천에 대한 간결한 대답",
+      "authors": "스티븐 호킹, 배지은",
+      "publisher": "까치글방",
+      "year": "2019",
+      "cover": "https://image.aladin.co.kr/product/17813/2/cover/8972916803_1.jpg",
+      "loanCount": 1
+    },
+    {
+      "rank": 1,
+      "isbn13": "9788978892018",
+      "title": "내추럴셀렉션",
+      "authors": "데이브 프리드먼, 김유진",
+      "publisher": "지성사",
+      "year": "2009",
+      "cover": "https://bookthumb-phinf.pstatic.net/cover/060/592/06059242.jpg?type=m1&udate=20141007",
+      "loanCount": 1
+    },
+    {
+      "rank": 1,
+      "isbn13": "9788986836684",
+      "title": "기억의 제본사",
+      "authors": "브리짓 콜린스, 공민희",
+      "publisher": "청미래",
+      "year": "2019",
+      "cover": "https://image.aladin.co.kr/product/19102/7/cover/8986836688_1.jpg",
+      "loanCount": 1
+    },
+    {
+      "rank": 1,
+      "isbn13": "9791124502020",
+      "title": "행복",
+      "authors": "법륜",
+      "publisher": "정토출판",
+      "year": "2026",
+      "cover": "https://image.aladin.co.kr/product/39310/93/cover200/k262138032_1.jpg",
+      "loanCount": 1
+    }
+  ]
+}

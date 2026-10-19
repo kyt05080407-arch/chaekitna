@@ -1,0 +1,114 @@
+{
+  "demo": false,
+  "generatedAt": "2026-10-19T10:56:15.783Z",
+  "startDt": "2026-10-12",
+  "endDt": "2026-10-18",
+  "period": "10월 12일~18일",
+  "region": "39",
+  "regionName": "제주",
+  "age": "a17",
+  "ageName": "고등학생",
+  "source": "도서관 정보나루 인기대출도서 (loanItemSrch)",
+  "items": [
+    {
+      "rank": 1,
+      "isbn13": "9788965400912",
+      "title": "미적분으로 바라본 하루 :일상 속 어디에나 있는 수학 찾기",
+      "authors": "오스카 E. 페르난데스, 김수환",
+      "publisher": "프리렉",
+      "year": "2015",
+      "cover": "http://image.aladin.co.kr/product/5202/54/cover/8965400910_1.jpg",
+      "loanCount": 7
+    },
+    {
+      "rank": 2,
+      "isbn13": "9791165215491",
+      "title": "미적분의 쓸모 :미래를 예측하는 새로운 언어",
+      "authors": "한화택",
+      "publisher": "길벗",
+      "year": "2021",
+      "cover": "https://image.aladin.co.kr/product/27073/68/cover/k012731588_2.jpg",
+      "loanCount": 3
+    },
+    {
+      "rank": 2,
+      "isbn13": "9791189932473",
+      "title": "(이해하는) 미적분 수업",
+      "authors": "데이비드 애치슨, 김의석",
+      "publisher": "바다출판사",
+      "year": "2020",
+      "cover": "https://image.aladin.co.kr/product/22963/5/cover/k172637497_1.jpg",
+      "loanCount": 3
+    },
+    {
+      "rank": 4,
+      "isbn13": "9788936443177",
+      "title": "마지막 레벨 업 :윤영주 장편동화",
+      "authors": "윤영주, 안성호",
+      "publisher": "창비",
+      "year": "2021",
+      "cover": "https://image.aladin.co.kr/product/26743/91/cover/8936443178_1.jpg",
+      "loanCount": 2
+    },
+    {
+      "rank": 4,
+      "isbn13": "9788958202844",
+      "title": "작은 수학자의 생각실험 :외우지 않고 이해하는 미분·적분의 기본 원리",
+      "authors": "고의관",
+      "publisher": "궁리",
+      "year": "2015",
+      "cover": "http://image.aladin.co.kr/product/5124/93/cover/895820284x_1.jpg",
+      "loanCount": 2
+    },
+    {
+      "rank": 4,
+      "isbn13": "9788962624953",
+      "title": "수학이 생명의 언어라면 :수면부터 생체 리듬, 팬데믹, 신약 개발까지, 생명을 해독하는 수리생물학의 세계",
+      "authors": "김재경",
+      "publisher": "동아시아",
+      "year": "2024",
+      "cover": "https://image.aladin.co.kr/product/34554/83/cover200/8962624958_1.jpg",
+      "loanCount": 2
+    },
+    {
+      "rank": 4,
+      "isbn13": "9788964359419",
+      "title": "(난생 처음 한번 공부하는) 미술 이야기",
+      "authors": "양정무",
+      "publisher": "사회평론",
+      "year": "2016",
+      "cover": "http://image.aladin.co.kr/product/10044/20/cover/8964359410_1.jpg",
+      "loanCount": 2
+    },
+    {
+      "rank": 8,
+      "isbn13": "9780525553908",
+      "title": "When stars are scattered",
+      "authors": "Victoria Jamieson and Omar Mohamed, color by Iman Geddy",
+      "publisher": "Dial Books for Young Readers",
+      "year": "2020",
+      "cover": "https://image.aladin.co.kr/product/19945/46/cover/0525553908_2.jpg",
+      "loanCount": 1
+    },
+    {
+      "rank": 8,
+      "isbn13": "9781481477796",
+      "title": "Waste of Space (Hardcover)",
+      "authors": "스튜어트 깁스 (지은이)",
+      "publisher": "Simon & Schuster Books for Young Readers",
+      "year": "2018",
+      "cover": "https://image.aladin.co.kr/product/11139/73/cover/148147779x_2.jpg",
+      "loanCount": 1
+    },
+    {
+      "rank": 8,
+      "isbn13": "9781786892737",
+      "title": "The Midnight Library (Paperback, Main)",
+      "authors": "매트 헤이그 (지은이)",
+      "publisher": "Canongate Books Ltd",
+      "year": "2021",
+      "cover": "",
+      "loanCount": 1
+    }
+  ]
+}

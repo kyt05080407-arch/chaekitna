@@ -1,0 +1,114 @@
+{
+  "demo": false,
+  "generatedAt": "2026-10-19T10:55:17.850Z",
+  "startDt": "2026-10-12",
+  "endDt": "2026-10-18",
+  "period": "10월 12일~18일",
+  "region": "11",
+  "regionName": "서울",
+  "age": "a17",
+  "ageName": "고등학생",
+  "source": "도서관 정보나루 인기대출도서 (loanItemSrch)",
+  "items": [
+    {
+      "rank": 1,
+      "isbn13": "9788965400912",
+      "title": "미적분으로 바라본 하루 :일상 속 어디에나 있는 수학 찾기",
+      "authors": "오스카 E. 페르난데스, 김수환",
+      "publisher": "프리렉",
+      "year": "2015",
+      "cover": "http://image.aladin.co.kr/product/5202/54/cover/8965400910_1.jpg",
+      "loanCount": 8
+    },
+    {
+      "rank": 2,
+      "isbn13": "9791164051335",
+      "title": "미적분의 힘 :복잡한 세상을 푸는 단순하고 강력한 도구",
+      "authors": "스티븐 스트로가츠, 이충호",
+      "publisher": "북하우스 퍼블리셔스",
+      "year": "2021",
+      "cover": "https://image.aladin.co.kr/product/27959/0/cover/k612734212_1.jpg",
+      "loanCount": 7
+    },
+    {
+      "rank": 3,
+      "isbn13": "9788962630619",
+      "title": "침묵의 봄",
+      "authors": "레이첼 카슨, 김은령",
+      "publisher": "에코리브르",
+      "year": "2011",
+      "cover": "https://bookthumb-phinf.pstatic.net/cover/068/001/06800163.jpg?type=m1&udate=20180206",
+      "loanCount": 5
+    },
+    {
+      "rank": 4,
+      "isbn13": "9788936803261",
+      "title": "죽음의 수용소에서",
+      "authors": "빅터 프랭클, 이시형",
+      "publisher": "청아출판사",
+      "year": "2005",
+      "cover": "http://image.aladin.co.kr/product/57/96/cover/8936803263_3.jpg",
+      "loanCount": 4
+    },
+    {
+      "rank": 4,
+      "isbn13": "9791160075335",
+      "title": "(수학은 어렵지만) 미적분은 알고 싶어",
+      "authors": "요비노리 다쿠미, 이지호",
+      "publisher": "한즈미디어",
+      "year": "2020",
+      "cover": "https://image.aladin.co.kr/product/25401/21/cover/k682633012_1.jpg",
+      "loanCount": 4
+    },
+    {
+      "rank": 4,
+      "isbn13": "9791162203620",
+      "title": "파과 :구병모 장편소설",
+      "authors": "구병모",
+      "publisher": "위즈덤하우스 미디어그룹",
+      "year": "2018",
+      "cover": "http://image.aladin.co.kr/product/14224/40/cover/k872532537_1.jpg",
+      "loanCount": 4
+    },
+    {
+      "rank": 4,
+      "isbn13": "9791168343108",
+      "title": "양면의 조개껍데기 :김초엽 소설집",
+      "authors": "김초엽",
+      "publisher": "인플루엔셜",
+      "year": "2025",
+      "cover": "https://image.aladin.co.kr/product/37024/77/cover200/k482030732_1.jpg",
+      "loanCount": 4
+    },
+    {
+      "rank": 4,
+      "isbn13": "9791186710555",
+      "title": "적분이 콩나물 사는 데 무슨 도움이 돼? :수학의 쓸모를 모르고 자란 대한민국의 수포자들에게",
+      "authors": "쏭샘,정담",
+      "publisher": "루비페이퍼",
+      "year": "2021",
+      "cover": "https://image.aladin.co.kr/product/26767/0/cover/k732730485_1.jpg",
+      "loanCount": 4
+    },
+    {
+      "rank": 4,
+      "isbn13": "9791191013122",
+      "title": "더 이상한 수학책 :펼치는 순간 단숨에 이해되는 미적분의 비밀",
+      "authors": "벤 올린, 이경민",
+      "publisher": "북라이프",
+      "year": "2021",
+      "cover": "https://image.aladin.co.kr/product/26534/91/cover/k112738626_1.jpg",
+      "loanCount": 4
+    },
+    {
+      "rank": 10,
+      "isbn13": "9788932023151",
+      "title": "비행운 :김애란 소설집",
+      "authors": "김애란",
+      "publisher": "문학과지성사",
+      "year": "2012",
+      "cover": "http://image.aladin.co.kr/product/1801/21/cover/8932023158_1.jpg",
+      "loanCount": 3
+    }
+  ]
+}

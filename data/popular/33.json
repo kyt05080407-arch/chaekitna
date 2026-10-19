@@ -1,0 +1,114 @@
+{
+  "demo": false,
+  "generatedAt": "2026-10-19T10:55:56.828Z",
+  "startDt": "2026-10-12",
+  "endDt": "2026-10-18",
+  "period": "10월 12일~18일",
+  "region": "33",
+  "regionName": "충북",
+  "age": "a17",
+  "ageName": "고등학생",
+  "source": "도서관 정보나루 인기대출도서 (loanItemSrch)",
+  "items": [
+    {
+      "rank": 1,
+      "isbn13": "9791165215491",
+      "title": "미적분의 쓸모 :미래를 예측하는 새로운 언어",
+      "authors": "한화택",
+      "publisher": "길벗",
+      "year": "2021",
+      "cover": "https://image.aladin.co.kr/product/27073/68/cover/k012731588_2.jpg",
+      "loanCount": 4
+    },
+    {
+      "rank": 2,
+      "isbn13": "9780192766762",
+      "title": "(The) broomstick ride",
+      "authors": "Valerie Thomas, Korky Paul",
+      "publisher": "",
+      "year": "",
+      "cover": "",
+      "loanCount": 2
+    },
+    {
+      "rank": 2,
+      "isbn13": "9788901260679",
+      "title": "넛지 :파이널 에디션",
+      "authors": "리처드 탈러,이경식",
+      "publisher": "웅진씽크빅",
+      "year": "2022",
+      "cover": "https://image.aladin.co.kr/product/29661/40/cover/8901260670_1.jpg",
+      "loanCount": 2
+    },
+    {
+      "rank": 2,
+      "isbn13": "9788932023977",
+      "title": "초조한 마음",
+      "authors": "슈테판 츠바이크, 이유정",
+      "publisher": "문학과지성사",
+      "year": "2013",
+      "cover": "http://image.aladin.co.kr/product/2588/65/cover/8932023972_1.jpg",
+      "loanCount": 2
+    },
+    {
+      "rank": 2,
+      "isbn13": "9788934985068",
+      "title": "팩트풀니스 :우리가 세상을 오해하는 10가지 이유와 세상이 생각보다 괜찮은 이유",
+      "authors": "한스 로슬링,옮긴이: 이창신",
+      "publisher": "김영사",
+      "year": "2019",
+      "cover": "https://image.aladin.co.kr/product/18456/45/cover/8934985062_1.jpg",
+      "loanCount": 2
+    },
+    {
+      "rank": 2,
+      "isbn13": "9788936431525",
+      "title": "허밍 :최정원 장편소설",
+      "authors": "최정원",
+      "publisher": "창비",
+      "year": "2025",
+      "cover": "https://image.aladin.co.kr/product/35536/63/cover200/8936431528_1.jpg",
+      "loanCount": 2
+    },
+    {
+      "rank": 2,
+      "isbn13": "9788937473401",
+      "title": "급류 :정대건 장편소설",
+      "authors": "정대건",
+      "publisher": "민음사",
+      "year": "2022",
+      "cover": "https://image.aladin.co.kr/product/30769/24/cover/8937473402_1.jpg",
+      "loanCount": 2
+    },
+    {
+      "rank": 2,
+      "isbn13": "9788965400912",
+      "title": "미적분으로 바라본 하루 :일상 속 어디에나 있는 수학 찾기",
+      "authors": "오스카 E. 페르난데스, 김수환",
+      "publisher": "프리렉",
+      "year": "2015",
+      "cover": "http://image.aladin.co.kr/product/5202/54/cover/8965400910_1.jpg",
+      "loanCount": 2
+    },
+    {
+      "rank": 2,
+      "isbn13": "9788965703112",
+      "title": "모든 순간의 물리학 =우리는 누구인가라는 물음에 대한 물리학의 대답 /Seven brief lessons on physics",
+      "authors": "카를로 로벨리, 김현주",
+      "publisher": "쌤앤파커스",
+      "year": "2016",
+      "cover": "http://image.aladin.co.kr/product/7825/64/cover/8965703115_3.jpg",
+      "loanCount": 2
+    },
+    {
+      "rank": 2,
+      "isbn13": "9791164051335",
+      "title": "미적분의 힘 :복잡한 세상을 푸는 단순하고 강력한 도구",
+      "authors": "스티븐 스트로가츠, 이충호",
+      "publisher": "북하우스 퍼블리셔스",
+      "year": "2021",
+      "cover": "https://image.aladin.co.kr/product/27959/0/cover/k612734212_1.jpg",
+      "loanCount": 2
+    }
+  ]
+}

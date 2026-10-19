@@ -1,0 +1,114 @@
+{
+  "demo": false,
+  "generatedAt": "2026-10-19T10:55:59.287Z",
+  "startDt": "2026-10-12",
+  "endDt": "2026-10-18",
+  "period": "10월 12일~18일",
+  "region": "34",
+  "regionName": "충남",
+  "age": "a17",
+  "ageName": "고등학생",
+  "source": "도서관 정보나루 인기대출도서 (loanItemSrch)",
+  "items": [
+    {
+      "rank": 1,
+      "isbn13": "9788932472959",
+      "title": "도시는 무엇으로 사는가 :도시를 보는 열다섯 가지 인문적 시선",
+      "authors": "유현준",
+      "publisher": "을유문화사",
+      "year": "2015",
+      "cover": "http://image.aladin.co.kr/product/5518/24/cover/8932472955_1.jpg",
+      "loanCount": 2
+    },
+    {
+      "rank": 1,
+      "isbn13": "9788934940753",
+      "title": "흔한남매 과학 탐험대 5 : 물리 1",
+      "authors": "흔한남매 (원작), 이현진, 닥터 스코 (글), 김덕영 (그림), 김희목 (감수), 김희목, 정현철, 권경아, 최진수 (기획)",
+      "publisher": "주니어김영사",
+      "year": "2022",
+      "cover": "https://image.aladin.co.kr/product/29615/64/cover/8934940751_1.jpg",
+      "loanCount": 2
+    },
+    {
+      "rank": 1,
+      "isbn13": "9791164136452",
+      "title": "공정하다는 착각 :능력주의는 모두에게 같은 기회를 제공하는가",
+      "authors": "마이클 샌델, 함규진",
+      "publisher": "미래엔",
+      "year": "2020",
+      "cover": "https://image.aladin.co.kr/product/25470/6/cover/k092633826_1.jpg",
+      "loanCount": 2
+    },
+    {
+      "rank": 1,
+      "isbn13": "9791189932473",
+      "title": "(이해하는) 미적분 수업",
+      "authors": "데이비드 애치슨, 김의석",
+      "publisher": "바다출판사",
+      "year": "2020",
+      "cover": "https://image.aladin.co.kr/product/22963/5/cover/k172637497_1.jpg",
+      "loanCount": 2
+    },
+    {
+      "rank": 5,
+      "isbn13": "9780439139601",
+      "title": "Harry Potter and the goblet of fire",
+      "authors": "by J.K. Rowling, illustrations by Mary Grandpré",
+      "publisher": "Scholastic",
+      "year": "",
+      "cover": "https://bookthumb-phinf.pstatic.net/cover/001/622/00162206.jpg?type=m1&udate=20180227",
+      "loanCount": 1
+    },
+    {
+      "rank": 5,
+      "isbn13": "9781401308773",
+      "title": "Dead poets society",
+      "authors": "a novel by N.H. Kleinbaum",
+      "publisher": "Hyperion",
+      "year": "2006",
+      "cover": "http://image.aladin.co.kr/product/68/12/cover/1401308775_2.jpg",
+      "loanCount": 1
+    },
+    {
+      "rank": 5,
+      "isbn13": "9781904910602",
+      "title": "Oliver twist",
+      "authors": "by Charles Dickens",
+      "publisher": "New Rising Sun",
+      "year": "2013",
+      "cover": "",
+      "loanCount": 1
+    },
+    {
+      "rank": 5,
+      "isbn13": "9788901105857",
+      "title": "나는 누구일까요?",
+      "authors": "박윤경, 윤지회",
+      "publisher": "웅진씽크빅",
+      "year": "2010",
+      "cover": "http://image.aladin.co.kr/product/642/42/cover/8901105853_1.jpg",
+      "loanCount": 1
+    },
+    {
+      "rank": 5,
+      "isbn13": "9788901215709",
+      "title": "9등급 꼴찌, 1년 만에 통역사 된 비법",
+      "authors": "장동완",
+      "publisher": "웅진씽크빅",
+      "year": "2017",
+      "cover": "http://image.aladin.co.kr/product/10741/86/cover/8901215705_1.jpg",
+      "loanCount": 1
+    },
+    {
+      "rank": 5,
+      "isbn13": "9788901299730",
+      "title": "신경 끄기의 기술 (한교동 에디션) - 인생에서 가장 중요한 것만 남기는 힘",
+      "authors": "마크 맨슨 (지은이), 한재호 (옮긴이)",
+      "publisher": "갤리온",
+      "year": "2026",
+      "cover": "https://image.aladin.co.kr/product/40097/93/cover200/8901299739_1.jpg",
+      "loanCount": 1
+    }
+  ]
+}

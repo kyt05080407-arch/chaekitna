@@ -1,0 +1,114 @@
+{
+  "demo": false,
+  "generatedAt": "2026-10-19T10:55:28.347Z",
+  "startDt": "2026-10-12",
+  "endDt": "2026-10-18",
+  "period": "10월 12일~18일",
+  "region": "24",
+  "regionName": "광주",
+  "age": "a17",
+  "ageName": "고등학생",
+  "source": "도서관 정보나루 인기대출도서 (loanItemSrch)",
+  "items": [
+    {
+      "rank": 1,
+      "isbn13": "9788936434120",
+      "title": "소년이 온다 :한강 장편소설",
+      "authors": "한강",
+      "publisher": "창비",
+      "year": "2014",
+      "cover": "http://image.aladin.co.kr/product/4086/97/cover/8936434128_2.jpg",
+      "loanCount": 2
+    },
+    {
+      "rank": 1,
+      "isbn13": "9788992036962",
+      "title": "고백 :미나토 가나에 장편소설",
+      "authors": "미나토 가나에, 김선영",
+      "publisher": "비채",
+      "year": "2009",
+      "cover": "https://bookthumb-phinf.pstatic.net/cover/060/964/06096464.jpg?type=m1&udate=20180420",
+      "loanCount": 2
+    },
+    {
+      "rank": 3,
+      "isbn13": "8809445507882",
+      "title": "Pictory Set Pre-Step 73 : Shh! We have a Plan (Paperback + Audio CD)",
+      "authors": "크리스 호튼 (지은이)",
+      "publisher": "TWOPONDS (투판즈)",
+      "year": "2021",
+      "cover": "https://image.aladin.co.kr/product/28332/89/cover/f612835904_1.jpg",
+      "loanCount": 1
+    },
+    {
+      "rank": 3,
+      "isbn13": "8809445509787",
+      "title": "Pictory Set PS-82 : Thank You (Paperback + Audio CD)",
+      "authors": "Jarvis (지은이)",
+      "publisher": "TWOPONDS (투판즈)",
+      "year": "2025",
+      "cover": "https://image.aladin.co.kr/product/37236/89/cover200/f612031725_1.jpg",
+      "loanCount": 1
+    },
+    {
+      "rank": 3,
+      "isbn13": "9780007553679",
+      "title": "Pete the Cat and his Four Groovy Buttons (Paperback)",
+      "authors": "에릭 리트윈 (지은이)",
+      "publisher": "HarperCollinsChildren'sBooks",
+      "year": "2014",
+      "cover": "http://image.aladin.co.kr/product/3808/64/cover/0007553676_1.jpg",
+      "loanCount": 1
+    },
+    {
+      "rank": 3,
+      "isbn13": "9781623545925",
+      "title": "Moving Words About a Flower (Paperback)",
+      "authors": "C. K. (지은이), Barbara Chotiner (그림)",
+      "publisher": "Charlesbridge",
+      "year": "2025",
+      "cover": "https://image.aladin.co.kr/product/34299/56/cover200/1623545927_2.jpg",
+      "loanCount": 1
+    },
+    {
+      "rank": 3,
+      "isbn13": "9781788005357",
+      "title": "What Does An Anteater Eat? (Paperback)",
+      "authors": "로스 콜린스 (지은이)",
+      "publisher": "Nosy Crow Ltd",
+      "year": "2019",
+      "cover": "",
+      "loanCount": 1
+    },
+    {
+      "rank": 3,
+      "isbn13": "9781805130260",
+      "title": "The Bear and the Hare and the Fair (Paperback)",
+      "authors": "EM LYNAS (지은이), Matt Hunt (그림)",
+      "publisher": "Nosy Crow Ltd",
+      "year": "2025",
+      "cover": "https://shopping-phinf.pstatic.net/main_5551935/55519357437.20250627134740.jpg",
+      "loanCount": 1
+    },
+    {
+      "rank": 3,
+      "isbn13": "9781849394161",
+      "title": "Hippospotamus (Paperback)",
+      "authors": "Jeanne Willis (지은이)",
+      "publisher": "Andersen",
+      "year": "2013",
+      "cover": "https://image.aladin.co.kr/product/2794/77/cover/1849394164_2.jpg",
+      "loanCount": 1
+    },
+    {
+      "rank": 3,
+      "isbn13": "9788901065946",
+      "title": "How to read 라캉:Jacques Lacan",
+      "authors": "슬라보예 지젝, 박정수",
+      "publisher": "웅진씽크빅",
+      "year": "2007",
+      "cover": "https://bookthumb-phinf.pstatic.net/cover/029/157/02915711.jpg?type=m1&udate=20150715",
+      "loanCount": 1
+    }
+  ]
+}
