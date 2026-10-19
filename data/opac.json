@@ -1,9 +1,10 @@
 {
-  "checkedAt": "2026-10-19T11:52:05.026Z",
+  "checkedAt": "2026-10-19T12:09:07.066Z",
   "note": "도서관 홈페이지별 \"이 책 바로 찾기\" 주소. scripts/probe-opac.mjs 점검에서 \"데미안\"을 실제로 검색해 결과가 확인된 것만 넣는다. {q} 자리에 책 제목.",
   "hosts": {
     "lib.junggu.ulsan.kr": "https://lib.junggu.ulsan.kr/lib/unit/search/list.do?mId=001003001000000000&search_txt={q}",
     "library.gyeongju.go.kr": "http://library.gyeongju.go.kr/?page_id=search_booklist&mode=tBookList&collection=tot_book&search_field1=IAL&search_txt={q}",
-    "lib.ice.go.kr/gyeyang": "https://lib.ice.go.kr/gyeyang/intro/search/index.do?menu_idx=236&booktype=BOOK&search_type=L_TITLE&search_text={q}"
+    "lib.ice.go.kr/gyeyang": "https://lib.ice.go.kr/gyeyang/intro/search/index.do?menu_idx=236&booktype=BOOK&search_type=L_TITLE&search_text={q}",
+    "library.chuncheon.go.kr": "https://library.chuncheon.go.kr/search/book-search/librarybook/?manageCode=MA%2CTM%2CHM%2CSM%2CNM%2CDM%2CYM%2CDD&searchType=ALL&searchTxt={q}"
   }
 }
