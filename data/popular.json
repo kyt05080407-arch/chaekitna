@@ -1,6 +1,6 @@
 {
   "demo": false,
-  "generatedAt": "2026-10-19T11:03:07.002Z",
+  "generatedAt": "2026-10-19T11:20:26.387Z",
   "startDt": "2026-10-12",
   "endDt": "2026-10-18",
   "period": "10월 12일~18일",
@@ -109,6 +109,1545 @@
       "year": "2026",
       "cover": "https://image.aladin.co.kr/product/39802/11/cover200/k082130602_3.jpg",
       "loanCount": 449
+    },
+    {
+      "rank": 11,
+      "isbn13": "9788954682152",
+      "title": "작별하지 않는다",
+      "authors": "한강",
+      "publisher": "문학동네",
+      "year": "2021",
+      "cover": "https://image.aladin.co.kr/product/27877/5/cover/8954682154_1.jpg",
+      "loanCount": 447
+    },
+    {
+      "rank": 12,
+      "isbn13": "9791199305304",
+      "title": "자몽살구클럽",
+      "authors": "한로로 (HANRORO) (지은이)",
+      "publisher": "어센틱",
+      "year": "2025",
+      "cover": "https://image.aladin.co.kr/product/36808/37/cover200/k082030009_1.jpg",
+      "loanCount": 442
+    },
+    {
+      "rank": 13,
+      "isbn13": "9791168418011",
+      "title": "흔한남매",
+      "authors": "흔한남매, 유난희",
+      "publisher": "미래엔",
+      "year": "2019",
+      "cover": "https://image.aladin.co.kr/product/33815/12/cover200/k832930683_1.jpg",
+      "loanCount": 439
+    },
+    {
+      "rank": 14,
+      "isbn13": "9788937473401",
+      "title": "급류",
+      "authors": "정대건",
+      "publisher": "민음사",
+      "year": "2022",
+      "cover": "https://image.aladin.co.kr/product/30769/24/cover/8937473402_1.jpg",
+      "loanCount": 433
+    },
+    {
+      "rank": 15,
+      "isbn13": "9791168415232",
+      "title": "흔한남매",
+      "authors": "흔한남매, 유난희",
+      "publisher": "미래엔",
+      "year": "2019",
+      "cover": "https://image.aladin.co.kr/product/31527/55/cover/k812832343_1.jpg",
+      "loanCount": 432
+    },
+    {
+      "rank": 16,
+      "isbn13": "9788936439965",
+      "title": "아코디언",
+      "authors": "천명관",
+      "publisher": "창비",
+      "year": "2026",
+      "cover": "https://shopping-phinf.pstatic.net/main_6041993/60419931459.20260612143521.jpg",
+      "loanCount": 429
+    },
+    {
+      "rank": 16,
+      "isbn13": "9791173479939",
+      "title": "흔한남매",
+      "authors": "흔한남매, 유난희",
+      "publisher": "미래엔",
+      "year": "2019",
+      "cover": "https://image.aladin.co.kr/product/37191/81/cover200/k042031295_1.jpg",
+      "loanCount": 429
+    },
+    {
+      "rank": 18,
+      "isbn13": "9791168417199",
+      "title": "흔한남매",
+      "authors": "흔한남매, 유난희",
+      "publisher": "미래엔",
+      "year": "2019",
+      "cover": "https://image.aladin.co.kr/product/32991/71/cover/k502936654_1.jpg",
+      "loanCount": 428
+    },
+    {
+      "rank": 19,
+      "isbn13": "9791164138197",
+      "title": "흔한남매",
+      "authors": "흔한남매, 유난희",
+      "publisher": "미래엔",
+      "year": "2019",
+      "cover": "https://image.aladin.co.kr/product/27456/81/cover/k752733475_1.jpg",
+      "loanCount": 426
+    },
+    {
+      "rank": 20,
+      "isbn13": "9791194530701",
+      "title": "괴테는 모든 것을 말했다",
+      "authors": "스즈키 유이, 이지수",
+      "publisher": "콘텐츠그룹 포레스트",
+      "year": "2025",
+      "cover": "https://image.aladin.co.kr/product/37676/59/cover200/k212032349_1.jpg",
+      "loanCount": 425
+    },
+    {
+      "rank": 21,
+      "isbn13": "9791168414471",
+      "title": "흔한남매",
+      "authors": "흔한남매, 유난희",
+      "publisher": "미래엔",
+      "year": "2019",
+      "cover": "https://image.aladin.co.kr/product/30518/41/cover/k422830492_1.jpg",
+      "loanCount": 422
+    },
+    {
+      "rank": 22,
+      "isbn13": "9791172134297",
+      "title": "인비인",
+      "authors": "성해나",
+      "publisher": "한겨레출판",
+      "year": "2026",
+      "cover": "https://image.aladin.co.kr/product/39581/25/cover200/k692139247_2.jpg",
+      "loanCount": 420
+    },
+    {
+      "rank": 23,
+      "isbn13": "9791168416369",
+      "title": "흔한남매",
+      "authors": "흔한남매, 유난희",
+      "publisher": "미래엔",
+      "year": "2019",
+      "cover": "https://image.aladin.co.kr/product/32459/74/cover/k622935200_1.jpg",
+      "loanCount": 418
+    },
+    {
+      "rank": 24,
+      "isbn13": "9791173114038",
+      "title": "흔한남매",
+      "authors": "흔한남매, 유난희",
+      "publisher": "미래엔",
+      "year": "2019",
+      "cover": "https://image.aladin.co.kr/product/35371/5/cover200/k792035405_1.jpg",
+      "loanCount": 416
+    },
+    {
+      "rank": 24,
+      "isbn13": "9791175484290",
+      "title": "흔한남매",
+      "authors": "흔한남매, 유난희",
+      "publisher": "미래엔",
+      "year": "2019",
+      "cover": "https://image.aladin.co.kr/product/37938/93/cover200/k232033352_2.jpg",
+      "loanCount": 416
+    },
+    {
+      "rank": 26,
+      "isbn13": "9791175487802",
+      "title": "흔한남매",
+      "authors": "흔한남매, 유난희",
+      "publisher": "미래엔",
+      "year": "2019",
+      "cover": "https://image.aladin.co.kr/product/39134/78/cover200/k982137650_1.jpg",
+      "loanCount": 415
+    },
+    {
+      "rank": 27,
+      "isbn13": "9791168411685",
+      "title": "흔한남매",
+      "authors": "흔한남매, 유난희",
+      "publisher": "미래엔",
+      "year": "2019",
+      "cover": "https://image.aladin.co.kr/product/29286/99/cover/k082837005_1.jpg",
+      "loanCount": 414
+    },
+    {
+      "rank": 28,
+      "isbn13": "9788925588735",
+      "title": "프로젝트 헤일메리",
+      "authors": "앤디 위어, 강동혁",
+      "publisher": "RHK(알에이치코리아)",
+      "year": "2021",
+      "cover": "https://image.aladin.co.kr/product/27045/43/cover/8925588730_1.jpg",
+      "loanCount": 413
+    },
+    {
+      "rank": 29,
+      "isbn13": "9791162540640",
+      "title": "아주 작은 습관의 힘",
+      "authors": "제임스 클리어, 이한이",
+      "publisher": "비즈니스북스",
+      "year": "2019",
+      "cover": "https://image.aladin.co.kr/product/18228/51/cover/k832534441_1.jpg",
+      "loanCount": 411
+    },
+    {
+      "rank": 30,
+      "isbn13": "9791164136261",
+      "title": "흔한남매",
+      "authors": "흔한남매, 유난희",
+      "publisher": "미래엔",
+      "year": "2019",
+      "cover": "https://image.aladin.co.kr/product/25301/95/cover/k062633309_1.jpg",
+      "loanCount": 407
+    },
+    {
+      "rank": 31,
+      "isbn13": "9788936439996",
+      "title": "찌니주의보",
+      "authors": "정지아",
+      "publisher": "창비",
+      "year": "2026",
+      "cover": "https://image.aladin.co.kr/product/40013/75/cover200/8936439995_1.jpg",
+      "loanCount": 406
+    },
+    {
+      "rank": 32,
+      "isbn13": "9791164132454",
+      "title": "흔한남매",
+      "authors": "흔한남매, 유난희",
+      "publisher": "미래엔",
+      "year": "2019",
+      "cover": "https://image.aladin.co.kr/product/20398/4/cover/k002635150_1.jpg",
+      "loanCount": 401
+    },
+    {
+      "rank": 33,
+      "isbn13": "9791167764119",
+      "title": "세종의 나라 1 (양장)",
+      "authors": "김진명 (지은이)",
+      "publisher": "이타북스",
+      "year": "2026",
+      "cover": "https://image.aladin.co.kr/product/38600/67/cover200/k562136472_2.jpg",
+      "loanCount": 400
+    },
+    {
+      "rank": 34,
+      "isbn13": "9791164139897",
+      "title": "흔한남매",
+      "authors": "흔한남매, 유난희",
+      "publisher": "미래엔",
+      "year": "2019",
+      "cover": "https://image.aladin.co.kr/product/28395/15/cover/k962835911_1.jpg",
+      "loanCount": 399
+    },
+    {
+      "rank": 35,
+      "isbn13": "9791191114768",
+      "title": "단 한 번의 삶",
+      "authors": "김영하",
+      "publisher": "복복서가",
+      "year": "2025",
+      "cover": "https://image.aladin.co.kr/product/36114/12/cover200/s602038067_1.jpg",
+      "loanCount": 393
+    },
+    {
+      "rank": 36,
+      "isbn13": "9791124038192",
+      "title": "나의 완벽한 장례식",
+      "authors": "조현선",
+      "publisher": "책읽어주는남자",
+      "year": "2026",
+      "cover": "https://image.aladin.co.kr/product/38357/53/cover200/k952135368_1.jpg",
+      "loanCount": 392
+    },
+    {
+      "rank": 36,
+      "isbn13": "9791141617226",
+      "title": "시간의 감촉",
+      "authors": "은희경",
+      "publisher": "문학동네",
+      "year": "2026",
+      "cover": "https://image.aladin.co.kr/product/39536/43/cover200/k182139749_1.jpg",
+      "loanCount": 392
+    },
+    {
+      "rank": 38,
+      "isbn13": "9791141601300",
+      "title": "이중 하나는 거짓말",
+      "authors": "김애란",
+      "publisher": "문학동네",
+      "year": "2024",
+      "cover": "https://image.aladin.co.kr/product/34474/76/cover200/k292932634_1.jpg",
+      "loanCount": 387
+    },
+    {
+      "rank": 39,
+      "isbn13": "9791164135592",
+      "title": "흔한남매",
+      "authors": "흔한남매, 유난희",
+      "publisher": "미래엔",
+      "year": "2019",
+      "cover": "https://image.aladin.co.kr/product/24307/73/cover/k822630592_2.jpg",
+      "loanCount": 383
+    },
+    {
+      "rank": 40,
+      "isbn13": "9791164137527",
+      "title": "흔한남매",
+      "authors": "흔한남매, 유난희",
+      "publisher": "미래엔",
+      "year": "2019",
+      "cover": "https://image.aladin.co.kr/product/26556/36/cover/k602738939_1.jpg",
+      "loanCount": 382
+    },
+    {
+      "rank": 40,
+      "isbn13": "9791168412477",
+      "title": "흔한남매",
+      "authors": "흔한남매, 유난희",
+      "publisher": "미래엔",
+      "year": "2019",
+      "cover": "https://image.aladin.co.kr/product/29832/74/cover/k652838723_1.jpg",
+      "loanCount": 382
+    },
+    {
+      "rank": 42,
+      "isbn13": "9791164134267",
+      "title": "흔한남매",
+      "authors": "흔한남매, 유난희",
+      "publisher": "미래엔",
+      "year": "2019",
+      "cover": "https://image.aladin.co.kr/product/22327/46/cover/k782636924_1.jpg",
+      "loanCount": 379
+    },
+    {
+      "rank": 43,
+      "isbn13": "9791164134847",
+      "title": "흔한남매",
+      "authors": "흔한남매, 유난희",
+      "publisher": "미래엔",
+      "year": "2019",
+      "cover": "https://image.aladin.co.kr/product/23568/96/cover/k992638123_1.jpg",
+      "loanCount": 378
+    },
+    {
+      "rank": 44,
+      "isbn13": "9788936450533",
+      "title": "고양이 해결사 깜냥",
+      "authors": "홍민정 동화, 김재희",
+      "publisher": "창비",
+      "year": "2020",
+      "cover": "https://image.aladin.co.kr/product/39375/36/cover200/8936450530_1.jpg",
+      "loanCount": 377
+    },
+    {
+      "rank": 45,
+      "isbn13": "9791164131686",
+      "title": "흔한남매",
+      "authors": "흔한남매, 유난희",
+      "publisher": "미래엔",
+      "year": "2019",
+      "cover": "https://image.aladin.co.kr/product/19404/61/cover/k712635217_1.jpg",
+      "loanCount": 372
+    },
+    {
+      "rank": 46,
+      "isbn13": "9791161571379",
+      "title": "불편한 편의점",
+      "authors": "김호연",
+      "publisher": "나무옆의자",
+      "year": "2022",
+      "cover": "https://image.aladin.co.kr/product/29858/98/cover/k432838027_1.jpg",
+      "loanCount": 370
+    },
+    {
+      "rank": 46,
+      "isbn13": "9791168343887",
+      "title": "주와 연",
+      "authors": "청예",
+      "publisher": "인플루엔셜",
+      "year": "2026",
+      "cover": "https://shopping-phinf.pstatic.net/main_6064140/60641400804.20260630090120.jpg",
+      "loanCount": 370
+    },
+    {
+      "rank": 48,
+      "isbn13": "9791168342941",
+      "title": "박곰희 연금 부자 수업",
+      "authors": "박곰희",
+      "publisher": "인플루엔셜",
+      "year": "2025",
+      "cover": "https://image.aladin.co.kr/product/36661/52/cover200/k972030181_1.jpg",
+      "loanCount": 368
+    },
+    {
+      "rank": 49,
+      "isbn13": "9791141618575",
+      "title": "그랬다고 적었다",
+      "authors": "김애란",
+      "publisher": "문학동네",
+      "year": "2026",
+      "cover": "https://image.aladin.co.kr/product/40019/36/cover200/k742130236_1.jpg",
+      "loanCount": 364
+    },
+    {
+      "rank": 50,
+      "isbn13": "9791168344044",
+      "title": "지푸라기 왕관을 쓴 여자",
+      "authors": "박상영",
+      "publisher": "인플루엔셜",
+      "year": "2026",
+      "cover": "https://image.aladin.co.kr/product/39834/40/cover200/k032130812_1.jpg",
+      "loanCount": 363
+    },
+    {
+      "rank": 51,
+      "isbn13": "9791194891178",
+      "title": "빵충 사육 준수 사항",
+      "authors": "김혜영 (지은이)",
+      "publisher": "안전가옥",
+      "year": "2026",
+      "cover": "https://image.aladin.co.kr/product/39872/66/cover200/k242130313_1.jpg",
+      "loanCount": 362
+    },
+    {
+      "rank": 52,
+      "isbn13": "9791124497029",
+      "title": "사춘기 엄마의 오장육부",
+      "authors": "나민애",
+      "publisher": "서교책방",
+      "year": "2026",
+      "cover": "https://image.aladin.co.kr/product/39067/21/cover200/k662137858_1.jpg",
+      "loanCount": 360
+    },
+    {
+      "rank": 53,
+      "isbn13": "9791194344438",
+      "title": "구멍청",
+      "authors": "백희나",
+      "publisher": "스토리보울",
+      "year": "2026",
+      "cover": "https://image.aladin.co.kr/product/39169/48/cover200/k622138169_1.jpg",
+      "loanCount": 359
+    },
+    {
+      "rank": 54,
+      "isbn13": "9791167740984",
+      "title": "도둑맞은 집중력",
+      "authors": "요한 하리, 김하현",
+      "publisher": "어크로스(어크로스출판그룹)",
+      "year": "2023",
+      "cover": "https://image.aladin.co.kr/product/31559/97/cover/k682832859_1.jpg",
+      "loanCount": 356
+    },
+    {
+      "rank": 55,
+      "isbn13": "9788936434595",
+      "title": "채식주의자",
+      "authors": "한강",
+      "publisher": "창비",
+      "year": "2022",
+      "cover": "https://image.aladin.co.kr/product/29137/2/cover/8936434594_1.jpg",
+      "loanCount": 352
+    },
+    {
+      "rank": 55,
+      "isbn13": "9791167764126",
+      "title": "세종의 나라 2 (양장)",
+      "authors": "김진명 (지은이)",
+      "publisher": "이타북스",
+      "year": "2026",
+      "cover": "https://image.aladin.co.kr/product/38600/68/cover200/k532136472_1.jpg",
+      "loanCount": 352
+    },
+    {
+      "rank": 57,
+      "isbn13": "9791175484887",
+      "title": "흔한남매의 흔한 호기심",
+      "authors": "흔한남매, 유난희",
+      "publisher": "미래엔",
+      "year": "2020",
+      "cover": "https://image.aladin.co.kr/product/37971/87/cover200/k002034865_1.jpg",
+      "loanCount": 346
+    },
+    {
+      "rank": 57,
+      "isbn13": "9791199489561",
+      "title": "세네카, 오늘을 빼앗기고 있는 당신에게",
+      "authors": "루키우스 안나이우스 세네카",
+      "publisher": "논픽션",
+      "year": "2026",
+      "cover": "https://shopping-phinf.pstatic.net/main_6056845/60568459498.20260623201840.jpg",
+      "loanCount": 346
+    },
+    {
+      "rank": 59,
+      "isbn13": "9791191056372",
+      "title": "돈의 심리학",
+      "authors": "모건 하우절, 이지연",
+      "publisher": "인플루엔셜",
+      "year": "2021",
+      "cover": "https://image.aladin.co.kr/product/25967/85/cover/k412737326_1.jpg",
+      "loanCount": 344
+    },
+    {
+      "rank": 60,
+      "isbn13": "9791130677415",
+      "title": "다판다 편의점",
+      "authors": "강효미, 밤코",
+      "publisher": "다산북스",
+      "year": "2025",
+      "cover": "https://image.aladin.co.kr/product/39448/53/cover200/k752139497_1.jpg",
+      "loanCount": 340
+    },
+    {
+      "rank": 60,
+      "isbn13": "9791193939666",
+      "title": "독서의 기술 - 책은 어떻게 삶의 무기가 되는가",
+      "authors": "고명환",
+      "publisher": "라곰",
+      "year": "2026",
+      "cover": "https://shopping-phinf.pstatic.net/main_6058347/60583478236.20260624104607.jpg",
+      "loanCount": 340
+    },
+    {
+      "rank": 62,
+      "isbn13": "9788936447694",
+      "title": "고양이 해결사 깜냥",
+      "authors": "홍민정 동화, 김재희",
+      "publisher": "창비",
+      "year": "2020",
+      "cover": "https://image.aladin.co.kr/product/23651/80/cover/8936447696_1.jpg",
+      "loanCount": 339
+    },
+    {
+      "rank": 62,
+      "isbn13": "9791164136032",
+      "title": "흔한남매의 흔한 호기심",
+      "authors": "흔한남매, 유난희",
+      "publisher": "미래엔",
+      "year": "2020",
+      "cover": "https://image.aladin.co.kr/product/25055/39/cover/k002632646_1.jpg",
+      "loanCount": 339
+    },
+    {
+      "rank": 62,
+      "isbn13": "9791168416598",
+      "title": "흔한남매의 흔한 호기심",
+      "authors": "흔한남매, 유난희",
+      "publisher": "미래엔",
+      "year": "2020",
+      "cover": "https://image.aladin.co.kr/product/32697/1/cover/k462936662_1.jpg",
+      "loanCount": 339
+    },
+    {
+      "rank": 65,
+      "isbn13": "9791168414488",
+      "title": "흔한남매의 흔한 호기심",
+      "authors": "흔한남매, 유난희",
+      "publisher": "미래엔",
+      "year": "2020",
+      "cover": "https://image.aladin.co.kr/product/33398/15/cover/k562938512_1.jpg",
+      "loanCount": 337
+    },
+    {
+      "rank": 65,
+      "isbn13": "9791173473869",
+      "title": "흔한남매 이상한 나라의 고전 읽기",
+      "authors": "최재훈, 정주연",
+      "publisher": "미래엔",
+      "year": "2022",
+      "cover": "https://image.aladin.co.kr/product/36291/62/cover200/k012038141_1.jpg",
+      "loanCount": 337
+    },
+    {
+      "rank": 65,
+      "isbn13": "9791197377143",
+      "title": "어서오세요, 휴남동 서점입니다",
+      "authors": "황보름",
+      "publisher": "클레이하우스",
+      "year": "2022",
+      "cover": "https://image.aladin.co.kr/product/28685/95/cover/k362836265_1.jpg",
+      "loanCount": 337
+    },
+    {
+      "rank": 68,
+      "isbn13": "9791173325953",
+      "title": "흔한남매 과학 탐험대",
+      "authors": "흔한남매, 임혜영",
+      "publisher": "김영사",
+      "year": "2021",
+      "cover": "https://image.aladin.co.kr/product/39117/44/cover200/k652137351_2.jpg",
+      "loanCount": 336
+    },
+    {
+      "rank": 69,
+      "isbn13": "9791175772892",
+      "title": "테오",
+      "authors": "앨런 레비, 노지양",
+      "publisher": "OFH(오팬하우스)",
+      "year": "2026",
+      "cover": "https://shopping-phinf.pstatic.net/main_6055035/60550358682.20260623071214.jpg",
+      "loanCount": 335
+    },
+    {
+      "rank": 69,
+      "isbn13": "9791191824582",
+      "title": "태양 아래 올리브",
+      "authors": "김초엽 (지은이)",
+      "publisher": "자이언트북스",
+      "year": "2026",
+      "cover": "https://image.aladin.co.kr/product/39890/8/cover200/k512130727_1.jpg",
+      "loanCount": 335
+    },
+    {
+      "rank": 71,
+      "isbn13": "9788936438838",
+      "title": "아버지의 해방일지",
+      "authors": "정지아",
+      "publisher": "창비",
+      "year": "2022",
+      "cover": "https://image.aladin.co.kr/product/30048/51/cover/8936438832_1.jpg",
+      "loanCount": 334
+    },
+    {
+      "rank": 71,
+      "isbn13": "9791124248171",
+      "title": "인생을 위한 최소한의 생각",
+      "authors": "신영준,고영성",
+      "publisher": "상상스퀘어",
+      "year": "2026",
+      "cover": "https://image.aladin.co.kr/product/38548/11/cover200/k192135753_1.jpg",
+      "loanCount": 334
+    },
+    {
+      "rank": 71,
+      "isbn13": "9791188331796",
+      "title": "돈의 속성",
+      "authors": "김승호",
+      "publisher": "Snowfox(스노우폭스북스)",
+      "year": "2020",
+      "cover": "https://image.aladin.co.kr/product/24191/64/cover/k562639753_1.jpg",
+      "loanCount": 334
+    },
+    {
+      "rank": 74,
+      "isbn13": "9791168415409",
+      "title": "흔한남매의 흔한 호기심",
+      "authors": "흔한남매, 유난희",
+      "publisher": "미래엔",
+      "year": "2020",
+      "cover": "https://image.aladin.co.kr/product/31830/75/cover/k082833126_1.jpg",
+      "loanCount": 332
+    },
+    {
+      "rank": 74,
+      "isbn13": "9791192300818",
+      "title": "마흔에 읽는 쇼펜하우어",
+      "authors": "강용수",
+      "publisher": "유노콘텐츠그룹",
+      "year": "2023",
+      "cover": "https://image.aladin.co.kr/product/32361/59/cover/k592935565_1.jpg",
+      "loanCount": 332
+    },
+    {
+      "rank": 76,
+      "isbn13": "9788936429690",
+      "title": "복숭아와 애벌레",
+      "authors": "안녕달",
+      "publisher": "창비",
+      "year": "2026",
+      "cover": "https://image.aladin.co.kr/product/39725/90/cover200/8936429698_1.jpg",
+      "loanCount": 331
+    },
+    {
+      "rank": 77,
+      "isbn13": "9791130662985",
+      "title": "다판다 편의점",
+      "authors": "강효미, 밤코",
+      "publisher": "다산북스",
+      "year": "2025",
+      "cover": "https://image.aladin.co.kr/product/35737/1/cover200/k352036535_1.jpg",
+      "loanCount": 329
+    },
+    {
+      "rank": 78,
+      "isbn13": "9791164137923",
+      "title": "흔한남매의 흔한 호기심",
+      "authors": "흔한남매, 유난희",
+      "publisher": "미래엔",
+      "year": "2020",
+      "cover": "https://image.aladin.co.kr/product/27025/25/cover/k542730528_2.jpg",
+      "loanCount": 327
+    },
+    {
+      "rank": 79,
+      "isbn13": "9791192372730",
+      "title": "위버멘쉬",
+      "authors": "프리디리히 니체, 어나니머스",
+      "publisher": "Rise(떠오름코퍼레이션)",
+      "year": "2025",
+      "cover": "https://image.aladin.co.kr/product/35902/54/cover200/k962037084_1.jpg",
+      "loanCount": 325
+    },
+    {
+      "rank": 80,
+      "isbn13": "9791164138982",
+      "title": "흔한남매의 흔한 호기심",
+      "authors": "흔한남매, 유난희",
+      "publisher": "미래엔",
+      "year": "2020",
+      "cover": "https://image.aladin.co.kr/product/27892/11/cover/k652734308_1.jpg",
+      "loanCount": 324
+    },
+    {
+      "rank": 80,
+      "isbn13": "9791165341909",
+      "title": "달러구트 꿈 백화점",
+      "authors": "이미예",
+      "publisher": "팩토리나인",
+      "year": "2020",
+      "cover": "https://image.aladin.co.kr/product/24512/70/cover/k392630952_1.jpg",
+      "loanCount": 324
+    },
+    {
+      "rank": 82,
+      "isbn13": "9788954646079",
+      "title": "바깥은 여름",
+      "authors": "김애란",
+      "publisher": "문학동네",
+      "year": "2017",
+      "cover": "http://image.aladin.co.kr/product/15533/81/cover/k852533629_1.jpg",
+      "loanCount": 323
+    },
+    {
+      "rank": 82,
+      "isbn13": "9791173477263",
+      "title": "흔한남매 이무기",
+      "authors": "흔한남매, 도니패밀리",
+      "publisher": "미래엔",
+      "year": "2023",
+      "cover": "https://image.aladin.co.kr/product/36709/19/cover200/k892030791_1.jpg",
+      "loanCount": 323
+    },
+    {
+      "rank": 84,
+      "isbn13": "9791168411852",
+      "title": "흔한남매의 흔한 호기심",
+      "authors": "흔한남매, 유난희",
+      "publisher": "미래엔",
+      "year": "2020",
+      "cover": "https://image.aladin.co.kr/product/29541/3/cover/k292837956_1.jpg",
+      "loanCount": 322
+    },
+    {
+      "rank": 84,
+      "isbn13": "9791173471780",
+      "title": "흔한남매의 흔한 호기심",
+      "authors": "흔한남매, 유난희",
+      "publisher": "미래엔",
+      "year": "2020",
+      "cover": "https://image.aladin.co.kr/product/36019/61/cover200/k872037826_1.jpg",
+      "loanCount": 322
+    },
+    {
+      "rank": 86,
+      "isbn13": "9791168414822",
+      "title": "흔한남매의 흔한 호기심",
+      "authors": "흔한남매, 유난희",
+      "publisher": "미래엔",
+      "year": "2020",
+      "cover": "https://image.aladin.co.kr/product/30881/96/cover/k672831283_1.jpg",
+      "loanCount": 321
+    },
+    {
+      "rank": 86,
+      "isbn13": "9791198948793",
+      "title": "똥볶이 할멈",
+      "authors": "강효미, 김무연",
+      "publisher": "따끈따끈책방",
+      "year": "2021",
+      "cover": "https://image.aladin.co.kr/product/38239/56/cover200/k782034524_1.jpg",
+      "loanCount": 321
+    },
+    {
+      "rank": 88,
+      "isbn13": "9791130673738",
+      "title": "다판다 편의점",
+      "authors": "강효미, 밤코",
+      "publisher": "다산북스",
+      "year": "2025",
+      "cover": "https://image.aladin.co.kr/product/38361/19/cover200/k002135362_1.jpg",
+      "loanCount": 320
+    },
+    {
+      "rank": 88,
+      "isbn13": "9791164137121",
+      "title": "흔한남매의 흔한 호기심",
+      "authors": "흔한남매, 유난희",
+      "publisher": "미래엔",
+      "year": "2020",
+      "cover": "https://image.aladin.co.kr/product/25812/8/cover/k352736335_1.jpg",
+      "loanCount": 320
+    },
+    {
+      "rank": 90,
+      "isbn13": "9791198547514",
+      "title": "수족관 =유래혁 장편소설 /すいぞくかん",
+      "authors": "유래혁",
+      "publisher": "Postershop",
+      "year": "2023",
+      "cover": "https://image.aladin.co.kr/product/33081/18/cover/k582937507_1.jpg",
+      "loanCount": 319
+    },
+    {
+      "rank": 91,
+      "isbn13": "9788949123493",
+      "title": "순례 주택",
+      "authors": "유은실",
+      "publisher": "비룡소",
+      "year": "2021",
+      "cover": "https://image.aladin.co.kr/product/26674/56/cover/8949123495_1.jpg",
+      "loanCount": 318
+    },
+    {
+      "rank": 91,
+      "isbn13": "9791168412248",
+      "title": "흔한남매 이상한 나라의 고전 읽기",
+      "authors": "최재훈, 정주연",
+      "publisher": "미래엔",
+      "year": "2022",
+      "cover": "https://image.aladin.co.kr/product/29683/83/cover/k122838384_1.jpg",
+      "loanCount": 318
+    },
+    {
+      "rank": 93,
+      "isbn13": "9788956609959",
+      "title": "종의 기원 =정유정 장편소설 /The origin of species",
+      "authors": "정유정",
+      "publisher": "은행나무",
+      "year": "2016",
+      "cover": "http://image.aladin.co.kr/product/7492/9/cover/8956609950_2.jpg",
+      "loanCount": 317
+    },
+    {
+      "rank": 93,
+      "isbn13": "9791175488458",
+      "title": "흔한남매의 흔한 호기심",
+      "authors": "흔한남매, 유난희",
+      "publisher": "미래엔",
+      "year": "2020",
+      "cover": "https://image.aladin.co.kr/product/39664/72/cover200/k322130298_1.jpg",
+      "loanCount": 317
+    },
+    {
+      "rank": 95,
+      "isbn13": "9791173320101",
+      "title": "흔한남매 과학 탐험대",
+      "authors": "흔한남매, 임혜영",
+      "publisher": "김영사",
+      "year": "2021",
+      "cover": "https://image.aladin.co.kr/product/35418/49/cover200/k522035522_2.jpg",
+      "loanCount": 316
+    },
+    {
+      "rank": 96,
+      "isbn13": "9791168413931",
+      "title": "흔한남매의 흔한 호기심",
+      "authors": "흔한남매, 유난희",
+      "publisher": "미래엔",
+      "year": "2020",
+      "cover": "https://image.aladin.co.kr/product/30224/42/cover/k502839203_1.jpg",
+      "loanCount": 315
+    },
+    {
+      "rank": 97,
+      "isbn13": "9791168416314",
+      "title": "흔한남매 이상한 나라의 고전 읽기",
+      "authors": "최재훈, 정주연",
+      "publisher": "미래엔",
+      "year": "2022",
+      "cover": "https://image.aladin.co.kr/product/32387/47/cover/k882935883_1.jpg",
+      "loanCount": 314
+    },
+    {
+      "rank": 97,
+      "isbn13": "9791168419018",
+      "title": "흔한남매의 흔한 호기심",
+      "authors": "흔한남매, 유난희",
+      "publisher": "미래엔",
+      "year": "2020",
+      "cover": "https://image.aladin.co.kr/product/34875/95/cover200/k482933053_1.jpg",
+      "loanCount": 314
+    },
+    {
+      "rank": 97,
+      "isbn13": "9791199368484",
+      "title": "무지개 목욕탕",
+      "authors": "강효미, 밤코",
+      "publisher": "브릭하우스",
+      "year": "2026",
+      "cover": "https://shopping-phinf.pstatic.net/main_5898531/58985315593.20260220201933.jpg",
+      "loanCount": 314
+    },
+    {
+      "rank": 100,
+      "isbn13": "9791168418950",
+      "title": "흔한남매 이상한 나라의 고전 읽기",
+      "authors": "최재훈, 정주연",
+      "publisher": "미래엔",
+      "year": "2022",
+      "cover": "https://image.aladin.co.kr/product/34773/6/cover200/k412933022_1.jpg",
+      "loanCount": 312
+    }
+  ],
+  "groups": [
+    {
+      "age": "14",
+      "label": "10대",
+      "basis": "청소년",
+      "items": [
+        {
+          "rank": 1,
+          "isbn13": "9788936434120",
+          "title": "소년이 온다",
+          "authors": "한강",
+          "publisher": "창비",
+          "year": "2014",
+          "cover": "http://image.aladin.co.kr/product/4086/97/cover/8936434128_2.jpg",
+          "loanCount": 61
+        },
+        {
+          "rank": 2,
+          "isbn13": "9791164136452",
+          "title": "공정하다는 착각",
+          "authors": "마이클 샌델, 함규진",
+          "publisher": "미래엔",
+          "year": "2020",
+          "cover": "https://image.aladin.co.kr/product/25470/6/cover/k092633826_1.jpg",
+          "loanCount": 40
+        },
+        {
+          "rank": 3,
+          "isbn13": "9791191043297",
+          "title": "오늘 밤, 세계에서 이 사랑이 사라진다 해도",
+          "authors": "이치조 미사키, 권영주",
+          "publisher": "바이포엠",
+          "year": "2021",
+          "cover": "https://image.aladin.co.kr/product/27407/79/cover/k362732558_1.jpg",
+          "loanCount": 39
+        },
+        {
+          "rank": 4,
+          "isbn13": "9788965400912",
+          "title": "미적분으로 바라본 하루",
+          "authors": "오스카 E. 페르난데스, 김수환",
+          "publisher": "프리렉",
+          "year": "2015",
+          "cover": "http://image.aladin.co.kr/product/5202/54/cover/8965400910_1.jpg",
+          "loanCount": 36
+        },
+        {
+          "rank": 5,
+          "isbn13": "9788936477196",
+          "title": "선량한 차별주의자",
+          "authors": "김지혜",
+          "publisher": "창비",
+          "year": "2019",
+          "cover": "https://image.aladin.co.kr/product/19874/76/cover/8936477196_1.jpg",
+          "loanCount": 34
+        },
+        {
+          "rank": 6,
+          "isbn13": "9788962621952",
+          "title": "아픔이 길이 되려면",
+          "authors": "김승섭",
+          "publisher": "동아시아",
+          "year": "2017",
+          "cover": "https://image.aladin.co.kr/product/11765/13/cover/s132532088_1.jpg",
+          "loanCount": 31
+        },
+        {
+          "rank": 7,
+          "isbn13": "9791189932473",
+          "title": "(이해하는) 미적분 수업",
+          "authors": "데이비드 애치슨, 김의석",
+          "publisher": "바다출판사",
+          "year": "2020",
+          "cover": "https://image.aladin.co.kr/product/22963/5/cover/k172637497_1.jpg",
+          "loanCount": 30
+        },
+        {
+          "rank": 8,
+          "isbn13": "9788936434267",
+          "title": "아몬드",
+          "authors": "손원평",
+          "publisher": "창비",
+          "year": "2017",
+          "cover": "http://image.aladin.co.kr/product/16839/4/cover/k492534773_1.jpg",
+          "loanCount": 29
+        },
+        {
+          "rank": 8,
+          "isbn13": "9791165215491",
+          "title": "미적분의 쓸모",
+          "authors": "한화택",
+          "publisher": "길벗",
+          "year": "2021",
+          "cover": "https://image.aladin.co.kr/product/27073/68/cover/k012731588_2.jpg",
+          "loanCount": 29
+        },
+        {
+          "rank": 10,
+          "isbn13": "9791164051335",
+          "title": "미적분의 힘",
+          "authors": "스티븐 스트로가츠, 이충호",
+          "publisher": "북하우스 퍼블리셔스",
+          "year": "2021",
+          "cover": "https://image.aladin.co.kr/product/27959/0/cover/k612734212_1.jpg",
+          "loanCount": 27
+        }
+      ]
+    },
+    {
+      "age": "20",
+      "label": "20대",
+      "items": [
+        {
+          "rank": 1,
+          "isbn13": "9788936439743",
+          "title": "혼모노",
+          "authors": "성해나",
+          "publisher": "창비",
+          "year": "2025",
+          "cover": "https://image.aladin.co.kr/product/36101/66/cover200/893643974x_1.jpg",
+          "loanCount": 95
+        },
+        {
+          "rank": 2,
+          "isbn13": "9791141602451",
+          "title": "절창",
+          "authors": "구병모",
+          "publisher": "문학동네",
+          "year": "2025",
+          "cover": "https://image.aladin.co.kr/product/37172/36/cover200/k662031678_1.jpg",
+          "loanCount": 91
+        },
+        {
+          "rank": 3,
+          "isbn13": "9788998441012",
+          "title": "모순",
+          "authors": "양귀자",
+          "publisher": "쓰다",
+          "year": "2013",
+          "cover": "https://bookthumb-phinf.pstatic.net/cover/071/902/07190270.jpg?type=m1&udate=20170801",
+          "loanCount": 88
+        },
+        {
+          "rank": 4,
+          "isbn13": "9788937473401",
+          "title": "급류",
+          "authors": "정대건",
+          "publisher": "민음사",
+          "year": "2022",
+          "cover": "https://image.aladin.co.kr/product/30769/24/cover/8937473402_1.jpg",
+          "loanCount": 80
+        },
+        {
+          "rank": 5,
+          "isbn13": "9788936434120",
+          "title": "소년이 온다",
+          "authors": "한강",
+          "publisher": "창비",
+          "year": "2014",
+          "cover": "http://image.aladin.co.kr/product/4086/97/cover/8936434128_2.jpg",
+          "loanCount": 75
+        },
+        {
+          "rank": 5,
+          "isbn13": "9788998441074",
+          "title": "나는 소망한다 내게 금지된 것을",
+          "authors": "양귀자",
+          "publisher": "쓰다",
+          "year": "2019",
+          "cover": "https://image.aladin.co.kr/product/18936/52/cover/8998441071_1.jpg",
+          "loanCount": 75
+        },
+        {
+          "rank": 7,
+          "isbn13": "9788954682152",
+          "title": "작별하지 않는다",
+          "authors": "한강",
+          "publisher": "문학동네",
+          "year": "2021",
+          "cover": "https://image.aladin.co.kr/product/27877/5/cover/8954682154_1.jpg",
+          "loanCount": 69
+        },
+        {
+          "rank": 8,
+          "isbn13": "9788954681155",
+          "title": "홍학의 자리",
+          "authors": "정해연",
+          "publisher": "문학동네",
+          "year": "2021",
+          "cover": "https://image.aladin.co.kr/product/27587/94/cover/8954681158_1.jpg",
+          "loanCount": 57
+        },
+        {
+          "rank": 9,
+          "isbn13": "9791191824216",
+          "title": "이끼숲",
+          "authors": "천선란, 점선면",
+          "publisher": "자이언트북스",
+          "year": "2023",
+          "cover": "https://image.aladin.co.kr/product/31568/81/cover/k672832652_1.jpg",
+          "loanCount": 55
+        },
+        {
+          "rank": 10,
+          "isbn13": "9788956609959",
+          "title": "종의 기원 =정유정 장편소설 /The origin of species",
+          "authors": "정유정",
+          "publisher": "은행나무",
+          "year": "2016",
+          "cover": "http://image.aladin.co.kr/product/7492/9/cover/8956609950_2.jpg",
+          "loanCount": 54
+        }
+      ]
+    },
+    {
+      "age": "30",
+      "label": "30대",
+      "items": [
+        {
+          "rank": 1,
+          "isbn13": "9788998441012",
+          "title": "모순",
+          "authors": "양귀자",
+          "publisher": "쓰다",
+          "year": "2013",
+          "cover": "https://bookthumb-phinf.pstatic.net/cover/071/902/07190270.jpg?type=m1&udate=20170801",
+          "loanCount": 141
+        },
+        {
+          "rank": 2,
+          "isbn13": "9788936439743",
+          "title": "혼모노",
+          "authors": "성해나",
+          "publisher": "창비",
+          "year": "2025",
+          "cover": "https://image.aladin.co.kr/product/36101/66/cover200/893643974x_1.jpg",
+          "loanCount": 131
+        },
+        {
+          "rank": 3,
+          "isbn13": "9788954681155",
+          "title": "홍학의 자리",
+          "authors": "정해연",
+          "publisher": "문학동네",
+          "year": "2021",
+          "cover": "https://image.aladin.co.kr/product/27587/94/cover/8954681158_1.jpg",
+          "loanCount": 129
+        },
+        {
+          "rank": 4,
+          "isbn13": "9791168343887",
+          "title": "주와 연",
+          "authors": "청예",
+          "publisher": "인플루엔셜",
+          "year": "2026",
+          "cover": "https://shopping-phinf.pstatic.net/main_6064140/60641400804.20260630090120.jpg",
+          "loanCount": 106
+        },
+        {
+          "rank": 5,
+          "isbn13": "9791141602376",
+          "title": "안녕이라 그랬어",
+          "authors": "김애란",
+          "publisher": "문학동네",
+          "year": "2025",
+          "cover": "https://image.aladin.co.kr/product/36566/52/cover200/k462039240_1.jpg",
+          "loanCount": 105
+        },
+        {
+          "rank": 6,
+          "isbn13": "9791172134297",
+          "title": "인비인",
+          "authors": "성해나",
+          "publisher": "한겨레출판",
+          "year": "2026",
+          "cover": "https://image.aladin.co.kr/product/39581/25/cover200/k692139247_2.jpg",
+          "loanCount": 104
+        },
+        {
+          "rank": 6,
+          "isbn13": "9791194891178",
+          "title": "빵충 사육 준수 사항",
+          "authors": "김혜영 (지은이)",
+          "publisher": "안전가옥",
+          "year": "2026",
+          "cover": "https://image.aladin.co.kr/product/39872/66/cover200/k242130313_1.jpg",
+          "loanCount": 104
+        },
+        {
+          "rank": 8,
+          "isbn13": "9788936434120",
+          "title": "소년이 온다",
+          "authors": "한강",
+          "publisher": "창비",
+          "year": "2014",
+          "cover": "http://image.aladin.co.kr/product/4086/97/cover/8936434128_2.jpg",
+          "loanCount": 102
+        },
+        {
+          "rank": 8,
+          "isbn13": "9791191824582",
+          "title": "태양 아래 올리브",
+          "authors": "김초엽 (지은이)",
+          "publisher": "자이언트북스",
+          "year": "2026",
+          "cover": "https://image.aladin.co.kr/product/39890/8/cover200/k512130727_1.jpg",
+          "loanCount": 102
+        },
+        {
+          "rank": 10,
+          "isbn13": "9791141602451",
+          "title": "절창",
+          "authors": "구병모",
+          "publisher": "문학동네",
+          "year": "2025",
+          "cover": "https://image.aladin.co.kr/product/37172/36/cover200/k662031678_1.jpg",
+          "loanCount": 100
+        }
+      ]
+    },
+    {
+      "age": "40",
+      "label": "40대",
+      "items": [
+        {
+          "rank": 1,
+          "isbn13": "9791141602376",
+          "title": "안녕이라 그랬어",
+          "authors": "김애란",
+          "publisher": "문학동네",
+          "year": "2025",
+          "cover": "https://image.aladin.co.kr/product/36566/52/cover200/k462039240_1.jpg",
+          "loanCount": 255
+        },
+        {
+          "rank": 2,
+          "isbn13": "9791124497029",
+          "title": "사춘기 엄마의 오장육부",
+          "authors": "나민애",
+          "publisher": "서교책방",
+          "year": "2026",
+          "cover": "https://image.aladin.co.kr/product/39067/21/cover200/k662137858_1.jpg",
+          "loanCount": 221
+        },
+        {
+          "rank": 3,
+          "isbn13": "9788936434120",
+          "title": "소년이 온다",
+          "authors": "한강",
+          "publisher": "창비",
+          "year": "2014",
+          "cover": "http://image.aladin.co.kr/product/4086/97/cover/8936434128_2.jpg",
+          "loanCount": 213
+        },
+        {
+          "rank": 4,
+          "isbn13": "9791161571188",
+          "title": "불편한 편의점",
+          "authors": "김호연",
+          "publisher": "나무옆의자",
+          "year": "2021",
+          "cover": "https://image.aladin.co.kr/product/26942/84/cover/k582730818_1.jpg",
+          "loanCount": 211
+        },
+        {
+          "rank": 5,
+          "isbn13": "9788998441012",
+          "title": "모순",
+          "authors": "양귀자",
+          "publisher": "쓰다",
+          "year": "2013",
+          "cover": "https://bookthumb-phinf.pstatic.net/cover/071/902/07190270.jpg?type=m1&udate=20170801",
+          "loanCount": 208
+        },
+        {
+          "rank": 6,
+          "isbn13": "9788936439743",
+          "title": "혼모노",
+          "authors": "성해나",
+          "publisher": "창비",
+          "year": "2025",
+          "cover": "https://image.aladin.co.kr/product/36101/66/cover200/893643974x_1.jpg",
+          "loanCount": 204
+        },
+        {
+          "rank": 7,
+          "isbn13": "9791168418844",
+          "title": "흔한남매",
+          "authors": "흔한남매, 유난희",
+          "publisher": "미래엔",
+          "year": "2019",
+          "cover": "https://image.aladin.co.kr/product/34618/90/cover200/k522933982_1.jpg",
+          "loanCount": 192
+        },
+        {
+          "rank": 8,
+          "isbn13": "9791175487802",
+          "title": "흔한남매",
+          "authors": "흔한남매, 유난희",
+          "publisher": "미래엔",
+          "year": "2019",
+          "cover": "https://image.aladin.co.kr/product/39134/78/cover200/k982137650_1.jpg",
+          "loanCount": 189
+        },
+        {
+          "rank": 9,
+          "isbn13": "9791168415232",
+          "title": "흔한남매",
+          "authors": "흔한남매, 유난희",
+          "publisher": "미래엔",
+          "year": "2019",
+          "cover": "https://image.aladin.co.kr/product/31527/55/cover/k812832343_1.jpg",
+          "loanCount": 183
+        },
+        {
+          "rank": 10,
+          "isbn13": "9788954681155",
+          "title": "홍학의 자리",
+          "authors": "정해연",
+          "publisher": "문학동네",
+          "year": "2021",
+          "cover": "https://image.aladin.co.kr/product/27587/94/cover/8954681158_1.jpg",
+          "loanCount": 179
+        }
+      ]
+    },
+    {
+      "age": "50",
+      "label": "50대",
+      "items": [
+        {
+          "rank": 1,
+          "isbn13": "9791141602376",
+          "title": "안녕이라 그랬어",
+          "authors": "김애란",
+          "publisher": "문학동네",
+          "year": "2025",
+          "cover": "https://image.aladin.co.kr/product/36566/52/cover200/k462039240_1.jpg",
+          "loanCount": 175
+        },
+        {
+          "rank": 2,
+          "isbn13": "9788936434120",
+          "title": "소년이 온다",
+          "authors": "한강",
+          "publisher": "창비",
+          "year": "2014",
+          "cover": "http://image.aladin.co.kr/product/4086/97/cover/8936434128_2.jpg",
+          "loanCount": 131
+        },
+        {
+          "rank": 3,
+          "isbn13": "9788998441012",
+          "title": "모순",
+          "authors": "양귀자",
+          "publisher": "쓰다",
+          "year": "2013",
+          "cover": "https://bookthumb-phinf.pstatic.net/cover/071/902/07190270.jpg?type=m1&udate=20170801",
+          "loanCount": 124
+        },
+        {
+          "rank": 4,
+          "isbn13": "9791141617226",
+          "title": "시간의 감촉",
+          "authors": "은희경",
+          "publisher": "문학동네",
+          "year": "2026",
+          "cover": "https://image.aladin.co.kr/product/39536/43/cover200/k182139749_1.jpg",
+          "loanCount": 120
+        },
+        {
+          "rank": 5,
+          "isbn13": "9791170614043",
+          "title": "투명한 나선",
+          "authors": "히가시노 게이고, 김선영",
+          "publisher": "교보문고",
+          "year": "2026",
+          "cover": "https://image.aladin.co.kr/product/39802/11/cover200/k082130602_3.jpg",
+          "loanCount": 117
+        },
+        {
+          "rank": 6,
+          "isbn13": "9788936439965",
+          "title": "아코디언",
+          "authors": "천명관",
+          "publisher": "창비",
+          "year": "2026",
+          "cover": "https://shopping-phinf.pstatic.net/main_6041993/60419931459.20260612143521.jpg",
+          "loanCount": 113
+        },
+        {
+          "rank": 6,
+          "isbn13": "9791124248171",
+          "title": "인생을 위한 최소한의 생각",
+          "authors": "신영준,고영성",
+          "publisher": "상상스퀘어",
+          "year": "2026",
+          "cover": "https://image.aladin.co.kr/product/38548/11/cover200/k192135753_1.jpg",
+          "loanCount": 113
+        },
+        {
+          "rank": 8,
+          "isbn13": "9788936439743",
+          "title": "혼모노",
+          "authors": "성해나",
+          "publisher": "창비",
+          "year": "2025",
+          "cover": "https://image.aladin.co.kr/product/36101/66/cover200/893643974x_1.jpg",
+          "loanCount": 112
+        },
+        {
+          "rank": 9,
+          "isbn13": "9788936439996",
+          "title": "찌니주의보",
+          "authors": "정지아",
+          "publisher": "창비",
+          "year": "2026",
+          "cover": "https://image.aladin.co.kr/product/40013/75/cover200/8936439995_1.jpg",
+          "loanCount": 109
+        },
+        {
+          "rank": 10,
+          "isbn13": "9791167764119",
+          "title": "세종의 나라 1 (양장)",
+          "authors": "김진명 (지은이)",
+          "publisher": "이타북스",
+          "year": "2026",
+          "cover": "https://image.aladin.co.kr/product/38600/67/cover200/k562136472_2.jpg",
+          "loanCount": 103
+        }
+      ]
+    },
+    {
+      "age": "60",
+      "label": "60대 이상",
+      "items": [
+        {
+          "rank": 1,
+          "isbn13": "9791167141644",
+          "title": "서리꽃 1",
+          "authors": "조정래 (지은이)",
+          "publisher": "해냄",
+          "year": "2026",
+          "cover": "https://image.aladin.co.kr/product/40064/80/cover200/k062130041_1.jpg",
+          "loanCount": 85
+        },
+        {
+          "rank": 2,
+          "isbn13": "9791141602376",
+          "title": "안녕이라 그랬어",
+          "authors": "김애란",
+          "publisher": "문학동네",
+          "year": "2025",
+          "cover": "https://image.aladin.co.kr/product/36566/52/cover200/k462039240_1.jpg",
+          "loanCount": 83
+        },
+        {
+          "rank": 3,
+          "isbn13": "9791167141651",
+          "title": "서리꽃 2",
+          "authors": "조정래 (지은이)",
+          "publisher": "해냄",
+          "year": "2026",
+          "cover": "https://image.aladin.co.kr/product/40064/81/cover200/k032130041_1.jpg",
+          "loanCount": 79
+        },
+        {
+          "rank": 4,
+          "isbn13": "9791141617226",
+          "title": "시간의 감촉",
+          "authors": "은희경",
+          "publisher": "문학동네",
+          "year": "2026",
+          "cover": "https://image.aladin.co.kr/product/39536/43/cover200/k182139749_1.jpg",
+          "loanCount": 78
+        },
+        {
+          "rank": 4,
+          "isbn13": "9791167764119",
+          "title": "세종의 나라 1 (양장)",
+          "authors": "김진명 (지은이)",
+          "publisher": "이타북스",
+          "year": "2026",
+          "cover": "https://image.aladin.co.kr/product/38600/67/cover200/k562136472_2.jpg",
+          "loanCount": 78
+        },
+        {
+          "rank": 6,
+          "isbn13": "9791167764126",
+          "title": "세종의 나라 2 (양장)",
+          "authors": "김진명 (지은이)",
+          "publisher": "이타북스",
+          "year": "2026",
+          "cover": "https://image.aladin.co.kr/product/38600/68/cover200/k532136472_1.jpg",
+          "loanCount": 70
+        },
+        {
+          "rank": 7,
+          "isbn13": "9788936434120",
+          "title": "소년이 온다",
+          "authors": "한강",
+          "publisher": "창비",
+          "year": "2014",
+          "cover": "http://image.aladin.co.kr/product/4086/97/cover/8936434128_2.jpg",
+          "loanCount": 68
+        },
+        {
+          "rank": 8,
+          "isbn13": "9788936438838",
+          "title": "아버지의 해방일지",
+          "authors": "정지아",
+          "publisher": "창비",
+          "year": "2022",
+          "cover": "https://image.aladin.co.kr/product/30048/51/cover/8936438832_1.jpg",
+          "loanCount": 67
+        },
+        {
+          "rank": 9,
+          "isbn13": "9788936439880",
+          "title": "할매 =황석영 장편소설 /Grandma",
+          "authors": "황석영",
+          "publisher": "창비",
+          "year": "2025",
+          "cover": "https://image.aladin.co.kr/product/37966/51/cover200/893643988x_1.jpg",
+          "loanCount": 58
+        },
+        {
+          "rank": 9,
+          "isbn13": "9791170614043",
+          "title": "투명한 나선",
+          "authors": "히가시노 게이고, 김선영",
+          "publisher": "교보문고",
+          "year": "2026",
+          "cover": "https://image.aladin.co.kr/product/39802/11/cover200/k082130602_3.jpg",
+          "loanCount": 58
+        }
+      ]
     }
   ],
   "regions": []
