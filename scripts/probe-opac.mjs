@@ -33,8 +33,32 @@ function hostOf(url) {
   }
 }
 
-async function get(url) {
-  const res = await fetch(url, { headers: { 'user-agent': UA, 'accept-language': 'ko-KR,ko;q=0.9' }, redirect: 'follow', signal: AbortSignal.timeout(12000) });
+// EUC-KR 사이트에 보낼 폼 값 인코딩(있으면 iconv-lite 사용, 없으면 UTF-8)
+let iconv = null;
+try {
+  iconv = (await import('iconv-lite')).default;
+} catch {
+  iconv = null;
+}
+const isEucKr = (charset) => /euc-?kr|ks_c_5601|cp949/i.test(charset || '');
+const SAFE = /[A-Za-z0-9\-._*]/;
+function encodeValue(value, charset) {
+  if (!isEucKr(charset) || !iconv) return encodeURIComponent(value).replace(/%20/g, '+');
+  return [...iconv.encode(value, 'euc-kr')]
+    .map((b) => (SAFE.test(String.fromCharCode(b)) && b < 0x80 ? String.fromCharCode(b) : b === 0x20 ? '+' : `%${b.toString(16).toUpperCase().padStart(2, '0')}`))
+    .join('');
+}
+function encodeForm(fields, charset) {
+  return Object.entries(fields)
+    .map(([k, v]) => `${encodeValue(k, charset)}=${encodeValue(v, charset)}`)
+    .join('&');
+}
+
+async function get(url, { method = 'GET', body, charset: sendCharset } = {}) {
+  const headers = { 'user-agent': UA, 'accept-language': 'ko-KR,ko;q=0.9' };
+  if (body) headers['content-type'] = `application/x-www-form-urlencoded${isEucKr(sendCharset) ? '; charset=EUC-KR' : ''}`;
+  // 쿠키 없이 보낸다: 우리 사이트에서 새 창으로 처음 보내는 요청도 쿠키가 없기 때문
+  const res = await fetch(url, { method, body, headers, redirect: 'follow', signal: AbortSignal.timeout(12000) });
   const buf = Buffer.from(await res.arrayBuffer());
   const head = buf.subarray(0, 4000).toString('latin1');
   const charset = (res.headers.get('content-type') || '').match(/charset=([\w-]+)/i)?.[1] || head.match(/charset=["']?([\w-]+)/i)?.[1] || 'utf-8';
@@ -98,6 +122,14 @@ function formTemplate(f) {
   return `${f.base}?${params.toString().replace('__Q__', '{q}')}`;
 }
 
+async function verifyPost(post, homeCount) {
+  const fields = Object.fromEntries(Object.entries(post.fields).map(([k, v]) => [k, v === '{q}' ? TITLE : v]));
+  const r = await get(post.action, { method: 'POST', body: encodeForm(fields, post.charset), charset: post.charset });
+  const hits = count(r.text, TITLE);
+  const ok = r.status === 200 && hits > homeCount + 1 && r.text.includes(AUTHOR);
+  return { ok, status: r.status, hits };
+}
+
 async function verify(template, homeCount) {
   const url = template.replace('{q}', encodeURIComponent(TITLE));
   const r = await get(url);
@@ -122,42 +154,53 @@ const targets = [...ordered.slice(0, LIMIT), ...ordered.slice(LIMIT).filter((g) 
 
 const results = [];
 for (const g of targets) {
-  const out = { host: g.host, libraries: g.count, homepage: g.homepage, template: null, via: null, tried: [] };
+  const out = { host: g.host, libraries: g.count, homepage: g.homepage, template: null, post: null, via: null, tried: [] };
   try {
     const home = await get(/^https?:/i.test(g.homepage) ? g.homepage : `http://${g.homepage}`);
     out.charset = home.charset;
     const homeCount = count(home.text, TITLE);
+    const forms = searchForms(home.text, home.url);
     const candidates = [
-      // GET 폼 먼저, POST 폼도 GET으로 시도(많은 도서관 서버가 둘 다 받는다)
-      ...searchForms(home.text, home.url)
-        .sort((a, b) => (a.method === 'get' ? 0 : 1) - (b.method === 'get' ? 0 : 1))
-        .map((f) => ({ via: f.method === 'get' ? 'form' : 'form-post-as-get', template: formTemplate(f) })),
+      // GET 폼은 주소로, POST 폼은 같은 요청서를 그대로 보내 보고(사이트 글자 인코딩 맞춤), 안 되면 주소로도 시도
+      ...forms.filter((f) => f.method === 'get').map((f) => ({ via: 'form', template: formTemplate(f) })),
+      ...forms
+        .filter((f) => f.method === 'post')
+        .map((f) => ({
+          via: 'form-post',
+          post: {
+            action: f.base,
+            fields: { ...Object.fromEntries(f.hidden.map((h) => [h.name, h.value])), [f.field]: '{q}' },
+            charset: isEucKr(home.charset) ? 'EUC-KR' : 'UTF-8',
+          },
+        })),
+      ...forms.filter((f) => f.method === 'post').map((f) => ({ via: 'form-post-as-get', template: formTemplate(f) })),
       // 스크립트 안에 들어 있는 검색 주소(예: location.href='/search/list.do?searchKeyword='+값)
       ...scriptSearchUrls(home.text, home.url).map((t) => ({ via: 'script', template: t })),
       ...PATTERNS.map((p) => ({ via: 'pattern', template: new URL(home.url).origin + p })),
     ];
-    for (const c of candidates.slice(0, 14)) {
+    for (const c of candidates.slice(0, 16)) {
       await sleep(400);
       try {
-        const v = await verify(c.template, homeCount);
-        out.tried.push({ template: c.template, status: v.status, hits: v.hits });
+        const v = c.post ? await verifyPost(c.post, homeCount) : await verify(c.template, homeCount);
+        out.tried.push({ template: c.template, post: c.post, status: v.status, hits: v.hits });
         if (v.ok) {
-          out.template = c.template;
+          if (c.post) out.post = c.post;
+          else out.template = c.template;
           out.via = c.via;
           break;
         }
       } catch (error) {
-        out.tried.push({ template: c.template, error: String(error.message || error).slice(0, 80) });
+        out.tried.push({ template: c.template, post: c.post, error: String(error.message || error).slice(0, 80) });
       }
     }
   } catch (error) {
     out.error = String(error.message || error).slice(0, 120);
   }
   results.push(out);
-  console.log(`${out.template ? '확인' : '못 찾음'} · ${g.host} (${g.count}곳)${out.template ? ` · ${out.via}` : ''}`);
+  console.log(`${out.via ? '확인' : '못 찾음'} · ${g.host} (${g.count}곳)${out.via ? ` · ${out.via}` : ''}`);
   await sleep(500);
 }
 
-const found = results.filter((r) => r.template);
+const found = results.filter((r) => r.template || r.post);
 await writeFile('opac-probe.json', `${JSON.stringify({ checkedAt: new Date().toISOString(), title: TITLE, results }, null, 2)}\n`);
 console.log(`\n바로 검색 주소 확인: ${found.length}/${results.length}개 홈페이지, 도서관 ${found.reduce((s, r) => s + r.libraries, 0)}곳`);

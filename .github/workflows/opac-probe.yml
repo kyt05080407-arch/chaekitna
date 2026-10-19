@@ -21,7 +21,10 @@ jobs:
         with:
           node-version: 22
       - name: Probe library sites
-        run: node scripts/probe-opac.mjs "${{ inputs.limit }}"
+        run: |
+          # EUC-KR 사이트에 보낼 검색어 인코딩용(이 점검에서만 씀)
+          npm install --no-save --no-package-lock iconv-lite@0.6.3
+          node scripts/probe-opac.mjs "${{ inputs.limit }}"
       - name: Save to opac-probe branch
         run: |
           git config user.name "github-actions[bot]"
