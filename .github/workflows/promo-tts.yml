@@ -1,0 +1,50 @@
+name: Promo TTS
+
+# 홍보 영상 대본(promo/stories/*.json)을 AI 목소리로 읽어 promo-tts 브랜치에 저장한다(직접 실행할 때만).
+on:
+  workflow_dispatch:
+    inputs:
+      story:
+        description: 'promo/stories 안의 대본 이름'
+        default: 's1-maker'
+      voice:
+        description: '목소리(비우면 대본에 적힌 것). 예: ko-KR-SunHiNeural, ko-KR-InJoonNeural, ko-KR-HyunsuMultilingualNeural'
+        default: ''
+      rate:
+        description: '빠르기(비우면 대본에 적힌 것). 예: +12%'
+        default: ''
+
+permissions:
+  contents: write
+
+jobs:
+  tts:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Read script aloud
+        env:
+          STORY: ${{ inputs.story }}
+          VOICE: ${{ inputs.voice }}
+          RATE: ${{ inputs.rate }}
+        run: |
+          case "$STORY" in *[!a-z0-9-]*|'') echo "대본 이름이 올바르지 않아요"; exit 1;; esac
+          pip install -q edge-tts==7.3.1
+          python promo/tts.py "promo/stories/$STORY.json" "/tmp/tts/$STORY" "$VOICE" "$RATE"
+      - name: Save to promo-tts branch
+        env:
+          STORY: ${{ inputs.story }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout --orphan promo-tts
+          git rm -rq --cached .
+          rm -rf ./*
+          mkdir -p tts && cp -r "/tmp/tts/$STORY" "tts/$STORY"
+          git add tts
+          git commit -qm "홍보 영상 AI 목소리: $STORY"
+          git push -f origin promo-tts
