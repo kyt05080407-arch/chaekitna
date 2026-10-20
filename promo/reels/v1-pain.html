@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>책있나 홍보 1 · 도서관마다 따로따로</title>
+<link rel="stylesheet" href="reel.css">
+<style>
+  .row-card {
+    position: absolute; left: 76px; right: 76px; height: 172px; padding: 0 34px;
+    display: flex; align-items: center; gap: 26px; border-radius: 40px; background: #fff;
+    box-shadow: 0 12px 30px rgba(15, 26, 60, 0.08);
+  }
+  .row-card__ico { width: 92px; height: 92px; border-radius: 26px; display: grid; place-items: center; color: #fff; flex: none; }
+  .row-card__body { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 6px; }
+  .row-card__name { font-size: 44px; font-weight: 800; }
+  .row-card__sub { font-size: 30px; font-weight: 600; color: var(--muted); }
+  .row-card .chip { font-size: 32px; padding: 12px 22px; flex: none; }
+  .spin { width: 30px; height: 30px; border-radius: 50%; border: 5px solid #c9ced6; border-top-color: var(--ink-2); animation: spin 0.8s linear 0s infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .center { text-align: center; }
+  .screen-swap { animation: swapIn 0.5s var(--ease) var(--d) both; }
+  /* 도서관 카드 부분을 크게: 휴대폰을 앞으로 당긴다 */
+  .zoomer { position: absolute; inset: 0; transform-origin: 50% 500px; animation: zoomer 0.8s var(--ease) var(--d) both; }
+  @keyframes zoomer { from { transform: none; } to { transform: scale(1.5); } }
+  @keyframes swapIn { from { opacity: 0; transform: translateY(60px); } to { opacity: 1; transform: none; } }
+</style>
+</head>
+<body>
+
+<!-- 1. 훅 -->
+<section class="scene scene--blue" style="--s:0s; --e:3.15s">
+  <div class="blob" style="width:760px;height:760px;left:520px;top:-180px"></div>
+  <div class="blob" style="width:520px;height:520px;left:-200px;top:1380px;--s:-3s"></div>
+  <div class="brand fade" style="--d:0s"><span data-mark></span>책있나</div>
+  <div class="pad hook" style="top:500px">
+    <span class="line up" style="--d:0.1s">읽고 싶은 책,</span>
+    <span class="line up" style="--d:0.4s">도서관 3곳에</span>
+    <span class="line up" style="--d:0.7s">따로따로</span>
+    <span class="line up yellow" style="--d:1.0s">검색했죠?</span>
+  </div>
+  <p class="pad body fade" style="top:1110px;--d:1.6s;color:rgba(255,255,255,.82)">앱 깔고, 로그인하고, 또 검색하고</p>
+</section>
+
+<!-- 2. 문제 -->
+<section class="scene scene--light" style="--s:3.1s; --e:6.65s">
+  <div class="blob" style="width:700px;height:700px;left:560px;top:1300px"></div>
+  <h2 class="pad h1 up" style="top:300px;--d:3.2s">도서관마다<br>따로따로</h2>
+  <div class="row-card right" style="top:600px;--d:3.55s">
+    <span class="row-card__ico" style="background:#6c8cff" data-ico="library"></span>
+    <span class="row-card__body"><span class="row-card__name">시립도서관 앱</span><span class="row-card__sub">설치 · 로그인 · 검색</span></span>
+    <span class="chip chip--loan" data-ico-chip="clock">대출 중</span>
+  </div>
+  <div class="row-card right" style="top:802px;--d:3.95s">
+    <span class="row-card__ico" style="background:#2bb673" data-ico="library"></span>
+    <span class="row-card__body"><span class="row-card__name">교육청 도서관 사이트</span><span class="row-card__sub">처음부터 다시 검색</span></span>
+    <span class="chip chip--none" data-ico-chip="minus">없음</span>
+  </div>
+  <div class="row-card right" style="top:1004px;--d:4.35s">
+    <span class="row-card__ico" style="background:#ff9f43" data-ico="library"></span>
+    <span class="row-card__body"><span class="row-card__name">작은도서관 사이트</span><span class="row-card__sub">또 검색</span></span>
+    <span class="chip chip--none"><span class="spin"></span>불러오는 중</span>
+  </div>
+  <p class="pad h2 up" style="top:1250px;--d:4.95s">검색은 세 번 했는데</p>
+  <p class="pad h2 up" style="top:1335px;--d:5.25s"><span class="mark">빌릴 곳은 아직 몰라요</span></p>
+</section>
+
+<!-- 3. 전환 -->
+<section class="scene scene--blue" style="--s:6.6s; --e:8.45s">
+  <div class="blob" style="width:900px;height:900px;left:-300px;top:-200px"></div>
+  <div class="pad hook center" style="top:520px">
+    <span class="line up" style="--d:6.7s">그래서</span>
+    <span class="line up" style="--d:6.95s">한 화면에</span>
+    <span class="line up yellow" style="--d:7.2s">모았어요</span>
+  </div>
+  <div class="pad center pop" style="top:1060px;--d:7.55s"><span data-logo></span></div>
+</section>
+
+<!-- 4. 앱 화면 -->
+<section class="scene scene--light" style="--s:8.4s; --e:13.65s">
+  <div class="blob" style="width:800px;height:800px;left:480px;top:-260px"></div>
+  <div class="fadeout" style="--d:11.05s">
+    <p class="pad h2 up" style="top:250px;--d:8.5s">책 한 권 검색하면</p>
+    <p class="pad h2 up blue" style="top:336px;--d:8.75s">내 도서관 5곳이 한 번에</p>
+  </div>
+  <div class="fade" style="--d:11.3s">
+    <p class="pad h2" style="top:250px">대출 가능 · 대출 중 · 없음</p>
+    <p class="pad h2 blue" style="top:336px">도서관마다 한눈에</p>
+  </div>
+  <p class="note fade" style="top:438px;--d:9s">예시 화면 · 대출 정보는 하루 전 기준</p>
+  <div class="zoomer" style="--d:11.2s">
+    <div class="phone rise" style="top:510px;--d:8.55s">
+      <div class="phone__screen">
+        <img src="../.work/shots/detail.v1.png" alt="">
+        <img class="screen-swap" style="--d:11.15s" src="../.work/shots/detail.v2.png" alt="">
+      </div>
+    </div>
+  </div>
+  <div class="fadeout" style="--d:10.85s">
+    <div class="zoom zoom--ring right" style="top:1010px;--d:9.55s"><img src="../.work/shots/detail.summary.png" alt=""></div>
+  </div>
+</section>
+
+<!-- 5. 마무리 -->
+<section class="scene scene--navy" style="--s:13.6s; --e:99s">
+  <div class="blob" style="width:900px;height:900px;left:420px;top:1200px"></div>
+  <div class="pad center pop" style="top:430px;--d:13.75s"><span data-logo></span></div>
+  <p class="pad hook center up" style="top:690px;--d:13.95s">책있나</p>
+  <p class="pad h2 center up yellow" style="top:870px;--d:14.2s">가입·설치 없이<br>링크 하나로 바로</p>
+  <div class="pad center pop" style="top:1110px;--d:14.65s"><span class="cta">프로필 링크에서 써 보기 <span data-ico-inline="arrow"></span></span></div>
+  <p class="note center fade" style="top:1300px;--d:15s">책·도서관·대출 정보 출처: 도서관 정보나루</p>
+</section>
+
+<script type="module">
+  import { LOGO, MARK, icon, ready } from './reel.js';
+  document.querySelectorAll('[data-mark]').forEach((el) => (el.innerHTML = MARK));
+  document.querySelectorAll('[data-logo]').forEach((el) => (el.innerHTML = LOGO));
+  document.querySelectorAll('[data-ico]').forEach((el) => (el.innerHTML = icon(el.dataset.ico, 54)));
+  document.querySelectorAll('[data-ico-chip]').forEach((el) => el.insertAdjacentHTML('afterbegin', icon(el.dataset.icoChip, 32)));
+  document.querySelectorAll('[data-ico-inline]').forEach((el) => (el.innerHTML = icon(el.dataset.icoInline, 48)));
+  ready(16.6, 1.6);
+</script>
+</body>
+</html>

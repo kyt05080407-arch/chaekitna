@@ -1,0 +1,150 @@
+/* 책있나 홍보 영상(세로 1080×1920) 공통 스타일.
+   장면과 요소는 CSS 애니메이션으로 움직이고, promo/make-reel.mjs가 시간을 한 프레임씩 옮기며 찍는다.
+   인스타그램 릴스 화면에서 위(약 200px)와 아래(약 400px), 오른쪽 버튼 자리는 가려지므로 중요한 글은 안쪽에 둔다. */
+@import url('../../assets/fonts/pretendard/pretendard.css');
+
+:root {
+  --blue: #2e6bff;
+  --blue-ink: #1b55e0;
+  --navy: #0f1a3c;
+  --yellow: #ffd43b;
+  --ink: #191f28;
+  --ink-2: #4e5968;
+  --muted: #8b95a1;
+  --bg: #f2f4f6;
+  --card: #ffffff;
+  --loan: #a24800;
+  --loan-bg: #fff1e3;
+  --ok-bg: #eaf1ff;
+  --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --pop: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { width: 1080px; height: 1920px; overflow: hidden; background: #000; }
+body {
+  position: relative;
+  font-family: 'Pretendard Variable', Pretendard, sans-serif;
+  color: var(--ink);
+  letter-spacing: -0.03em;
+  word-break: keep-all;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---------- 장면 ---------- */
+.scene {
+  position: absolute; inset: 0; overflow: hidden;
+  opacity: 0;
+  animation: sceneIn 0.28s ease-out var(--s) both, sceneOut 0.28s ease-in var(--e) forwards;
+}
+.scene--blue { background: var(--blue); color: #fff; }
+.scene--navy { background: var(--navy); color: #fff; }
+.scene--yellow { background: var(--yellow); color: var(--ink); }
+.scene--light { background: var(--bg); }
+@keyframes sceneIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes sceneOut { from { opacity: 1; } to { opacity: 0; } }
+
+/* 배경에 천천히 움직이는 큰 동그라미(정지 화면처럼 보이지 않게) */
+.blob {
+  position: absolute; border-radius: 50%; opacity: 0.16; background: #fff;
+  animation: drift 8s ease-in-out var(--s, 0s) both alternate infinite;
+}
+.scene--light .blob { background: var(--blue); opacity: 0.07; }
+.scene--yellow .blob { background: #fff; opacity: 0.35; }
+@keyframes drift { from { transform: translate(0, 0) scale(1); } to { transform: translate(-60px, 80px) scale(1.12); } }
+
+/* ---------- 글 ---------- */
+.pad { position: absolute; left: 76px; right: 76px; }
+.brand {
+  position: absolute; left: 76px; top: 210px; display: flex; align-items: center; gap: 18px;
+  font-size: 46px; font-weight: 800;
+}
+.brand svg { width: 64px; height: 64px; }
+.hook { font-size: 116px; font-weight: 900; line-height: 1.16; letter-spacing: -0.045em; }
+.h1 { font-size: 92px; font-weight: 900; line-height: 1.18; letter-spacing: -0.04em; }
+.h2 { font-size: 68px; font-weight: 850; line-height: 1.25; letter-spacing: -0.035em; }
+.body { font-size: 48px; font-weight: 650; line-height: 1.4; }
+.small { font-size: 32px; font-weight: 600; color: var(--muted); letter-spacing: -0.01em; }
+.line { display: block; }
+.yellow { color: var(--yellow); }
+.blue { color: var(--blue); }
+.mark { background: linear-gradient(transparent 62%, rgba(255, 212, 59, 0.85) 62%); padding: 0 6px; }
+
+/* ---------- 움직임: --d에 시작 시각 ---------- */
+.up { animation: up 0.55s var(--ease) var(--d) both; }
+.left { animation: fromLeft 0.55s var(--ease) var(--d) both; }
+.right { animation: fromRight 0.6s var(--ease) var(--d) both; }
+.pop { animation: pop 0.6s var(--pop) var(--d) both; }
+.fade { animation: fadeIn 0.45s ease-out var(--d) both; }
+.fadeout { animation: fadeOut 0.35s ease-in var(--d) forwards; }
+.rise { animation: rise 0.8s var(--ease) var(--d) both; }
+@keyframes up { from { opacity: 0; transform: translateY(70px); } to { opacity: 1; transform: none; } }
+@keyframes fromLeft { from { opacity: 0; transform: translateX(-120px); } to { opacity: 1; transform: none; } }
+@keyframes fromRight { from { opacity: 0; transform: translateX(160px); } to { opacity: 1; transform: none; } }
+@keyframes pop { 0% { opacity: 0; transform: scale(0.6); } 70% { opacity: 1; transform: scale(1.05); } 100% { opacity: 1; transform: scale(1); } }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes fadeOut { from { opacity: 1; } to { opacity: 0; } }
+@keyframes rise { from { opacity: 0; transform: translateY(260px) scale(0.96); } to { opacity: 1; transform: none; } }
+
+/* ---------- 휴대폰 ---------- */
+.phone {
+  position: absolute; width: 560px; left: calc(50% - 280px);
+  padding: 16px; border-radius: 70px; background: #0b0d12;
+  box-shadow: 0 40px 90px rgba(15, 26, 60, 0.28), inset 0 0 0 3px #2a2f3a;
+}
+.phone__screen { position: relative; width: 528px; aspect-ratio: 390 / 844; border-radius: 56px; overflow: hidden; background: #fff; }
+.phone__screen img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.phone__notch {
+  position: absolute; top: 30px; left: calc(50% - 64px); width: 128px; height: 36px;
+  border-radius: 20px; background: #0b0d12; z-index: 3;
+}
+
+/* 앱 화면 일부를 크게 꺼내 보여 주는 카드 */
+.zoom {
+  position: absolute; left: 70px; right: 70px; border-radius: 40px; overflow: hidden;
+  background: #fff; box-shadow: 0 30px 80px rgba(15, 26, 60, 0.3);
+}
+.zoom img { display: block; width: 100%; }
+.zoom--ring { outline: 8px solid var(--yellow); outline-offset: 0; }
+
+/* 누르는 손가락 자리 */
+.tap {
+  position: absolute; width: 110px; height: 110px; margin: -55px 0 0 -55px; border-radius: 50%;
+  background: rgba(46, 107, 255, 0.35); border: 6px solid rgba(255, 255, 255, 0.95);
+  animation: tap 0.9s ease-out var(--d) both;
+}
+@keyframes tap {
+  0% { opacity: 0; transform: scale(1.4); }
+  25% { opacity: 1; transform: scale(0.85); }
+  60% { opacity: 1; transform: scale(1); }
+  100% { opacity: 0; transform: scale(1.5); }
+}
+
+/* ---------- 작은 부품 ---------- */
+.chip {
+  display: inline-flex; align-items: center; gap: 12px; padding: 14px 28px; border-radius: 999px;
+  font-size: 38px; font-weight: 800; letter-spacing: -0.02em;
+}
+.chip--white { background: #fff; color: var(--ink); }
+.chip--ink { background: var(--ink); color: #fff; }
+.chip--ok { background: var(--ok-bg); color: var(--blue-ink); }
+.chip--loan { background: var(--loan-bg); color: var(--loan); }
+.chip--none { background: #eef0f3; color: var(--ink-2); }
+.chip--yellow { background: var(--yellow); color: var(--ink); }
+.cta {
+  display: inline-flex; align-items: center; gap: 18px; padding: 30px 52px; border-radius: 999px;
+  background: #fff; color: var(--blue-ink); font-size: 50px; font-weight: 850;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+}
+.note { position: absolute; left: 76px; right: 76px; font-size: 30px; font-weight: 600; color: var(--muted); letter-spacing: -0.01em; }
+.scene--navy .note, .scene--blue .note { color: rgba(255, 255, 255, 0.62); }
+
+/* 로고 */
+.logo { width: 200px; height: 200px; filter: drop-shadow(0 18px 40px rgba(0, 0, 0, 0.3)); }
+
+/* 숫자가 올라가는 대출 횟수 */
+@property --n { syntax: '<integer>'; inherits: false; initial-value: 0; }
+.count { counter-reset: n var(--n); animation: count 1s ease-out var(--d) both; font-variant-numeric: tabular-nums; }
+.count::before { content: counter(n); }
+@keyframes count { from { --n: 0; } to { --n: var(--to); } }
+.zoom--pad { padding: 44px 40px 36px; }

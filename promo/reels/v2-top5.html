@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>책있나 홍보 2 · 지난주 인기 TOP 5</title>
+<link rel="stylesheet" href="reel.css">
+<style>
+  .center { text-align: center; }
+  /* 순위 장면: 흐린 표지를 배경에 깔고, 가운데 큰 표지 */
+  .bgcover { position: absolute; inset: -160px; width: calc(100% + 320px); height: calc(100% + 320px); object-fit: cover; filter: blur(70px) saturate(1.3); opacity: 0.38; }
+  .scene--light .veil { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(242,244,246,.55), rgba(242,244,246,.9)); }
+  .scene--blue .veil { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(46,107,255,.72), rgba(27,85,224,.92)); }
+  .cover {
+    position: absolute; left: calc(50% - 250px); top: 320px; width: 500px; height: 728px; object-fit: cover;
+    border-radius: 18px; box-shadow: 0 36px 80px rgba(15, 26, 60, 0.35), 0 0 0 1px rgba(0,0,0,.06);
+    background: #dde2ea;
+  }
+  .cover--empty { display: flex; align-items: center; justify-content: center; padding: 50px; text-align: center; font-size: 60px; font-weight: 900; color: var(--ink-2); }
+  .rank {
+    position: absolute; left: 150px; top: 250px; width: 190px; height: 190px; border-radius: 50%;
+    display: flex; align-items: baseline; justify-content: center; padding-top: 34px;
+    background: var(--blue); color: #fff; box-shadow: 0 18px 40px rgba(46, 107, 255, 0.45);
+    font-weight: 900; letter-spacing: -0.05em;
+  }
+  .rank b { font-size: 112px; line-height: 1; }
+  .rank span { font-size: 44px; margin-left: 4px; }
+  .scene--blue .rank { background: var(--yellow); color: var(--ink); box-shadow: 0 18px 40px rgba(0, 0, 0, 0.3); }
+  .info { position: absolute; left: 76px; right: 76px; top: 1100px; display: flex; flex-direction: column; align-items: center; gap: 18px; text-align: center; }
+  .info .title { font-size: 84px; font-weight: 900; line-height: 1.16; letter-spacing: -0.045em; }
+  .info .author { font-size: 42px; font-weight: 650; color: var(--ink-2); }
+  .scene--blue .info .author { color: rgba(255,255,255,.82); }
+  .info .chip { font-size: 46px; padding: 16px 34px; margin-top: 6px; }
+  .label { position: absolute; right: 76px; top: 268px; text-align: right; font-size: 34px; font-weight: 800; color: var(--ink-2); line-height: 1.35; }
+  .scene--blue .label { color: rgba(255,255,255,.85); }
+  /* 1위 뒤에서 도는 빛 */
+  .rays {
+    position: absolute; left: calc(50% - 900px); top: calc(684px - 900px); width: 1800px; height: 1800px; border-radius: 50%;
+    background: repeating-conic-gradient(rgba(255,255,255,.16) 0 9deg, transparent 9deg 18deg);
+    animation: turn 20s linear var(--d) both infinite;
+    mask-image: radial-gradient(circle, #000 25%, transparent 65%);
+  }
+  @keyframes turn { to { transform: rotate(360deg); } }
+  .top5 { font-size: 300px; font-weight: 900; letter-spacing: -0.06em; line-height: 1; color: var(--blue); }
+</style>
+</head>
+<body>
+<div id="stage"></div>
+<script type="module">
+  import { LOGO, MARK, icon, ready } from './reel.js';
+
+  // 인기 대출은 매주 월요일 아침에 지난 7일(월~일)을 받으므로, 영상에서는 '지난주'라고 쓴다.
+  const params = new URLSearchParams(location.search);
+  const group = params.get('group') || '';
+  const [popular, covers] = await Promise.all([
+    fetch('../../data/popular.json').then((r) => r.json()),
+    fetch('../.work/covers/index.json').then((r) => r.json()).catch(() => ({ index: {} })),
+  ]);
+  const g = group ? (popular.groups || []).find((x) => x.age === group) : null;
+  if (group && !g) throw new Error(`나잇대 ${group} 목록이 없어요`);
+  const books = (g ? g.items : popular.items).slice(0, 5);
+  const region = popular.regionName || '전국';
+  const who = g ? (g.basis || g.label) : '';
+  const esc = (s) => String(s ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
+  const coverSrc = (b) => {
+    const e = covers.index && covers.index[b.isbn13];
+    return e && e.file ? `../.work/covers/${e.file}` : '';
+  };
+  // 저자 칸에 옮긴이까지 붙어 오면 첫 저자만
+  const firstAuthor = (a) => String(a).split(/\s*[,;]\s*/)[0];
+  const count = (n, d) => (n >= 1000 ? Number(n).toLocaleString('ko-KR') : `<span class="count" style="--to:${n};--d:${d}s"></span>`);
+
+  const HOOK = 3.0;
+  const EACH = 2.7;
+  const end = HOOK + EACH * 5;
+  let html = '';
+
+  // 1. 훅
+  html += `<section class="scene scene--yellow" style="--s:0s;--e:${HOOK - 0.05}s">
+    <div class="blob" style="width:800px;height:800px;left:500px;top:-240px"></div>
+    <div class="blob" style="width:600px;height:600px;left:-260px;top:1350px;--s:-4s"></div>
+    <div class="pad fade" style="top:230px;--d:0s"><span class="chip chip--white">${esc(popular.period)} · ${esc(region)}</span></div>
+    <div class="pad hook" style="top:430px">
+      <span class="line up" style="--d:0.1s">지난주</span>
+      <span class="line up" style="--d:0.35s">${who ? `${esc(who)}${/[가-힣]$/.test(who) && (who.charCodeAt(who.length - 1) - 0xac00) % 28 ? '이' : '가'}` : `${esc(region)} 도서관에서`}</span>
+      <span class="line up" style="--d:0.6s">가장 많이 빌린 책</span>
+    </div>
+    <div class="pad pop" style="top:1000px;--d:1.0s"><span class="top5">TOP 5</span></div>
+  </section>`;
+
+  // 2. 5위 → 1위
+  books
+    .map((b, i) => ({ b, rank: i + 1 }))
+    .reverse()
+    .forEach(({ b, rank }, k) => {
+      const s = HOOK + EACH * k;
+      const first = rank === 1;
+      const src = coverSrc(b);
+      html += `<section class="scene ${first ? 'scene--blue' : 'scene--light'}" style="--s:${s}s;--e:${s + EACH - 0.05}s">
+        ${src ? `<img class="bgcover" src="${src}" alt="">` : ''}<div class="veil"></div>
+        ${first ? `<div class="rays" style="--d:${s}s"></div>` : ''}
+        <p class="label fade" style="--d:${s + 0.2}s">지난주 ${esc(region)}<br>${who ? `${esc(who)} ` : ''}인기 도서</p>
+        ${src ? `<img class="cover pop" style="--d:${s + 0.05}s" src="${src}" alt="">` : `<div class="cover cover--empty pop" style="--d:${s + 0.05}s">${esc(b.title)}</div>`}
+        <div class="rank pop" style="--d:${s + 0.3}s"><b>${rank}</b><span>위</span></div>
+        <div class="info">
+          <p class="title up" style="--d:${s + 0.35}s">${esc(b.title)}</p>
+          ${b.authors ? `<p class="author up" style="--d:${s + 0.5}s">${esc(firstAuthor(b.authors))}</p>` : ''}
+          ${b.loanCount ? `<span class="chip ${first ? 'chip--yellow' : 'chip--ink'} pop" style="--d:${s + 0.6}s"><span>지난주 ${count(b.loanCount, s + 0.7)}번 대출</span></span>` : ''}
+        </div>
+      </section>`;
+    });
+
+  // 3. 마무리
+  html += `<section class="scene scene--navy" style="--s:${end - 0.05}s;--e:99s">
+    <div class="blob" style="width:900px;height:900px;left:420px;top:1200px"></div>
+    <div class="pad hook" style="top:380px">
+      <span class="line up" style="--d:${end + 0.05}s">이 책들,</span>
+      <span class="line up" style="--d:${end + 0.3}s">우리 동네 도서관에</span>
+      <span class="line up yellow" style="--d:${end + 0.55}s">있을까?</span>
+    </div>
+    <div class="pad pop" style="top:880px;--d:${end + 0.9}s;display:flex;align-items:center;gap:32px">
+      <span style="width:150px;height:150px;display:block">${LOGO.replace('class="logo"', 'class="logo" style="width:150px;height:150px"')}</span>
+      <span class="h2">책있나에서<br>한 번에 확인</span>
+    </div>
+    <div class="pad pop" style="top:1130px;--d:${end + 1.25}s"><span class="cta">프로필 링크 ${icon('arrow', 48)}</span></div>
+    <p class="note fade" style="top:1320px;--d:${end + 1.5}s">출처: 도서관 정보나루 인기대출도서<br>${esc(popular.period)} · ${esc(region)} 공공도서관 대출${who ? ` · ${esc(who)}` : ''}</p>
+  </section>`;
+
+  document.getElementById('stage').innerHTML = html;
+  ready(end + 3.6, 1.9);
+</script>
+</body>
+</html>

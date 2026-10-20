@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>책있나 홍보 3 · 권장도서 목록 한 번에</title>
+<link rel="stylesheet" href="reel.css">
+<style>
+  .center { text-align: center; }
+  .hook--fit { font-size: 104px; }
+  .screen-swap { animation: swapIn 0.45s var(--ease) var(--d) both; }
+  @keyframes swapIn { from { opacity: 0; transform: translateY(50px); } to { opacity: 1; transform: none; } }
+  .zoomer { position: absolute; inset: 0; transform-origin: 50% 500px; animation: zoomer 0.8s var(--ease) var(--d) both; }
+  @keyframes zoomer { from { transform: none; } to { transform: scale(1.45); } }
+  .stack { display: flex; flex-direction: column; align-items: flex-start; gap: 22px; }
+  .stack .chip { font-size: 44px; padding: 18px 34px; }
+</style>
+</head>
+<body>
+
+<!-- 1. 훅 -->
+<section class="scene scene--navy" style="--s:0s; --e:3.15s">
+  <div class="blob" style="width:760px;height:760px;left:520px;top:-180px"></div>
+  <div class="blob" style="width:520px;height:520px;left:-220px;top:1400px;--s:-3s"></div>
+  <div class="brand fade" style="--d:0s"><span data-mark></span>책있나</div>
+  <div class="pad hook hook--fit" style="top:500px">
+    <span class="line up" style="--d:0.1s">권장도서 목록 받고</span>
+    <span class="line up" style="--d:0.4s">도서관에 있는지</span>
+    <span class="line up yellow" style="--d:0.7s">한 권씩 찾았죠?</span>
+  </div>
+  <p class="pad body fade" style="top:1000px;--d:1.4s;color:rgba(255,255,255,.8)">수행평가·독서 기록 시즌마다</p>
+</section>
+
+<!-- 2. 목록 고르고 한 번에 확인 -->
+<section class="scene scene--light" style="--s:3.1s; --e:11.0s">
+  <div class="blob" style="width:800px;height:800px;left:480px;top:-260px"></div>
+  <div class="fadeout" style="--d:7.6s">
+    <p class="pad h2 up" style="top:250px;--d:3.2s">목록을 고르면</p>
+    <p class="pad h2 up blue" style="top:336px;--d:3.45s">내 도서관에 있는지 한 번에</p>
+  </div>
+  <div class="fade" style="--d:7.85s">
+    <p class="pad h2" style="top:250px">어느 도서관에 있는지까지</p>
+    <p class="pad h2 blue" style="top:336px">책마다 바로</p>
+  </div>
+  <p class="note fade" style="top:438px;--d:3.6s">예시 화면 · 소장 정보는 도서관 정보나루 기준</p>
+  <div class="zoomer" style="--d:7.8s">
+    <div class="phone rise" style="top:510px;--d:3.25s">
+      <div class="phone__screen">
+        <img src="../.work/shots/home.v2.png" alt="">
+        <img class="screen-swap" style="--d:4.45s" src="../.work/shots/list.v0.png" alt="">
+        <img class="screen-swap" style="--d:5.65s" src="../.work/shots/list.v1.png" alt="">
+        <img class="screen-swap" style="--d:7.85s" src="../.work/shots/list.v2.png" alt="">
+      </div>
+    </div>
+  </div>
+  <div class="tap" data-tap="home.v2.snu100" style="--d:3.85s"></div>
+  <div class="tap" data-tap="list.v0.check" style="--d:5.05s"></div>
+  <div class="fadeout" style="--d:7.55s">
+    <div class="zoom zoom--ring zoom--pad right" style="top:1040px;--d:5.95s"><img src="../.work/shots/list.check.png" alt=""></div>
+  </div>
+</section>
+
+<!-- 3. 내 목록 붙여 넣기 -->
+<section class="scene scene--light" style="--s:10.95s; --e:14.4s">
+  <div class="blob" style="width:760px;height:760px;left:-260px;top:1300px"></div>
+  <p class="pad h2 up" style="top:250px;--d:11.05s">선생님이 준 목록은</p>
+  <p class="pad h2 up blue" style="top:336px;--d:11.3s">붙여 넣으면 끝</p>
+  <div class="zoom right" style="top:500px;--d:11.45s"><img src="../.work/shots/paste.form.png" alt=""></div>
+  <div class="tap" style="left:540px;top:1430px;--d:13.05s"></div>
+  <p class="note fade" style="top:438px;--d:11.65s">최대 30권 · 목록은 내 폰에만 저장돼요</p>
+</section>
+
+<!-- 4. 마무리 -->
+<section class="scene scene--navy" style="--s:14.35s; --e:99s">
+  <div class="blob" style="width:900px;height:900px;left:420px;top:1200px"></div>
+  <p class="pad h2 up" style="top:260px;--d:14.45s">이런 목록이 들어 있어요</p>
+  <div class="pad stack" style="top:390px">
+    <span class="chip chip--white right" style="--d:14.7s">서울대 권장도서 100선</span>
+    <span class="chip chip--white right" style="--d:14.85s">고등학생이 요즘 많이 빌린 책</span>
+    <span class="chip chip--white right" style="--d:15.0s">중학생이 요즘 많이 빌린 책</span>
+    <span class="chip chip--yellow right" style="--d:15.15s">+ 내 목록 붙여 넣기</span>
+  </div>
+  <div class="pad pop" style="top:880px;--d:15.45s;display:flex;align-items:center;gap:32px">
+    <span style="width:150px;height:150px;display:block" data-logo-small></span>
+    <span class="h1">책있나</span>
+  </div>
+  <div class="pad pop" style="top:1110px;--d:15.8s"><span class="cta">프로필 링크에서 써 보기 <span data-ico-inline="arrow"></span></span></div>
+  <p class="note fade" style="top:1300px;--d:16.05s">목록 출처: 서울대학교 기초교육원 권장도서 100선, 도서관 정보나루</p>
+</section>
+
+<script type="module">
+  import { LOGO, MARK, icon, ready } from './reel.js';
+  document.querySelectorAll('[data-mark]').forEach((el) => (el.innerHTML = MARK));
+  document.querySelectorAll('[data-logo-small]').forEach((el) => (el.innerHTML = LOGO.replace('class="logo"', 'class="logo" style="width:150px;height:150px"')));
+  document.querySelectorAll('[data-ico-inline]').forEach((el) => (el.innerHTML = icon(el.dataset.icoInline, 48)));
+  // 누르는 자리: 앱 화면 속 위치(390×844 기준) → 영상 속 휴대폰 화면 위치
+  const { rects } = await fetch('../.work/shots/shots.json').then((r) => r.json());
+  const SCREEN = { left: 540 - 280 + 16, top: 510 + 16, scale: 528 / 390 };
+  document.querySelectorAll('[data-tap]').forEach((el) => {
+    const r = rects[el.dataset.tap];
+    if (!r) throw new Error(`위치 없음: ${el.dataset.tap}`);
+    el.style.left = `${SCREEN.left + (r.x + r.w / 2) * SCREEN.scale}px`;
+    el.style.top = `${SCREEN.top + (r.y + r.h / 2) * SCREEN.scale}px`;
+  });
+  ready(17.85, 1.8);
+</script>
+</body>
+</html>
