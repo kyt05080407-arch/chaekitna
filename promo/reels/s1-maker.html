@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>책있나 썰 1 · 고딩이 AI랑 도서관 앱 만든 썰</title>
+<link rel="stylesheet" href="reel.css">
+<link rel="stylesheet" href="../.work/fonts/black-han-sans/index.css">
+<link rel="stylesheet" href="../.work/fonts/do-hyeon/index.css">
+<style>
+  /* '밤티' 쇼츠 틀: 검은 바탕, 위에 고정 제목, 가운데 짤, 아래 굵은 자막 */
+  body { background: #000; }
+  .bg { position: absolute; inset: 0; background: #000; }
+  .title { position: absolute; left: 40px; right: 40px; top: 150px; text-align: center; font-family: 'Black Han Sans', sans-serif; letter-spacing: -0.02em; line-height: 1.12; }
+  .title .t1 { display: block; font-size: 66px; color: #fff; }
+  .title .t2 { display: block; font-size: 80px; color: #ffe14d; }
+  .zone { position: absolute; left: 0; right: 0; top: 430px; height: 790px; }
+  .beat { position: absolute; inset: 0; opacity: 0; animation: on 0.001s linear var(--a) both, off 0.001s linear var(--b) forwards; }
+  @keyframes on { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes off { from { opacity: 1; } to { opacity: 0; } }
+  .punch { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 30px; animation: punch 0.28s ease-out var(--a) both; }
+  @keyframes punch { from { transform: scale(1.14); } to { transform: none; } }
+  .row { display: flex; align-items: center; justify-content: center; gap: 22px; }
+  /* 이모지는 시스템의 Noto Color Emoji(같은 이름의 웹 글꼴은 이 환경에서 그려지지 않음) */
+  .emo { font-family: 'Noto Color Emoji', sans-serif; line-height: 1; letter-spacing: 0; }
+  .op { font-family: 'Black Han Sans'; font-size: 110px; color: #fff; }
+  .sticker { display: inline-block; padding: 18px 34px; border-radius: 22px; background: #fff; color: #111; font-family: 'Do Hyeon'; font-size: 76px; line-height: 1.1; box-shadow: 8px 8px 0 #ffe14d; letter-spacing: 0; }
+  .sticker--y { background: #ffe14d; box-shadow: 8px 8px 0 #fff; }
+  .sticker--r { background: #ff4d4d; color: #fff; box-shadow: 8px 8px 0 #fff; }
+  .tilt { display: inline-block; }
+  .shake { animation: shake 0.4s linear var(--d) both; }
+  @keyframes shake { 0%, 100% { transform: none; } 20% { transform: translate(-14px, 6px) rotate(-2deg); } 40% { transform: translate(12px, -8px) rotate(2deg); } 60% { transform: translate(-8px, 4px); } 80% { transform: translate(6px, -2px); } }
+  .slam { animation: slam 0.35s cubic-bezier(0.3, 1.6, 0.6, 1) var(--d) both; }
+  @keyframes slam { from { opacity: 0; transform: scale(2.4) rotate(-8deg); } to { opacity: 1; transform: rotate(-3deg); } }
+  .bounce { animation: bounce 0.6s ease-in-out var(--d) both infinite alternate; }
+  @keyframes bounce { from { transform: translateY(0); } to { transform: translateY(-34px); } }
+
+  /* 자막 */
+  .sub {
+    position: absolute; left: 44px; right: 44px; top: 1236px; text-align: center;
+    font-family: 'Do Hyeon', sans-serif; font-size: 72px; line-height: 1.18; color: #fff; letter-spacing: 0; word-break: keep-all;
+    text-shadow: 0 0 2px #000, 4px 4px 0 #000, -4px 4px 0 #000, 4px -4px 0 #000, -4px -4px 0 #000, 0 5px 0 #000, 0 -5px 0 #000, 5px 0 0 #000, -5px 0 0 #000;
+    opacity: 0; animation: on 0.001s linear var(--a) both, off 0.001s linear var(--b) forwards, subpop 0.16s ease-out var(--a) both;
+  }
+  .sub .hl { color: #ffe14d; }
+  @keyframes subpop { from { transform: scale(0.86); } to { transform: none; } }
+
+  /* 앱 아이콘 */
+  .app { display: flex; flex-direction: column; align-items: center; gap: 14px; font-family: 'Do Hyeon'; font-size: 40px; color: #fff; letter-spacing: 0; }
+  .app__ico { width: 200px; height: 200px; border-radius: 50px; display: grid; place-items: center; color: #fff; }
+  .app__bar { width: 200px; height: 14px; border-radius: 8px; background: #333; overflow: hidden; }
+  .app__bar i { display: block; height: 100%; background: #4ade80; transform-origin: left; animation: fill 1.2s linear var(--d) both; }
+  @keyframes fill { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+
+  /* 대출 중 배지 */
+  .loan { display: inline-flex; align-items: center; gap: 22px; padding: 30px 60px; border-radius: 999px; background: #fff1e3; color: #a24800; font-family: 'Black Han Sans'; font-size: 120px; }
+
+  /* 카드 */
+  .card { width: 900px; border-radius: 40px; background: #fff; color: #191f28; padding: 44px 50px; font-family: 'Pretendard Variable'; }
+  .card h3 { font-family: 'Black Han Sans'; font-size: 54px; font-weight: 400; margin-bottom: 18px; }
+  .rate { display: flex; align-items: center; gap: 22px; padding: 12px 0; font-size: 44px; font-weight: 800; }
+  .rate .name { width: 260px; color: #4e5968; }
+  .rate .stars { flex: 1; color: #ffb800; letter-spacing: 4px; font-size: 48px; }
+  .rate .stars s { color: #dde1e6; text-decoration: none; }
+  .rate .num { position: relative; font-family: 'Black Han Sans'; font-size: 66px; font-weight: 400; width: 110px; text-align: right; }
+  .src { margin-top: 18px; font-size: 28px; font-weight: 600; color: #8b95a1; }
+  .quote { font-family: 'Do Hyeon'; font-size: 66px; line-height: 1.25; letter-spacing: 0; }
+  .likes { margin-top: 26px; display: inline-flex; align-items: center; gap: 14px; padding: 12px 28px; border-radius: 999px; background: #eaf1ff; color: #1b55e0; font-size: 42px; font-weight: 800; }
+
+  /* 코드 */
+  .code { position: relative; width: 940px; height: 740px; border-radius: 30px; background: #1e1f29; overflow: hidden; box-shadow: 0 0 0 4px #333; }
+  .code__bar { height: 56px; background: #2a2b37; display: flex; align-items: center; gap: 14px; padding: 0 24px; }
+  .code__bar i { width: 20px; height: 20px; border-radius: 50%; }
+  .code pre { position: absolute; left: 30px; right: 20px; top: 76px; font-family: 'Noto Sans Mono CJK KR', 'DejaVu Sans Mono', monospace; font-size: 25px; line-height: 1.55; color: #e4e4ef; white-space: pre; animation: scroll linear var(--a) both; }
+  @keyframes scroll { from { transform: translateY(0); } to { transform: translateY(-1500px); } }
+  .k { color: #c792ea; } .s { color: #c3e88d; } .c { color: #7f8c98; } .f { color: #82aaff; }
+
+  /* 앱 화면 캡처 */
+  .shot { position: relative; overflow: hidden; border-radius: 34px; border: 6px solid #fff; background: #fff; transform: rotate(-1.5deg); }
+  .shot img { position: absolute; left: 0; }
+  .ring { position: absolute; overflow: visible; pointer-events: none; }
+  .ring ellipse { fill: none; stroke: #ff3b30; stroke-width: 9; stroke-linecap: round; stroke-dasharray: 1; stroke-dashoffset: 1; animation: draw 0.4s ease-out var(--d) forwards; }
+  @keyframes draw { to { stroke-dashoffset: 0; } }
+  .tag { position: absolute; right: 18px; top: 18px; padding: 8px 18px; border-radius: 12px; background: rgba(0,0,0,.72); color: #fff; font-family: 'Pretendard Variable'; font-size: 28px; font-weight: 700; }
+  .swap { position: absolute; inset: 0; opacity: 0; animation: on 0.001s linear var(--d) both; }
+  .swap--out { position: absolute; inset: 0; animation: off 0.001s linear var(--d) forwards; }
+  .brandline { display: flex; align-items: center; gap: 30px; }
+  .brandline .name { font-family: 'Black Han Sans'; font-size: 140px; color: #ffe14d; }
+</style>
+</head>
+<body>
+<div class="bg"></div>
+<div id="stage"></div>
+<script type="module">
+  import { LOGO, icon, ready } from './reel.js';
+
+  const ID = 's1-maker';
+  const [story, tl, shots, code] = await Promise.all([
+    fetch(`../stories/${ID}.json`).then((r) => r.json()),
+    fetch(`../.work/tts/${ID}/timeline.json`).then((r) => r.json()),
+    fetch('../.work/shots/shots.json').then((r) => r.json()),
+    fetch('../../js/lists.js').then((r) => r.text()),
+  ]);
+  const esc = (s) => String(s ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
+  const at = {};
+  tl.lines.forEach((l, i, all) => (at[l.id] = { ...l, end: l.t + l.dur, next: all[i + 1] ? all[i + 1].t : tl.total + 1 }));
+  const cues = [];
+  const cue = (t, type, extra = {}) => cues.push({ t, type, ...extra });
+
+  // ---------- 작은 부품 ----------
+  const E = (e, size, d, style = '') => (cue(d, 'pop'), `<span class="emo pop" style="font-size:${size}px;--d:${d}s;${style}">${e}</span>`);
+  const sticker = (text, d, rot = 0, cls = '', sound = 'pop') => (sound && cue(d, sound), `<span class="tilt" style="transform:rotate(${rot}deg)"><span class="sticker ${cls} pop" style="--d:${d}s">${text}</span></span>`);
+  const ring = (r, crop, scale, d, pad = 14) => {
+    cue(d, 'swoosh');
+    const x = r.x * scale - pad;
+    const y = (r.y - crop) * scale - pad;
+    const w = r.w * scale + pad * 2;
+    const h = r.h * scale + pad * 2;
+    return `<svg class="ring" style="left:${x}px;top:${y}px;width:${w}px;height:${h}px" viewBox="0 0 ${w} ${h}"><ellipse pathLength="1" cx="${w / 2}" cy="${h / 2}" rx="${w / 2}" ry="${h / 2}" transform="rotate(-3 ${w / 2} ${h / 2})" style="--d:${d}s"/></svg>`;
+  };
+  // 앱 화면 일부(crop: 위에서 자를 위치, 높이, 390px 기준)
+  const SHOT_W = 760;
+  const SC = SHOT_W / 390;
+  const shotBox = (inner, cropH) => `<div class="shot" style="width:${SHOT_W + 12}px;height:${cropH * SC + 12}px">${inner}<span class="tag">예시 화면</span></div>`;
+  const img = (file, crop) => `<img src="../.work/shots/${file}" style="top:${-crop * SC}px;width:${SHOT_W}px" alt="">`;
+  const R = shots.rects;
+  const hl = (s) => esc(s).replace(/\*(.+?)\*/g, '<span class="hl">$1</span>').replace(/\|/g, '<br>');
+  const syntax = (src) =>
+    esc(src)
+      .replace(/(\/\/[^\n]*)/g, '<span class="c">$1</span>')
+      .replace(/(&#39;[^&\n]*?&#39;|'[^'\n]*'|`[^`\n]*`)/g, '<span class="s">$1</span>')
+      .replace(/\b(import|export|from|const|let|function|return|if|else|for|of|async|await|new)\b/g, '<span class="k">$1</span>')
+      .replace(/\b([a-zA-Z_]+)(?=\()/g, '<span class="f">$1</span>');
+
+  // ---------- 줄마다 장면 ----------
+  const B = {
+    '01': (t) => `<div class="row">${E('🧑‍🎓', 190, t + 0.1)}<span class="op pop" style="--d:${t + 0.6}s">+</span>${E('🤖', 190, t + 0.9)}</div>
+      <div class="row"><span class="op pop" style="--d:${t + 1.6}s">=</span>${E('📱', 190, t + 1.9)}</div>`,
+    '02': (t) => `${E('📚', 260, t + 0.05)}${sticker('다들 한 번쯤 겪어 봄', t + 0.9, -3)}`,
+    '03': (t) => `<div class="row" style="gap:40px">${[
+        ['#6c8cff', '시립도서관', 0.1],
+        ['#2bb673', '교육청 도서관', 0.6],
+        ['#ff9f43', '작은도서관', 1.1],
+      ]
+        .map(([c, n, o]) => (cue(t + o, 'pop'), `<div class="app pop" style="--d:${t + o}s"><span class="app__ico" style="background:${c}">${icon('library', 110)}</span>${n}<span class="app__bar"><i style="--d:${t + o + 0.2}s"></i></span></div>`))
+        .join('')}</div>`,
+    '04': (t) => `${sticker('로그인 🔑', t + 0.05, -4)}${sticker('검색 🔍', t + 0.7, 3, 'sticker--y')}${E('😩', 150, t + 1.25)}`,
+    '05': (t) => (cue(t + 0.95, 'slam'), cue(t + 1.05, 'boing'), `<div class="shake" style="--d:${t + 1.25}s"><span class="loan slam" style="--d:${t + 0.9}s">${icon('clock', 110)}대출 중</span></div>${E('🙃', 170, t + 1.35)}`),
+    '06': (t) => (cue(t + 0.05, 'swoosh'), `<div class="card up" style="--d:${t + 0.05}s"><h3>도서관 앱 별점 ⭐</h3>${[
+        ['도서관 앱 A', 1.3],
+        ['도서관 앱 B', 1.8],
+        ['도서관 앱 C', 1.9],
+        ['도서관 앱 D', 2.4],
+      ]
+        .map(([n, v], i) => {
+          const full = Math.round(v);
+          return `<div class="rate fade" style="--d:${t + 0.35 + i * 0.25}s"><span class="name">${n}</span><span class="stars">${'★'.repeat(full)}<s>${'★'.repeat(5 - full)}</s></span><span class="num">${v}${i === 0 ? `<svg class="ring" style="left:-26px;top:-14px;width:160px;height:110px" viewBox="0 0 160 110"><ellipse pathLength="1" cx="80" cy="55" rx="74" ry="48" transform="rotate(-4 80 55)" style="--d:${t + 1.7}s"/></svg>` : ''}</span></div>`;
+        })
+        .join('')}<p class="src">구글플레이·앱스토어 별점, 2026년 10월 확인</p></div>`),
+    '07': (t, l) => (cue(t + 0.05, 'swoosh'), cue(t + 1.9, 'ding'), `<div class="card up" style="--d:${t + 0.05}s"><h3>리뷰에서 제일 많이 나온 불만</h3><p class="quote">책마다 하나씩 들어가 봐야<br>대출 되는지 알 수 있음</p><span class="likes pop" style="--d:${t + 0.9}s">👍 도움돼요 <span class="count" style="--to:201;--d:${t + 0.95}s"></span></span><p class="src">리뷰 내용 요약 · 구글플레이</p></div>`),
+    '08': (t, l) => (cue(t + 0.1, 'typing', { dur: l.next - t - 0.2 }), `<div class="code up" style="--d:${t}s"><div class="code__bar"><i style="background:#ff5f57"></i><i style="background:#febc2e"></i><i style="background:#28c840"></i></div><pre style="--a:${t}s;animation-duration:${(l.next - t).toFixed(2)}s">${syntax(code.split('\n').slice(0, 90).join('\n'))}</pre></div>
+      <div style="position:absolute;right:70px;top:-10px">${E('🤖', 150, t + 0.3)}</div>
+      <div style="position:absolute;left:60px;bottom:30px">${sticker('AI한테 질문 무한 반복', t + 1.0, -4, 'sticker--y')}</div>`),
+    '09': (t) => (cue(t + 0.35, 'ding'), `<div class="brandline"><span class="pop" style="--d:${t + 0.05}s;width:260px;height:260px;display:block">${LOGO.replace('class="logo"', 'class="logo" style="width:260px;height:260px"')}</span><span class="name pop" style="--d:${t + 0.3}s">책있나</span></div>
+      <div class="row">${E('✨', 110, t + 0.5)}${E('📚', 110, t + 0.6)}${E('✨', 110, t + 0.7)}</div>`),
+    '10': (t, l) => {
+      const swapAt = t + l.dur * 0.52;
+      cue(t + 0.05, 'swoosh');
+      return `<div class="up" style="--d:${t + 0.05}s">${shotBox(
+        `<div class="swap--out" style="--d:${swapAt}s">${img('detail.v1.png', 225)}${ring(R['detail.v1.summary'], 225, SC, t + 0.9, 10)}</div>
+         <div class="swap" style="--d:${swapAt}s">${img('detail.v2.png', 30)}${ring(R['detail.v2.available'], 30, SC, swapAt + 0.25, 16)}${ring(R['detail.v2.loaned'], 30, SC, swapAt + 0.75, 16)}</div>`,
+        395,
+      )}</div>`;
+    },
+    '11': (t) => (cue(t + 0.05, 'swoosh'), `<div class="up" style="--d:${t + 0.05}s">${shotBox(`${img('list.v1.png', 50)}${ring(R['list.v1.sum'], 50, SC, t + 1.4, 16)}`, 395)}</div>`),
+    '12': (t) => (cue(t + 1.2, 'slam'), `${sticker('가입 ❌', t + 0.05, -4)}${sticker('설치 ❌', t + 0.55, 3)}<span class="tilt" style="transform:rotate(-2deg)"><span class="sticker sticker--y slam" style="--d:${t + 1.15}s;font-size:110px">0원 💸</span></span>`),
+    '13': (t) => `${E('🙏', 260, t + 0.05)}${sticker('⚠️ 부족함 주의', t + 0.7, 4, 'sticker--r')}`,
+    '14': (t) => (cue(t + 1.9, 'ding'), `<div class="row" style="gap:26px">${[
+        ['💬', '댓글', 0.1],
+        ['🛠️', '수정', 0.9],
+        ['✅', '반영', 1.7],
+      ]
+        .map(([e, n, o], i) => `${i ? `<span class="op fade" style="--d:${t + o - 0.15}s;font-size:80px">→</span>` : ''}<div class="app pop" style="--d:${t + o}s">${(cue(t + o, 'pop'), `<span class="emo" style="font-size:150px">${e}</span>`)}<span style="font-size:56px">${n}</span></div>`)
+        .join('')}</div>`),
+    '15': (t) => (cue(t + 0.3, 'ding'), `<div class="brandline" style="gap:24px"><span class="pop" style="--d:${t + 0.05}s;width:200px;height:200px;display:block">${LOGO.replace('class="logo"', 'class="logo" style="width:200px;height:200px"')}</span><span class="name pop" style="--d:${t + 0.25}s;font-size:120px">책있나</span></div>
+      <span class="bounce" style="--d:${t + 0.6}s">${E('👆', 170, t + 0.5)}</span>${sticker('프로필 링크', t + 0.7, -3, 'sticker--y', '')}`),
+  };
+
+  let html = `<div class="title pop" style="--d:0s"><span class="t1">${esc(story.title[0])}</span><span class="t2">${esc(story.title[1])}</span></div><div class="zone">`;
+  for (const line of story.lines) {
+    const l = at[line.id];
+    const make = B[line.id];
+    if (!l || !make) continue;
+    const b = line.id === '15' ? tl.total + 1 : l.next;
+    html += `<div class="beat" style="--a:${l.t}s;--b:${b}s"><div class="punch" style="--a:${l.t}s">${make(l.t, l)}</div></div>`;
+    cue(l.t, 'tick');
+  }
+  html += '</div>';
+  for (const line of story.lines) {
+    const l = at[line.id];
+    html += `<div class="sub" style="--a:${l.t}s;--b:${line.id === '15' ? tl.total + 1 : l.next}s">${hl(line.sub)}</div>`;
+  }
+  document.getElementById('stage').innerHTML = html;
+
+  // 글꼴을 미리 받아 둔다(쓰인 글자만)
+  const text = document.body.innerText;
+  await Promise.all(
+    ['400 80px "Black Han Sans"', '400 80px "Do Hyeon"', '700 40px "Pretendard Variable"', '800 40px "Pretendard Variable"'].map((f) =>
+      document.fonts.load(f, text),
+    ),
+  );
+  window.REEL_EXTRA = {
+    cues,
+    voice: tl.lines.map((l) => ({ t: l.t, file: `promo/.work/tts/${ID}/${l.id}.wav` })),
+    bgm: 0.055,
+  };
+  ready(tl.total, 2.3);
+  Object.assign(window.REEL, window.REEL_EXTRA);
+</script>
+</body>
+</html>

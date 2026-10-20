@@ -202,6 +202,47 @@ function tick(bus, t0) {
   }
 }
 
+// 띠용(만화 같은 '실패' 소리)
+function boing(bus, t0) {
+  const s0 = Math.round(t0 * SR);
+  let ph = 0;
+  for (let i = 0; i < 0.55 * SR; i += 1) {
+    const t = i / SR;
+    const f = 520 * Math.exp(-t / 0.35) + 140 + 30 * Math.sin(2 * Math.PI * 14 * t);
+    ph += (2 * Math.PI * f) / SR;
+    const env = Math.min(1, i / 60) * Math.exp(-t / 0.22);
+    bus.put(s0 + i, (Math.sin(ph) + 0.3 * Math.sin(2 * ph)) * env * 0.32);
+  }
+}
+
+// 쾅(묵직하게 내려꽂힘)
+function slam(bus, t0, rnd) {
+  const s0 = Math.round(t0 * SR);
+  let ph = 0;
+  let lp = 0;
+  for (let i = 0; i < 0.4 * SR; i += 1) {
+    const t = i / SR;
+    ph += (2 * Math.PI * (70 + 90 * Math.exp(-t / 0.04))) / SR;
+    lp += lpAlpha(1800) * (rnd() * 2 - 1 - lp);
+    const v = Math.sin(ph) * Math.exp(-t / 0.12) * 0.7 + lp * Math.exp(-t / 0.05) * 0.9;
+    bus.put(s0 + i, v * 0.5);
+  }
+}
+
+// 타자 소리(dur초 동안)
+function typing(bus, t0, dur, rnd) {
+  let t = t0;
+  while (t < t0 + dur) {
+    const s0 = Math.round(t * SR);
+    const tone = 1800 + rnd() * 1400;
+    for (let i = 0; i < 0.025 * SR; i += 1) {
+      const x = (rnd() * 2 - 1) * Math.exp(-i / 50) * 0.35 + Math.sin((2 * Math.PI * tone * i) / SR) * Math.exp(-i / 90) * 0.12;
+      bus.put(s0 + i, x * 0.7, rnd() * 0.6 - 0.3);
+    }
+    t += 0.06 + rnd() * 0.07;
+  }
+}
+
 // ---------- 합치기 ----------
 
 const CHORDS = [
@@ -243,6 +284,9 @@ function effects(bus, cues, rnd) {
     else if (c.type === 'ding') ding(bus, c.t);
     else if (c.type === 'sting') sting(bus, c.t, rnd);
     else if (c.type === 'tick') tick(bus, c.t);
+    else if (c.type === 'boing') boing(bus, c.t);
+    else if (c.type === 'slam') slam(bus, c.t, rnd);
+    else if (c.type === 'typing') typing(bus, c.t, c.dur || 1.5, rnd);
   }
 }
 
@@ -257,27 +301,81 @@ export function tidyCues(cues) {
   return out;
 }
 
-export function renderAudio({ duration, cues = [], seed = 7 }) {
+// 16비트 PCM WAV 읽기 → { L, R } (44.1kHz 가정)
+export function readWav(buf) {
+  let p = 12;
+  let ch = 2;
+  while (p < buf.length - 8) {
+    const id = buf.toString('ascii', p, p + 4);
+    const size = buf.readUInt32LE(p + 4);
+    if (id === 'fmt ') ch = buf.readUInt16LE(p + 10);
+    if (id === 'data') {
+      const frames = Math.floor(size / (2 * ch));
+      const L = new Float32Array(frames);
+      const R = new Float32Array(frames);
+      for (let i = 0; i < frames; i += 1) {
+        L[i] = buf.readInt16LE(p + 8 + i * 2 * ch) / 32768;
+        R[i] = ch > 1 ? buf.readInt16LE(p + 10 + i * 2 * ch) / 32768 : L[i];
+      }
+      return { L, R };
+    }
+    p += 8 + size + (size % 2);
+  }
+  throw new Error('WAV data 없음');
+}
+
+/**
+ * @param {{duration:number, cues?:object[], seed?:number, voice?:{t:number, L:Float32Array, R:Float32Array}[], bgm?:number}} o
+ *   voice가 있으면 목소리를 가장 크게, 배경음악은 작게(목소리가 나올 때 더 작게) 섞는다. bgm: 배경음악 크기(기본 0.11, 목소리 영상은 0.045)
+ */
+export function renderAudio({ duration, cues = [], seed = 7, voice = [], bgm: bgmLevel }) {
   const n = Math.ceil(duration * SR);
   const rnd = rng(seed);
   const bgm = new Bus(n);
   const sfx = new Bus(n);
+  const vox = new Bus(n);
   music(bgm, duration, rnd);
   effects(sfx, tidyCues(cues), rnd);
+
+  // 목소리: 크기를 맞춰 제자리에
+  if (voice.length) {
+    let vs = 0;
+    let vn = 0;
+    for (const v of voice) for (let i = 0; i < v.L.length; i += 1) (vs += v.L[i] ** 2 + v.R[i] ** 2), (vn += 2);
+    const vg = 0.12 / (Math.sqrt(vs / (vn || 1)) || 1);
+    for (const v of voice) {
+      const s0 = Math.round(v.t * SR);
+      for (let i = 0; i < v.L.length && s0 + i < n; i += 1) {
+        vox.L[s0 + i] += v.L[i] * vg;
+        vox.R[s0 + i] += v.R[i] * vg;
+      }
+    }
+  }
+  // 목소리가 나오는 동안 배경음악을 줄인다(빨리 줄이고 천천히 돌아옴)
+  const duck = new Float32Array(n).fill(1);
+  if (voice.length) {
+    let env = 0;
+    for (let i = 0; i < n; i += 1) {
+      const a = Math.abs(vox.L[i]) + Math.abs(vox.R[i]);
+      env = a > env ? env + (a - env) * 0.01 : env * 0.99993;
+      duck[i] = 1 - 0.55 * Math.min(1, env / 0.06);
+    }
+  }
 
   // 배경음악 크기를 고르게 맞춘 뒤(효과음이 잘 들리게 조금 낮게) 섞는다
   let sum = 0;
   for (let i = 0; i < n; i += 1) sum += bgm.L[i] ** 2 + bgm.R[i] ** 2;
   const rms = Math.sqrt(sum / (2 * n)) || 1;
-  const g = 0.11 / rms;
+  const g = (bgmLevel ?? (voice.length ? 0.045 : 0.11)) / rms;
+  const sfxGain = voice.length ? 0.7 : 1;
   const L = new Float32Array(n);
   const R = new Float32Array(n);
   let peak = 0;
   for (let i = 0; i < n; i += 1) {
     const t = i / SR;
     const fade = Math.min(1, t / 0.04) * Math.min(1, (duration - t) / 1.2);
-    L[i] = Math.tanh((bgm.L[i] * g * fade + sfx.L[i]) * 1.1);
-    R[i] = Math.tanh((bgm.R[i] * g * fade + sfx.R[i]) * 1.1);
+    L[i] = Math.tanh((bgm.L[i] * g * fade * duck[i] + sfx.L[i] * sfxGain + vox.L[i]) * 1.1);
+    R[i] = Math.tanh((bgm.R[i] * g * fade * duck[i] + sfx.R[i] * sfxGain + vox.R[i]) * 1.1);
     peak = Math.max(peak, Math.abs(L[i]), Math.abs(R[i]));
   }
   // 높은 소리 살짝 깎기(10kHz 위를 부드럽게)
