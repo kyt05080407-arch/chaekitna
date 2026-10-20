@@ -8,3 +8,4 @@ playwright-report/
 
 # 홍보 영상 작업 폴더(표지·화면 캡처·출력)
 promo/.work/
+__pycache__/
