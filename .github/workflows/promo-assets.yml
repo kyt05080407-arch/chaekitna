@@ -1,0 +1,31 @@
+name: Promo assets
+
+# 홍보 영상에 쓸 책 표지를 받아 promo-assets 브랜치에 저장한다(직접 실행할 때만).
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  covers:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Fetch covers
+        run: node scripts/fetch-promo-assets.mjs /tmp/promo-assets
+      - name: Save to promo-assets branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout --orphan promo-assets
+          git rm -rq --cached .
+          rm -rf ./*
+          cp -r /tmp/promo-assets/covers ./covers
+          git add covers
+          git commit -qm "홍보 영상용 책 표지"
+          git push -f origin promo-assets
