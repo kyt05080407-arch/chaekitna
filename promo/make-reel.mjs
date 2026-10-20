@@ -3,11 +3,15 @@
 //   node promo/make-reel.mjs v1-pain                     → promo/.work/out/v1-pain.mp4 (+ 표지 이미지 .jpg)
 //   node promo/make-reel.mjs v2-top5 --query=group=14    → 10대 인기 TOP 5
 //   node promo/make-reel.mjs v1-pain --frames=1,5,9.5    → 그 시각의 장면만 PNG로(확인용)
+//   node promo/make-reel.mjs v1-pain --audio-only        → 이미 만든 영상의 소리만 다시 입히기
+//   node promo/make-reel.mjs v1-pain --silent            → 소리 없이(인스타그램 앱에서 음악을 넣을 때)
+// 소리: 직접 합성한 배경음악 + 장면에 맞춘 효과음(promo/make-audio.mjs). 효과음 자리는 장면의 애니메이션에서 자동으로 찾는다.
 // 먼저 promo/capture-app.mjs로 앱 화면을, Promo assets 작업으로 표지를 받아 둔다.
 import { chromium } from '@playwright/test';
 import { spawn } from 'node:child_process';
-import { mkdir, writeFile } from 'node:fs/promises';
+import { mkdir, rename, writeFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
+import { renderAudio } from './make-audio.mjs';
 
 const ROOT = fileURLToPath(new URL('../', import.meta.url));
 const [name, ...rest] = process.argv.slice(2);
@@ -15,7 +19,33 @@ if (!name) {
   console.error('사용: node promo/make-reel.mjs <영상 이름> [--query=...] [--frames=초,초] [--out=폴더] [--fps=30] [--suffix=이름 뒤에 붙일 말]');
   process.exit(1);
 }
-const opt = Object.fromEntries(rest.map((a) => a.replace(/^--/, '').split(/=(.*)/s).slice(0, 2)));
+const opt = Object.fromEntries(rest.map((a) => a.replace(/^--/, '').split(/=(.*)/s).slice(0, 2)).map(([k, v]) => [k, v ?? true]));
+
+const run = (args) =>
+  new Promise((resolve, reject) => {
+    const p = spawn('ffmpeg', ['-y', '-loglevel', 'error', ...args], { stdio: 'inherit' });
+    p.on('close', (code) => (code === 0 ? resolve() : reject(new Error(`ffmpeg ${code}`))));
+  });
+
+// 장면의 애니메이션에서 효과음 자리를 찾는다(페이지 안에서 실행)
+function findCues() {
+  const num = (el, prop) => parseFloat(getComputedStyle(el).getPropertyValue(prop)) || 0;
+  const cues = [];
+  document.querySelectorAll('.scene').forEach((s) => {
+    const t = num(s, '--s');
+    if (t > 0.05) cues.push({ t, type: 'whoosh' });
+  });
+  document.querySelectorAll('.hook .up').forEach((el) => cues.push({ t: num(el, '--d') + 0.05, type: 'tick' }));
+  document.querySelectorAll('.pop').forEach((el) => {
+    const big = el.querySelector('.logo, .top5') || el.classList.contains('cover');
+    cues.push({ t: num(el, '--d') + 0.05, type: big ? 'pop-big' : 'pop' });
+  });
+  document.querySelectorAll('.zoom.right, .row-card.right').forEach((el) => cues.push({ t: num(el, '--d'), type: 'swoosh' }));
+  document.querySelectorAll('.tap').forEach((el) => cues.push({ t: num(el, '--d') + 0.2, type: 'tap' }));
+  document.querySelectorAll('.count').forEach((el) => cues.push({ t: num(el, '--d') + 0.95, type: 'ding' }));
+  document.querySelectorAll('.rays').forEach((el) => cues.push({ t: num(el, '--d') + 0.1, type: 'sting' }));
+  return cues;
+}
 const FPS = Number(opt.fps || 30);
 const OUT = opt.out || `${ROOT}promo/.work/out`;
 const PORT = 4196 + Math.floor(Math.random() * 300);
@@ -38,7 +68,21 @@ try {
   const seek = (sec) => page.evaluate((ms) => document.getAnimations().forEach((a) => (a.currentTime = ms)), sec * 1000);
   await mkdir(OUT, { recursive: true });
 
-  if (opt.frames) {
+  // 소리(WAV)
+  const wav = `${OUT}/${base}.wav`;
+  if (!opt.silent) {
+    const cues = await page.evaluate(findCues);
+    await writeFile(wav, renderAudio({ duration, cues }));
+  }
+  const audioIn = opt.silent ? ['-f', 'lavfi', '-i', 'anullsrc=channel_layout=stereo:sample_rate=44100'] : ['-i', wav];
+
+  if (opt['audio-only']) {
+    // 화면은 그대로 두고 소리만 바꾼다
+    const file = `${OUT}/${base}.mp4`;
+    await run(['-i', file, ...audioIn, '-map', '0:v', '-map', '1:a', '-c:v', 'copy', '-c:a', 'aac', '-b:a', '192k', '-t', String(duration), '-movflags', '+faststart', `${file}.tmp.mp4`]);
+    await rename(`${file}.tmp.mp4`, file);
+    console.log(`${file} 소리 입힘`);
+  } else if (opt.frames) {
     for (const s of opt.frames.split(',').map(Number)) {
       await seek(s);
       await page.screenshot({ path: `${OUT}/${base}@${s}s.png` });
@@ -49,10 +93,10 @@ try {
     const ff = spawn('ffmpeg', [
       '-y', '-loglevel', 'error',
       '-f', 'image2pipe', '-framerate', String(FPS), '-c:v', 'mjpeg', '-i', '-',
-      '-f', 'lavfi', '-i', 'anullsrc=channel_layout=stereo:sample_rate=44100',
-      '-map', '0:v', '-map', '1:a', '-shortest',
+      ...audioIn,
+      '-map', '0:v', '-map', '1:a', '-t', String(duration),
       '-c:v', 'libx264', '-preset', 'slow', '-crf', '18', '-pix_fmt', 'yuv420p', '-profile:v', 'high', '-level', '4.1', '-r', String(FPS),
-      '-c:a', 'aac', '-b:a', '128k', '-movflags', '+faststart', file,
+      '-c:a', 'aac', '-b:a', '192k', '-movflags', '+faststart', file,
     ], { stdio: ['pipe', 'inherit', 'inherit'] });
     const done = new Promise((resolve, reject) => ff.on('close', (code) => (code === 0 ? resolve() : reject(new Error(`ffmpeg ${code}`)))));
     const frames = Math.round(duration * FPS);
