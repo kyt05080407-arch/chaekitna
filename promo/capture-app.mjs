@@ -122,6 +122,11 @@ await page.locator('img.cover--lg').evaluate((img) => img.decode()).catch(() => 
 await shot('detail');
 await view('detail.v1');
 await view('detail.v2', '#mine');
+await rect('detail.v2.available', '#mine [data-lib="147168"] [data-status]');
+await rect('detail.v2.loaned', '#mine [data-lib="147030"] [data-status]');
+await page.evaluate(() => window.scrollTo(0, 0));
+await rect('detail.v1.summary', '#summary');
+await rect('detail.v1.hot', '.hot');
 for (const [n, s] of [['detail.head', '#head'], ['detail.hot', '.hot'], ['detail.summary', '#summary'], ['detail.mine', '#mine']]) {
   await box(n, s);
   await el(n, s);
@@ -153,6 +158,7 @@ await page.waitForFunction(() => !document.querySelector('.check__progress'), nu
 await page.evaluate(() => window.scrollTo(0, 0));
 await shot('list');
 await view('list.v1');
+await rect('list.v1.sum', '.check__sum');
 await view('list.v2', '#fields');
 for (const [n, s] of [['list.check', '#check-box'], ['list.books', '#books']]) await box(n, s);
 await el('list.check', '#check-box');
