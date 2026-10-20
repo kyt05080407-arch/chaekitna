@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>책있나 릴스 · 아직도 도서관 앱 3개 켬?</title>
+<link rel="stylesheet" href="reel.css">
+<link rel="stylesheet" href="../.work/fonts/black-han-sans/index.css">
+<link rel="stylesheet" href="../.work/fonts/do-hyeon/index.css">
+<style>
+  /* 릴스용 빠른 편집: 첫 프레임부터 큰 글자, 0.5~1초마다 장면 전환, 말하는 단어에 맞춰 자막이 튀어나옴 */
+  body { background: #000; }
+  .layer { position: absolute; inset: 0; opacity: 0; animation: on 0.001s linear var(--a) both, off 0.001s linear var(--b) forwards; }
+  .first { opacity: 1; animation: off 0.001s linear var(--b) forwards; }
+  @keyframes on { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes off { from { opacity: 1; } to { opacity: 0; } }
+  .zone { position: absolute; left: 0; right: 0; top: 230px; height: 930px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 34px; }
+  .punch { animation: punch 0.2s cubic-bezier(0.2, 0.9, 0.3, 1) var(--a) both; }
+  @keyframes punch { from { transform: scale(1.32); } to { transform: none; } }
+  .flash { position: absolute; inset: 0; background: #fff; opacity: 0; pointer-events: none; animation: flash 0.14s ease-out var(--a) both; }
+  @keyframes flash { from { opacity: 0.75; } to { opacity: 0; } }
+  .bar { position: absolute; left: 0; top: 0; height: 14px; width: 100%; background: #ffe14d; transform-origin: left; animation: bar linear 0s both; z-index: 9; }
+  @keyframes bar { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+
+  /* 자막: 한 조각씩 크게 */
+  .cap {
+    position: absolute; left: 30px; right: 30px; top: 1190px; text-align: center; z-index: 5;
+    font-family: 'Black Han Sans', sans-serif; font-size: 128px; line-height: 1.08; color: #fff; letter-spacing: -0.01em; word-break: keep-all;
+    text-shadow: 0 0 3px #000, 7px 7px 0 #000, -7px 7px 0 #000, 7px -7px 0 #000, -7px -7px 0 #000, 0 9px 0 #000, 0 -9px 0 #000, 9px 0 0 #000, -9px 0 0 #000;
+    opacity: 0; animation: on 0.001s linear var(--a) both, off 0.001s linear var(--b) forwards, hit 0.13s cubic-bezier(0.2, 1.4, 0.4, 1) var(--a) both;
+  }
+  .cap.firstcap { opacity: 1; animation: off 0.001s linear var(--b) forwards; }
+  .cap .hl { color: #ffe14d; }
+  .emo { font-family: 'Noto Color Emoji', sans-serif; line-height: 1; letter-spacing: 0; }
+  @keyframes hit { from { transform: scale(1.45) rotate(-2deg); } to { transform: none; } }
+
+  .row { display: flex; align-items: center; justify-content: center; gap: 30px; }
+  .app { width: 240px; height: 240px; border-radius: 60px; display: grid; place-items: center; color: #fff; box-shadow: 0 16px 0 rgba(0,0,0,.35); }
+  .shake { animation: shake 0.45s linear var(--d) both; }
+  @keyframes shake { 0%, 100% { transform: none; } 15% { transform: translate(-18px, 8px) rotate(-3deg); } 35% { transform: translate(16px, -10px) rotate(3deg); } 55% { transform: translate(-12px, 6px) rotate(-2deg); } 75% { transform: translate(8px, -4px); } }
+  .slam { animation: slam 0.28s cubic-bezier(0.3, 1.7, 0.6, 1) var(--d) both; }
+  @keyframes slam { from { opacity: 0; transform: scale(2.6) rotate(-10deg); } to { opacity: 1; transform: rotate(-3deg); } }
+  .hitin { animation: hitin 0.2s cubic-bezier(0.2, 1.4, 0.4, 1) var(--d) both; }
+  @keyframes hitin { from { opacity: 0; transform: scale(1.8); } to { opacity: 1; transform: none; } }
+  .sticker { display: inline-block; padding: 20px 40px; border-radius: 26px; background: #fff; color: #111; font-family: 'Black Han Sans'; font-size: 110px; line-height: 1.1; box-shadow: 10px 10px 0 #000; letter-spacing: 0; }
+  .fly { position: absolute; left: 50%; top: 50%; font-size: 120px; animation: fly 0.9s cubic-bezier(0.1, 0.8, 0.3, 1) var(--d) both; }
+  @keyframes fly { from { opacity: 0; transform: translate(-50%, -50%) scale(0.3); } 15% { opacity: 1; } to { opacity: 0; transform: translate(calc(-50% + var(--x)), calc(-50% + var(--y))) scale(1.2) rotate(var(--r)); } }
+
+  .search { width: 900px; height: 190px; border-radius: 95px; background: #fff; display: flex; align-items: center; gap: 30px; padding: 0 56px; box-shadow: 0 18px 0 rgba(0,0,0,.25); font-family: 'Black Han Sans'; font-size: 90px; color: #111; }
+  .typed { display: inline-block; overflow: hidden; white-space: nowrap; width: 0; animation: type steps(6) var(--d) both; }
+  @keyframes type { to { width: 5.4em; } }
+  .caret { width: 8px; height: 100px; background: #2e6bff; animation: blink 0.5s steps(1) 0s infinite; }
+  @keyframes blink { 50% { opacity: 0; } }
+
+  .shot { position: relative; overflow: hidden; border-radius: 40px; border: 8px solid #fff; background: #fff; box-shadow: 0 24px 0 rgba(0,0,0,.25); }
+  .shot img { position: absolute; left: 0; }
+  .ring { position: absolute; overflow: visible; }
+  .ring ellipse { fill: none; stroke: #ff3b30; stroke-width: 11; stroke-linecap: round; stroke-dasharray: 1; stroke-dashoffset: 1; animation: draw 0.3s ease-out var(--d) forwards; }
+  @keyframes draw { to { stroke-dashoffset: 0; } }
+  .tag { position: absolute; right: 18px; top: 18px; padding: 8px 18px; border-radius: 12px; background: rgba(0,0,0,.72); color: #fff; font-family: 'Pretendard Variable'; font-size: 28px; font-weight: 700; }
+  .big5 { position: absolute; left: 60px; top: 40px; padding: 10px 40px; border-radius: 30px; background: #2e6bff; color: #fff; font-family: 'Black Han Sans'; font-size: 150px; box-shadow: 10px 10px 0 #000; transform: rotate(-6deg); }
+  .zoomin { animation: zoomin 1.4s ease-out var(--d) both; }
+  @keyframes zoomin { from { transform: none; } to { transform: scale(1.12); } }
+  .brand { display: flex; align-items: center; gap: 30px; font-family: 'Black Han Sans'; font-size: 150px; color: #ffe14d; }
+  .bounce { animation: bounce 0.35s ease-in-out var(--d) both infinite alternate; }
+  @keyframes bounce { from { transform: translateY(0); } to { transform: translateY(-40px); } }
+</style>
+</head>
+<body>
+<div id="stage"></div>
+<script type="module">
+  import { LOGO, icon, ready } from './reel.js';
+
+  const ID = 's2-fast';
+  const [story, tl, shots] = await Promise.all([
+    fetch(`../stories/${ID}.json`).then((r) => r.json()),
+    fetch(`../.work/tts/${ID}/timeline.json`).then((r) => r.json()),
+    fetch('../.work/shots/shots.json').then((r) => r.json()),
+  ]);
+  const esc = (s) => String(s ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
+  const hl = (s) => esc(s).replace(/\*(.+?)\*/g, '<span class="hl">$1</span>');
+  const cues = [];
+  const cue = (t, type, extra = {}) => cues.push({ t, type, ...extra });
+  const END = tl.total + 1;
+
+  // 줄마다: 시작·끝·다음 줄, 자막 조각마다 시작 시각(단어 시각 기준, 없으면 글자 수 비율)
+  const L = {};
+  tl.lines.forEach((l, i, all) => {
+    const line = story.lines.find((x) => x.id === l.id);
+    const next = all[i + 1] ? all[i + 1].t : END;
+    const caps = [];
+    let w = 0;
+    const total = line.cap.reduce((s, c) => s + c[1], 0);
+    const useWords = l.words && l.words.length === total;
+    const chars = line.cap.map((c) => c[0].replace(/[*\s]/g, '').length);
+    const charSum = chars.reduce((a, b) => a + b, 0);
+    let acc = 0;
+    line.cap.forEach(([text, n], k) => {
+      const start = useWords ? l.t + l.words[w].start : l.t + (l.dur * acc) / charSum;
+      caps.push({ text, start });
+      w += n;
+      acc += chars[k];
+    });
+    caps.forEach((c, k) => (c.end = caps[k + 1] ? caps[k + 1].start : next));
+    L[l.id] = { ...l, next, caps, c: caps.map((c) => c.start) };
+  });
+
+  // ---------- 부품 ----------
+  const E = (e, size, d, cls = 'hitin', sound = 'pop') => (sound && cue(d, sound), `<span class="emo ${cls}" style="font-size:${size}px;--d:${d}s">${e}</span>`);
+  const burst = (d, emojis) =>
+    emojis
+      .map((e, i) => {
+        const a = (i / emojis.length) * Math.PI * 2 + 0.3;
+        return `<span class="emo fly" style="--d:${d + i * 0.02}s;--x:${Math.round(Math.cos(a) * 430)}px;--y:${Math.round(Math.sin(a) * 430)}px;--r:${(i % 2 ? 1 : -1) * 40}deg">${e}</span>`;
+      })
+      .join('');
+  const SHOT_W = 820;
+  const SC = SHOT_W / 390;
+  const R = shots.rects;
+  const ring = (r, crop, d, pad = 16) => {
+    cue(d, 'swoosh');
+    const x = r.x * SC - pad;
+    const y = (r.y - crop) * SC - pad;
+    const w = r.w * SC + pad * 2;
+    const h = r.h * SC + pad * 2;
+    return `<svg class="ring" style="left:${x}px;top:${y}px;width:${w}px;height:${h}px" viewBox="0 0 ${w} ${h}"><ellipse pathLength="1" cx="${w / 2}" cy="${h / 2}" rx="${w / 2}" ry="${h / 2}" transform="rotate(-3 ${w / 2} ${h / 2})" style="--d:${d}s"/></svg>`;
+  };
+  const shot = (file, crop, h, inner = '') =>
+    `<div class="shot" style="width:${SHOT_W + 16}px;height:${h * SC + 16}px"><img src="../.work/shots/${file}" style="top:${-crop * SC}px;width:${SHOT_W}px" alt="">${inner}<span class="tag">예시 화면</span></div>`;
+  const bg = (color) => `background:${color}`;
+
+  // ---------- 장면 ----------
+  // 각 함수는 [{ a, b, bg, html }] 를 돌려준다(한 줄 안에서도 여러 번 컷)
+  const S = {
+    '01': (l) => {
+      const [c0, , c2, c3, c4] = l.c;
+      cue(0, 'impact');
+      cue(c4, 'slam');
+      cue(c4 + 0.12, 'boing');
+      return [
+        {
+          a: 0,
+          b: l.next,
+          first: true,
+          bg: 'radial-gradient(circle at 50% 40%, #3a0d0d, #000 70%)',
+          // 첫 프레임부터 세 아이콘이 다 보이고 흔들린다(멈춰 있는 첫 화면은 넘겨 버리기 쉬움)
+          html: `<div class="zone"><div class="shake" style="--d:${c4}s"><div class="row shake" style="--d:0s">
+              <span class="app" style="background:#6c8cff">${icon('library', 140)}</span>
+              <span class="app" style="background:#2bb673">${icon('library', 140)}</span>
+              <span class="app" style="background:#ff9f43">${icon('library', 140)}</span>
+            </div></div>
+            <div class="row">${E('😵‍💫', 200, c4, 'slam', '')}<span class="sticker slam" style="--d:${c4 + 0.05}s;background:#ff3b30;color:#fff">3개?!</span></div></div>`,
+        },
+      ];
+    },
+    '02': (l) => {
+      const [c0, c1, c2, c3] = l.c;
+      cue(c2 + 0.05, 'slam');
+      cue(c3, 'ding');
+      return [
+        { a: l.t, b: c2, bg: bg('#2e6bff'), html: `<div class="zone"><div class="row">${E('🧑‍🎓', 260, c0 + 0.02)}<span class="sticker hitin" style="--d:${c1}s">+ 🤖 AI</span></div></div>` },
+        {
+          a: c2,
+          b: l.next,
+          bg: bg('#2e6bff'),
+          html: `<div class="zone"><div class="brand slam" style="--d:${c2 + 0.03}s"><span style="width:260px;height:260px;display:block">${LOGO.replace('class="logo"', 'class="logo" style="width:260px;height:260px"')}</span>책있나</div>
+            <div style="position:absolute;inset:0">${burst(c3, ['🎉', '✨', '📚', '🔥', '🎉', '✨', '💯', '📚'])}</div></div>`,
+        },
+      ];
+    },
+    '03': (l) => (cue(l.t + 0.1, 'typing', { dur: 0.75 }), [{ a: l.t, b: l.next, bg: bg('#ffe14d'), html: `<div class="zone"><div class="search hitin" style="--d:${l.t}s">${icon('search', 90)}<span class="typed" style="--d:${l.t + 0.08}s;animation-duration:0.7s">소년이 온다</span><span class="caret"></span></div>${E('🔍', 200, l.t + 0.35)}</div>` }]),
+    '04': (l) => {
+      const [c0, c1, c2] = l.c;
+      cue(c1, 'slam');
+      return [
+        {
+          a: l.t,
+          b: l.next,
+          bg: bg('#f2f4f6'),
+          html: `<div class="zone"><div class="zoomin" style="--d:${c2}s">${shot('detail.v2.png', 30, 370)}</div><span class="big5 slam" style="--d:${c1}s">5곳</span></div>`,
+        },
+      ];
+    },
+    '05': (l) => {
+      const [c0, c1, c2] = l.c;
+      cue(c2, 'ding');
+      return [
+        {
+          a: l.t,
+          b: l.next,
+          bg: bg('#f2f4f6'),
+          html: `<div class="zone"><div class="zoomin" style="--d:${c1}s">${shot('detail.v2.png', 30, 370, ring(R['detail.v2.available'], 30, c1 + 0.05) + ring(R['detail.v2.loaned'], 30, c1 + 0.35))}</div>
+            <div style="position:absolute;inset:0">${burst(c2, ['✅', '✅', '📗', '✅', '📗', '✅'])}</div></div>`,
+        },
+      ];
+    },
+    '06': (l) => {
+      const [c0, c1, c2] = l.c;
+      cue(c2, 'ding');
+      return [{ a: l.t, b: l.next, bg: bg('#0f1a3c'), html: `<div class="zone"><div class="zoomin" style="--d:${c0}s">${shot('list.v1.png', 50, 380, ring(R['list.v1.sum'], 50, c1))}</div></div>` }];
+    },
+    '07': (l) => {
+      const [c0, c1, c2] = l.c;
+      cue(c2 + 0.03, 'slam');
+      // 그림 위에 빨간 X를 쾅
+      const nope = (e, d) => (cue(d + 0.15, 'slam'), `<div class="zone"><div style="position:relative"><span class="emo hitin" style="font-size:330px;--d:${d}s">${e}</span><span class="emo slam" style="position:absolute;left:50%;top:50%;margin:-150px 0 0 -150px;font-size:300px;--d:${d + 0.15}s">❌</span></div></div>`);
+      return [
+        { a: l.t, b: c1, bg: bg('#ff3b30'), html: nope('📝', c0) },
+        { a: c1, b: c2, bg: bg('#2e6bff'), html: nope('📲', c1) },
+        { a: c2, b: l.next, bg: bg('#ffe14d'), html: `<div class="zone"><span class="sticker slam" style="--d:${c2 + 0.02}s;font-size:200px;background:#111;color:#ffe14d;box-shadow:12px 12px 0 #fff">0원</span></div><div style="position:absolute;inset:0">${burst(c2 + 0.05, ['💸', '💸', '🤑', '💸', '💸', '🤑'])}</div>` },
+      ];
+    },
+    '08': (l) => {
+      const [c0, c1] = l.c;
+      cue(l.t + 0.05, 'ding');
+      return [
+        {
+          a: l.t,
+          b: END,
+          bg: bg('#0f1a3c'),
+          html: `<div class="zone"><div class="brand slam" style="--d:${l.t + 0.02}s;font-size:130px"><span style="width:220px;height:220px;display:block">${LOGO.replace('class="logo"', 'class="logo" style="width:220px;height:220px"')}</span>책있나</div>
+            <span class="bounce" style="--d:${c1}s">${E('👆', 220, c1)}</span></div>`,
+        },
+      ];
+    },
+  };
+
+  let html = `<div class="bar" style="animation-duration:${tl.total}s"></div>`;
+  for (const line of story.lines) {
+    const l = L[line.id];
+    for (const cut of S[line.id](l)) {
+      const cls = cut.first ? 'layer first' : 'layer';
+      html += `<div class="${cls}" style="--a:${cut.a}s;--b:${cut.b}s;background:${cut.bg.replace(/^background:/, '')}"><div class="punch" style="--a:${cut.a}s;position:absolute;inset:0">${cut.html}</div>${cut.first ? '' : `<div class="flash" style="--a:${cut.a}s"></div>`}</div>`;
+      if (cut.a > 0.05) cue(cut.a, 'swoosh');
+    }
+    l.caps.forEach((c, k) => {
+      const first = line.id === '01' && k === 0;
+      html += `<div class="cap ${first ? 'firstcap' : ''}" style="--a:${first ? 0 : c.start}s;--b:${line.id === '08' && k === l.caps.length - 1 ? END : c.end}s">${hl(c.text)}</div>`;
+    });
+  }
+  document.getElementById('stage').innerHTML = html;
+
+  const text = document.body.innerText;
+  await Promise.all(['400 80px "Black Han Sans"', '400 80px "Do Hyeon"', '700 40px "Pretendard Variable"'].map((f) => document.fonts.load(f, text)));
+  ready(tl.total, 0.55);
+  Object.assign(window.REEL, {
+    cues,
+    voice: tl.lines.map((l) => ({ t: l.t, file: `promo/.work/tts/${ID}/${l.id}.wav` })),
+    bgm: 0.06,
+    music: { style: 'hype', bpm: 140 },
+  });
+</script>
+</body>
+</html>

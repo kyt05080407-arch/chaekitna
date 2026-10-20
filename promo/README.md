@@ -13,6 +13,7 @@
 
 | 영상 | 파일 | 길이 | 내용 |
 |---|---|---|---|
+| 릴스 | `reels/s2-fast.html` + `stories/s2-fast.json` | 약 17초 | "아직도 책 하나 빌리려고 도서관 앱 3개 켬?" — 첫 프레임부터 큰 자막·쾅 소리, 말하는 단어에 맞춰 자막 조각이 튀어나오고 0.5~1초마다 컷 |
 | 썰 1 | `reels/s1-maker.html` + `stories/s1-maker.json` | 약 42초 | 코딩 잘 모르는 고딩이 AI랑 도서관 앱 만든 썰 |
 
 검은 바탕에 위쪽 고정 제목, 가운데 짤·앱 화면, 아래 굵은 자막. 대본 한 줄마다 AI 목소리를 따로 만들어 그 길이에 맞춰 장면과 자막이 바뀌어요.
@@ -21,7 +22,7 @@
 # 1) 대본 고치기: promo/stories/s1-maker.json (say=읽는 글, sub=자막, *노란 글씨*, |=줄바꿈, pause=쉬는 시간)
 # 2) AI 목소리: GitHub Actions → Promo TTS → 대본 이름(s1-maker) 넣고 실행 → promo-tts 브랜치
 git fetch origin promo-tts && rm -rf promo/.work/tts && git archive FETCH_HEAD tts | tar -x -C promo/.work
-node promo/story-prep.mjs s1-maker          # 앞뒤 빈 소리 자르기, 줄별 시각(timeline.json)
+node promo/story-prep.mjs s1-maker          # 앞뒤 빈 소리 자르기, 줄별 시각(timeline.json). 단어 시각(NN.words.json)이 있으면 그걸로 자른다
 # 3) 글꼴(처음 한 번): 제목 Black Han Sans, 자막 도현. 이모지는 시스템 글꼴(fonts-noto-color-emoji)
 mkdir -p promo/.work/fonts && cd promo/.work/fonts && for p in black-han-sans do-hyeon; do mkdir -p $p && npm pack @fontsource/$p@5.3.0 --silent | xargs -I{} tar -xzf {} -C $p --strip-components=1; done; cd -
 # 4) 영상

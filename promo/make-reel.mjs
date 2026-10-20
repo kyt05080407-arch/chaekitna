@@ -73,12 +73,12 @@ try {
   const wav = `${OUT}/${base}.wav`;
   if (!opt.silent) {
     // 장면이 직접 효과음 자리를 적어 두었으면 그것을, 아니면 애니메이션에서 찾는다
-    const reel = await page.evaluate(() => ({ cues: window.REEL.cues || null, voice: window.REEL.voice || [], bgm: window.REEL.bgm }));
+    const reel = await page.evaluate(() => ({ cues: window.REEL.cues || null, voice: window.REEL.voice || [], bgm: window.REEL.bgm, music: window.REEL.music || {} }));
     const cues = reel.cues || (await page.evaluate(findCues));
     // 목소리(저장소 기준 경로의 WAV)
     const voice = [];
     for (const v of reel.voice) voice.push({ t: v.t, ...readWav(await readFile(`${ROOT}${v.file}`)) });
-    await writeFile(wav, renderAudio({ duration, cues, voice, bgm: reel.bgm }));
+    await writeFile(wav, renderAudio({ duration, cues, voice, bgm: reel.bgm, music: reel.music }));
   }
   const audioIn = opt.silent ? ['-f', 'lavfi', '-i', 'anullsrc=channel_layout=stereo:sample_rate=44100'] : ['-i', wav];
 

@@ -12,8 +12,9 @@ if (!id) {
 }
 const story = JSON.parse(await readFile(`${ROOT}promo/stories/${id}.json`, 'utf8'));
 const dir = `${ROOT}promo/.work/tts/${id}`;
-const START = 0.35; // 영상 시작 후 첫 목소리까지
-const TAIL = 0.9; // 마지막 목소리 뒤 여유
+const START = story.start ?? 0.35; // 영상 시작 후 첫 목소리까지
+const TAIL = story.tail ?? 0.9; // 마지막 목소리 뒤 여유
+const readWords = async (lid) => JSON.parse(await readFile(`${dir}/${lid}.words.json`, 'utf8').catch(() => '[]'));
 
 const trim =
   'silenceremove=start_periods=1:start_threshold=-45dB:start_silence=0.02,areverse,' +
@@ -23,14 +24,23 @@ let t = START;
 const lines = [];
 for (const line of story.lines) {
   const wav = `${dir}/${line.id}.wav`;
-  const r = spawnSync('ffmpeg', ['-y', '-loglevel', 'error', '-i', `${dir}/${line.id}.mp3`, '-af', trim, '-ac', '2', '-c:a', 'pcm_s16le', wav]);
+  // 단어 시각이 있으면 첫 단어 바로 앞~마지막 단어 바로 뒤로 자르고, 없으면 조용한 부분을 찾아 자른다
+  let words = await readWords(line.id);
+  let af = trim;
+  if (words.length) {
+    const from = Math.max(0, words[0].start - 0.03);
+    const to = words[words.length - 1].start + words[words.length - 1].dur + 0.12;
+    af = `atrim=start=${from.toFixed(3)}:end=${to.toFixed(3)},asetpts=PTS-STARTPTS,aresample=44100`;
+    words = words.map((w) => ({ text: w.text, start: Number((w.start - from).toFixed(3)), dur: Number(w.dur.toFixed(3)) }));
+  }
+  const r = spawnSync('ffmpeg', ['-y', '-loglevel', 'error', '-i', `${dir}/${line.id}.mp3`, '-af', af, '-ac', '2', '-c:a', 'pcm_s16le', wav]);
   if (r.status !== 0) throw new Error(`${line.id}: ${r.stderr}`);
   const dur = Number(spawnSync('ffprobe', ['-v', 'error', '-show_entries', 'format=duration', '-of', 'csv=p=0', wav]).stdout.toString().trim());
-  lines.push({ id: line.id, t: Number(t.toFixed(3)), dur: Number(dur.toFixed(3)) });
+  lines.push({ id: line.id, t: Number(t.toFixed(3)), dur: Number(dur.toFixed(3)), words });
   t += dur + (line.pause ?? 0.2);
 }
 const last = lines[lines.length - 1];
 const total = Number((last.t + last.dur + TAIL).toFixed(2));
 await writeFile(`${dir}/timeline.json`, `${JSON.stringify({ story: id, total, lines }, null, 2)}\n`);
 console.log(`${id}: ${lines.length}줄, ${total}초`);
-for (const l of lines) console.log(`  ${l.id} ${l.t.toFixed(2)}s +${l.dur.toFixed(2)}s`);
+for (const l of lines) console.log(`  ${l.id} ${l.t.toFixed(2)}s +${l.dur.toFixed(2)}s  단어 ${l.words.length}개: ${l.words.map((w) => w.text).join(' ')}`);

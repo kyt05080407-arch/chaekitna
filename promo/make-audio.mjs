@@ -252,8 +252,10 @@ const CHORDS = [
   { root: 41, notes: [57, 60, 65] }, // F
 ];
 
-function music(bus, duration, rnd) {
-  const beat = 60 / 116;
+// style: 'pop'(116BPM, 기본) 또는 'hype'(140BPM, 박마다 킥, 16분 하이햇, 엇박 베이스 — 릴스용)
+function music(bus, duration, rnd, { bpm, style = 'pop' } = {}) {
+  const hype = style === 'hype';
+  const beat = 60 / (bpm || (hype ? 140 : 116));
   const bar = beat * 4;
   for (let b = 0; b * bar < duration; b += 1) {
     const t = b * bar;
@@ -261,12 +263,17 @@ function music(bus, duration, rnd) {
     pad(bus, t, ch.notes, bar);
     for (let q = 0; q < 4; q += 1) {
       const tq = t + q * beat;
-      if (q === 0 || q === 2) kick(bus, tq);
-      if (q === 2 && b % 2 === 1) kick(bus, tq + beat * 0.5, 0.6);
+      if (hype || q === 0 || q === 2) kick(bus, tq, hype ? 0.55 : 0.45);
+      if (!hype && q === 2 && b % 2 === 1) kick(bus, tq + beat * 0.5, 0.6);
       if (q === 1 || q === 3) clap(bus, tq, rnd);
-      bass(bus, tq, ch.root + 12, beat * 0.9);
-      hat(bus, tq, rnd, 0.022);
-      hat(bus, tq + beat / 2, rnd, 0.04);
+      if (hype) {
+        bass(bus, tq + beat / 2, ch.root + 12, beat * 0.45);
+        for (let k = 0; k < 4; k += 1) hat(bus, tq + (k * beat) / 4, rnd, k === 2 ? 0.04 : 0.018);
+      } else {
+        bass(bus, tq, ch.root + 12, beat * 0.9);
+        hat(bus, tq, rnd, 0.022);
+        hat(bus, tq + beat / 2, rnd, 0.04);
+      }
     }
     // 위로 올라가는 플럭 8분음표
     const arp = [0, 1, 2, 1, 0, 1, 2, 1];
@@ -287,6 +294,11 @@ function effects(bus, cues, rnd) {
     else if (c.type === 'boing') boing(bus, c.t);
     else if (c.type === 'slam') slam(bus, c.t, rnd);
     else if (c.type === 'typing') typing(bus, c.t, c.dur || 1.5, rnd);
+    else if (c.type === 'impact') {
+      slam(bus, c.t, rnd);
+      kick(bus, c.t, 0.9);
+      whoosh(bus, c.t + 0.18, rnd, 0.4, 0.3);
+    }
   }
 }
 
@@ -328,13 +340,13 @@ export function readWav(buf) {
  * @param {{duration:number, cues?:object[], seed?:number, voice?:{t:number, L:Float32Array, R:Float32Array}[], bgm?:number}} o
  *   voice가 있으면 목소리를 가장 크게, 배경음악은 작게(목소리가 나올 때 더 작게) 섞는다. bgm: 배경음악 크기(기본 0.11, 목소리 영상은 0.045)
  */
-export function renderAudio({ duration, cues = [], seed = 7, voice = [], bgm: bgmLevel }) {
+export function renderAudio({ duration, cues = [], seed = 7, voice = [], bgm: bgmLevel, music: musicOpt = {} }) {
   const n = Math.ceil(duration * SR);
   const rnd = rng(seed);
   const bgm = new Bus(n);
   const sfx = new Bus(n);
   const vox = new Bus(n);
-  music(bgm, duration, rnd);
+  music(bgm, duration, rnd, musicOpt);
   effects(sfx, tidyCues(cues), rnd);
 
   // 목소리: 크기를 맞춰 제자리에
