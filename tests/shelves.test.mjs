@@ -2,7 +2,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
-import { KIND_LABEL, alsoOn, dailyPick, hueOf, initialOf, isShelf, majorShelves, starShelves, topLoaned } from '../js/lists.js';
+import { KIND_LABEL, alsoOn, pickMatch, dailyPick, hueOf, initialOf, isShelf, majorShelves, starShelves, topLoaned } from '../js/lists.js';
 import { resolveList } from '../scripts/lib/lists.mjs';
 import { buildShelves, keysOf, subjectJosa } from '../scripts/shelves.mjs';
 
@@ -137,4 +137,18 @@ test('도서관에서 많이 빌린 추천 책: 사람별 책장만, 같은 책�
 test('이 책은 다른 책장에도 있어요', () => {
   assert.deepEqual(alsoOn(LISTS, '9780000000001', 'star-rm').map((a) => a.name), ['나린', '인문·어문']);
   assert.deepEqual(alsoOn(LISTS, '', 'star-rm'), []);
+});
+
+test('책 고르기: 영문 원서·필사집은 번역본·원래 책이 있으면 고르지 않는다', () => {
+  const results = [
+    { title: "E=mc2: A Biography of the World's Most Famous Equation (Paperback)", authors: '데이비드 보더니스', isbn13: '9780000000101' },
+    { title: 'E=mc2', authors: '데이비드 보더니스, 김민희', isbn13: '9780000000102' },
+  ];
+  assert.equal(pickMatch(results, { query: 'E=mc2', authorKeys: ['보더니스'] }).isbn13, '9780000000102');
+  assert.equal(pickMatch([results[0]], { query: 'E=mc2', authorKeys: ['보더니스'] }), null);
+  const buddha = [
+    { title: '초역 부처의 말 필사집', authors: '코이케 류노스케', isbn13: '9780000000201' },
+    { title: '초역 부처의 말', authors: '코이케 류노스케', isbn13: '9780000000202' },
+  ];
+  assert.equal(pickMatch(buddha, { query: '초역 부처의 말', authorKeys: ['코이케'] }).isbn13, '9780000000202');
 });

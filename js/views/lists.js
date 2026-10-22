@@ -7,7 +7,7 @@
 // 책장 목록은 책을 누르면 그 자리에서 펼쳐져 '왜 이 책?'·탐구 연결 아이디어·출처와 '내 도서관에서 확인' 버튼이 보인다.
 //  #/list/star-rm?open=3 처럼 open을 주면 그 책을 펼친 채로 연다(오늘의 한 권).
 
-import { html, safeHttpUrl, toMarkup } from '../util.js';
+import { html, normalizeText, safeHttpUrl, toMarkup } from '../util.js';
 import { avatar, backButton, cover, demoNotice, errorNotice, icon, setTopbar, skeletonRows, toast } from '../ui.js';
 import * as store from '../store.js';
 import { bookDetail, holdings, holdingsCached, isDemoMode, searchBooks } from '../api.js';
@@ -108,6 +108,8 @@ function shelfRow(ctx, book, fieldLabel, result, open) {
   const m = book.match || {};
   const shownTitle = book.title || m.title || '';
   const sub = [book.author || m.authors || '', fieldLabel].filter(Boolean).join(' · ');
+  // 다른 제목(번역판 제목, 실린 책)으로 찾았으면 어떤 책인지 보여 준다
+  const foundOther = isbn && m.title && !normalizeText(m.title).startsWith(normalizeText(shownTitle));
   const panelId = `p-${book.no}`;
   const src = (list.sources || {})[book.src];
   const srcUrl = src && safeHttpUrl(src.url);
@@ -121,6 +123,7 @@ function shelfRow(ctx, book, fieldLabel, result, open) {
       <span class="row__body">
         <span class="row__title">${shownTitle}</span>
         ${sub ? html`<span class="row__sub">${sub}</span>` : ''}
+        ${foundOther ? html`<span class="row__sub">찾은 책: 『${m.title}』${m.publisher ? ` ${m.publisher}` : ''}</span>` : ''}
         ${!isbn ? html`<span class="row__sub">${book.waiting ? '책 정보를 준비하고 있어요' : '정보나루에서 이 책을 찾지 못했어요'}</span>` : ''}
         <span class="row__status" data-end>${statusBadge(book, result)}</span>
         <span class="row__sub row__libs" data-libs>${libNames(result)}</span>

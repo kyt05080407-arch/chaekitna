@@ -24,7 +24,9 @@ export function loadLists(fetchImpl = globalThis.fetch) {
 // ---------- 검색 결과에서 목록의 책 고르기 ----------
 
 // 만화·어린이용·큰글자 같은 다른 판은 원래 책이 없을 때만 고른다(그래도 제목이 똑같아야 함)
-const OTHER_EDITION = /(만화|어린이|초등|그림책|동화|큰\s?글자|큰\s?글씨|오디오|키즈|청소년을\s?위한|10대를\s?위한|학습)/;
+const OTHER_EDITION = /(만화|어린이|초등|그림책|동화|큰\s?글자|큰\s?글씨|오디오|키즈|청소년을\s?위한|10대를\s?위한|학습|필사)/;
+// 국내 도서관에 있는 외국어 원서(영문판 Paperback 등)도 번역본이 없을 때만
+const FOREIGN_EDITION = /\((paperback|hardcover|mass market)/i;
 
 // 제목이 같으면 3, 그 제목으로 시작하면 2(예: '토지 1'), 들어 있으면 1, 아니면 0
 export function titleScore(title, query) {
@@ -58,6 +60,7 @@ export function pickMatch(books, { query, authorKeys = [] } = {}) {
     let score = titleScore(book.title, query);
     if (!score || !authorMatches(book.authors, authorKeys)) continue;
     if (OTHER_EDITION.test(book.title)) score -= 2.5;
+    if (FOREIGN_EDITION.test(book.title)) score -= 2.5;
     // 점수가 같으면 먼저 나온 책(대출이 더 많은 책)
     if (score > bestScore) {
       best = book;
