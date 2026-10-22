@@ -163,3 +163,71 @@ export function tally(results) {
   const done = results.filter(Boolean);
   return { checked: done.length, have: done.filter((r) => r.have.length).length, unknown: done.filter((r) => !r.have.length && r.unknown.length).length };
 }
+
+// ---------- 책장(학과별·사람별 추천 도서) ----------
+
+export const KIND_LABEL = { idol: '가수·아이돌', actor: '배우·감독', tv: '방송인·평론가', gamer: '프로게이머', biz: '기업가' };
+export const KIND_ORDER = ['idol', 'actor', 'tv', 'gamer', 'biz'];
+
+export const isShelf = (list) => list && (list.group === 'star' || list.group === 'major');
+export const starShelves = (lists) => (lists || []).filter((l) => l.group === 'star' && l.person);
+export const majorShelves = (lists) => (lists || []).filter((l) => l.group === 'major');
+
+// 이름 동그라미에 쓸 글자: 한글은 첫 글자, 영문은 대문자 두 글자까지(RM)
+export function initialOf(name) {
+  const s = String(name || '').trim();
+  if (!s) return '?';
+  if (/^[A-Za-z]/.test(s)) {
+    const caps = s.replace(/[^A-Z]/g, '');
+    return (caps.length >= 2 ? caps.slice(0, 2) : s.slice(0, 1)).toUpperCase();
+  }
+  return s.slice(0, 1);
+}
+
+// 이름마다 늘 같은 색(0~359도)
+export function hueOf(name) {
+  let h = 0;
+  for (const ch of String(name || '')) h = (h * 31 + ch.codePointAt(0)) % 3600;
+  return Math.round(h / 10) % 360;
+}
+
+const dayNumber = (date) => Math.floor(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()) / 86400000);
+
+/**
+ * 오늘의 한 권: 책장 속 책(표지가 있는 책) 가운데 날짜마다 한 권. 같은 날에는 누구에게나 같은 책.
+ * @returns {{list:object, book:object}|null}
+ */
+export function dailyPick(lists, date = new Date()) {
+  const pool = [];
+  for (const list of (lists || []).filter(isShelf)) {
+    for (const book of list.books || []) if (book.match && book.match.isbn13 && book.match.cover) pool.push({ list, book });
+  }
+  if (!pool.length) return null;
+  return pool[dayNumber(date) % pool.length];
+}
+
+/**
+ * 사람별 책장의 책을 도서관에서 많이 빌린 순서로(같은 책은 한 번, 추천한 사람을 모아서).
+ * 대출 건수는 정보나루 도서 검색 결과의 집계라서, 숫자가 없는 책은 뺀다.
+ */
+export function topLoaned(lists, n = 5) {
+  const byIsbn = new Map();
+  for (const list of starShelves(lists)) {
+    for (const book of list.books || []) {
+      const m = book.match;
+      if (!m || !m.isbn13 || !(Number(m.loanCount) > 0)) continue;
+      const item = byIsbn.get(m.isbn13) || { book, loanCount: Number(m.loanCount), people: [] };
+      if (!item.people.some((p) => p.id === list.id)) item.people.push({ id: list.id, name: list.person.name });
+      byIsbn.set(m.isbn13, item);
+    }
+  }
+  return [...byIsbn.values()].sort((a, b) => b.loanCount - a.loanCount).slice(0, n);
+}
+
+// 같은 책을 책장에 꽂은 다른 사람·학과(지금 보는 목록은 빼고)
+export function alsoOn(lists, isbn13, exceptId = '') {
+  if (!isbn13) return [];
+  return (lists || [])
+    .filter((l) => isShelf(l) && l.id !== exceptId && (l.books || []).some((b) => b.match && b.match.isbn13 === isbn13))
+    .map((l) => ({ id: l.id, name: l.person ? l.person.name : l.short || l.title }));
+}

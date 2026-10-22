@@ -13,6 +13,9 @@ const SCREENS = [
   { name: '관심 도서', hash: '#/watchlist', ready: '#books .card' },
   { name: '책 목록', hash: '#/list/snu100', ready: '#books li' },
   { name: '내 목록', hash: '#/list/mine', ready: '#paste' },
+  { name: '책장', hash: '#/shelves', ready: '#people .person' },
+  { name: '사람별 책장', hash: '#/list/star-rm?open=1', ready: '[data-row="1"] .shelf-panel' },
+  { name: '학과별 책장', hash: '#/list/major-med?open=1', ready: '[data-row="1"] .shelf-panel' },
   { name: '설정', hash: '#/settings', ready: '#clear' },
 ];
 

@@ -42,6 +42,7 @@ const SHELL = [
   './js/views/mylibs.js',
   './js/views/watchlist.js',
   './js/views/lists.js',
+  './js/views/shelves.js',
   './js/views/settings.js',
   './assets/icons/icon.svg',
   './assets/icons/icon-192.png',

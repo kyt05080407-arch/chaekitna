@@ -7,7 +7,7 @@ import { openScanner } from '../scan.js';
 import { closedToday } from '../hours.js';
 import { eventWhen, loadEvents, upcomingEvents } from '../events.js';
 import { nextReading } from '../reading.js';
-import { loadLists } from '../lists.js';
+import { isShelf, loadLists, majorShelves, starShelves } from '../lists.js';
 
 function popularSubtitle(data, tab) {
   if (data.demo) return '예시 목록이에요. 매주 월요일 도서관 정보나루 데이터로 바뀌어요.';
@@ -50,12 +50,22 @@ function promoItem(event) {
   </a>`;
 }
 
-// 책 목록 바로 가기(서울대 권장도서·중고생 인기·내 목록)
+// 책 목록 바로 가기(책장 2줄 + 서울대 권장도서·중고생 인기·내 목록)
 const LIST_ICON = { popular: 'trend', mine: 'edit' };
-function listRows(lists) {
+function listRows(all) {
   const saved = store.get('myList', null);
   const mineCount = saved && Array.isArray(saved.books) ? saved.books.length : 0;
+  const people = starShelves(all);
+  const majors = majorShelves(all);
+  const lists = all.filter((l) => !isShelf(l));
+  const sample = (items, n) => items.slice(0, n).join('·');
   const rows = [
+    ...(people.length
+      ? [{ href: '#/shelves', ico: 'shelf', title: '사람별 책장', sub: `${sample(people.map((l) => l.person.name), 3)} 등 ${people.length}명이 추천한 책` }]
+      : []),
+    ...(majors.length
+      ? [{ href: '#/shelves?at=majors', ico: 'gear', title: '학과별 책장 · 생기부 추천도서', sub: `${sample(majors.map((l) => l.short), 3)} 등 ${majors.length}개 분야` }]
+      : []),
     ...lists.map((l) => ({
       href: `#/list/${l.id}`,
       ico: LIST_ICON[l.kind] || 'book',
@@ -123,8 +133,8 @@ export async function render({ main, navigate, signal }) {
     </section>
 
     <section class="section" aria-labelledby="lists-h">
-      <div class="section__head"><h2 class="h2" id="lists-h">책 목록 한 번에 확인</h2></div>
-      <p class="section__sub">목록 속 책이 내 도서관에 있는지 한 번에 봐요</p>
+      <div class="section__head"><h2 class="h2" id="lists-h">책장 · 책 목록</h2></div>
+      <p class="section__sub">추천 책과 권장도서가 내 도서관에 있는지 한 번에 봐요</p>
       <ul class="list" id="lists">${listRows([])}</ul>
     </section>
 

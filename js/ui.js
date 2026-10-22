@@ -2,6 +2,7 @@
 
 import { escapeHtml, html, raw, safeImageUrl } from './util.js';
 import { STATUS_LABEL } from './parse.js';
+import { hueOf, initialOf } from './lists.js';
 
 const PATHS = {
   search: '<circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/>',
@@ -32,6 +33,22 @@ const PATHS = {
   edit: '<path d="M4 20h4L19 9l-4-4L4 16z"/><path d="M13.5 6.5l4 4"/>',
   cart: '<path d="M3 4h2l2.2 11h10.6L20 8H6.2"/><circle cx="9" cy="19.5" r="1.4"/><circle cx="17" cy="19.5" r="1.4"/>',
   calendar: '<rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/>',
+  // 책장 탭·학과별 책장
+  shelf: '<path d="M3 21h18"/><path d="M5 21V6h3.5v15M10.5 21V4H14v17"/><path d="M15.6 7.2l3.3-.9 3.1 13.9-3.3.8z"/>',
+  gear: '<circle cx="12" cy="12" r="3"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.3 5.3l2.1 2.1M16.6 16.6l2.1 2.1M5.3 18.7l2.1-2.1M16.6 7.4l2.1-2.1"/><circle cx="12" cy="12" r="6.5"/>',
+  chip: '<rect x="6" y="6" width="12" height="12" rx="2"/><rect x="9.5" y="9.5" width="5" height="5" rx="1"/><path d="M9 2.5V6M15 2.5V6M9 18v3.5M15 18v3.5M2.5 9H6M2.5 15H6M18 9h3.5M18 15h3.5"/>',
+  code: '<path d="M8 7l-5 5 5 5M16 7l5 5-5 5M13.5 4.5l-3 15"/>',
+  flask: '<path d="M9 3h6M10 3v6.5L4.6 18.8A1.5 1.5 0 0 0 5.9 21h12.2a1.5 1.5 0 0 0 1.3-2.2L14 9.5V3"/><path d="M7.2 15h9.6"/>',
+  dna: '<path d="M7 3c0 5.5 10 6.5 10 12 0 2.6-1.4 4.6-3 6M17 3c0 5.5-10 6.5-10 12 0 2.6 1.4 4.6 3 6"/><path d="M8.6 7.5h6.8M8.6 16.5h6.8"/>',
+  medical: '<rect x="3.5" y="3.5" width="17" height="17" rx="4.5"/><path d="M12 8v8M8 12h8"/>',
+  atom: '<circle cx="12" cy="12" r="1.6"/><ellipse cx="12" cy="12" rx="9.5" ry="3.8"/><ellipse cx="12" cy="12" rx="9.5" ry="3.8" transform="rotate(60 12 12)"/><ellipse cx="12" cy="12" rx="9.5" ry="3.8" transform="rotate(120 12 12)"/>',
+  leaf: '<path d="M5 19C5 10 11 4 20 4c0 9-6 15-15 15z"/><path d="M5 19l8-8"/>',
+  chart: '<path d="M3 20.5h18"/><path d="M6.5 17v-5M12 17V7M17.5 17V4"/>',
+  scale: '<path d="M12 3v17.5M7 20.5h10M4.5 7h15"/><path d="M4.5 7L2 13a2.5 2.5 0 0 0 5 0zM19.5 7L17 13a2.5 2.5 0 0 0 5 0z"/>',
+  smile: '<circle cx="12" cy="12" r="9"/><path d="M8.5 14.3a4 4 0 0 0 7 0"/><path d="M9 9.6h.01M15 9.6h.01"/>',
+  feather: '<path d="M20 4c-8.5 0-14 5.5-14 14v2.5"/><path d="M20 4c0 7.5-5 12.5-12.5 12.5"/><path d="M4 20.5l7-7"/>',
+  palette: '<path d="M12 3a9 9 0 1 0 0 18c1.4 0 2-.9 2-1.9s-1-1.6-1-2.6 1-1.5 2-1.5h2a4 4 0 0 0 4-4C21 6.5 17 3 12 3z"/><circle cx="7.5" cy="11" r="1"/><circle cx="10" cy="7" r="1"/><circle cx="15" cy="7" r="1"/>',
+  quote: '<path d="M10 7H6.5A2.5 2.5 0 0 0 4 9.5V12h4v4.5H4M20 7h-3.5A2.5 2.5 0 0 0 14 9.5V12h4v4.5h-4"/>',
 };
 
 export function icon(name, { label = '', filled = false, cls = '' } = {}) {
@@ -42,6 +59,11 @@ export function icon(name, { label = '', filled = false, cls = '' } = {}) {
   return raw(
     `<svg${klass} viewBox="0 0 24 24" fill="${fill}" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ${a11y} focusable="false">${body}</svg>`,
   );
+}
+
+// 사람별 책장의 이름 동그라미(사진 대신 첫 글자, 이름마다 같은 색)
+export function avatar(name, size = '') {
+  return html`<span class="avatar${size ? ` avatar--${size}` : ''}" style="--h:${hueOf(name)}" aria-hidden="true">${initialOf(name)}</span>`;
 }
 
 export function brandMark(size = 28) {

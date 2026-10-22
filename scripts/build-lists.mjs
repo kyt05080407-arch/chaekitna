@@ -1,6 +1,7 @@
 // 책 목록 한 번에 확인용 data/lists.json을 만든다.
-//  1) data/lists-src.json의 권장도서마다 정보나루 도서 검색(srchBooks)으로 ISBN·표지를 찾는다.
-//     지난번에 찾은 책은 다시 찾지 않아서, 처음 한 번만 호출이 많고(최대 약 250번) 그다음 주부터는 거의 없다.
+//  1) data/lists-src.json의 권장도서·학과별 책장·사람별 책장(scripts/shelves.mjs가 씀)의 책마다
+//     정보나루 도서 검색(srchBooks)으로 ISBN·표지를 찾는다. 지난번에 찾은 책이나 다른 목록에서 이미 찾은 책은
+//     다시 찾지 않아서, 처음 한 번만 호출이 많고 그다음 주부터는 거의 없다. 한 번에 다 못 찾으면 다음 실행에서 이어 찾는다.
 //  2) 중·고등학생이 최근 30일 동안 많이 빌린 책(loanItemSrch, 연령 a14·a17) 20권씩. 호출 2번.
 // LISTS_OFFLINE=1이면 API를 부르지 않고 원본과 지난 결과만으로 만든다(처음 커밋·시험용).
 // LISTS_MAX_CALLS: 이번 실행에서 도서 검색을 부를 최대 횟수(기본 250)
@@ -52,11 +53,15 @@ async function search(params) {
 
 const lists = [];
 
-// 1) 권장도서
+// 여러 목록에 같은 책이 있으면 한 번만 찾는다(지난번 결과도 함께)
+const shared = new Map();
+for (const l of previous.lists) for (const book of l.books || []) if (book.lookup && book.match) shared.set(book.lookup, book.match);
+
+// 1) 권장도서·학과별 책장·사람별 책장
 for (const list of src.lists) {
   const prevBooks = new Map(((prevById.get(list.id) || {}).books || []).map((b) => [b.no, b]));
   try {
-    const { list: built, stats } = await resolveList(list, prevBooks, search, { budget });
+    const { list: built, stats } = await resolveList(list, prevBooks, search, { budget, shared });
     lists.push(built);
     const total = list.books.length;
     const have = built.books.filter((b) => b.match).length;

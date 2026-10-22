@@ -2,14 +2,17 @@
 //  #/list/snu100     서울대 권장도서 100선 (분야별)
 //  #/list/teen-high  고등학생이 요즘 많이 빌린 책 · #/list/teen-mid 중학생
 //  #/list/mine       직접 붙여 넣은 목록(선생님이 준 목록 등, 폰에만 저장)
+//  #/list/major-…    학과별 책장(생기부 추천도서) · #/list/star-… 사람별 책장(연예인 등이 추천한 책)
 // 책을 누르면 책 화면에서 도서관별 대출 가능 여부(어제 기준)를 볼 수 있다.
+// 책장 목록은 책을 누르면 그 자리에서 펼쳐져 '왜 이 책?'·탐구 연결 아이디어·출처와 '내 도서관에서 확인' 버튼이 보인다.
+//  #/list/star-rm?open=3 처럼 open을 주면 그 책을 펼친 채로 연다(오늘의 한 권).
 
 import { html, safeHttpUrl, toMarkup } from '../util.js';
-import { backButton, cover, demoNotice, errorNotice, icon, setTopbar, skeletonRows, toast } from '../ui.js';
+import { avatar, backButton, cover, demoNotice, errorNotice, icon, setTopbar, skeletonRows, toast } from '../ui.js';
 import * as store from '../store.js';
 import { bookDetail, holdings, holdingsCached, isDemoMode, searchBooks } from '../api.js';
 import { getLibrary, loadLibraries } from '../libraries.js';
-import { MAX_PASTE, authorKeysOf, groupByRegion, loadLists, overlap, parsePasted, pickMatch, tally } from '../lists.js';
+import { KIND_LABEL, MAX_PASTE, alsoOn, authorKeysOf, groupByRegion, isShelf, loadLists, overlap, parsePasted, pickMatch, tally } from '../lists.js';
 
 // 한 번 누를 때 확인하는 최대 권수(모두가 함께 쓰는 하루 조회 한도를 아끼려고)
 const BATCH = 40;
@@ -82,7 +85,7 @@ function bookRow(list, book, fieldLabel, result) {
       ${sub ? html`<span class="row__sub">${sub}</span>` : ''}
       ${foundOther ? html`<span class="row__sub">찾은 책: 『${m.title}』${m.publisher ? ` ${m.publisher}` : ''}</span>` : ''}
       ${book.note ? html`<span class="row__sub">${book.note}</span>` : ''}
-      ${!isbn && !book.pending ? html`<span class="row__sub">정보나루에서 이 책을 찾지 못했어요 · 눌러서 제목으로 찾기</span>` : ''}
+      ${!isbn && !book.pending ? html`<span class="row__sub">${notFoundText(book)}</span>` : ''}
       <span class="row__status" data-end>${statusBadge(book, result)}</span>
       <span class="row__sub row__libs" data-libs>${libNames(result)}</span>
     </span>`;
@@ -94,6 +97,79 @@ function bookRow(list, book, fieldLabel, result) {
     ${body}
     ${loans ? html`<span class="row__end"><span class="row__figure">${Number(book.loanCount).toLocaleString('ko-KR')}번</span><span class="row__figure-label">30일 대출</span></span>` : ''}
   </a></li>`;
+}
+
+const notFoundText = (book) => (book.waiting ? '책 정보를 준비하고 있어요 · 눌러서 제목으로 찾기' : '정보나루에서 이 책을 찾지 못했어요 · 눌러서 제목으로 찾기');
+
+// 책장 목록의 한 줄: 누르면 그 자리에서 펼쳐진다
+function shelfRow(ctx, book, fieldLabel, result, open) {
+  const { list } = ctx;
+  const isbn = isbnOf(book);
+  const m = book.match || {};
+  const shownTitle = book.title || m.title || '';
+  const sub = [book.author || m.authors || '', fieldLabel].filter(Boolean).join(' · ');
+  const panelId = `p-${book.no}`;
+  const src = (list.sources || {})[book.src];
+  const srcUrl = src && safeHttpUrl(src.url);
+  const also = alsoOn(ctx.all, isbn, list.id);
+  const watched = isbn && store.watchlist.has(isbn);
+  const check = isbn ? `#/book/${isbn}` : `#/search?q=${encodeURIComponent(shownTitle)}`;
+  return html`<li data-row="${book.no}" data-isbn="${isbn}" class="shelf-item${open ? ' is-open' : ''}">
+    <button class="row list-row row--btn" type="button" aria-expanded="${open ? 'true' : 'false'}" aria-controls="${panelId}">
+      <span class="rank">${book.no}</span>
+      ${cover(m, 'sm')}
+      <span class="row__body">
+        <span class="row__title">${shownTitle}</span>
+        ${sub ? html`<span class="row__sub">${sub}</span>` : ''}
+        ${!isbn ? html`<span class="row__sub">${book.waiting ? '책 정보를 준비하고 있어요' : '정보나루에서 이 책을 찾지 못했어요'}</span>` : ''}
+        <span class="row__status" data-end>${statusBadge(book, result)}</span>
+        <span class="row__sub row__libs" data-libs>${libNames(result)}</span>
+      </span>
+      ${icon('chevron', { cls: 'row__chev shelf-item__chev' })}
+    </button>
+    <div class="shelf-panel" id="${panelId}"${open ? '' : ' hidden'}>
+      ${book.from ? html`<p class="shelf-panel__why"><span class="shelf-panel__label">${list.group === 'star' ? '어디서 추천했나' : '왜 이 책?'}</span>${book.from}</p>` : ''}
+      ${book.note ? html`<p class="shelf-panel__note"><span class="shelf-panel__label">${icon('edit')}탐구 연결 아이디어 <span class="muted">예시</span></span>${book.note}</p>` : ''}
+      ${also.length ? html`<p class="small muted">이 책은 ${also.map((a, i) => html`${i ? ', ' : ''}<a href="#/list/${a.id}">${a.name}</a>`)}의 책장에도 있어요</p>` : ''}
+      <div class="btn-row">
+        <a class="btn btn--primary btn--small" href="${check}">${icon('library')}내 도서관에서 확인</a>
+        ${isbn ? html`<button class="btn btn--small" type="button" data-watch="${isbn}" aria-pressed="${watched ? 'true' : 'false'}" aria-label="관심 도서에 ${watched ? '담았어요' : '담기'}">${icon('star', { filled: watched })}${watched ? '담았어요' : '담기'}</button>` : ''}
+      </div>
+      ${src ? html`<p class="small muted shelf-panel__src">출처 ${srcUrl ? html`<a href="${srcUrl}" target="_blank" rel="noopener noreferrer">${src.name}</a>` : src.name}</p>` : ''}
+    </div>
+  </li>`;
+}
+
+// 책장 목록 위쪽: 사람은 이름 동그라미, 학과는 아이콘
+function shelfHero(list) {
+  if (list.group === 'star' && list.person) {
+    const p = list.person;
+    return html`<div class="hero hero--shelf">
+      ${avatar(p.name, 'xl')}
+      <div class="hero__text">
+        <p class="small muted">${KIND_LABEL[p.kind] || ''} · ${p.team}</p>
+        <h1 class="h1">${list.title}</h1>
+      </div>
+      <p class="lead">${list.description}</p>
+    </div>`;
+  }
+  return html`<div class="hero hero--shelf">
+    <span class="list-icon list-icon--lg">${icon(list.icon || 'book')}</span>
+    <div class="hero__text"><p class="small muted">학과별 책장 · 생기부 추천도서</p><h1 class="h1">${list.title}</h1></div>
+    <p class="lead">${list.description}</p>
+  </div>`;
+}
+
+function shelfSources(list) {
+  const entries = Object.values(list.sources || {});
+  return html`<section class="section" aria-labelledby="src-h">
+    <h2 class="h2" id="src-h">출처</h2>
+    ${list.group === 'major' ? html`<p class="small muted">탐구 연결 아이디어는 책있나가 쓴 예시예요. 책을 읽고 내 경험과 생각으로 바꿔 쓰세요. 대학 자료에 실렸다고 입시에 유리한 책이 되는 건 아니에요.</p>` : html`<p class="small muted">기사에 실린 내용만 옮겼어요. 사진은 쓰지 않았어요.</p>`}
+    <ul class="src-list">${entries.map((s) => {
+      const url = safeHttpUrl(s.url);
+      return html`<li>${url ? html`<a href="${url}" target="_blank" rel="noopener noreferrer">${s.name}${icon('external')}</a>` : s.name}</li>`;
+    })}</ul>
+  </section>`;
 }
 
 function libNames(result) {
@@ -144,13 +220,15 @@ function freshSignal(routeSignal) {
   return ctl.signal;
 }
 
-export async function render({ main, params, signal: routeSignal }) {
+export async function render({ main, params, query, signal: routeSignal }) {
   const signal = freshSignal(routeSignal);
   const id = params.id;
-  setTopbar(html`${backButton('#/')}<h1 class="topbar__title">책 목록</h1>`);
+  const shelfId = /^(star|major)-/.test(id);
+  setTopbar(html`${backButton(shelfId ? '#/shelves' : '#/')}<h1 class="topbar__title">${shelfId ? '책장' : '책 목록'}</h1>`);
   main.innerHTML = toMarkup(html`<div class="stack">${skeletonRows(4, '3.6rem')}</div>`);
 
   let list;
+  let all = [];
   if (id === 'mine') {
     const saved = myList.get();
     if (!saved) {
@@ -161,6 +239,7 @@ export async function render({ main, params, signal: routeSignal }) {
   } else {
     const data = await loadLists();
     if (signal.aborted) return;
+    all = data.lists;
     list = data.lists.find((l) => l.id === id);
     if (!list) {
       main.innerHTML = toMarkup(html`<section class="section"><p>목록을 찾지 못했어요.</p><a class="btn btn--outline" href="#/">처음 화면으로</a></section>`);
@@ -202,17 +281,25 @@ export async function render({ main, params, signal: routeSignal }) {
   const unchecked = () => scope().filter((b) => isbnOf(b) && !results.has(b.no));
 
   const source = safeHttpUrl(list.sourceUrl);
-  main.innerHTML = toMarkup(html`
-    <div class="hero">
-      <h1 class="h1">${list.title}</h1>
-      ${list.description ? html`<p class="lead">${list.description}</p>` : ''}
-      ${list.source ? html`<p class="small muted">출처 ${source ? html`<a href="${source}" target="_blank" rel="noopener noreferrer">${list.source}</a>` : list.source}</p>` : ''}
-    </div>
-
-    <section class="section" aria-labelledby="check-h">
+  const shelf = isShelf(list);
+  // 책장 목록에서 펼쳐 둔 책(다시 그려도 그대로)
+  const opened = new Set();
+  const openNo = Number(query && query.get('open'));
+  if (shelf && list.books.some((b) => b.no === openNo)) opened.add(openNo);
+  const checkSection = html`<section class="section" aria-labelledby="check-h">
       <h2 class="h2" id="check-h">내 도서관에 있을까?</h2>
       <div id="check-box"></div>
-    </section>
+    </section>`;
+  main.innerHTML = toMarkup(html`
+    ${shelf
+      ? shelfHero(list)
+      : html`<div class="hero">
+          <h1 class="h1">${list.title}</h1>
+          ${list.description ? html`<p class="lead">${list.description}</p>` : ''}
+          ${list.source ? html`<p class="small muted">출처 ${source ? html`<a href="${source}" target="_blank" rel="noopener noreferrer">${list.source}</a>` : list.source}</p>` : ''}
+        </div>`}
+
+    ${shelf ? '' : checkSection}
 
     <section class="section" aria-label="책 목록">
       ${fields.length
@@ -228,7 +315,10 @@ export async function render({ main, params, signal: routeSignal }) {
       ${list.kind === 'mine'
         ? html`<div class="btn-row"><button class="btn" type="button" id="edit-mine">${icon('edit')}목록 고치기</button><button class="btn btn--danger" type="button" id="clear-mine">${icon('trash')}목록 지우기</button></div>`
         : ''}
-    </section>`);
+    </section>
+
+    ${shelf ? checkSection : ''}
+    ${shelf ? shelfSources(list) : ''}`);
 
   const box = main.querySelector('#check-box');
   const listEl = main.querySelector('#books');
@@ -239,7 +329,13 @@ export async function render({ main, params, signal: routeSignal }) {
   const drawList = () => {
     const books = visible();
     listEl.innerHTML = books.length
-      ? toMarkup(books.map((b) => bookRow(list, b, field ? '' : fieldLabel(b.field), results.get(b.no))))
+      ? toMarkup(
+          books.map((b) =>
+            shelf
+              ? shelfRow({ list, all }, b, field ? '' : fieldLabel(b.field), results.get(b.no), opened.has(b.no))
+              : bookRow(list, b, field ? '' : fieldLabel(b.field), results.get(b.no)),
+          ),
+        )
       : toMarkup(html`<li class="muted small" style="padding:0.6rem 0">${onlyHave ? '확인한 책 중에는 내 도서관에 있는 책이 없어요.' : '책이 없어요.'}</li>`);
     main.querySelector('#filters').hidden = !scope().some((b) => results.has(b.no));
   };
@@ -324,6 +420,36 @@ export async function render({ main, params, signal: routeSignal }) {
       check();
       return;
     }
+    // 책장: 책을 누르면 그 자리에서 펼치기/접기
+    const rowBtn = event.target.closest('.row--btn');
+    if (rowBtn) {
+      const li = rowBtn.closest('[data-row]');
+      const no = Number(li.dataset.row);
+      const open = !opened.has(no);
+      if (open) opened.add(no);
+      else opened.delete(no);
+      rowBtn.setAttribute('aria-expanded', String(open));
+      li.classList.toggle('is-open', open);
+      li.querySelector('.shelf-panel').hidden = !open;
+      return;
+    }
+    const watchBtn = event.target.closest('[data-watch]');
+    if (watchBtn) {
+      const isbn = watchBtn.dataset.watch;
+      const book = list.books.find((b) => isbnOf(b) === isbn);
+      const m = (book && book.match) || {};
+      const on = !store.watchlist.has(isbn);
+      if (on) store.watchlist.add({ isbn13: isbn, title: m.title || (book && book.title) || '', authors: m.authors || '', cover: m.cover || '' });
+      else store.watchlist.remove(isbn);
+      // 같은 책이 목록에 두 번 있을 수 있어서 모두 바꾼다
+      main.querySelectorAll(`[data-watch="${CSS.escape(isbn)}"]`).forEach((b) => {
+        b.setAttribute('aria-pressed', String(on));
+        b.setAttribute('aria-label', `관심 도서에 ${on ? '담았어요' : '담기'}`);
+        b.innerHTML = toMarkup(html`${icon('star', { filled: on })}${on ? '담았어요' : '담기'}`);
+      });
+      toast(on ? '관심 도서에 담았어요' : '관심 도서에서 뺐어요');
+      return;
+    }
     const fieldBtn = event.target.closest('[data-field]');
     if (fieldBtn) {
       field = fieldBtn.dataset.field;
@@ -354,6 +480,11 @@ export async function render({ main, params, signal: routeSignal }) {
 
   drawList();
   drawCheck();
+  // 오늘의 한 권 등에서 특정 책을 펼친 채로 왔으면 그 책으로 스크롤
+  if (opened.size) {
+    const li = listEl.querySelector(`[data-row="${CSS.escape(String(openNo))}"]`);
+    if (li) requestAnimationFrame(() => li.scrollIntoView({ block: 'center' }));
+  }
 
   // 직접 만든 목록에서 아직 찾지 못한 책이 있으면 이어서 찾는다
   if (list.kind === 'mine' && list.books.some((b) => b.pending)) {

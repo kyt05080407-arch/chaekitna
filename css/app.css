@@ -30,6 +30,9 @@
   --r: 14px;
   --r-sm: 10px;
   --tab-h: 4.2rem;
+  /* 사람별 책장 이름 동그라미: 색상(--h)은 이름마다, 채도·밝기는 테마마다 */
+  --av-bg: 85% 92%;
+  --av-ink: 55% 30%;
   color-scheme: light;
 }
 
@@ -58,6 +61,8 @@
     --danger: #ff8a80;
     --scrim: rgba(0, 0, 0, 0.6);
     --float: 0 10px 30px rgba(0, 0, 0, 0.5), 0 1px 3px rgba(0, 0, 0, 0.4);
+    --av-bg: 30% 25%;
+    --av-ink: 75% 85%;
     color-scheme: dark;
   }
 }
@@ -86,6 +91,8 @@
   --danger: #ff8a80;
   --scrim: rgba(0, 0, 0, 0.6);
   --float: 0 10px 30px rgba(0, 0, 0, 0.5), 0 1px 3px rgba(0, 0, 0, 0.4);
+  --av-bg: 30% 25%;
+  --av-ink: 75% 85%;
   color-scheme: dark;
 }
 
@@ -477,7 +484,7 @@ a.row:active { background: var(--fill); }
   position: fixed; z-index: 20;
   left: max(0.75rem, calc(50% - 280px + 0.75rem)); right: max(0.75rem, calc(50% - 280px + 0.75rem));
   bottom: calc(0.7rem + env(safe-area-inset-bottom));
-  display: grid; grid-template-columns: repeat(4, minmax(0, 1fr));
+  display: grid; grid-template-columns: repeat(5, minmax(0, 1fr));
   padding: 0.3rem; border-radius: 1.5rem; background: var(--card); box-shadow: var(--float);
 }
 .tab {
@@ -597,3 +604,67 @@ a.row:active { background: var(--fill); }
 #check-box { display: flex; flex-direction: column; gap: 0.6rem; }
 #check-box .small svg { width: 0.95rem; height: 0.95rem; vertical-align: -0.12rem; }
 .textarea { min-height: 10rem; padding: 0.75rem 0.9rem; line-height: 1.6; resize: vertical; font-weight: 500; }
+
+/* ---------- 책장 (사람별·학과별 추천 도서) ---------- */
+.avatar {
+  --h: 210;
+  flex: none; width: 2.4rem; height: 2.4rem; border-radius: 50%;
+  display: inline-grid; place-items: center;
+  background: hsl(var(--h) var(--av-bg)); color: hsl(var(--h) var(--av-ink));
+  font-size: 1rem; font-weight: 800; line-height: 1; letter-spacing: -0.02em;
+}
+.avatar--xs { width: 1.4rem; height: 1.4rem; font-size: 0.62rem; }
+.avatar--lg { width: 3.7rem; height: 3.7rem; font-size: 1.35rem; }
+.avatar--xl { width: 4.6rem; height: 4.6rem; font-size: 1.7rem; }
+
+.pick { display: flex; align-items: center; gap: 1rem; margin: 0 -0.55rem; padding: 0.35rem 0.55rem; border-radius: var(--r); color: var(--ink); text-decoration: none; }
+.pick:active { background: var(--fill); }
+.pick .cover--lg { box-shadow: 0 6px 16px rgba(25, 31, 40, 0.18); }
+.pick__body { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 0.2rem; }
+.pick__owner { display: inline-flex; align-items: center; gap: 0.35rem; font-size: 0.8rem; font-weight: 700; color: var(--ink-2); }
+.pick__ico { display: inline-flex; color: var(--accent-ink); }
+.pick__ico svg { width: 1rem; height: 1rem; }
+.pick__title { font-size: 1.15rem; font-weight: 800; line-height: 1.35; }
+.pick__why { margin-top: 0.3rem; padding: 0.45rem 0.6rem; border-radius: var(--r-sm); background: var(--fill); color: var(--ink-2); font-size: 0.8rem; line-height: 1.45; }
+
+.people { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0.7rem 0.3rem; }
+.person { display: flex; flex-direction: column; align-items: center; gap: 0.3rem; padding: 0.35rem 0.1rem; border-radius: var(--r); color: var(--ink); text-align: center; text-decoration: none; }
+.person:active { background: var(--fill); }
+.person__name { font-size: 0.85rem; font-weight: 700; line-height: 1.25; word-break: keep-all; }
+.person__team { margin-top: -0.2rem; font-size: 0.7rem; color: var(--muted); line-height: 1.25; word-break: keep-all; }
+
+.majors { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.5rem; }
+.major { display: flex; align-items: center; gap: 0.6rem; min-height: 4.1rem; padding: 0.7rem; border-radius: var(--r); background: var(--fill); color: var(--ink); text-decoration: none; transition: transform 0.1s ease; }
+.major:active { transform: scale(0.98); }
+.major .list-icon { background: var(--card); }
+.major__body { min-width: 0; display: flex; flex-direction: column; gap: 0.05rem; }
+.major__name { font-size: 0.92rem; font-weight: 800; line-height: 1.3; word-break: keep-all; }
+
+.hero--shelf { display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: center; gap: 0.6rem 0.9rem; }
+.hero--shelf .lead { grid-column: 1 / -1; }
+.hero__text { min-width: 0; display: flex; flex-direction: column; gap: 0.1rem; }
+.list-icon--lg { width: 4.6rem; height: 4.6rem; border-radius: 1.4rem; }
+.list-icon--lg svg { width: 2.2rem; height: 2.2rem; }
+
+/* 책장 목록: 책을 누르면 그 자리에서 펼쳐진다 */
+.row--btn { width: calc(100% + 1.1rem); border: 0; background: none; font: inherit; text-align: left; cursor: pointer; }
+.row--btn:active { background: var(--fill); }
+.shelf-item__chev { align-self: center; transform: rotate(90deg); transition: transform 0.15s ease; }
+.shelf-item.is-open .shelf-item__chev { transform: rotate(-90deg); }
+.shelf-panel { display: flex; flex-direction: column; gap: 0.6rem; margin: 0 0 0.7rem 2.2rem; padding: 0.8rem 0.85rem; border-radius: var(--r); background: var(--fill); }
+.shelf-panel[hidden] { display: none; }
+.shelf-panel p { margin: 0; font-size: 0.88rem; line-height: 1.55; }
+.shelf-panel__label { display: flex; align-items: center; gap: 0.3rem; margin-bottom: 0.15rem; font-size: 0.75rem; font-weight: 800; color: var(--accent-ink); }
+.shelf-panel__label svg { width: 0.9rem; height: 0.9rem; }
+.shelf-panel__label .muted { font-weight: 600; }
+.shelf-panel__note { padding: 0.6rem 0.7rem; border-radius: var(--r-sm); background: var(--card); }
+.shelf-panel .btn-row { flex-wrap: wrap; }
+.shelf-panel .btn-row > * { flex: 0 0 auto; }
+.shelf-panel .btn-row > .btn--primary { flex: 1 1 auto; }
+.shelf-panel .btn { background: var(--card); }
+.shelf-panel .btn--primary { background: var(--accent); }
+.shelf-panel .btn[aria-pressed='true'] svg { color: var(--accent); }
+.shelf-panel a:not(.btn) { color: var(--ink-2); }
+.src-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.85rem; line-height: 1.45; }
+.src-list a { color: var(--ink-2); text-underline-offset: 2px; }
+.src-list svg { width: 0.8rem; height: 0.8rem; margin-left: 0.2rem; vertical-align: -0.05rem; }
