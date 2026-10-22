@@ -138,6 +138,7 @@ h1, h2, h3 { margin: 0; line-height: 1.3; letter-spacing: -0.03em; }
 .app {
   max-width: 560px;
   margin: 0 auto;
+  overflow-x: clip; /* 옆으로 넘기는 애니메이션 중에 가로 스크롤이 생기지 않게 */
   min-height: 100vh;
   min-height: 100dvh;
   display: flex;
@@ -177,6 +178,11 @@ h1, h2, h3 { margin: 0; line-height: 1.3; letter-spacing: -0.03em; }
 /* 화면이 바뀔 때 살짝 떠오르며 나타난다(동작 줄이기 설정이면 생략) */
 .view.is-entering { animation: enter 0.22s ease-out both; }
 @keyframes enter { from { opacity: 0; transform: translateY(8px); } }
+/* 탭을 옆으로 밀어 넘겼을 때: 민 방향에서 들어온다 */
+.view.is-slide-next { animation: slide-next 0.24s ease-out both; }
+.view.is-slide-prev { animation: slide-prev 0.24s ease-out both; }
+@keyframes slide-next { from { opacity: 0; transform: translateX(32px); } }
+@keyframes slide-prev { from { opacity: 0; transform: translateX(-32px); } }
 
 .hero { padding: 0.6rem 0.35rem 0.2rem; display: flex; flex-direction: column; gap: 0.3rem; }
 .h1 { font-size: 1.55rem; font-weight: 800; }
@@ -551,7 +557,7 @@ a.row:active { background: var(--fill); }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .skeleton, .view.is-entering { animation: none; }
+  .skeleton, .view.is-entering, .view.is-slide-next, .view.is-slide-prev { animation: none; }
   .btn, .toast, .splash { transition: none; }
   .btn:active { transform: none; }
   * { scroll-behavior: auto !important; }

@@ -4,6 +4,7 @@ import * as store from './store.js';
 import { applySettings, toast } from './ui.js';
 import { IN_APP_NAMES, html, inAppBrowser, isStaleModuleError, toMarkup } from './util.js';
 import { QUOTES, pick } from './reading.js';
+import { installTabSwipe } from './swipe.js';
 
 // ---------- 처음 여는 화면(명언) ----------
 // 첫 화면이 그려지면 닫는다. 이번에 처음 열었으면 문장을 읽을 수 있게 1.2초는 보여 준다(누르면 바로 닫힘).
@@ -65,6 +66,7 @@ const ROUTES = [
 ];
 
 const main = document.getElementById('main');
+let slideDir = '';
 let controller = null;
 let visits = 0;
 
@@ -108,11 +110,13 @@ async function route() {
     main.innerHTML = '';
     window.scrollTo(0, 0);
     // 화면이 바뀔 때 살짝 떠오르며 나타나게(첫 화면은 로딩 화면이 대신한다)
-    main.classList.remove('is-entering');
+    // 탭을 옆으로 밀어 넘겼으면 그 방향에서 들어오게
+    main.classList.remove('is-entering', 'is-slide-next', 'is-slide-prev');
     if (visits > 1) {
       void main.offsetWidth;
-      main.classList.add('is-entering');
+      main.classList.add(slideDir ? `is-slide-${slideDir}` : 'is-entering');
     }
+    slideDir = '';
     const rendering = view.render({ main, params, query, navigate, signal });
     // 첫 화면은 글자가 그려지는 즉시 로딩 화면을 닫는다(데이터는 화면 안에서 따로 기다린다)
     hideSplash();
@@ -214,6 +218,17 @@ showInAppNotice();
 window.matchMedia('(prefers-color-scheme: dark)').addEventListener?.('change', () => applySettings(store.settings.get()));
 store.pruneCache();
 window.addEventListener('hashchange', route);
+
+// 탭 화면을 옆으로 밀면 옆 탭으로(홈 ↔ 책장 ↔ 관심 도서 ↔ 내 도서관 ↔ 설정)
+installTabSwipe({
+  root: main,
+  currentPath: () => parseHash().path,
+  blocked: () => Boolean(document.querySelector('.scanner')),
+  go: (hash, dir) => {
+    slideDir = dir;
+    navigate(hash);
+  },
+});
 route();
 
 // https(배포)와 localhost(개발·자동 점검)에서만 서비스 워커를 쓴다.
