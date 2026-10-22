@@ -99,6 +99,12 @@ function bookRow(list, book, fieldLabel, result) {
   </a></li>`;
 }
 
+// 긴 제목(작품집 수록작 나열 등)은 부제 앞까지, 30자로
+const shortTitle = (title) => {
+  const t = String(title || '').split(/\s+[-:=]\s+|\s*:\s*/)[0].trim();
+  return t.length > 30 ? `${t.slice(0, 29)}…` : t;
+};
+
 const notFoundText = (book) => (book.waiting ? '책 정보를 준비하고 있어요 · 눌러서 제목으로 찾기' : '정보나루에서 이 책을 찾지 못했어요 · 눌러서 제목으로 찾기');
 
 // 책장 목록의 한 줄: 누르면 그 자리에서 펼쳐진다
@@ -109,7 +115,7 @@ function shelfRow(ctx, book, fieldLabel, result, open) {
   const shownTitle = book.title || m.title || '';
   const sub = [book.author || m.authors || '', fieldLabel].filter(Boolean).join(' · ');
   // 다른 제목(번역판 제목, 실린 책)으로 찾았으면 어떤 책인지 보여 준다
-  const foundOther = isbn && m.title && !normalizeText(m.title).startsWith(normalizeText(shownTitle));
+  const foundOther = isbn && m.title && !normalizeText(m.title.replace(/^\s*\([^)]*\)\s*/, '')).startsWith(normalizeText(shownTitle));
   const panelId = `p-${book.no}`;
   const src = (list.sources || {})[book.src];
   const srcUrl = src && safeHttpUrl(src.url);
@@ -123,7 +129,7 @@ function shelfRow(ctx, book, fieldLabel, result, open) {
       <span class="row__body">
         <span class="row__title">${shownTitle}</span>
         ${sub ? html`<span class="row__sub">${sub}</span>` : ''}
-        ${foundOther ? html`<span class="row__sub">찾은 책: 『${m.title}』${m.publisher ? ` ${m.publisher}` : ''}</span>` : ''}
+        ${foundOther ? html`<span class="row__sub">찾은 책: 『${shortTitle(m.title)}』${m.publisher ? ` ${m.publisher}` : ''}</span>` : ''}
         ${!isbn ? html`<span class="row__sub">${book.waiting ? '책 정보를 준비하고 있어요' : '정보나루에서 이 책을 찾지 못했어요'}</span>` : ''}
         <span class="row__status" data-end>${statusBadge(book, result)}</span>
         <span class="row__sub row__libs" data-libs>${libNames(result)}</span>
