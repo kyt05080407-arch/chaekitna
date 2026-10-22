@@ -4,7 +4,7 @@ import * as store from './store.js';
 import { applySettings, toast } from './ui.js';
 import { IN_APP_NAMES, html, inAppBrowser, isStaleModuleError, toMarkup } from './util.js';
 import { QUOTES, pick } from './reading.js';
-import { installTabSwipe } from './swipe.js';
+import { TAB_ORDER, installTabSwipe } from './swipe.js';
 
 // ---------- 처음 여는 화면(명언) ----------
 // 첫 화면이 그려지면 닫는다. 이번에 처음 열었으면 문장을 읽을 수 있게 1.2초는 보여 준다(누르면 바로 닫힘).
@@ -66,7 +66,11 @@ const ROUTES = [
 ];
 
 const main = document.getElementById('main');
+const topbarEl = document.getElementById('topbar');
 let slideDir = '';
+// 탭 화면을 마지막으로 봤을 때 모습(옆으로 밀 때 미리 보기로 쓴다)
+const snapshots = new Map();
+let shownPath = '';
 let controller = null;
 let visits = 0;
 
@@ -107,12 +111,17 @@ async function route() {
   try {
     const view = await found.r.load();
     if (signal.aborted) return;
+    if (TAB_ORDER.includes(shownPath) && main.childElementCount) snapshots.set(shownPath, { topbar: topbarEl.innerHTML, main: main.innerHTML });
+    shownPath = path;
+    // 탭 화면에서는 옆으로 미는 몸짓을 앱이 받는다(위아래 스크롤·확대는 그대로)
+    main.toggleAttribute('data-swipe', TAB_ORDER.includes(path));
     main.innerHTML = '';
     window.scrollTo(0, 0);
     // 화면이 바뀔 때 살짝 떠오르며 나타나게(첫 화면은 로딩 화면이 대신한다)
     // 탭을 옆으로 밀어 넘겼으면 그 방향에서 들어오게
     main.classList.remove('is-entering', 'is-slide-next', 'is-slide-prev');
-    if (visits > 1) {
+    // 손가락을 따라 넘긴 경우('none')는 이미 넘어가는 모습을 보여 줬으니 따로 움직이지 않는다
+    if (visits > 1 && slideDir !== 'none') {
       void main.offsetWidth;
       main.classList.add(slideDir ? `is-slide-${slideDir}` : 'is-entering');
     }
@@ -125,6 +134,7 @@ async function route() {
     const active = document.activeElement;
     const userIsInView = active && active !== main && main.contains(active);
     if (!signal.aborted && !userIsInView) main.focus({ preventScroll: true });
+    if (!signal.aborted) window.dispatchEvent(new Event('chaekitna:rendered'));
     try {
       sessionStorage.removeItem(RELOAD_FLAG);
     } catch {
@@ -135,6 +145,7 @@ async function route() {
     if (isStaleModuleError(error) && reloadOnce()) return;
     console.error(error);
     main.innerHTML = '<div class="notice notice--warn" role="alert">화면을 여는 중에 문제가 생겼어요. 새로고침해 주세요.</div>';
+    window.dispatchEvent(new Event('chaekitna:rendered'));
   }
 }
 
@@ -219,15 +230,19 @@ window.matchMedia('(prefers-color-scheme: dark)').addEventListener?.('change', (
 store.pruneCache();
 window.addEventListener('hashchange', route);
 
-// 탭 화면을 옆으로 밀면 옆 탭으로(홈 ↔ 책장 ↔ 관심 도서 ↔ 내 도서관 ↔ 설정)
+// 탭 화면을 옆으로 밀면 옆 탭으로(홈 ↔ 책장 ↔ 관심 도서 ↔ 내 도서관 ↔ 설정). 책장 넘기듯 손가락을 따라 움직인다.
 installTabSwipe({
   root: main,
+  page: document.querySelector('.app'),
   currentPath: () => parseHash().path,
+  snapshot: (path) => snapshots.get(path) || null,
   blocked: () => Boolean(document.querySelector('.scanner')),
-  go: (hash, dir) => {
-    slideDir = dir;
-    navigate(hash);
-  },
+  go: (hash, dir) =>
+    new Promise((resolve) => {
+      window.addEventListener('chaekitna:rendered', () => resolve(), { once: true });
+      slideDir = dir;
+      navigate(hash);
+    }),
 });
 route();
 

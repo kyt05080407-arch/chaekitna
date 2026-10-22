@@ -1,7 +1,7 @@
 // 탭 화면을 옆으로 밀어 넘기기
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { TAB_ORDER, swipeTarget } from '../js/swipe.js';
+import { TAB_ORDER, neighborTab, shouldCommit, swipeTarget } from '../js/swipe.js';
 
 const base = { dy: 5, ms: 250, startX: 200, width: 390 };
 
@@ -29,4 +29,16 @@ test('짧게, 비스듬히, 천천히, 가장자리에서 민 건 넘기기가 �
   assert.equal(swipeTarget({ ...base, path: '/shelves', dx: -120, ms: 1500 }), null, '천천히 끎');
   assert.equal(swipeTarget({ ...base, path: '/shelves', dx: 120, startX: 10 }), null, '왼쪽 가장자리(아이폰 뒤로 가기)');
   assert.equal(swipeTarget({ ...base, path: '/shelves', dx: -120, startX: 385 }), null, '오른쪽 가장자리');
+});
+
+test('손가락을 따라 넘길 때: 옆 탭, 30% 넘기거나 빠르게 휙 밀면 넘어감', () => {
+  assert.deepEqual(neighborTab('/shelves', -10), { path: '/watchlist', hash: '#/watchlist', dir: 'next' });
+  assert.deepEqual(neighborTab('/shelves', 10), { path: '/', hash: '#/', dir: 'prev' });
+  assert.equal(neighborTab('/settings', -10), null);
+  assert.equal(neighborTab('/list/snu100', -10), null);
+  assert.equal(shouldCommit({ dx: -130, width: 390, vx: 0 }), true, '1/3 넘김');
+  assert.equal(shouldCommit({ dx: -80, width: 390, vx: -0.1 }), false, '조금, 천천히');
+  assert.equal(shouldCommit({ dx: -80, width: 390, vx: -0.8 }), true, '조금이지만 빠르게');
+  assert.equal(shouldCommit({ dx: -80, width: 390, vx: 0.8 }), false, '마지막에 반대로 되돌림');
+  assert.equal(shouldCommit({ dx: -30, width: 390, vx: -2 }), false, '너무 짧음');
 });

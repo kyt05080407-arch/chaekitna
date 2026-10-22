@@ -152,46 +152,81 @@ test('학과별 책장: 분야 칩, 탐구 연결 아이디어(예시), open으�
   await expect(page.locator('section[aria-labelledby="src-h"]')).toContainText('책있나가 쓴 예시');
 });
 
-// 손가락으로 미는 것처럼(크롬 개발자 도구의 터치 입력)
-async function swipe(page, from, to) {
+// 손가락으로 미는 것처럼(크롬 개발자 도구의 터치 입력). release=false면 손을 떼지 않는다.
+async function swipe(page, from, to, { steps = 6, wait = 0, release = true } = {}) {
   const cdp = await page.context().newCDPSession(page);
-  const steps = 6;
   await cdp.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [{ x: from.x, y: from.y }] });
   for (let i = 1; i <= steps; i += 1) {
     const x = from.x + ((to.x - from.x) * i) / steps;
     const y = from.y + ((to.y - from.y) * i) / steps;
+    if (wait) await page.waitForTimeout(wait);
     await cdp.send('Input.dispatchTouchEvent', { type: 'touchMove', touchPoints: [{ x, y }] });
   }
-  await cdp.send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [] });
-  await cdp.detach();
+  if (release) await cdp.send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [] });
+  return cdp;
 }
 
-test('탭 화면을 옆으로 밀면 옆 탭으로: 책장 → 관심 도서 → 책장, 옆으로 넘기는 줄과 안쪽 화면에서는 그대로', async ({ page }) => {
+test('탭 화면을 옆으로 밀면 손가락을 따라 넘어간다: 미리 보기 → 반 넘게 밀면 다음 탭, 조금 밀면 제자리', async ({ page }) => {
+  // 관심 도서를 한 번 봐 두면 미리 보기에 그 모습이 나온다
+  await page.goto('#/watchlist');
+  await expect(page.locator('#main h1, #main .empty').first()).toBeVisible();
   await page.goto('#/shelves');
   await expect(page.locator('#people .shelf-card').first()).toBeVisible();
-  await swipe(page, { x: 320, y: 420 }, { x: 90, y: 430 });
+  // 손을 떼지 않고 밀고 있으면: 지금 화면이 따라 움직이고 밑에 관심 도서가 보인다
+  const cdp = await swipe(page, { x: 330, y: 420 }, { x: 160, y: 425 }, { release: false, wait: 30 });
+  await expect(page.locator('.swipe-peek--next')).toHaveCount(1);
+  await expect(page.locator('.swipe-peek--next .topbar')).toContainText('관심 도서');
+  const moved = await page.locator('.app').evaluate((el) => el.style.transform);
+  expect(moved).toMatch(/translate3d\(-1\d\dpx/);
+  await cdp.send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [] });
   await expect(page).toHaveURL(/#\/watchlist$/);
   await expect(page.locator('a.tab[data-tab=watchlist]')).toHaveAttribute('aria-current', 'page');
-  await expect(page.locator('#main')).toHaveClass(/is-slide-next/);
-  await swipe(page, { x: 90, y: 420 }, { x: 320, y: 425 });
+  await expect(page.locator('.swipe-peek')).toHaveCount(0);
+  await expect(page.locator('.app')).not.toHaveClass(/is-swiping/);
+  await expect.poll(() => page.locator('.app').evaluate((el) => el.style.transform)).toBe('');
+  // 오른쪽으로 밀면 이전 탭(책장)이 왼쪽에서 덮어 온다
+  await swipe(page, { x: 90, y: 420 }, { x: 330, y: 425 });
   await expect(page).toHaveURL(/#\/shelves$/);
-  await expect(page.locator('#main')).toHaveClass(/is-slide-prev/);
+  await expect(page.locator('.swipe-peek')).toHaveCount(0);
+  // 조금만 천천히 밀고 떼면 제자리로 돌아온다
+  await swipe(page, { x: 300, y: 420 }, { x: 240, y: 422 }, { wait: 60 });
+  await page.waitForTimeout(450);
+  await expect(page).toHaveURL(/#\/shelves$/);
+  await expect(page.locator('.swipe-peek')).toHaveCount(0);
+  await expect(page.locator('.app')).not.toHaveClass(/is-swiping/);
   // 위아래로 스크롤한 건 넘기기가 아니다
   await swipe(page, { x: 200, y: 600 }, { x: 160, y: 250 });
-  await expect(page).toHaveURL(/#\/shelves$/);
-  // 처음 화면의 책장 카드 줄(옆으로 넘기는 줄) 위에서 민 건 그 줄을 넘긴다
-  await page.goto('#/');
-  const cards = page.locator('#shelf-people');
-  await expect(cards.locator('.shelf-card').first()).toBeVisible();
-  await cards.scrollIntoViewIfNeeded();
-  const box = await cards.boundingBox();
-  await swipe(page, { x: 330, y: box.y + box.height / 2 }, { x: 80, y: box.y + box.height / 2 });
   await page.waitForTimeout(300);
+  await expect(page).toHaveURL(/#\/shelves$/);
+  // 끝 탭(홈)에서 오른쪽으로 밀면 고무줄처럼 돌아온다
+  await page.goto('#/');
+  await expect(page.locator('#shelf-people .shelf-card').first()).toBeVisible();
+  const hero = await page.locator('#main .hero').boundingBox();
+  await swipe(page, { x: 90, y: hero.y + hero.height / 2 }, { x: 330, y: hero.y + hero.height / 2 + 5 });
+  await page.waitForTimeout(450);
   await expect(page).toHaveURL(/#\/$/);
+  await expect(page.locator('.app')).not.toHaveClass(/is-swiping/);
+  // 옆으로 넘기는 줄의 맨 앞에서 오른쪽으로 밀어도 브라우저 '뒤로 가기'가 되지 않는다
+  const promo = page.locator('.promo__track');
+  if (await promo.count()) {
+    const pb = await promo.boundingBox();
+    await swipe(page, { x: 90, y: pb.y + pb.height / 2 }, { x: 330, y: pb.y + pb.height / 2 + 5 });
+    await page.waitForTimeout(450);
+    await expect(page).toHaveURL(/#\/$/);
+  }
+  // 처음 화면의 책장 카드 줄(옆으로 넘기는 줄) 위에서 민 건 그 줄을 넘긴다
+  const cards = page.locator('#shelf-people');
+  await cards.evaluate((el) => el.scrollIntoView({ block: 'center' }));
+  await page.waitForTimeout(200);
+  const box = await cards.boundingBox();
+  await swipe(page, { x: 330, y: box.y + box.height / 2 }, { x: 80, y: box.y + box.height / 2 }, { wait: 20 });
+  await page.waitForTimeout(400);
+  await expect(page).toHaveURL(/#\/$/);
+  expect(await cards.evaluate((el) => el.scrollLeft)).toBeGreaterThan(50);
   // 안쪽 화면(사람별 책장)에서는 탭을 바꾸지 않는다
   await page.goto('#/list/star-rm');
   await expect(page.locator('h1.h1')).toHaveText('RM의 책장');
   await swipe(page, { x: 320, y: 600 }, { x: 80, y: 605 });
-  await page.waitForTimeout(300);
+  await page.waitForTimeout(400);
   await expect(page).toHaveURL(/#\/list\/star-rm$/);
 });
