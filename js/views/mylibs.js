@@ -19,7 +19,7 @@ export async function render({ main, query, signal }) {
   renderTopbar();
 
   main.innerHTML = toMarkup(html`
-    <p class="lead">자주 가는 도서관을 최대 ${max}곳까지 골라요. 이 목록은 내 폰에만 저장돼요.</p>
+    <p class="lead">자주 가는 도서관을 ${max}곳까지 골라요. 이 폰에만 저장돼요.</p>
     ${back ? html`<a class="btn btn--primary btn--block" href="${back}" id="go-back">${icon('back')}고른 도서관으로 책 확인하기</a>` : ''}
     <section class="section" aria-labelledby="picked-h">
       <h2 class="h2" id="picked-h">고른 도서관</h2>
@@ -70,7 +70,7 @@ export async function render({ main, query, signal }) {
               <button class="icon-btn" type="button" data-remove="${code}" aria-label="${lib ? lib.name : code} 빼기">${icon('close')}</button>
             </div>`;
           })
-        : html`<p class="muted">아직 고른 도서관이 없어요. 아래에서 추가해 주세요.</p>`,
+        : html`<p class="muted">아직 고른 도서관이 없어요. 아래에서 추가해요.</p>`,
     );
     picked.querySelectorAll('[data-remove]').forEach((btn) =>
       btn.addEventListener('click', () => {
@@ -149,7 +149,7 @@ export async function render({ main, query, signal }) {
         showResults(near, '30km 안에 등록된 도서관이 없어요.');
       },
       () => {
-        if (!signal.aborted) found.innerHTML = toMarkup(html`<p class="muted">위치를 가져오지 못했어요. 이름이나 지역으로 찾아 주세요.</p>`);
+        if (!signal.aborted) found.innerHTML = toMarkup(html`<p class="muted">위치를 못 가져왔어요. 이름이나 지역으로 찾아 주세요.</p>`);
       },
       { enableHighAccuracy: false, timeout: 10000, maximumAge: 600000 },
     );

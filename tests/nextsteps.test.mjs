@@ -27,7 +27,7 @@ test('대출 중: 알림 → 예약 → 다른 도서관 → 책바다 → 사�
   assert.match(out, /data-next="watch"/);
   assert.ok(out.includes(`href="${BOOKSEA_APPLY}"`));
   assert.match(out, /data-copy-title="9788937460449"/);
-  assert.match(out, /이용료는 5,800원/);
+  assert.match(out, /이용료 5,800원/);
 });
 
 test('없음: 다른 도서관 → 책바다 → 희망도서 → 사기, 담겨 있으면 알림 단계 없음', () => {

@@ -28,21 +28,21 @@ function wasAvailable(statuses) {
 
 // 아침 알림 안내·켜기/끄기
 function alertsBox(status) {
-  const what = `최근에 담은 ${MAX_ALERT_BOOKS}권이 내 도서관에서 반납돼 빌릴 수 있게 되면 다음 날 아침 9시쯤 알려 드려요.`;
-  const stored = '알림을 켜면 알림 주소, 관심 도서 ISBN·제목, 도서관 코드가 알림 서버에 저장되고, 끄면 바로 지워요.';
+  const what = `최근 담은 ${MAX_ALERT_BOOKS}권이 내 도서관에서 빌릴 수 있게 되면 다음 날 아침 9시쯤 알려 줘요.`;
+  const stored = '켜면 알림 주소, 관심 도서 ISBN·제목, 도서관 코드가 알림 서버에 저장돼요. 끄면 바로 지워요.';
   switch (status) {
     case 'off':
-      return html`<p class="footer-note">대출 가능 알림(아침 푸시)은 다음 업데이트에서 열려요.</p>`;
+      return html`<p class="footer-note">반납 알림은 준비 중이에요.</p>`;
     case 'ios-install':
       return html`<div class="card card--soft stack">
         <p class="alert-head">${icon('bell')}<strong>아침 알림</strong></p>
-        <p class="small">아이폰은 책있나를 홈 화면에 추가한 뒤, 그 앱에서 알림을 켤 수 있어요. 방법은 <a href="#/settings">설정</a>에 있어요.</p></div>`;
+        <p class="small">아이폰은 홈 화면에 추가한 앱에서만 알림을 켤 수 있어요. 방법은 <a href="#/settings">설정</a>에 있어요.</p></div>`;
     case 'unsupported':
-      return html`<p class="footer-note">이 브라우저에서는 알림을 받을 수 없어요. 크롬이나 홈 화면에 추가한 앱에서 열어 주세요.</p>`;
+      return html`<p class="footer-note">이 브라우저는 알림이 안 돼요. 크롬이나 홈 화면 앱에서 열어 주세요.</p>`;
     case 'denied':
       return html`<div class="card card--soft stack">
         <p class="alert-head">${icon('bell')}<strong>알림이 막혀 있어요</strong></p>
-        <p class="small">브라우저 설정의 사이트 설정에서 이 사이트 알림을 허용하면 아침 알림을 켤 수 있어요.</p></div>`;
+        <p class="small">브라우저 설정에서 이 사이트 알림을 허용해 주세요.</p></div>`;
     case 'on':
       return html`<div class="card card--soft stack">
         <p class="alert-head">${icon('bell', { filled: true })}<strong>아침 알림을 받고 있어요</strong></p>
@@ -50,7 +50,7 @@ function alertsBox(status) {
         <button class="btn btn--small btn--outline" type="button" id="push-off">알림 끄기</button></div>`;
     default:
       return html`<div class="card card--soft stack">
-        <p class="alert-head">${icon('bell')}<strong>반납되면 아침에 알려 드릴까요?</strong></p>
+        <p class="alert-head">${icon('bell')}<strong>반납되면 아침에 알려 줄까요?</strong></p>
         <p class="small">${what}</p>
         <button class="btn btn--primary" type="button" id="push-on">${icon('bell')}아침 알림 받기</button>
         <p class="small muted">${stored}</p></div>`;
@@ -63,7 +63,7 @@ function todayView(plan, unchecked) {
   const titleOf = (b) => b.title;
   return html`
     <div class="section__head"><h2 class="h2" id="today-h">오늘 어디 갈까</h2></div>
-    <p class="section__sub">${best ? html`<strong>${best.name}</strong>에 가면 관심 도서 ${best.available.length}권을 빌릴 수 있어요` : '오늘 내 도서관에서 바로 빌릴 수 있는 관심 도서가 없어요. 반납되면 아침 알림으로 알려 드려요'}</p>
+    <p class="section__sub">${best ? html`<strong>${best.name}</strong>에 가면 관심 도서 ${best.available.length}권을 빌릴 수 있어요` : '오늘 바로 빌릴 수 있는 관심 도서가 없어요'}</p>
     <ol class="list">${plan.map((p, i) => {
       const titles = p.available.slice(0, 3).map(titleOf).join(', ');
       const more = p.available.length > 3 ? ` 외 ${p.available.length - 3}권` : '';
@@ -79,7 +79,7 @@ function todayView(plan, unchecked) {
         </span>
       </li>`;
     })}</ol>
-    ${unchecked ? html`<p class="small muted">아직 확인하지 않은 관심 도서 ${unchecked}권은 빼고 셌어요.</p>` : ''}`;
+    ${unchecked ? html`<p class="small muted">확인 전인 ${unchecked}권은 빼고 셌어요.</p>` : ''}`;
 }
 
 export async function render({ main, signal }) {
@@ -92,7 +92,7 @@ export async function render({ main, signal }) {
   if (!books.length) {
     main.innerHTML = toMarkup(html`<div class="empty">${icon('star')}
       <p><strong>아직 담은 책이 없어요</strong></p>
-      <p class="small">책 상세 화면에서 별표를 누르면 여기 모여요.</p>
+      <p class="small">책 화면에서 별을 누르면 여기 모여요.</p>
       <a class="btn btn--primary" href="#/">책 찾으러 가기</a></div>`);
     return;
   }
@@ -101,7 +101,7 @@ export async function render({ main, signal }) {
     <p class="small muted" style="padding:0 0.35rem">내 도서관 ${mine.length}곳 기준 · ${basisLabel()}</p>
     <div id="news" aria-live="polite"></div>
     ${mine.length ? html`<section class="section today" id="today" aria-labelledby="today-h" aria-live="polite"></section>` : ''}
-    ${!mine.length ? html`<div class="notice">${icon('info')}<span>내 도서관을 고르면 담은 책의 대출 상태를 한눈에 볼 수 있어요. <a href="#/libraries?back=%23%2Fwatchlist">고르기</a></span></div>` : ''}
+    ${!mine.length ? html`<div class="notice">${icon('info')}<span>내 도서관을 고르면 담은 책의 대출 상태가 보여요. <a href="#/libraries?back=%23%2Fwatchlist">고르기</a></span></div>` : ''}
     <section class="section" id="books" aria-label="담은 책">
       ${books.map((b, i) => {
         const s = summarize(b.last);
@@ -139,7 +139,7 @@ export async function render({ main, signal }) {
         const count = await enablePush();
         toast(`관심 도서 ${count}권 알림을 켰어요`);
       } catch (error) {
-        toast((error && error.message) || '알림을 켜지 못했어요');
+        toast((error && error.message) || '알림을 못 켰어요');
       }
       renderAlerts();
     });

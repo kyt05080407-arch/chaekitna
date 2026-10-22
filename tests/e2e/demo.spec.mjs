@@ -12,7 +12,7 @@ test.afterEach(() => expectNoProblems(problems));
 
 test('첫 화면: 예시 안내, 인기 도서, 도서관 고르기 안내', async ({ page }) => {
   await page.goto('#/');
-  await expect(page.locator('.notice--demo')).toContainText('예시 데이터 모드');
+  await expect(page.locator('.notice--demo')).toContainText('예시 모드');
   await expect(page.locator('#pop-list .row')).toHaveCount(10);
   await expect(page.getByRole('link', { name: '자주 가는 도서관 고르기' })).toBeVisible();
   const fonts = await page.evaluate(async () => {
@@ -47,7 +47,7 @@ test('도서관 고르기 → 검색 → 상세 → 관심 도서', async ({ pag
   await page.locator('a.tab[data-tab=watchlist]').click();
   await expect(page.locator('#books .card')).toHaveCount(1);
   await expect(page.locator('#books .card [data-state] .badge').first()).not.toHaveText('확인 중');
-  await expect(page.locator('#alerts')).toContainText('다음 업데이트');
+  await expect(page.locator('#alerts')).toContainText('준비 중');
 });
 
 test('설정: 글자 크기와 어두운 화면이 바로 바뀐다', async ({ page }) => {
@@ -108,6 +108,6 @@ test('바코드 화면: 카메라가 없으면 ISBN을 직접 입력한다', asy
   await page.locator('.scanner [type=submit]').click();
   await expect(page).toHaveURL(/#\/book\/9788971998557$/);
   // 예시 모드에서 실제 책은 지어낸 상태를 보여 주지 않는다
-  await expect(page.locator('#summary .summary__main')).toContainText('예시 데이터 모드라');
+  await expect(page.locator('#summary .summary__main')).toContainText('예시 모드라');
   await expect(page.locator('#mine .badge--available')).toHaveCount(0);
 });

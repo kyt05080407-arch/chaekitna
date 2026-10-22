@@ -58,36 +58,40 @@ test.afterEach(() => expectNoProblems(problems));
 
 test('책장 탭: 사람별 책장(분야 칩·모두 보기), 많이 빌린 추천 책, 학과별 책장', async ({ page }) => {
   await page.goto('#/');
-  // 처음 화면에는 책장 바로 가기 두 줄 + 서울대 권장도서 + 내 목록
-  await expect(page.locator('#lists .row')).toHaveCount(4);
-  await expect(page.locator('#lists .row').first()).toContainText('RM·나린·페이커 등 12명이 추천한 책');
-  await expect(page.locator('#lists .row').nth(1)).toContainText('학과별 책장');
+  // 처음 화면: 책장 카드(책이 많은 사람부터)와 학과 칩, 그 아래 서울대 권장도서 + 내 목록
+  await expect(page.locator('#shelf-sec')).toBeVisible();
+  await expect(page.locator('#shelf-people .shelf-card')).toHaveCount(10);
+  await expect(page.locator('#shelf-people .shelf-card').first()).toContainText('RM');
+  await expect(page.locator('#shelf-people .shelf-card').first()).toContainText('방탄소년단 · 2권');
+  await expect(page.locator('#shelf-majors a')).toHaveText(['메디컬']);
+  await expect(page.locator('#lists .row')).toHaveCount(2);
   await page.locator('a.tab[data-tab=shelves]').click();
   await expect(page).toHaveURL(/#\/shelves$/);
   await expect(page.locator('a.tab[data-tab=shelves]')).toHaveAttribute('aria-current', 'page');
-  // 12명 중 8명만 먼저
-  await expect(page.locator('#people .person')).toHaveCount(8);
+  // 12명 중 6명만 먼저
+  await expect(page.locator('#people .shelf-card')).toHaveCount(6);
   await page.locator('#people-more').click();
-  await expect(page.locator('#people .person')).toHaveCount(12);
+  await expect(page.locator('#people .shelf-card')).toHaveCount(12);
   await expect(page.locator('#people-more')).toBeHidden();
   await page.locator('[data-kind="gamer"]').click();
-  await expect(page.locator('#people .person')).toHaveCount(1);
-  await expect(page.locator('#people .person')).toContainText('페이커');
+  await expect(page.locator('#people .shelf-card')).toHaveCount(1);
+  await expect(page.locator('#people .shelf-card')).toContainText('페이커');
   await expect(page.locator('#people .avatar')).toHaveText('페');
-  // 같은 책을 추천한 사람은 한 줄에 모은다, 대출 건수 순
-  const loaned = page.locator('section[aria-labelledby="loaned-h"] .row');
+  // 같은 책을 추천한 사람은 한 칸에 모은다, 대출 건수 순
+  const loaned = page.locator('#loaned .rail__item');
   await expect(loaned).toHaveCount(2);
   await expect(loaned.first()).toContainText('RM·나린 추천');
   await expect(loaned.first()).toContainText('3,000번');
   await expect(page.locator('.major')).toHaveCount(1);
   await expect(page.locator('.major')).toContainText('2권');
+  await expect(page.locator('.major .fan .cover')).toHaveCount(2);
   // 오늘의 한 권은 책장 속 책(표지가 없으면 고르지 않음 → 이 시험 자료에는 없음)
   await expect(page.locator('#pick-h')).toHaveCount(0);
 });
 
 test('사람별 책장: 책을 누르면 펼쳐져 어디서 추천했는지·출처, 다른 책장 연결, 관심 도서 담기', async ({ page }) => {
   await page.goto('#/shelves');
-  await page.locator('#people .person', { hasText: 'RM' }).click();
+  await page.locator('#people .shelf-card', { hasText: 'RM' }).click();
   await expect(page).toHaveURL(/#\/list\/star-rm$/);
   await expect(page.locator('h1.h1')).toHaveText('RM의 책장');
   await expect(page.locator('.hero .avatar')).toHaveText('RM');
@@ -107,7 +111,7 @@ test('사람별 책장: 책을 누르면 펼쳐져 어디서 추천했는지·�
   await expect(panel.locator('a', { hasText: '내 도서관에서 확인' })).toHaveAttribute('href', '#/book/9788937460449');
   // 아직 못 찾은 책은 '준비 중', 확인 버튼은 제목 검색으로
   await page.locator('[data-row="2"] .row--btn').click();
-  await expect(page.locator('[data-row="2"]')).toContainText('책 정보를 준비하고 있어요');
+  await expect(page.locator('[data-row="2"]')).toContainText('책 정보 준비 중');
   await expect(page.locator('[data-row="2"] a', { hasText: '내 도서관에서 확인' })).toHaveAttribute('href', `#/search?q=${encodeURIComponent('아직 못 찾은 책')}`);
   await expect(page.locator('[data-row="2"] [data-watch]')).toHaveCount(0);
   // 관심 도서 담기 → 관심 도서 탭에 보인다
@@ -130,7 +134,10 @@ test('학과별 책장: 분야 칩, 탐구 연결 아이디어(예시), open으�
   await expect(page.locator('h1.h1')).toHaveText('의학·약학·간호·수의 책장');
   await expect(page.locator('[data-row="2"] .shelf-panel')).toBeVisible();
   await expect(page.locator('[data-row="1"] .shelf-panel')).toBeHidden();
-  await page.locator('[data-row="1"] .row--btn').click();
+  // 책장 모양 줄의 표지를 누르면 그 책이 펼쳐진다
+  await expect(page.locator('.strip__book')).toHaveCount(2);
+  await page.locator('.strip__book[data-jump="1"]').click();
+  await expect(page.locator('[data-row="1"] .row--btn')).toHaveAttribute('aria-expanded', 'true');
   const panel = page.locator('[data-row="1"] .shelf-panel');
   await expect(panel).toContainText('왜 이 책?');
   await expect(panel).toContainText('서울대 의과대학 지원자가 가장 많이 읽은 책 1위');

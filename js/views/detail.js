@@ -17,7 +17,7 @@ function bookHead(book, isbn) {
   if (!book) {
     return html`<div class="book-head">${cover(null, 'lg')}<div class="book-head__body">
       <p class="book-head__title">ISBN ${isbn}</p>
-      <p class="book-head__meta">책 정보를 찾지 못했어요. 소장 여부는 아래에서 확인할 수 있어요.</p></div></div>`;
+      <p class="book-head__meta">책 정보를 못 찾았어요. 소장 여부는 아래에서 봐요.</p></div></div>`;
   }
   const meta = [book.publisher, book.year].filter(Boolean).join(' · ');
   return html`<div class="book-head">${cover(book, 'lg')}<div class="book-head__body">
@@ -76,24 +76,24 @@ function bookIntro(book, isbn) {
 }
 
 function alertNote(status) {
-  if (status === 'on') return '아침 알림을 켜 두었어요. 관심 도서에 담아 두면 반납됐을 때 다음 날 아침에 알려 드려요.';
-  if (status === 'off') return '대출 가능해지면 아침에 알려주는 기능은 다음 업데이트에서 열려요. 지금은 관심 도서 탭에서 상태를 한눈에 볼 수 있어요.';
-  return '관심 도서 탭에서 아침 알림을 켜면, 반납됐을 때 다음 날 아침에 알려 드려요.';
+  if (status === 'on') return '아침 알림이 켜져 있어요. 관심 도서에 담으면 반납된 다음 날 아침에 알려 줘요.';
+  if (status === 'off') return '반납 알림은 준비 중이에요. 지금은 관심 도서 탭에서 상태를 볼 수 있어요.';
+  return '관심 도서 탭에서 알림을 켜면 반납된 다음 날 아침에 알려 줘요.';
 }
 
 // 잔액처럼 큰 글씨로 보여 줄 요약: big(큰 글씨), main(문장), ok(빌릴 수 있음)
 function summaryView(statuses, total) {
   const values = Object.values(statuses);
   if (values.length && values.every((s) => s === 'unknown') && isDemoMode()) {
-    return { big: '확인 못 함', main: '예시 데이터 모드라 실제 대출 정보를 볼 수 없어요' };
+    return { big: '확인 못 함', main: '예시 모드라 실제 대출 정보는 안 보여요' };
   }
   const available = values.filter((s) => s === 'available').length;
   const loaned = values.filter((s) => s === 'loaned').length;
   const none = values.filter((s) => s === 'none').length;
   if (available > 0) return { big: `${available}곳`, main: `내 도서관 ${total}곳 중 ${available}곳에서 빌릴 수 있어요`, ok: true };
-  if (loaned > 0) return { big: '모두 대출 중', main: '내 도서관에 있지만 지금은 모두 대출 중이에요' };
+  if (loaned > 0) return { big: '모두 대출 중', main: '내 도서관에 있지만 모두 대출 중이에요' };
   if (none === total) return { big: '없어요', main: '내 도서관에는 이 책이 없어요' };
-  return { big: '일부 확인 못 함', main: '일부 도서관은 확인하지 못했어요' };
+  return { big: '일부 확인 못 함', main: '일부 도서관은 확인 못 했어요' };
 }
 
 function setSummary(main, view) {
@@ -159,7 +159,7 @@ export async function render({ main, params, signal }) {
       </div>
       <div id="wide" class="stack" aria-live="polite"></div>
     </section>
-    <p class="footer-note">출처: 도서관 정보나루 · 방문 전 도서관 홈페이지에서 한 번 더 확인하세요</p>`);
+    <p class="footer-note">출처: 도서관 정보나루 · 가기 전에 홈페이지에서 한 번 더 확인해요</p>`);
 
   // ---------- 도서관 홈페이지 바로 찾기 ----------
   const opacReady = loadOpac();
@@ -251,7 +251,7 @@ export async function render({ main, params, signal }) {
       } catch (error) {
         if (signal.aborted) return;
         btn.disabled = false;
-        toast((error && error.message) || '소개 글을 불러오지 못했어요');
+        toast((error && error.message) || '소개 글을 못 불러왔어요');
       }
     });
   };
@@ -298,11 +298,11 @@ export async function render({ main, params, signal }) {
       setSummary(main, summaryView(statuses, mine.length));
       lastStatuses = statuses;
       renderNext();
-      if (result.budget) toast('오늘 조회 한도를 다 써서 일부 도서관은 확인하지 못했어요');
+      if (result.budget) toast('오늘 조회 한도를 다 써서 일부만 확인했어요');
       if (watched()) store.watchlist.update(isbn, { last: statuses, checkedAt: Date.now() });
     } catch (error) {
       if (signal.aborted || (error && error.name === 'AbortError')) return;
-      setSummary(main, { big: '확인 못 함', main: '현황을 불러오지 못했어요' });
+      setSummary(main, { big: '확인 못 함', main: '대출 현황을 못 불러왔어요' });
       mineBox.querySelectorAll('[data-status]').forEach((slot) => {
         slot.innerHTML = toMarkup(statusBadge('unknown'));
       });
@@ -320,7 +320,7 @@ export async function render({ main, params, signal }) {
       try {
         submitSearch(JSON.parse(post.dataset.postSearch));
       } catch {
-        toast('도서관 홈페이지를 열지 못했어요');
+        toast('도서관 홈페이지를 못 열었어요');
       }
       return;
     }
@@ -358,11 +358,11 @@ export async function render({ main, params, signal }) {
       if (signal.aborted) return;
       const codes = found.codes.filter((code) => !mine.includes(code)).slice(0, 20);
       if (found.unavailable) {
-        wide.innerHTML = toMarkup(html`<p class="muted">지금은 예시 데이터 모드라 실제 책은 찾을 수 없어요.</p>`);
+        wide.innerHTML = toMarkup(html`<p class="muted">예시 모드라 실제 책은 못 찾아요.</p>`);
         return;
       }
       if (!codes.length) {
-        wide.innerHTML = toMarkup(html`<p class="muted">${regionName}에서 내 도서관 말고 이 책을 가진 도서관을 찾지 못했어요.</p>`);
+        wide.innerHTML = toMarkup(html`<p class="muted">${regionName}에는 이 책을 가진 다른 도서관이 없어요.</p>`);
         return;
       }
       const templates = await opacReady;
@@ -388,7 +388,7 @@ export async function render({ main, params, signal }) {
           } catch (error) {
             btn.disabled = false;
             btn.textContent = '대출 확인';
-            toast(error.message || '확인하지 못했어요');
+            toast(error.message || '확인 못 했어요');
           }
         }),
       );

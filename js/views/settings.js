@@ -39,7 +39,7 @@ export async function render({ main }) {
         <input type="range" id="font-px" min="${FONT_PX.min}" max="${FONT_PX.max}" step="1" value="${fontPxOf(s)}" aria-valuetext="${fontPxOf(s)}픽셀">
         <span class="size-slider__a size-slider__a--l" aria-hidden="true">가</span>
       </div>
-      <p class="small muted">막대를 좌우로 끌면 바로 바뀌어요. 이 크기로 책 제목과 도서관 이름이 보여요.</p>
+      <p class="small muted">막대를 좌우로 끌면 바로 바뀌어요.</p>
     </section>
 
     <section class="section" aria-labelledby="theme-h">
@@ -53,7 +53,7 @@ export async function render({ main }) {
       <h2 class="h2" id="region-h">기본 지역</h2>
       <label class="sr-only" for="region">기본 지역</label>
       <select class="input" id="region">${REGIONS.map((r) => html`<option value="${r.code}">${r.name}</option>`)}</select>
-      <p class="small muted">도서관 찾기, '더 넓게 찾기', 처음 화면의 이번 주 인기 도서에 쓰는 지역이에요.</p>
+      <p class="small muted">도서관 찾기, 더 넓게 찾기, 인기 도서에 써요.</p>
     </section>
 
     ${!isStandalone()
@@ -72,7 +72,7 @@ export async function render({ main }) {
       <div class="stack">
         <p>이름, 연락처, 위치 기록을 받지 않아요. 내 도서관과 관심 도서는 이 폰에만 저장돼요.</p>
         ${pushStatus() !== 'off'
-          ? html`<p>아침 알림을 켜면 알림 주소, 관심 도서 ISBN·제목, 도서관 코드가 알림 서버(Google Apps Script)에 저장돼요. 알림을 끄거나 아래 버튼으로 모두 지우면 함께 지워요. 90일 동안 앱을 열지 않으면 자동으로 지워져요.</p>`
+          ? html`<p>아침 알림을 켜면 알림 주소, 관심 도서 ISBN·제목, 도서관 코드가 알림 서버(Google Apps Script)에 저장돼요. 알림을 끄거나 모두 지우면 같이 지워지고, 90일 동안 안 열어도 지워져요.</p>`
           : ''}
         <p>책·도서관 정보는 <a href="https://www.data4library.kr/" target="_blank" rel="noopener noreferrer">도서관 정보나루</a> 공공데이터예요. 대출 정보는 하루 늦게 반영돼요.</p>
         <p class="small muted" id="data-meta"></p>

@@ -35,7 +35,9 @@ const PATHS = {
   calendar: '<rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/>',
   // 책장 탭·학과별 책장
   shelf: '<path d="M3 21h18"/><path d="M5 21V6h3.5v15M10.5 21V4H14v17"/><path d="M15.6 7.2l3.3-.9 3.1 13.9-3.3.8z"/>',
-  gear: '<circle cx="12" cy="12" r="3"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.3 5.3l2.1 2.1M16.6 16.6l2.1 2.1M5.3 18.7l2.1-2.1M16.6 7.4l2.1-2.1"/><circle cx="12" cy="12" r="6.5"/>',
+  gear: '<path d="M9.8 5.1L10.3 2.5L13.7 2.5L14.2 5.1L15.3 5.6L17.5 4.0L20.0 6.5L18.4 8.7L18.9 9.8L21.5 10.3L21.5 13.7L18.9 14.2L18.4 15.3L20.0 17.5L17.5 20.0L15.3 18.4L14.2 18.9L13.7 21.5L10.3 21.5L9.8 18.9L8.7 18.4L6.5 20.0L4.0 17.5L5.6 15.3L5.1 14.2L2.5 13.7L2.5 10.3L5.1 9.8L5.6 8.7L4.0 6.5L6.5 4.0L8.7 5.6Z"/><circle cx="12" cy="12" r="3"/>',
+  robot: '<rect x="4.5" y="8" width="15" height="11.5" rx="3"/><path d="M12 4.5V8M9.5 13.2h.01M14.5 13.2h.01M9.5 16.5h5M2.5 12.5v3M21.5 12.5v3"/><circle cx="12" cy="3.6" r="1.1"/>',
+  settings: '<path d="M9.8 5.1L10.3 2.5L13.7 2.5L14.2 5.1L15.3 5.6L17.5 4.0L20.0 6.5L18.4 8.7L18.9 9.8L21.5 10.3L21.5 13.7L18.9 14.2L18.4 15.3L20.0 17.5L17.5 20.0L15.3 18.4L14.2 18.9L13.7 21.5L10.3 21.5L9.8 18.9L8.7 18.4L6.5 20.0L4.0 17.5L5.6 15.3L5.1 14.2L2.5 13.7L2.5 10.3L5.1 9.8L5.6 8.7L4.0 6.5L6.5 4.0L8.7 5.6Z"/><circle cx="12" cy="12" r="3"/>',
   chip: '<rect x="6" y="6" width="12" height="12" rx="2"/><rect x="9.5" y="9.5" width="5" height="5" rx="1"/><path d="M9 2.5V6M15 2.5V6M9 18v3.5M15 18v3.5M2.5 9H6M2.5 15H6M18 9h3.5M18 15h3.5"/>',
   code: '<path d="M8 7l-5 5 5 5M16 7l5 5-5 5M13.5 4.5l-3 15"/>',
   flask: '<path d="M9 3h6M10 3v6.5L4.6 18.8A1.5 1.5 0 0 0 5.9 21h12.2a1.5 1.5 0 0 0 1.3-2.2L14 9.5V3"/><path d="M7.2 15h9.6"/>',
@@ -85,7 +87,7 @@ export function demoBadge() {
 
 export function cover(book, size = '') {
   const src = safeImageUrl(book && book.cover);
-  const cls = size === 'lg' ? 'cover cover--lg' : size === 'sm' ? 'cover cover--sm' : 'cover';
+  const cls = size ? `cover cover--${size}` : 'cover';
   if (src) {
     // 표지를 못 불러오면 app.js의 오류 처리기가 빈 표지로 바꾼다.
     return html`<img class="${cls}" src="${src}" alt="" loading="lazy" referrerpolicy="no-referrer" data-cover>`;
@@ -93,8 +95,30 @@ export function cover(book, size = '') {
   return html`<span class="${cls}">${icon('book')}</span>`;
 }
 
+// 책장 미리보기: 표지 몇 장을 겹쳐 보여 준다(표지가 있는 책부터)
+export function coverFan(books, count = 3, size = 'xs') {
+  const withCover = (books || []).map((b) => b.match || b).filter((m) => m && m.cover);
+  const rest = (books || []).map((b) => b.match || b).filter((m) => m && !m.cover);
+  const picked = [...withCover, ...rest].slice(0, count);
+  return html`<span class="fan fan--${size}" aria-hidden="true">${picked.map((m) => cover(m, size))}</span>`;
+}
+
+// 책장 카드: 표지 부채 + 이름(사람은 이름 동그라미, 학과는 아이콘)
+export function shelfCard(list) {
+  const who = list.person
+    ? html`${avatar(list.person.name, 'xs')}<span class="shelf-card__name">${list.person.name}</span>`
+    : html`<span class="shelf-card__ico">${icon(list.icon || 'book')}</span><span class="shelf-card__name">${list.short}</span>`;
+  const sub = list.person ? `${list.person.team} · ${list.books.length}권` : `${list.books.length}권`;
+  const label = list.person ? `${list.person.name}의 책장, ${sub}` : `${list.title}, ${sub}`;
+  return html`<li><a class="shelf-card" href="#/list/${list.id}" aria-label="${label}">
+    ${coverFan(list.books, 3, 'xs')}
+    <span class="shelf-card__who">${who}</span>
+    <span class="shelf-card__sub">${sub}</span>
+  </a></li>`;
+}
+
 export function demoNotice() {
-  return html`<div class="notice notice--demo" role="note">${icon('info')}<span><strong>예시 데이터 모드</strong> · '예시' 표시가 붙은 대출 상태는 실제와 달라요.</span></div>`;
+  return html`<div class="notice notice--demo" role="note">${icon('info')}<span><strong>예시 모드</strong> · '예시'가 붙은 대출 상태는 실제와 달라요.</span></div>`;
 }
 
 export function errorNotice(error, retryId = '') {

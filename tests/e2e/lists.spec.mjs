@@ -103,7 +103,7 @@ test('내 도서관에서 한 번에 확인: 책마다 소장 도서관을 한 �
   await expect(page.locator('[data-row="5"] [data-end]')).toHaveText('눌러서 확인');
   await expect(page.locator('[data-row="3"] [data-end]')).toHaveText('');
   await expect(page.locator('#check-box')).toContainText('모두 확인했어요');
-  await expect(page.locator('#check-box')).toContainText('1권은 정보나루에서 책을 찾지 못해');
+  await expect(page.locator('#check-box')).toContainText('1권은 정보나루에 없어');
   // 있는 책만
   await page.locator('#only-have').click();
   await expect(page.locator('#books li')).toHaveCount(2);
@@ -132,7 +132,7 @@ test('내 목록: 붙여 넣으면 책을 찾고, 고쳐도 찾은 책은 다시
   await page.getByRole('button', { name: '목록 만들기' }).click();
   await expect(page.locator('#books li')).toHaveCount(2);
   await expect(page.locator('[data-row="1"] a')).toHaveAttribute('href', '#/book/9788937460449');
-  await expect(page.locator('[data-row="2"]')).toContainText('찾지 못했어요');
+  await expect(page.locator('[data-row="2"]')).toContainText('못 찾은 책');
   expect(proxy.calls.filter((c) => c === 'search')).toHaveLength(2);
   await page.locator('#check').click();
   await expect(page.locator('#check-box .check__sum')).toHaveText('1권 / 1권이 내 도서관에 있어요');
@@ -145,7 +145,7 @@ test('내 목록: 붙여 넣으면 책을 찾고, 고쳐도 찾은 책은 다시
   await page.locator('#paste').fill('데미안 - 헤르만 헤세\n없는 책 하나\n아몬드');
   await page.getByRole('button', { name: '목록 만들기' }).click();
   await expect(page.locator('#books li')).toHaveCount(3);
-  await expect(page.locator('[data-row="3"]')).toContainText('찾지 못했어요');
+  await expect(page.locator('[data-row="3"]')).toContainText('못 찾은 책');
   expect(proxy.calls.filter((c) => c === 'search')).toHaveLength(3);
   await expect(page.locator('[data-row="1"] [data-end]')).toHaveText('내 도서관 1곳에 있어요');
   await page.locator('#clear-mine').click();

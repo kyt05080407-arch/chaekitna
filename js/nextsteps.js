@@ -57,7 +57,7 @@ export function nextStepsView(o) {
         n,
         'bell',
         '반납되면 알림 받기',
-        '관심 도서에 담아 두면, 내 도서관에서 반납돼 빌릴 수 있게 된 다음 날 아침에 알려 드려요.',
+        '관심 도서에 담으면 반납된 다음 날 아침에 알려 줘요.',
         o.watched
           ? html`<span class="next__done">${icon('check')}관심 도서에 담겨 있어요</span>`
           : html`<button class="is-go" type="button" data-next="watch">${icon('star')}관심 도서에 담기</button>`,
@@ -67,7 +67,7 @@ export function nextStepsView(o) {
         n,
         'clock',
         '도서관 홈페이지에서 예약하기',
-        '대출 중인 책은 예약해 두면 반납될 때 차례로 빌릴 수 있어요. 예약 가능 여부와 권수는 도서관마다 달라요.',
+        '예약해 두면 반납될 때 차례로 빌려요. 예약 규칙은 도서관마다 달라요.',
         o.reserveLink || '',
       ),
     wide: (n) =>
@@ -75,7 +75,7 @@ export function nextStepsView(o) {
         n,
         'library',
         '같은 시·도 다른 도서관',
-        '내 도서관 말고 가까운 다른 도서관에 있는지 찾아봐요.',
+        '가까운 다른 도서관에 있는지 찾아봐요.',
         html`<button type="button" data-next="wide">${icon('search')}다른 도서관 찾아보기</button>`,
       ),
     booksea: (n) =>
@@ -83,7 +83,7 @@ export function nextStepsView(o) {
         n,
         'truck',
         '책바다로 다른 지역 책 받기',
-        '전국 협약 도서관의 책을 내 도서관으로 택배로 받아 14일 동안 빌려요(1인 3책). 이용료는 5,800원이고 지역 지원이 있으면 더 적게 내요. 책바다 가입과 소속 도서관 승인이 먼저 필요해요.',
+        '다른 지역 도서관 책을 내 도서관으로 택배로 받아 14일 빌려요(1인 3책). 이용료 5,800원, 지역 지원이 있으면 더 싸요. 책바다 가입과 소속 도서관 승인이 먼저예요.',
         html`<a href="${BOOKSEA_APPLY}" target="_blank" rel="noopener noreferrer" data-copy-title="${o.isbn}" data-copy-hint="ISBN ${o.isbn}을 복사했어요. 책바다 상세검색의 표준부호(ISBN)에 붙여 넣으세요">${icon('external')}책바다에서 신청 (ISBN 복사)</a><a href="${BOOKSEA_GUIDE}" target="_blank" rel="noopener noreferrer">${icon('info')}이용안내</a>`,
       ),
     request: (n) =>
@@ -91,7 +91,7 @@ export function nextStepsView(o) {
         n,
         'edit',
         '희망도서로 신청하기',
-        '내 도서관에 이 책을 사 달라고 신청할 수 있어요. 도서관 홈페이지의 희망도서 신청 메뉴에서 해요. 동네 서점에서 바로 빌려 주는 지역도 있어요(희망도서 바로대출).',
+        '도서관 홈페이지 희망도서 메뉴에서 이 책을 사 달라고 신청해요. 동네 서점에서 바로 빌려 주는 지역도 있어요(희망도서 바로대출).',
         o.requestLink || '',
       ),
     buy: (n) =>
@@ -99,7 +99,7 @@ export function nextStepsView(o) {
         n,
         'cart',
         '사서 읽기',
-        '빨리 읽어야 한다면 서점에서 찾아봐요.',
+        '급하면 서점에서 찾아봐요.',
         bookstoreLinks(o.isbn).map((b) => html`<a href="${b.href}" target="_blank" rel="noopener noreferrer">${icon('external')}${b.name}</a>`),
       ),
   };

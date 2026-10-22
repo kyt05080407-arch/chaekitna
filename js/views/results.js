@@ -95,7 +95,7 @@ export async function render({ main, query, navigate, signal }) {
       }
       const more = !result.demo && shown.length < result.total && result.books.length > 0;
       box.innerHTML = toMarkup(html`
-        ${result.demo && result.matched === false ? html`<p class="small muted">예시 데이터에는 "${q}"가 없어서 예시 도서를 보여드려요.</p>` : ''}
+        ${result.demo && result.matched === false ? html`<p class="small muted">예시 데이터에 "${q}"가 없어서 예시 책을 보여 줘요.</p>` : ''}
         <div class="section__head"><h2 class="h2">${result.demo ? '예시 결과' : `${result.total.toLocaleString('ko-KR')}권`}</h2><span class="small muted">${result.demo ? '' : `${shown.length}권 보는 중`}</span></div>
         <ul class="list">${shown.map((book) => bookRow(book, result.demo, hotRank.get(book.isbn13) || 0))}</ul>
         ${more ? html`<button class="btn btn--block" type="button" id="more">더 보기</button>` : ''}`);

@@ -1,5 +1,5 @@
 import { html, safeImageUrl, toIsbn13, toMarkup } from '../util.js';
-import { brandMark, cover, demoBadge, demoNotice, icon, readingCard, setTopbar, skeletonRows } from '../ui.js';
+import { brandMark, cover, demoBadge, demoNotice, icon, readingCard, setTopbar, shelfCard, skeletonRows } from '../ui.js';
 import * as store from '../store.js';
 import { isDemoMode, myRegion, popularBooks } from '../api.js';
 import { getLibrary, loadLibraries } from '../libraries.js';
@@ -10,7 +10,7 @@ import { nextReading } from '../reading.js';
 import { isShelf, loadLists, majorShelves, starShelves } from '../lists.js';
 
 function popularSubtitle(data, tab) {
-  if (data.demo) return '예시 목록이에요. 매주 월요일 도서관 정보나루 데이터로 바뀌어요.';
+  if (data.demo) return '예시 목록이에요. 매주 월요일 새로 바뀌어요.';
   const who = tab && tab.age ? `${tab.label}${tab.basis ? `(${tab.basis})` : ''}` : data.ageName || (data.groups && data.groups.length ? '모든 나이' : '');
   const parts = [data.regionName, who].filter(Boolean).join(' ');
   return `${parts ? `${parts} · ` : ''}${data.period || ''} · 출처 도서관 정보나루`;
@@ -50,22 +50,13 @@ function promoItem(event) {
   </a>`;
 }
 
-// 책 목록 바로 가기(책장 2줄 + 서울대 권장도서·중고생 인기·내 목록)
+// 책 목록 바로 가기(서울대 권장도서·중고생 인기·내 목록)
 const LIST_ICON = { popular: 'trend', mine: 'edit' };
 function listRows(all) {
   const saved = store.get('myList', null);
   const mineCount = saved && Array.isArray(saved.books) ? saved.books.length : 0;
-  const people = starShelves(all);
-  const majors = majorShelves(all);
   const lists = all.filter((l) => !isShelf(l));
-  const sample = (items, n) => items.slice(0, n).join('·');
   const rows = [
-    ...(people.length
-      ? [{ href: '#/shelves', ico: 'shelf', title: '사람별 책장', sub: `${sample(people.map((l) => l.person.name), 3)} 등 ${people.length}명이 추천한 책` }]
-      : []),
-    ...(majors.length
-      ? [{ href: '#/shelves?at=majors', ico: 'gear', title: '학과별 책장 · 생기부 추천도서', sub: `${sample(majors.map((l) => l.short), 3)} 등 ${majors.length}개 분야` }]
-      : []),
     ...lists.map((l) => ({
       href: `#/list/${l.id}`,
       ico: LIST_ICON[l.kind] || 'book',
@@ -76,7 +67,7 @@ function listRows(all) {
       href: '#/list/mine',
       ico: 'edit',
       title: '내 목록',
-      sub: mineCount ? `${mineCount}권 · 직접 만든 목록` : '선생님이 준 목록을 붙여 넣어 확인',
+      sub: mineCount ? `${mineCount}권 · 직접 만든 목록` : '선생님이 준 목록 붙여 넣기',
     },
   ];
   return rows.map(
@@ -92,7 +83,7 @@ export async function render({ main, navigate, signal }) {
   document.title = '책있나 — 내 도서관에 그 책 있나?';
   setTopbar(html`
     <a class="brand" href="#/" aria-label="책있나 처음 화면">${brandMark(28)}<span class="brand__name">책있나</span></a>
-    <a class="icon-btn" href="#/settings" aria-label="설정">${icon('menu')}</a>`);
+    <a class="icon-btn" href="#/settings" aria-label="설정">${icon('settings')}</a>`);
 
   const mine = store.myLibraries.list();
   const recent = store.recentSearches.list();
@@ -132,9 +123,16 @@ export async function render({ main, navigate, signal }) {
       </div>
     </section>
 
+    <section class="section section--shelf" aria-labelledby="shelf-h" id="shelf-sec" hidden>
+      <div class="section__head"><h2 class="h2" id="shelf-h">${icon('shelf')}책장 구경하기</h2><a href="#/shelves">전체 보기</a></div>
+      <p class="section__sub">아이돌·배우가 읽은 책, 학과별 생기부 추천 책</p>
+      <ul class="shelf-cards" id="shelf-people" aria-label="사람별 책장"></ul>
+      <div class="chips chips--scroll" id="shelf-majors" aria-label="학과별 책장"></div>
+    </section>
+
     <section class="section" aria-labelledby="lists-h">
-      <div class="section__head"><h2 class="h2" id="lists-h">책장 · 책 목록</h2></div>
-      <p class="section__sub">추천 책과 권장도서가 내 도서관에 있는지 한 번에 봐요</p>
+      <div class="section__head"><h2 class="h2" id="lists-h">책 목록 한 번에 확인</h2></div>
+      <p class="section__sub">목록 속 책이 내 도서관에 있는지 한 번에 봐요</p>
       <ul class="list" id="lists">${listRows([])}</ul>
     </section>
 
@@ -210,7 +208,7 @@ export async function render({ main, navigate, signal }) {
       if (signal.aborted) return;
       const box = main.querySelector('#mylibs');
       if (!ok) {
-        box.textContent = '도서관 목록을 불러오지 못했어요.';
+        box.textContent = '도서관 목록을 못 불러왔어요.';
         return;
       }
       box.innerHTML = toMarkup(html`<ul class="list">${mine.map((code) => {
@@ -226,8 +224,23 @@ export async function render({ main, navigate, signal }) {
 
   // ---------- 책 목록 바로 가기 ----------
   loadLists().then((lists) => {
+    if (signal.aborted) return;
     const el = main.querySelector('#lists');
-    if (!signal.aborted && el && lists.lists.length) el.innerHTML = toMarkup(listRows(lists.lists));
+    if (el && lists.lists.length) el.innerHTML = toMarkup(listRows(lists.lists));
+    // 책장: 책이 많은 사람부터 10명, 학과별 책장은 칩으로
+    const people = starShelves(lists.lists)
+      .map((l, i) => ({ l, i }))
+      .sort((a, b) => b.l.books.length - a.l.books.length || a.i - b.i)
+      .slice(0, 10)
+      .map((x) => x.l);
+    const majors = majorShelves(lists.lists);
+    const sec = main.querySelector('#shelf-sec');
+    if (!sec || (!people.length && !majors.length)) return;
+    main.querySelector('#shelf-people').innerHTML = toMarkup(people.map(shelfCard));
+    main.querySelector('#shelf-majors').innerHTML = toMarkup(
+      majors.map((l) => html`<a class="chip chip--major" href="#/list/${l.id}">${icon(l.icon || 'book')}${l.short}</a>`),
+    );
+    sec.hidden = false;
   });
 
   // ---------- 이번 주 인기 도서 (거래 내역처럼 오른쪽에 대출 횟수, 나잇대 탭) ----------

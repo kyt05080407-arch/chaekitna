@@ -105,7 +105,7 @@ const shortTitle = (title) => {
   return t.length > 30 ? `${t.slice(0, 29)}…` : t;
 };
 
-const notFoundText = (book) => (book.waiting ? '책 정보를 준비하고 있어요 · 눌러서 제목으로 찾기' : '정보나루에서 이 책을 찾지 못했어요 · 눌러서 제목으로 찾기');
+const notFoundText = (book) => (book.waiting ? '책 정보 준비 중 · 눌러서 제목으로 찾기' : '정보나루에서 못 찾은 책 · 눌러서 제목으로 찾기');
 
 // 책장 목록의 한 줄: 누르면 그 자리에서 펼쳐진다
 function shelfRow(ctx, book, fieldLabel, result, open) {
@@ -125,12 +125,12 @@ function shelfRow(ctx, book, fieldLabel, result, open) {
   return html`<li data-row="${book.no}" data-isbn="${isbn}" class="shelf-item${open ? ' is-open' : ''}">
     <button class="row list-row row--btn" type="button" aria-expanded="${open ? 'true' : 'false'}" aria-controls="${panelId}">
       <span class="rank">${book.no}</span>
-      ${cover(m, 'sm')}
+      ${cover(m)}
       <span class="row__body">
         <span class="row__title">${shownTitle}</span>
         ${sub ? html`<span class="row__sub">${sub}</span>` : ''}
         ${foundOther ? html`<span class="row__sub">찾은 책: 『${shortTitle(m.title)}』${m.publisher ? ` ${m.publisher}` : ''}</span>` : ''}
-        ${!isbn ? html`<span class="row__sub">${book.waiting ? '책 정보를 준비하고 있어요' : '정보나루에서 이 책을 찾지 못했어요'}</span>` : ''}
+        ${!isbn ? html`<span class="row__sub">${book.waiting ? '책 정보 준비 중' : '정보나루에서 못 찾은 책'}</span>` : ''}
         <span class="row__status" data-end>${statusBadge(book, result)}</span>
         <span class="row__sub row__libs" data-libs>${libNames(result)}</span>
       </span>
@@ -147,6 +147,15 @@ function shelfRow(ctx, book, fieldLabel, result, open) {
       ${src ? html`<p class="small muted shelf-panel__src">출처 ${srcUrl ? html`<a href="${srcUrl}" target="_blank" rel="noopener noreferrer">${src.name}</a>` : src.name}</p>` : ''}
     </div>
   </li>`;
+}
+
+// 책장 모양 줄: 표지를 선반 위에 세워 보여 준다. 누르면 그 책을 펼친다.
+function shelfStrip(list) {
+  const books = list.books.filter((b) => b.match && b.match.isbn13);
+  if (books.length < 2) return '';
+  return html`<section class="section section--strip" aria-label="표지로 보기">
+    <ul class="strip">${books.map((b) => html`<li><button class="strip__book" type="button" data-jump="${b.no}" aria-label="${b.title || b.match.title} 펼치기">${cover(b.match, 'strip')}</button></li>`)}</ul>
+  </section>`;
 }
 
 // 책장 목록 위쪽: 사람은 이름 동그라미, 학과는 아이콘
@@ -173,7 +182,7 @@ function shelfSources(list) {
   const entries = Object.values(list.sources || {});
   return html`<section class="section" aria-labelledby="src-h">
     <h2 class="h2" id="src-h">출처</h2>
-    ${list.group === 'major' ? html`<p class="small muted">탐구 연결 아이디어는 책있나가 쓴 예시예요. 책을 읽고 내 경험과 생각으로 바꿔 쓰세요. 대학 자료에 실렸다고 입시에 유리한 책이 되는 건 아니에요.</p>` : html`<p class="small muted">기사에 실린 내용만 옮겼어요. 사진은 쓰지 않았어요.</p>`}
+    ${list.group === 'major' ? html`<p class="small muted">탐구 연결 아이디어는 책있나가 쓴 예시예요. 읽고 내 생각으로 바꿔 쓰세요. 대학 자료에 실렸다고 입시에 유리한 건 아니에요.</p>` : html`<p class="small muted">기사에 실린 내용만 옮겼어요. 사진은 쓰지 않았어요.</p>`}
     <ul class="src-list">${entries.map((s) => {
       const url = safeHttpUrl(s.url);
       return html`<li>${url ? html`<a href="${url}" target="_blank" rel="noopener noreferrer">${s.name}${icon('external')}</a>` : s.name}</li>`;
@@ -204,7 +213,7 @@ function pasteForm(saved) {
   const text = saved ? saved.books.map((b) => (b.isbnOnly ? b.isbnOnly : [b.title, b.author].filter(Boolean).join(' - '))).join('\n') : '';
   return html`<section class="section" aria-labelledby="paste-h">
     <h2 class="h2" id="paste-h">${saved ? '목록 고치기' : '목록 붙여 넣기'}</h2>
-    <p class="small muted">한 줄에 한 권씩, 최대 ${MAX_PASTE}권까지예요. 저자를 함께 적으면 더 정확하게 찾아요. 목록은 이 폰에만 저장돼요.</p>
+    <p class="small muted">한 줄에 한 권, ${MAX_PASTE}권까지예요. 저자도 적으면 더 잘 찾아요. 이 폰에만 저장돼요.</p>
     <form id="paste-form" class="stack">
       <label class="sr-only" for="paste">책 목록</label>
       <textarea id="paste" class="input textarea" rows="8" placeholder="${'예)\n데미안 - 헤르만 헤세\n아몬드 / 손원평\n『소년이 온다』 한강'}">${text}</textarea>
@@ -301,7 +310,7 @@ export async function render({ main, params, query, signal: routeSignal }) {
     </section>`;
   main.innerHTML = toMarkup(html`
     ${shelf
-      ? shelfHero(list)
+      ? html`${shelfHero(list)}${shelfStrip(list)}`
       : html`<div class="hero">
           <h1 class="h1">${list.title}</h1>
           ${list.description ? html`<p class="lead">${list.description}</p>` : ''}
@@ -351,16 +360,16 @@ export async function render({ main, params, query, signal: routeSignal }) {
 
   const drawCheck = () => {
     if (!mine.length) {
-      box.innerHTML = toMarkup(html`<p class="small">자주 가는 도서관을 고르면, 목록 속 책이 그 도서관에 있는지 한 번에 확인해 드려요.</p>
+      box.innerHTML = toMarkup(html`<p class="small">도서관을 고르면 목록 속 책이 있는지 한 번에 확인해요.</p>
         <a class="btn btn--primary btn--block" href="#/libraries?back=${encodeURIComponent(location.hash)}">${icon('plus')}내 도서관 고르기</a>`);
       return;
     }
     if (!librariesOk || !byRegion.size) {
-      box.innerHTML = toMarkup(errorNotice({ message: '도서관 목록을 불러오지 못했어요. 잠시 뒤 다시 열어 주세요.' }));
+      box.innerHTML = toMarkup(errorNotice({ message: '도서관 목록을 못 불러왔어요. 잠시 뒤 다시 열어 주세요.' }));
       return;
     }
     if (isDemoMode()) {
-      box.innerHTML = toMarkup(html`${demoNotice()}<p class="small muted">예시 데이터 모드에서는 실제 소장 여부를 확인할 수 없어요. 책을 누르면 책 화면으로 가요.</p>`);
+      box.innerHTML = toMarkup(html`${demoNotice()}<p class="small muted">예시 모드라 실제 소장 여부는 확인할 수 없어요.</p>`);
       return;
     }
     const sc = scope();
@@ -378,9 +387,9 @@ export async function render({ main, params, query, signal: routeSignal }) {
       ${!busy && next
         ? html`<button class="btn btn--primary btn--block" type="button" id="check">${icon('search')}${t.checked ? `남은 ${left.length}권 중 ${next}권 더 확인하기` : `${next}권 확인하기${left.length > next ? ` (전체 ${left.length}권)` : ''}`}</button>`
         : ''}
-      ${!busy && !next && t.checked ? html`<p class="small muted">${icon('check')} 보이는 책을 모두 확인했어요. 대출 가능 여부는 책을 눌러 보세요(어제 기준).</p>` : ''}
-      ${withIsbn.length < sc.length && !progress ? html`<p class="small muted">${sc.length - withIsbn.length}권은 정보나루에서 책을 찾지 못해 확인할 수 없어요.</p>` : ''}
-      <p class="small muted">소장 정보는 도서관 정보나루 기준이라 실제와 조금 다를 수 있어요.</p>`);
+      ${!busy && !next && t.checked ? html`<p class="small muted">${icon('check')} 모두 확인했어요. 대출 가능 여부는 책을 눌러 봐요(어제 기준).</p>` : ''}
+      ${withIsbn.length < sc.length && !progress ? html`<p class="small muted">${sc.length - withIsbn.length}권은 정보나루에 없어 확인할 수 없어요.</p>` : ''}
+      <p class="small muted">정보나루 기준이라 실제와 다를 수 있어요.</p>`);
   };
 
   const check = async () => {
@@ -417,7 +426,7 @@ export async function render({ main, params, query, signal: routeSignal }) {
     if (signal.aborted) return;
     busy = false;
     progress = null;
-    if (stop) error = stop.code === 'budget' ? { message: '오늘 조회 한도를 다 썼어요. 확인한 책까지만 보여 드려요. 내일 다시 확인해 주세요.' } : stop;
+    if (stop) error = stop.code === 'budget' ? { message: '오늘 조회 한도를 다 썼어요. 나머지는 내일 확인해 주세요.' } : stop;
     drawCheck();
     drawList();
     const t = tally(scope().map((b) => results.get(b.no)));
@@ -427,6 +436,23 @@ export async function render({ main, params, query, signal: routeSignal }) {
   main.addEventListener('click', (event) => {
     if (event.target.closest('#check')) {
       check();
+      return;
+    }
+    // 책장 모양 줄의 표지: 그 책을 펼치고 그 자리로
+    const jump = event.target.closest('[data-jump]');
+    if (jump) {
+      const no = Number(jump.dataset.jump);
+      if (field && !list.books.some((b) => b.no === no && b.field === field)) {
+        field = '';
+        main.querySelectorAll('[data-field]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.field === '')));
+      }
+      opened.add(no);
+      drawList();
+      const li = listEl.querySelector(`[data-row="${CSS.escape(String(no))}"]`);
+      if (li) {
+        li.scrollIntoView({ block: 'start', behavior: 'smooth' });
+        li.querySelector('.row--btn').focus({ preventScroll: true });
+      }
       return;
     }
     // 책장: 책을 누르면 그 자리에서 펼치기/접기
@@ -512,7 +538,7 @@ export async function render({ main, params, query, signal: routeSignal }) {
 
 function drawPaste(main, saved, routeSignal) {
   document.title = '내 목록 — 책있나';
-  main.innerHTML = toMarkup(html`<div class="hero"><h1 class="h1">내 목록</h1><p class="lead">읽고 싶은 책이나 선생님이 준 권장도서 목록을 붙여 넣으면, 내 도서관에 있는지 한 번에 확인해요.</p></div>${pasteForm(saved)}`);
+  main.innerHTML = toMarkup(html`<div class="hero"><h1 class="h1">내 목록</h1><p class="lead">선생님이 준 목록이나 읽고 싶은 책을 붙여 넣으면 내 도서관에 있는지 한 번에 봐요.</p></div>${pasteForm(saved)}`);
   const form = main.querySelector('#paste-form');
   form.addEventListener('submit', (event) => {
     event.preventDefault();

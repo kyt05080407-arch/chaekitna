@@ -188,7 +188,7 @@ function showInAppNotice() {
   box.className = 'inapp';
   box.setAttribute('role', 'note');
   box.innerHTML = toMarkup(html`
-    <p><strong>${IN_APP_NAMES[kind]} 안에서 열렸어요.</strong> 크롬이나 사파리로 열어야 홈 화면 추가와 아침 알림을 쓸 수 있고, 고른 도서관도 그 브라우저에 저장돼요.</p>
+    <p><strong>${IN_APP_NAMES[kind]} 안에서 열렸어요.</strong> 크롬이나 사파리로 열어야 홈 화면 추가와 알림을 쓸 수 있어요.</p>
     <p class="small">화면의 ⋮ 또는 ⋯ 메뉴에서 '다른 브라우저로 열기'(아이폰은 'Safari로 열기')를 눌러 주세요.</p>
     <div class="btn-row">
       ${kind === 'kakao' ? html`<button class="btn btn--small btn--primary" type="button" data-open-external>다른 브라우저로 열기</button>` : ''}
