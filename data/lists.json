@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-10-22T02:04:01.086Z",
+ "generatedAt": "2026-10-25T23:28:32.611Z",
  "lists": [
   {
    "id": "snu100",
@@ -6307,11 +6307,11 @@
    "title": "고등학생이 요즘 많이 빌린 책",
    "short": "고등학생 인기",
    "kind": "popular",
-   "description": "최근 30일(9월 22일~10월 21일) 동안 전국 공공도서관에서 고등학생이 많이 빌린 책 20권이에요.",
+   "description": "최근 30일(9월 26일~10월 25일) 동안 전국 공공도서관에서 고등학생이 많이 빌린 책 20권이에요.",
    "source": "도서관 정보나루 인기대출도서",
    "sourceUrl": "https://www.data4library.kr/",
-   "startDt": "2026-09-22",
-   "endDt": "2026-10-21",
+   "startDt": "2026-09-26",
+   "endDt": "2026-10-25",
    "books": [
     {
      "no": 1,
@@ -6324,9 +6324,24 @@
       "publisher": "프리렉",
       "year": "2015",
       "cover": "https://image.aladin.co.kr/product/5202/54/cover/8965400910_1.jpg",
-      "loanCount": 87
+      "loanCount": 96
      },
-     "loanCount": 87
+     "loanCount": 96
+    },
+    {
+     "no": 2,
+     "title": "소년이 온다",
+     "author": "한강",
+     "match": {
+      "isbn13": "9788936434120",
+      "title": "소년이 온다",
+      "authors": "한강",
+      "publisher": "창비",
+      "year": "2014",
+      "cover": "https://image.aladin.co.kr/product/4086/97/cover/8936434128_2.jpg",
+      "loanCount": 78
+     },
+     "loanCount": 78
     },
     {
      "no": 2,
@@ -6339,9 +6354,9 @@
       "publisher": "북하우스 퍼블리셔스",
       "year": "2021",
       "cover": "https://image.aladin.co.kr/product/27959/0/cover/k612734212_1.jpg",
-      "loanCount": 72
+      "loanCount": 78
      },
-     "loanCount": 72
+     "loanCount": 78
     },
     {
      "no": 2,
@@ -6354,27 +6369,12 @@
       "publisher": "길벗",
       "year": "2021",
       "cover": "https://image.aladin.co.kr/product/27073/68/cover/k012731588_2.jpg",
-      "loanCount": 72
+      "loanCount": 78
      },
-     "loanCount": 72
+     "loanCount": 78
     },
     {
-     "no": 4,
-     "title": "소년이 온다",
-     "author": "한강",
-     "match": {
-      "isbn13": "9788936434120",
-      "title": "소년이 온다",
-      "authors": "한강",
-      "publisher": "창비",
-      "year": "2014",
-      "cover": "https://image.aladin.co.kr/product/4086/97/cover/8936434128_2.jpg",
-      "loanCount": 64
-     },
-     "loanCount": 64
-    },
-    {
-     "no": 4,
+     "no": 5,
      "title": "(이해하는) 미적분 수업",
      "author": "데이비드 애치슨, 김의석",
      "match": {
@@ -6384,9 +6384,24 @@
       "publisher": "바다출판사",
       "year": "2020",
       "cover": "https://image.aladin.co.kr/product/22963/5/cover/k172637497_1.jpg",
-      "loanCount": 64
+      "loanCount": 69
      },
-     "loanCount": 64
+     "loanCount": 69
+    },
+    {
+     "no": 6,
+     "title": "절창",
+     "author": "구병모",
+     "match": {
+      "isbn13": "9791141602451",
+      "title": "절창",
+      "authors": "구병모",
+      "publisher": "문학동네",
+      "year": "2025",
+      "cover": "https://image.aladin.co.kr/product/37172/36/cover200/k662031678_1.jpg",
+      "loanCount": 47
+     },
+     "loanCount": 47
     },
     {
      "no": 6,
@@ -6399,12 +6414,12 @@
       "publisher": "미래엔",
       "year": "2020",
       "cover": "https://image.aladin.co.kr/product/25470/6/cover/k092633826_1.jpg",
-      "loanCount": 46
+      "loanCount": 47
      },
-     "loanCount": 46
+     "loanCount": 47
     },
     {
-     "no": 6,
+     "no": 8,
      "title": "우리가 빛의 속도로 갈 수 없다면",
      "author": "김초엽",
      "match": {
@@ -6417,21 +6432,6 @@
       "loanCount": 46
      },
      "loanCount": 46
-    },
-    {
-     "no": 8,
-     "title": "절창",
-     "author": "구병모",
-     "match": {
-      "isbn13": "9791141602451",
-      "title": "절창",
-      "authors": "구병모",
-      "publisher": "문학동네",
-      "year": "2025",
-      "cover": "https://image.aladin.co.kr/product/37172/36/cover200/k662031678_1.jpg",
-      "loanCount": 45
-     },
-     "loanCount": 45
     },
     {
      "no": 9,
@@ -6449,7 +6449,37 @@
      "loanCount": 43
     },
     {
-     "no": 10,
+     "no": 9,
+     "title": "지구 끝의 온실",
+     "author": "김초엽",
+     "match": {
+      "isbn13": "9791191824001",
+      "title": "지구 끝의 온실",
+      "authors": "김초엽",
+      "publisher": "Giant Books(자이언트북스)",
+      "year": "2021",
+      "cover": "https://image.aladin.co.kr/product/27692/63/cover/k082733434_1.jpg",
+      "loanCount": 43
+     },
+     "loanCount": 43
+    },
+    {
+     "no": 11,
+     "title": "채식주의자",
+     "author": "한강",
+     "match": {
+      "isbn13": "9788936434595",
+      "title": "채식주의자",
+      "authors": "한강",
+      "publisher": "창비",
+      "year": "2022",
+      "cover": "https://image.aladin.co.kr/product/29137/2/cover/8936434594_1.jpg",
+      "loanCount": 41
+     },
+     "loanCount": 41
+    },
+    {
+     "no": 11,
      "title": "종의 기원",
      "author": "정유정",
      "match": {
@@ -6459,12 +6489,27 @@
       "publisher": "은행나무",
       "year": "2016",
       "cover": "https://image.aladin.co.kr/product/7492/9/cover/8956609950_2.jpg",
-      "loanCount": 42
+      "loanCount": 41
      },
-     "loanCount": 42
+     "loanCount": 41
     },
     {
      "no": 11,
+     "title": "더 이상한 수학책",
+     "author": "벤 올린, 이경민",
+     "match": {
+      "isbn13": "9791191013122",
+      "title": "더 이상한 수학책",
+      "authors": "벤 올린, 이경민",
+      "publisher": "북라이프",
+      "year": "2021",
+      "cover": "https://image.aladin.co.kr/product/26534/91/cover/k112738626_1.jpg",
+      "loanCount": 41
+     },
+     "loanCount": 41
+    },
+    {
+     "no": 14,
      "title": "선량한 차별주의자",
      "author": "김지혜",
      "match": {
@@ -6479,22 +6524,7 @@
      "loanCount": 40
     },
     {
-     "no": 12,
-     "title": "더 이상한 수학책",
-     "author": "벤 올린, 이경민",
-     "match": {
-      "isbn13": "9791191013122",
-      "title": "더 이상한 수학책",
-      "authors": "벤 올린, 이경민",
-      "publisher": "북라이프",
-      "year": "2021",
-      "cover": "https://image.aladin.co.kr/product/26534/91/cover/k112738626_1.jpg",
-      "loanCount": 38
-     },
-     "loanCount": 38
-    },
-    {
-     "no": 13,
+     "no": 15,
      "title": "파과",
      "author": "구병모",
      "match": {
@@ -6504,42 +6534,27 @@
       "publisher": "위즈덤하우스 미디어그룹",
       "year": "2018",
       "cover": "https://image.aladin.co.kr/product/14224/40/cover/k872532537_1.jpg",
+      "loanCount": 38
+     },
+     "loanCount": 38
+    },
+    {
+     "no": 16,
+     "title": "팩트풀니스",
+     "author": "한스 로슬링,옮긴이: 이창신",
+     "match": {
+      "isbn13": "9788934985068",
+      "title": "팩트풀니스",
+      "authors": "한스 로슬링,옮긴이: 이창신",
+      "publisher": "김영사",
+      "year": "2019",
+      "cover": "https://image.aladin.co.kr/product/18456/45/cover/8934985062_1.jpg",
       "loanCount": 37
      },
      "loanCount": 37
     },
     {
-     "no": 13,
-     "title": "지구 끝의 온실",
-     "author": "김초엽",
-     "match": {
-      "isbn13": "9791191824001",
-      "title": "지구 끝의 온실",
-      "authors": "김초엽",
-      "publisher": "Giant Books(자이언트북스)",
-      "year": "2021",
-      "cover": "https://image.aladin.co.kr/product/27692/63/cover/k082733434_1.jpg",
-      "loanCount": 37
-     },
-     "loanCount": 37
-    },
-    {
-     "no": 15,
-     "title": "정의란 무엇인가",
-     "author": "마이클 샌델, 김명철",
-     "match": {
-      "isbn13": "9788937834790",
-      "title": "정의란 무엇인가",
-      "authors": "마이클 샌델, 김명철",
-      "publisher": "미래엔",
-      "year": "2014",
-      "cover": "https://image.aladin.co.kr/product/10826/23/cover/k742530554_1.jpg",
-      "loanCount": 36
-     },
-     "loanCount": 36
-    },
-    {
-     "no": 15,
+     "no": 17,
      "title": "숨결이 바람 될 때",
      "author": "폴 칼라니티, 이종인",
      "match": {
@@ -6554,64 +6569,49 @@
      "loanCount": 36
     },
     {
-     "no": 17,
-     "title": "채식주의자",
-     "author": "한강",
+     "no": 18,
+     "title": "급류",
+     "author": "정대건",
      "match": {
-      "isbn13": "9788936434595",
-      "title": "채식주의자",
-      "authors": "한강",
-      "publisher": "창비",
+      "isbn13": "9788937473401",
+      "title": "급류",
+      "authors": "정대건",
+      "publisher": "민음사",
       "year": "2022",
-      "cover": "https://image.aladin.co.kr/product/29137/2/cover/8936434594_1.jpg",
+      "cover": "https://image.aladin.co.kr/product/30769/24/cover/8937473402_1.jpg",
       "loanCount": 35
      },
      "loanCount": 35
     },
     {
      "no": 18,
-     "title": "침묵의 봄",
-     "author": "레이첼 카슨, 김은령",
+     "title": "정의란 무엇인가",
+     "author": "마이클 샌델, 김명철",
      "match": {
-      "isbn13": "9788962630619",
-      "title": "침묵의 봄",
-      "authors": "레이첼 카슨, 김은령",
-      "publisher": "에코리브르",
-      "year": "2011",
-      "cover": "https://bookthumb-phinf.pstatic.net/cover/068/001/06800163.jpg?type=m1&udate=20180206",
+      "isbn13": "9788937834790",
+      "title": "정의란 무엇인가",
+      "authors": "마이클 샌델, 김명철",
+      "publisher": "미래엔",
+      "year": "2014",
+      "cover": "https://image.aladin.co.kr/product/10826/23/cover/k742530554_1.jpg",
+      "loanCount": 35
+     },
+     "loanCount": 35
+    },
+    {
+     "no": 20,
+     "title": "미적분의 쓸모",
+     "author": "한화택",
+     "match": {
+      "isbn13": "9791165219550",
+      "title": "미적분의 쓸모",
+      "authors": "한화택",
+      "publisher": "길벗",
+      "year": "2022",
+      "cover": "https://image.aladin.co.kr/product/29493/82/cover/k872837946_1.jpg",
       "loanCount": 34
      },
      "loanCount": 34
-    },
-    {
-     "no": 19,
-     "title": "팩트풀니스",
-     "author": "한스 로슬링,옮긴이: 이창신",
-     "match": {
-      "isbn13": "9788934985068",
-      "title": "팩트풀니스",
-      "authors": "한스 로슬링,옮긴이: 이창신",
-      "publisher": "김영사",
-      "year": "2019",
-      "cover": "https://image.aladin.co.kr/product/18456/45/cover/8934985062_1.jpg",
-      "loanCount": 33
-     },
-     "loanCount": 33
-    },
-    {
-     "no": 19,
-     "title": "천 개의 파랑",
-     "author": "천선란",
-     "match": {
-      "isbn13": "9791190090261",
-      "title": "천 개의 파랑",
-      "authors": "천선란",
-      "publisher": "허블",
-      "year": "2020",
-      "cover": "https://image.aladin.co.kr/product/24895/69/cover/k882632470_2.jpg",
-      "loanCount": 33
-     },
-     "loanCount": 33
     }
    ]
   },
@@ -6620,11 +6620,11 @@
    "title": "중학생이 요즘 많이 빌린 책",
    "short": "중학생 인기",
    "kind": "popular",
-   "description": "최근 30일(9월 22일~10월 21일) 동안 전국 공공도서관에서 중학생이 많이 빌린 책 20권이에요.",
+   "description": "최근 30일(9월 26일~10월 25일) 동안 전국 공공도서관에서 중학생이 많이 빌린 책 20권이에요.",
    "source": "도서관 정보나루 인기대출도서",
    "sourceUrl": "https://www.data4library.kr/",
-   "startDt": "2026-09-22",
-   "endDt": "2026-10-21",
+   "startDt": "2026-09-26",
+   "endDt": "2026-10-25",
    "books": [
     {
      "no": 1,
@@ -6637,9 +6637,9 @@
       "publisher": "창비",
       "year": "2014",
       "cover": "https://image.aladin.co.kr/product/4086/97/cover/8936434128_2.jpg",
-      "loanCount": 105
+      "loanCount": 119
      },
-     "loanCount": 105
+     "loanCount": 119
     },
     {
      "no": 2,
@@ -6652,9 +6652,9 @@
       "publisher": "바이포엠",
       "year": "2021",
       "cover": "https://image.aladin.co.kr/product/27407/79/cover/k362732558_1.jpg",
-      "loanCount": 91
+      "loanCount": 88
      },
-     "loanCount": 91
+     "loanCount": 88
     },
     {
      "no": 3,
@@ -6667,24 +6667,9 @@
       "publisher": "인플루엔셜",
       "year": "2018",
       "cover": "https://image.aladin.co.kr/product/15892/11/cover/s802533642_1.jpg",
-      "loanCount": 69
+      "loanCount": 77
      },
-     "loanCount": 69
-    },
-    {
-     "no": 4,
-     "title": "여름을 한 입 베어 물었더니",
-     "author": "이꽃님",
-     "match": {
-      "isbn13": "9788954694575",
-      "title": "여름을 한 입 베어 물었더니",
-      "authors": "이꽃님",
-      "publisher": "문학동네",
-      "year": "2023",
-      "cover": "https://image.aladin.co.kr/product/32294/5/cover/8954694578_1.jpg",
-      "loanCount": 66
-     },
-     "loanCount": 66
+     "loanCount": 77
     },
     {
      "no": 4,
@@ -6697,12 +6682,12 @@
       "publisher": "우리학교",
       "year": "2023",
       "cover": "https://image.aladin.co.kr/product/31269/43/cover/k872832466_1.jpg",
-      "loanCount": 66
+      "loanCount": 68
      },
-     "loanCount": 66
+     "loanCount": 68
     },
     {
-     "no": 6,
+     "no": 4,
      "title": "비스킷",
      "author": "김선미",
      "match": {
@@ -6712,27 +6697,12 @@
       "publisher": "위즈덤하우스",
       "year": "2023",
       "cover": "https://image.aladin.co.kr/product/32443/92/cover/k002935195_1.jpg",
-      "loanCount": 65
+      "loanCount": 68
      },
-     "loanCount": 65
+     "loanCount": 68
     },
     {
-     "no": 7,
-     "title": "불편한 편의점",
-     "author": "김호연",
-     "match": {
-      "isbn13": "9791161571188",
-      "title": "불편한 편의점",
-      "authors": "김호연",
-      "publisher": "나무옆의자",
-      "year": "2021",
-      "cover": "https://image.aladin.co.kr/product/26942/84/cover/k582730818_1.jpg",
-      "loanCount": 64
-     },
-     "loanCount": 64
-    },
-    {
-     "no": 8,
+     "no": 6,
      "title": "선량한 차별주의자",
      "author": "김지혜",
      "match": {
@@ -6742,12 +6712,12 @@
       "publisher": "창비",
       "year": "2019",
       "cover": "https://image.aladin.co.kr/product/19874/76/cover/8936477196_1.jpg",
-      "loanCount": 63
+      "loanCount": 66
      },
-     "loanCount": 63
+     "loanCount": 66
     },
     {
-     "no": 9,
+     "no": 6,
      "title": "시한부",
      "author": "백은별",
      "match": {
@@ -6757,12 +6727,12 @@
       "publisher": "바른북스",
       "year": "2024",
       "cover": "https://image.aladin.co.kr/product/33249/36/cover/k132938568_1.jpg",
-      "loanCount": 62
+      "loanCount": 66
      },
-     "loanCount": 62
+     "loanCount": 66
     },
     {
-     "no": 10,
+     "no": 8,
      "title": "공정하다는 착각",
      "author": "마이클 샌델, 함규진",
      "match": {
@@ -6772,12 +6742,12 @@
       "publisher": "미래엔",
       "year": "2020",
       "cover": "https://image.aladin.co.kr/product/25470/6/cover/k092633826_1.jpg",
-      "loanCount": 59
+      "loanCount": 65
      },
-     "loanCount": 59
+     "loanCount": 65
     },
     {
-     "no": 10,
+     "no": 9,
      "title": "내가 없던 어느 밤에",
      "author": "이꽃님",
      "match": {
@@ -6787,27 +6757,42 @@
       "publisher": "우리학교",
       "year": "2025",
       "cover": "https://image.aladin.co.kr/product/37061/57/cover200/k702030236_1.jpg",
-      "loanCount": 59
+      "loanCount": 64
      },
-     "loanCount": 59
+     "loanCount": 64
+    },
+    {
+     "no": 10,
+     "title": "여름을 한 입 베어 물었더니",
+     "author": "이꽃님",
+     "match": {
+      "isbn13": "9788954694575",
+      "title": "여름을 한 입 베어 물었더니",
+      "authors": "이꽃님",
+      "publisher": "문학동네",
+      "year": "2023",
+      "cover": "https://image.aladin.co.kr/product/32294/5/cover/8954694578_1.jpg",
+      "loanCount": 63
+     },
+     "loanCount": 63
+    },
+    {
+     "no": 10,
+     "title": "불편한 편의점",
+     "author": "김호연",
+     "match": {
+      "isbn13": "9791161571188",
+      "title": "불편한 편의점",
+      "authors": "김호연",
+      "publisher": "나무옆의자",
+      "year": "2021",
+      "cover": "https://image.aladin.co.kr/product/26942/84/cover/k582730818_1.jpg",
+      "loanCount": 63
+     },
+     "loanCount": 63
     },
     {
      "no": 12,
-     "title": "순례 주택",
-     "author": "유은실",
-     "match": {
-      "isbn13": "9788949123493",
-      "title": "순례 주택",
-      "authors": "유은실",
-      "publisher": "비룡소",
-      "year": "2021",
-      "cover": "https://image.aladin.co.kr/product/26674/56/cover/8949123495_1.jpg",
-      "loanCount": 58
-     },
-     "loanCount": 58
-    },
-    {
-     "no": 13,
      "title": "아몬드",
      "author": "손원평",
      "match": {
@@ -6817,12 +6802,57 @@
       "publisher": "창비",
       "year": "2017",
       "cover": "https://image.aladin.co.kr/product/16839/4/cover/k492534773_1.jpg",
+      "loanCount": 58
+     },
+     "loanCount": 58
+    },
+    {
+     "no": 12,
+     "title": "자몽살구클럽",
+     "author": "한로로 (HANRORO) (지은이)",
+     "match": {
+      "isbn13": "9791199305304",
+      "title": "자몽살구클럽",
+      "authors": "한로로 (HANRORO) (지은이)",
+      "publisher": "어센틱",
+      "year": "2025",
+      "cover": "https://image.aladin.co.kr/product/36808/37/cover200/k082030009_1.jpg",
+      "loanCount": 58
+     },
+     "loanCount": 58
+    },
+    {
+     "no": 14,
+     "title": "윤슬의 바다",
+     "author": "백은별",
+     "match": {
+      "isbn13": "9791172634001",
+      "title": "윤슬의 바다",
+      "authors": "백은별",
+      "publisher": "바른북스",
+      "year": "2025",
+      "cover": "https://image.aladin.co.kr/product/36565/72/cover200/k052039142_1.jpg",
+      "loanCount": 57
+     },
+     "loanCount": 57
+    },
+    {
+     "no": 15,
+     "title": "순례 주택",
+     "author": "유은실",
+     "match": {
+      "isbn13": "9788949123493",
+      "title": "순례 주택",
+      "authors": "유은실",
+      "publisher": "비룡소",
+      "year": "2021",
+      "cover": "https://image.aladin.co.kr/product/26674/56/cover/8949123495_1.jpg",
       "loanCount": 55
      },
      "loanCount": 55
     },
     {
-     "no": 14,
+     "no": 15,
      "title": "아픔이 길이 되려면",
      "author": "김승섭",
      "match": {
@@ -6832,12 +6862,42 @@
       "publisher": "동아시아",
       "year": "2017",
       "cover": "https://image.aladin.co.kr/product/11765/13/cover/s132532088_1.jpg",
-      "loanCount": 52
+      "loanCount": 55
      },
-     "loanCount": 52
+     "loanCount": 55
     },
     {
-     "no": 14,
+     "no": 17,
+     "title": "지구 끝의 온실",
+     "author": "김초엽",
+     "match": {
+      "isbn13": "9791191824001",
+      "title": "지구 끝의 온실",
+      "authors": "김초엽",
+      "publisher": "Giant Books(자이언트북스)",
+      "year": "2021",
+      "cover": "https://image.aladin.co.kr/product/27692/63/cover/k082733434_1.jpg",
+      "loanCount": 54
+     },
+     "loanCount": 54
+    },
+    {
+     "no": 17,
+     "title": "잃어버린 건 없는지 잊은 건 아닌지",
+     "author": "이꽃님",
+     "match": {
+      "isbn13": "9791198792129",
+      "title": "잃어버린 건 없는지 잊은 건 아닌지",
+      "authors": "이꽃님",
+      "publisher": "이끌",
+      "year": "2026",
+      "cover": "https://image.aladin.co.kr/product/38596/44/cover200/k412136370_1.jpg",
+      "loanCount": 54
+     },
+     "loanCount": 54
+    },
+    {
+     "no": 19,
      "title": "친밀한 가해자",
      "author": "손현주",
      "match": {
@@ -6852,79 +6912,19 @@
      "loanCount": 52
     },
     {
-     "no": 14,
-     "title": "오늘 밤, 세계에서 이 눈물이 사라진다 해도",
-     "author": "이치조 미사키, 김윤경",
+     "no": 19,
+     "title": "우리가 빛의 속도로 갈 수 없다면",
+     "author": "김초엽",
      "match": {
-      "isbn13": "9791191043976",
-      "title": "오늘 밤, 세계에서 이 눈물이 사라진다 해도",
-      "authors": "이치조 미사키, 김윤경",
-      "publisher": "바이포엠 스튜디오",
-      "year": "2022",
-      "cover": "https://bookthumb-phinf.pstatic.net/cover/225/848/22584874.jpg?type=m1&udate=20220714",
+      "isbn13": "9791190090018",
+      "title": "우리가 빛의 속도로 갈 수 없다면",
+      "authors": "김초엽",
+      "publisher": "허블",
+      "year": "2019",
+      "cover": "https://image.aladin.co.kr/product/19359/16/cover/s972635417_1.jpg",
       "loanCount": 52
      },
      "loanCount": 52
-    },
-    {
-     "no": 17,
-     "title": "윤슬의 바다",
-     "author": "백은별",
-     "match": {
-      "isbn13": "9791172634001",
-      "title": "윤슬의 바다",
-      "authors": "백은별",
-      "publisher": "바른북스",
-      "year": "2025",
-      "cover": "https://image.aladin.co.kr/product/36565/72/cover200/k052039142_1.jpg",
-      "loanCount": 51
-     },
-     "loanCount": 51
-    },
-    {
-     "no": 17,
-     "title": "지구 끝의 온실",
-     "author": "김초엽",
-     "match": {
-      "isbn13": "9791191824001",
-      "title": "지구 끝의 온실",
-      "authors": "김초엽",
-      "publisher": "Giant Books(자이언트북스)",
-      "year": "2021",
-      "cover": "https://image.aladin.co.kr/product/27692/63/cover/k082733434_1.jpg",
-      "loanCount": 51
-     },
-     "loanCount": 51
-    },
-    {
-     "no": 17,
-     "title": "자몽살구클럽",
-     "author": "한로로 (HANRORO) (지은이)",
-     "match": {
-      "isbn13": "9791199305304",
-      "title": "자몽살구클럽",
-      "authors": "한로로 (HANRORO) (지은이)",
-      "publisher": "어센틱",
-      "year": "2025",
-      "cover": "https://image.aladin.co.kr/product/36808/37/cover200/k082030009_1.jpg",
-      "loanCount": 51
-     },
-     "loanCount": 51
-    },
-    {
-     "no": 20,
-     "title": "천 개의 파랑",
-     "author": "천선란",
-     "match": {
-      "isbn13": "9791190090261",
-      "title": "천 개의 파랑",
-      "authors": "천선란",
-      "publisher": "허블",
-      "year": "2020",
-      "cover": "https://image.aladin.co.kr/product/24895/69/cover/k882632470_2.jpg",
-      "loanCount": 50
-     },
-     "loanCount": 50
     }
    ]
   }
