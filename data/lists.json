@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-11-09T01:09:39.501Z",
+ "generatedAt": "2026-11-16T01:21:55.099Z",
  "lists": [
   {
    "id": "snu100",
@@ -6307,11 +6307,11 @@
    "title": "고등학생이 요즘 많이 빌린 책",
    "short": "고등학생 인기",
    "kind": "popular",
-   "description": "최근 30일(10월 10일~11월 8일) 동안 전국 공공도서관에서 고등학생이 많이 빌린 책 20권이에요.",
+   "description": "최근 30일(10월 17일~11월 15일) 동안 전국 공공도서관에서 고등학생이 많이 빌린 책 20권이에요.",
    "source": "도서관 정보나루 인기대출도서",
    "sourceUrl": "https://www.data4library.kr/",
-   "startDt": "2026-10-10",
-   "endDt": "2026-11-08",
+   "startDt": "2026-10-17",
+   "endDt": "2026-11-15",
    "books": [
     {
      "no": 1,
@@ -6324,9 +6324,9 @@
       "publisher": "프리렉",
       "year": "2015",
       "cover": "https://image.aladin.co.kr/product/5202/54/cover/8965400910_1.jpg",
-      "loanCount": 162
+      "loanCount": 153
      },
-     "loanCount": 162
+     "loanCount": 153
     },
     {
      "no": 2,
@@ -6339,9 +6339,9 @@
       "publisher": "길벗",
       "year": "2021",
       "cover": "https://image.aladin.co.kr/product/27073/68/cover/k012731588_2.jpg",
-      "loanCount": 118
+      "loanCount": 132
      },
-     "loanCount": 118
+     "loanCount": 132
     },
     {
      "no": 3,
@@ -6354,9 +6354,9 @@
       "publisher": "북하우스 퍼블리셔스",
       "year": "2021",
       "cover": "https://image.aladin.co.kr/product/27959/0/cover/k612734212_1.jpg",
-      "loanCount": 109
+      "loanCount": 102
      },
-     "loanCount": 109
+     "loanCount": 102
     },
     {
      "no": 4,
@@ -6369,9 +6369,9 @@
       "publisher": "바다출판사",
       "year": "2020",
       "cover": "https://image.aladin.co.kr/product/22963/5/cover/k172637497_1.jpg",
-      "loanCount": 102
+      "loanCount": 99
      },
-     "loanCount": 102
+     "loanCount": 99
     },
     {
      "no": 5,
@@ -6384,27 +6384,12 @@
       "publisher": "창비",
       "year": "2019",
       "cover": "https://image.aladin.co.kr/product/19874/76/cover/8936477196_1.jpg",
-      "loanCount": 82
+      "loanCount": 80
      },
-     "loanCount": 82
+     "loanCount": 80
     },
     {
      "no": 6,
-     "title": "소년이 온다",
-     "author": "한강",
-     "match": {
-      "isbn13": "9788936434120",
-      "title": "소년이 온다",
-      "authors": "한강",
-      "publisher": "창비",
-      "year": "2014",
-      "cover": "https://image.aladin.co.kr/product/4086/97/cover/8936434128_2.jpg",
-      "loanCount": 81
-     },
-     "loanCount": 81
-    },
-    {
-     "no": 7,
      "title": "더 이상한 수학책",
      "author": "벤 올린, 이경민",
      "match": {
@@ -6414,9 +6399,24 @@
       "publisher": "북라이프",
       "year": "2021",
       "cover": "https://image.aladin.co.kr/product/26534/91/cover/k112738626_1.jpg",
-      "loanCount": 72
+      "loanCount": 74
      },
-     "loanCount": 72
+     "loanCount": 74
+    },
+    {
+     "no": 7,
+     "title": "소년이 온다",
+     "author": "한강",
+     "match": {
+      "isbn13": "9788936434120",
+      "title": "소년이 온다",
+      "authors": "한강",
+      "publisher": "창비",
+      "year": "2014",
+      "cover": "https://image.aladin.co.kr/product/4086/97/cover/8936434128_2.jpg",
+      "loanCount": 68
+     },
+     "loanCount": 68
     },
     {
      "no": 8,
@@ -6429,57 +6429,12 @@
       "publisher": "미래엔",
       "year": "2020",
       "cover": "https://image.aladin.co.kr/product/25470/6/cover/k092633826_1.jpg",
-      "loanCount": 69
+      "loanCount": 62
      },
-     "loanCount": 69
+     "loanCount": 62
     },
     {
      "no": 9,
-     "title": "절창",
-     "author": "구병모",
-     "match": {
-      "isbn13": "9791141602451",
-      "title": "절창",
-      "authors": "구병모",
-      "publisher": "문학동네",
-      "year": "2025",
-      "cover": "https://image.aladin.co.kr/product/37172/36/cover200/k662031678_1.jpg",
-      "loanCount": 59
-     },
-     "loanCount": 59
-    },
-    {
-     "no": 9,
-     "title": "미적분의 쓸모",
-     "author": "한화택",
-     "match": {
-      "isbn13": "9791165219550",
-      "title": "미적분의 쓸모",
-      "authors": "한화택",
-      "publisher": "길벗",
-      "year": "2022",
-      "cover": "https://image.aladin.co.kr/product/29493/82/cover/k872837946_1.jpg",
-      "loanCount": 59
-     },
-     "loanCount": 59
-    },
-    {
-     "no": 11,
-     "title": "급류",
-     "author": "정대건",
-     "match": {
-      "isbn13": "9788937473401",
-      "title": "급류",
-      "authors": "정대건",
-      "publisher": "민음사",
-      "year": "2022",
-      "cover": "https://image.aladin.co.kr/product/30769/24/cover/8937473402_1.jpg",
-      "loanCount": 57
-     },
-     "loanCount": 57
-    },
-    {
-     "no": 11,
      "title": "수학이 생명의 언어라면",
      "author": "김재경",
      "match": {
@@ -6489,24 +6444,69 @@
       "publisher": "동아시아",
       "year": "2024",
       "cover": "https://image.aladin.co.kr/product/34554/83/cover200/8962624958_1.jpg",
+      "loanCount": 59
+     },
+     "loanCount": 59
+    },
+    {
+     "no": 10,
+     "title": "절창",
+     "author": "구병모",
+     "match": {
+      "isbn13": "9791141602451",
+      "title": "절창",
+      "authors": "구병모",
+      "publisher": "문학동네",
+      "year": "2025",
+      "cover": "https://image.aladin.co.kr/product/37172/36/cover200/k662031678_1.jpg",
       "loanCount": 57
      },
      "loanCount": 57
     },
     {
-     "no": 11,
-     "title": "지구 끝의 온실",
-     "author": "김초엽",
+     "no": 10,
+     "title": "지구에서 한아뿐",
+     "author": "정세랑",
      "match": {
-      "isbn13": "9791191824001",
-      "title": "지구 끝의 온실",
-      "authors": "김초엽",
-      "publisher": "Giant Books(자이언트북스)",
-      "year": "2021",
-      "cover": "https://image.aladin.co.kr/product/27692/63/cover/k082733434_1.jpg",
+      "isbn13": "9791188862290",
+      "title": "지구에서 한아뿐",
+      "authors": "정세랑",
+      "publisher": "난다",
+      "year": "2019",
+      "cover": "https://image.aladin.co.kr/product/19804/82/cover/k072635131_1.jpg",
       "loanCount": 57
      },
      "loanCount": 57
+    },
+    {
+     "no": 12,
+     "title": "미적분의 쓸모",
+     "author": "한화택",
+     "match": {
+      "isbn13": "9791165219550",
+      "title": "미적분의 쓸모",
+      "authors": "한화택",
+      "publisher": "길벗",
+      "year": "2022",
+      "cover": "https://image.aladin.co.kr/product/29493/82/cover/k872837946_1.jpg",
+      "loanCount": 56
+     },
+     "loanCount": 56
+    },
+    {
+     "no": 13,
+     "title": "수학책을 탈출한 미적분",
+     "author": "류치, 이지수",
+     "match": {
+      "isbn13": "9791163632177",
+      "title": "수학책을 탈출한 미적분",
+      "authors": "류치, 이지수",
+      "publisher": "동아엠앤비",
+      "year": "2020",
+      "cover": "https://image.aladin.co.kr/product/24399/63/cover/k722630317_1.jpg",
+      "loanCount": 55
+     },
+     "loanCount": 55
     },
     {
      "no": 14,
@@ -6519,42 +6519,12 @@
       "publisher": "위즈덤하우스 미디어그룹",
       "year": "2018",
       "cover": "https://image.aladin.co.kr/product/14224/40/cover/k872532537_1.jpg",
-      "loanCount": 56
+      "loanCount": 53
      },
-     "loanCount": 56
+     "loanCount": 53
     },
     {
      "no": 15,
-     "title": "지구에서 한아뿐",
-     "author": "정세랑",
-     "match": {
-      "isbn13": "9791188862290",
-      "title": "지구에서 한아뿐",
-      "authors": "정세랑",
-      "publisher": "난다",
-      "year": "2019",
-      "cover": "https://image.aladin.co.kr/product/19804/82/cover/k072635131_1.jpg",
-      "loanCount": 51
-     },
-     "loanCount": 51
-    },
-    {
-     "no": 16,
-     "title": "수학책을 탈출한 미적분",
-     "author": "류치, 이지수",
-     "match": {
-      "isbn13": "9791163632177",
-      "title": "수학책을 탈출한 미적분",
-      "authors": "류치, 이지수",
-      "publisher": "동아엠앤비",
-      "year": "2020",
-      "cover": "https://image.aladin.co.kr/product/24399/63/cover/k722630317_1.jpg",
-      "loanCount": 50
-     },
-     "loanCount": 50
-    },
-    {
-     "no": 17,
      "title": "채식주의자",
      "author": "한강",
      "match": {
@@ -6564,27 +6534,27 @@
       "publisher": "창비",
       "year": "2022",
       "cover": "https://image.aladin.co.kr/product/29137/2/cover/8936434594_1.jpg",
-      "loanCount": 49
+      "loanCount": 50
      },
-     "loanCount": 49
+     "loanCount": 50
     },
     {
-     "no": 18,
-     "title": "아픔이 길이 되려면",
-     "author": "김승섭",
+     "no": 16,
+     "title": "급류",
+     "author": "정대건",
      "match": {
-      "isbn13": "9788962621952",
-      "title": "아픔이 길이 되려면",
-      "authors": "김승섭",
-      "publisher": "동아시아",
-      "year": "2017",
-      "cover": "https://image.aladin.co.kr/product/11765/13/cover/s132532088_1.jpg",
+      "isbn13": "9788937473401",
+      "title": "급류",
+      "authors": "정대건",
+      "publisher": "민음사",
+      "year": "2022",
+      "cover": "https://image.aladin.co.kr/product/30769/24/cover/8937473402_1.jpg",
       "loanCount": 48
      },
      "loanCount": 48
     },
     {
-     "no": 18,
+     "no": 17,
      "title": "미적분, 놀라운 일상의 공식",
      "author": "구라모토 다카후미, 김소영",
      "match": {
@@ -6594,24 +6564,54 @@
       "publisher": "미디어숲",
       "year": "2024",
       "cover": "https://image.aladin.co.kr/product/34597/89/cover200/k042933677_1.jpg",
-      "loanCount": 48
+      "loanCount": 47
      },
-     "loanCount": 48
+     "loanCount": 47
     },
     {
-     "no": 18,
-     "title": "미적분 직관하기",
-     "author": "박원균",
+     "no": 17,
+     "title": "물고기는 존재하지 않는다",
+     "author": "룰루 밀러, 정지인",
      "match": {
-      "isbn13": "9791170873044",
-      "title": "미적분 직관하기",
-      "authors": "박원균",
-      "publisher": "H(휴머니스트 출판그룹)",
-      "year": "2025",
-      "cover": "https://image.aladin.co.kr/product/35907/24/cover200/k202037497_1.jpg",
-      "loanCount": 48
+      "isbn13": "9791189327156",
+      "title": "물고기는 존재하지 않는다",
+      "authors": "룰루 밀러, 정지인",
+      "publisher": "곰출판",
+      "year": "2021",
+      "cover": "https://image.aladin.co.kr/product/28465/73/cover/k092835920_1.jpg",
+      "loanCount": 47
      },
-     "loanCount": 48
+     "loanCount": 47
+    },
+    {
+     "no": 19,
+     "title": "정의란 무엇인가",
+     "author": "마이클 샌델, 김명철",
+     "match": {
+      "isbn13": "9788937834790",
+      "title": "정의란 무엇인가",
+      "authors": "마이클 샌델, 김명철",
+      "publisher": "미래엔",
+      "year": "2014",
+      "cover": "https://image.aladin.co.kr/product/10826/23/cover/k742530554_1.jpg",
+      "loanCount": 46
+     },
+     "loanCount": 46
+    },
+    {
+     "no": 19,
+     "title": "지구 끝의 온실",
+     "author": "김초엽",
+     "match": {
+      "isbn13": "9791191824001",
+      "title": "지구 끝의 온실",
+      "authors": "김초엽",
+      "publisher": "Giant Books(자이언트북스)",
+      "year": "2021",
+      "cover": "https://image.aladin.co.kr/product/27692/63/cover/k082733434_1.jpg",
+      "loanCount": 46
+     },
+     "loanCount": 46
     }
    ]
   },
